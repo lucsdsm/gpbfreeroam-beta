@@ -1,0 +1,201 @@
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[19:03:17] 
+[19:03:17] Server Plugins
+[19:03:17] --------------
+[19:03:17]  Loading plugin: sscanf
+[19:03:17] 
+[19:03:17]  ===============================
+[19:03:17] 
+[19:03:17]       sscanf plugin loaded.     
+[19:03:17] 
+[19:03:17]          Version: 2.13.8
+[19:03:17] 
+[19:03:17]    (c) 2022 Alex "Y_Less" Cole  
+[19:03:17] 
+[19:03:17]  ===============================
+[19:03:17] 
+[19:03:17]   Loaded.
+[19:03:17]  Loading plugin: crashdetect
+[19:03:17]   CrashDetect plugin 4.21
+[19:03:17]   Loaded.
+[19:03:17]  Loading plugin: streamer
+[19:03:17] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[19:03:17]   Loaded.
+[19:03:17]  Loading plugin: pawn-memory
+[19:03:17] ========================
+[19:03:17] = Memory access plugin =
+[19:03:17] =       Made by BigETI =
+[19:03:17] = Loaded!              =
+[19:03:17] ========================
+[19:03:17]   Loaded.
+[19:03:17]  Loaded 4 plugins.
+
+[19:03:17] I couldn't load any gamemode scripts. Please verify your server.cfg
+[19:03:17] It needs a gamemode0 line at the very least.
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[19:03:24] 
+[19:03:24] Server Plugins
+[19:03:24] --------------
+[19:03:24]  Loading plugin: sscanf
+[19:03:24] 
+[19:03:24]  ===============================
+[19:03:24] 
+[19:03:24]       sscanf plugin loaded.     
+[19:03:24] 
+[19:03:24]          Version: 2.13.8
+[19:03:24] 
+[19:03:24]    (c) 2022 Alex "Y_Less" Cole  
+[19:03:24] 
+[19:03:24]  ===============================
+[19:03:24] 
+[19:03:24]   Loaded.
+[19:03:24]  Loading plugin: crashdetect
+[19:03:24]   CrashDetect plugin 4.21
+[19:03:24]   Loaded.
+[19:03:24]  Loading plugin: streamer
+[19:03:24] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[19:03:24]   Loaded.
+[19:03:24]  Loading plugin: pawn-memory
+[19:03:24] ========================
+[19:03:24] = Memory access plugin =
+[19:03:24] =       Made by BigETI =
+[19:03:24] = Loaded!              =
+[19:03:24] ========================
+[19:03:24]   Loaded.
+[19:03:24]  Loaded 4 plugins.
+
+[19:03:24] I couldn't load any gamemode scripts. Please verify your server.cfg
+[19:03:24] It needs a gamemode0 line at the very least.
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[19:03:57] 
+[19:03:57] Server Plugins
+[19:03:57] --------------
+[19:03:57]  Loading plugin: sscanf
+[19:03:57] 
+[19:03:57]  ===============================
+[19:03:57] 
+[19:03:57]       sscanf plugin loaded.     
+[19:03:57] 
+[19:03:57]          Version: 2.13.8
+[19:03:57] 
+[19:03:57]    (c) 2022 Alex "Y_Less" Cole  
+[19:03:57] 
+[19:03:57]  ===============================
+[19:03:57] 
+[19:03:57]   Loaded.
+[19:03:57]  Loading plugin: crashdetect
+[19:03:57]   CrashDetect plugin 4.21
+[19:03:57]   Loaded.
+[19:03:57]  Loading plugin: streamer
+[19:03:57] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[19:03:57]   Loaded.
+[19:03:57]  Loading plugin: pawn-memory
+[19:03:57] ========================
+[19:03:57] = Memory access plugin =
+[19:03:57] =       Made by BigETI =
+[19:03:57] = Loaded!              =
+[19:03:57] ========================
+[19:03:57]   Loaded.
+[19:03:57]  Loaded 4 plugins.
+
+[19:03:57] 
+[19:03:57] Filterscripts
+[19:03:57] ---------------
+[19:03:57]   Loading filterscript 'mapa.amx'...
+[19:03:57]   Unable to load filterscript 'mapa.amx'.
+[19:03:57]   Loaded 0 filterscripts.
+
+[19:03:57] AllowAdminTeleport() : function is deprecated. Please see OnPlayerClickMap()
+[19:03:57] 
+----------------------------------
+[19:03:57]   Bare Script
+
+[19:03:57] ----------------------------------
+
+[19:03:57] Number of vehicle models: 0
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[19:09:30] 
+[19:09:30] Server Plugins
+[19:09:30] --------------
+[19:09:30]  Loading plugin: sscanf
+[19:09:30] 
+[19:09:30]  ===============================
+[19:09:30] 
+[19:09:30]       sscanf plugin loaded.     
+[19:09:30] 
+[19:09:30]          Version: 2.13.8
+[19:09:30] 
+[19:09:30]    (c) 2022 Alex "Y_Less" Cole  
+[19:09:30] 
+[19:09:30]  ===============================
+[19:09:30] 
+[19:09:30]   Loaded.
+[19:09:30]  Loading plugin: crashdetect
+[19:09:30]   CrashDetect plugin 4.21
+[19:09:30]   Loaded.
+[19:09:30]  Loading plugin: streamer
+[19:09:30] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[19:09:30]   Loaded.
+[19:09:30]  Loading plugin: pawn-memory
+[19:09:30] ========================
+[19:09:30] = Memory access plugin =
+[19:09:30] =       Made by BigETI =
+[19:09:30] = Loaded!              =
+[19:09:30] ========================
+[19:09:30]   Loaded.
+[19:09:30]  Loaded 4 plugins.
+
+[19:09:30] 
+[19:09:30] Filterscripts
+[19:09:30] ---------------
+[19:09:30]   Loading filterscript 'mapa.amx'...
+[19:09:30]   Unable to load filterscript 'mapa.amx'.
+[19:09:30]   Loaded 0 filterscripts.
+
+[19:09:30] Number of vehicle models: 0
+[19:10:08] [connection] incoming connection: 127.0.0.1:65011 id: 0
+[19:10:08] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
