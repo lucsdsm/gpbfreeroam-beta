@@ -44,9 +44,29 @@ public JogadorDesconecta(playerid, reason) {
     return 1;
 }
 
+forward DelayedKick(playerid);
+public DelayedKick(playerid) {
+    Kick(playerid);
+    return 1;
+}
+
+forward VerificaNome(playerid);
+public VerificaNome(playerid) {
+	new playerName[MAX_PLAYER_NAME];
+	new gpb[6] = "[GPB]";
+ 	playerName = GetName(playerid);
+  	for (new x = 0; x < 5; x++) { // verifica sem tem o [GPB] no nome
+   		if(playerName[x] != gpb[x]) {
+     		SendClientMessage(playerid, red, "Para conectar-se você deve utilizar a tag [GPB] antes do nickname.");
+       		SetTimerEx("DelayedKick", 1000, false, "i", playerid);
+	        }
+	}
+}
+
 main() {
 }
 
+//Funções públicas:
 public OnGameModeInit() {
 	SetGameModeText("GPB:F");
     ManualVehicleEngineAndLights();
