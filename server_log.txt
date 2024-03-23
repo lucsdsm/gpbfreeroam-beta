@@ -199,3 +199,157 @@ v0.3.7-R2, (C)2005-2015 SA-MP Team
 [19:09:30] Number of vehicle models: 0
 [19:10:08] [connection] incoming connection: 127.0.0.1:65011 id: 0
 [19:10:08] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[06:40:35] 
+[06:40:35] Server Plugins
+[06:40:35] --------------
+[06:40:35]  Loading plugin: sscanf
+[06:40:35] 
+[06:40:35]  ===============================
+[06:40:35] 
+[06:40:35]       sscanf plugin loaded.     
+[06:40:35] 
+[06:40:35]          Version: 2.13.8
+[06:40:35] 
+[06:40:35]    (c) 2022 Alex "Y_Less" Cole  
+[06:40:35] 
+[06:40:35]  ===============================
+[06:40:35] 
+[06:40:35]   Loaded.
+[06:40:35]  Loading plugin: crashdetect
+[06:40:36]   CrashDetect plugin 4.21
+[06:40:36]   Loaded.
+[06:40:36]  Loading plugin: streamer
+[06:40:36] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[06:40:36]   Loaded.
+[06:40:36]  Loading plugin: pawn-memory
+[06:40:36] ========================
+[06:40:36] = Memory access plugin =
+[06:40:36] =       Made by BigETI =
+[06:40:36] = Loaded!              =
+[06:40:36] ========================
+[06:40:36]   Loaded.
+[06:40:36]  Loaded 4 plugins.
+
+[06:40:36] 
+[06:40:36] Filterscripts
+[06:40:36] ---------------
+[06:40:36]   Loading filterscript 'mapa.amx'...
+[06:40:36]   Unable to load filterscript 'mapa.amx'.
+[06:40:36]   Loaded 0 filterscripts.
+
+[06:40:36] Number of vehicle models: 0
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[06:40:58] 
+[06:40:58] Server Plugins
+[06:40:58] --------------
+[06:40:58]  Loading plugin: sscanf
+[06:40:58] 
+[06:40:58]  ===============================
+[06:40:58] 
+[06:40:58]       sscanf plugin loaded.     
+[06:40:58] 
+[06:40:58]          Version: 2.13.8
+[06:40:58] 
+[06:40:58]    (c) 2022 Alex "Y_Less" Cole  
+[06:40:58] 
+[06:40:58]  ===============================
+[06:40:58] 
+[06:40:58]   Loaded.
+[06:40:58]  Loading plugin: crashdetect
+[06:40:58]   CrashDetect plugin 4.21
+[06:40:58]   Loaded.
+[06:40:58]  Loading plugin: streamer
+[06:40:58] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[06:40:58]   Loaded.
+[06:40:58]  Loading plugin: pawn-memory
+[06:40:58] ========================
+[06:40:58] = Memory access plugin =
+[06:40:58] =       Made by BigETI =
+[06:40:58] = Loaded!              =
+[06:40:58] ========================
+[06:40:58]   Loaded.
+[06:40:58]  Loaded 4 plugins.
+
+[06:40:58] 
+[06:40:58] Filterscripts
+[06:40:58] ---------------
+[06:40:58]   Loading filterscript 'mapa.amx'...
+[06:40:58]   Unable to load filterscript 'mapa.amx'.
+[06:40:58]   Loaded 0 filterscripts.
+
+[06:40:58] Number of vehicle models: 0
+[06:41:27] [connection] incoming connection: 127.0.0.1:54696 id: 0
+[06:41:27] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[06:42:38] 
+[06:42:38] Server Plugins
+[06:42:38] --------------
+[06:42:38]  Loading plugin: sscanf
+[06:42:38] 
+[06:42:38]  ===============================
+[06:42:38] 
+[06:42:38]       sscanf plugin loaded.     
+[06:42:38] 
+[06:42:38]          Version: 2.13.8
+[06:42:38] 
+[06:42:38]    (c) 2022 Alex "Y_Less" Cole  
+[06:42:38] 
+[06:42:38]  ===============================
+[06:42:38] 
+[06:42:38]   Loaded.
+[06:42:38]  Loading plugin: crashdetect
+[06:42:38]   CrashDetect plugin 4.21
+[06:42:38]   Loaded.
+[06:42:38]  Loading plugin: streamer
+[06:42:38] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[06:42:38]   Loaded.
+[06:42:38]  Loading plugin: pawn-memory
+[06:42:38] ========================
+[06:42:38] = Memory access plugin =
+[06:42:38] =       Made by BigETI =
+[06:42:38] = Loaded!              =
+[06:42:38] ========================
+[06:42:38]   Loaded.
+[06:42:38]  Loaded 4 plugins.
+
+[06:42:38] 
+[06:42:38] Filterscripts
+[06:42:38] ---------------
+[06:42:38]   Loading filterscript 'mapa.amx'...
+[06:42:38]   Loaded 1 filterscripts.
+
+[06:42:38] Number of vehicle models: 1

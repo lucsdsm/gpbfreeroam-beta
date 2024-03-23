@@ -1,10 +1,58 @@
 #include <a_samp>
 
+//Definidores:
+#define green 0x9ACD32AA
+#define red   0xFF6347AA
+#define white 0xFFFFFFAA
+#define grey  0xAFAFAFAA
+#define purple 0xCA9CFFAA
+#define orange 0xFFA46BAA
+#define indigo 0xD8D6FFAA
+#define rose 0xF0C9FFAA
+#define lightgreen 0x99FFB1AA
+#define blue 0x0000FFAA
+#define yellow 0xFFD359AA
+
+//Funções personalizadas:
+forward JogadorConecta(playerid);
+public JogadorConecta(playerid) {
+	new name[MAX_PLAYER_NAME + 1];
+    GetPlayerName(playerid, name, sizeof(name));
+
+    new mensagem[MAX_PLAYER_NAME + 23 + 1];
+    format(mensagem, sizeof(mensagem), "%s conectou-se no servidor.", name);
+    SendClientMessageToAll(grey, mensagem);
+	return 1;
+}
+
+forward JogadorDesconecta(playerid, reason);
+public JogadorDesconecta(playerid, reason) {
+    new
+        mensagem[64],
+        name[MAX_PLAYER_NAME];
+
+    GetPlayerName(playerid, name, MAX_PLAYER_NAME);
+
+    new szDisconnectReason[3][] = {
+        "desconectou-se",
+        "saiu do servidor",
+        "foi kickado ou banido do servidor"
+    };
+
+    format(mensagem, sizeof mensagem, "%s %s.", name, szDisconnectReason[reason]);
+    SendClientMessageToAll(grey, mensagem);
+    return 1;
+}
+
 main() {
 }
 
 public OnGameModeInit() {
 	SetGameModeText("GPB:F");
+    ManualVehicleEngineAndLights();
+	SetNameTagDrawDistance(20.0);
+	EnableStuntBonusForAll(0);
+	SetWorldTime(20);
 	return 1;
 }
 
@@ -13,14 +61,26 @@ public OnGameModeExit() {
 }
 
 public OnPlayerRequestClass(playerid, classid) {
-	return 1;
+	TogglePlayerSpectating(playerid, true);
+	SpawnPlayer(playerid);
+ 	SetSpawnInfo(playerid, -1, random(311), 1826, -1372, 14,269.2782,0,0,0,0,0,0);
+ 	TogglePlayerSpectating(playerid, false);
+    return 1;
 }
 
 public OnPlayerConnect(playerid) {
+	SetPlayerColor(playerid, white);
+ 	JogadorConecta(playerid);
+	SetPlayerVirtualWorld(playerid, 0);
+	ShowPlayerMarkers(0);
+	RemovePlayerMapIcon(playerid, -1);
+	SendClientMessage(playerid, white, "Digite /comandos para ver os comandos existentes no servidor.");
+	SendClientMessage(playerid, white, "Você spawnou como um civil. Digite /equipe para entrar em alguma corporação.");
 	return 1;
 }
 
 public OnPlayerDisconnect(playerid, reason) {
+	JogadorDesconecta(playerid, reason);
 	return 1;
 }
 
