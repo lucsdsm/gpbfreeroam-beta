@@ -15,6 +15,32 @@
 #define blue 0x0000FFAA
 #define yellow 0xFFD359AA
 
+//Enumerates:
+enum jogadorData {
+   pSpawnVehicle,
+   pEquipe,
+   pFerido,
+   pSolicitandoReforco,
+   pAlgemado,
+   pDerrubado,
+   pAnim,
+}
+
+enum mortoData {
+	Float:morto_X,
+	Float:morto_Y,
+	Float:morto_Z,
+	Float:morto_A,
+	morto_int,
+	morto_vw,
+	bool:morto_dead
+};
+
+//Variáveis Globais:
+new player[MAX_PLAYERS][jogadorData];
+new morto[MAX_PLAYERS][mortoData];
+new playerSkin[MAX_PLAYERS];
+
 //Funções personalizadas:
 forward JogadorConecta(playerid);
 public JogadorConecta(playerid) {
@@ -65,6 +91,53 @@ public VerificaNome(playerid) {
 	}
 }
 
+forward HabilidadeArmas(playerid);
+public HabilidadeArmas(playerid) {
+    SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL, 999);
+    SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL_SILENCED, 0);
+    SetPlayerSkillLevel(playerid, WEAPONSKILL_DESERT_EAGLE, 999);
+    SetPlayerSkillLevel(playerid, WEAPONSKILL_SHOTGUN, 999);
+    SetPlayerSkillLevel(playerid, WEAPONSKILL_SAWNOFF_SHOTGUN, 0);
+    SetPlayerSkillLevel(playerid, WEAPONSKILL_SPAS12_SHOTGUN, 999);
+    SetPlayerSkillLevel(playerid, WEAPONSKILL_MICRO_UZI, 0);
+    SetPlayerSkillLevel(playerid, WEAPONSKILL_MP5, 999);
+    SetPlayerSkillLevel(playerid, WEAPONSKILL_AK47, 999);
+    SetPlayerSkillLevel(playerid, WEAPONSKILL_M4, 999);
+    SetPlayerSkillLevel(playerid, WEAPONSKILL_SNIPERRIFLE, 999);
+}
+
+//Funções stocks:
+stock SendRangedMessage(sourceid, color, message[], Float:range) {
+    new Float:x, Float:y, Float: z;
+    GetPlayerPos(sourceid, x, y, z);
+    foreach(new ii:Player) {
+            if(GetPlayerVirtualWorld(sourceid) == GetPlayerVirtualWorld(ii)) {
+                if(IsPlayerInRangeOfPoint(ii, range, x, y, z)) {
+                    SendClientMessage(ii, color, message);
+                }
+            }
+        }
+    }
+
+stock GetName(playerid) {
+   new name[24];
+   GetPlayerName(playerid, name, 24);
+   return name;
+}
+
+stock GetPlayerID(nickname[]) {
+    new id[MAX_PLAYER_NAME];
+    for(new x; x < MAX_PLAYERS; ++x) {
+    	if(IsPlayerConnected(x)) {
+            GetPlayerName(x, id, sizeof(id));
+            if(!strcmp(id, nickname)) {
+                return x;
+            }
+        }
+    }
+    return INVALID_PLAYER_ID;
+}
+
 main() {
 }
 
@@ -83,6 +156,11 @@ public OnGameModeExit() {
 }
 
 public OnPlayerRequestClass(playerid, classid) {
+	player[playerid][pFerido] = 0;
+	player[playerid][pEquipe] = 0;
+	player[playerid][pAnim] = 0;
+	player[playerid][pAlgemado] = 0;
+	player[playerid][pDerrubado] = 0;
 	TogglePlayerSpectating(playerid, true);
 	SpawnPlayer(playerid);
  	SetSpawnInfo(playerid, -1, random(311), 1826, -1372, 14,269.2782,0,0,0,0,0,0);
@@ -95,6 +173,7 @@ public OnPlayerConnect(playerid) {
  	JogadorConecta(playerid);
 	SetPlayerVirtualWorld(playerid, 0);
 	ShowPlayerMarkers(0);
+	HabilidadeArmas(playerid);
 	RemovePlayerMapIcon(playerid, -1);
 	SendClientMessage(playerid, white, "Digite /comandos para ver os comandos existentes no servidor.");
 	SendClientMessage(playerid, white, "Você spawnou como um civil. Digite /equipe para entrar em alguma corporação.");
@@ -107,6 +186,18 @@ public OnPlayerDisconnect(playerid, reason) {
 }
 
 public OnPlayerSpawn(playerid) {
+	if(morto[playerid][morto_X]) {
+	    ClearAnimations(playerid);
+	    SetPlayerPos(playerid, morto[playerid][morto_X], morto[playerid][morto_Y], morto[playerid][morto_Z]);
+	    SetPlayerFacingAngle(playerid, morto[playerid][morto_A]);
+	    SetPlayerVirtualWorld(playerid, morto[playerid][morto_vw]);
+	    SetPlayerInterior(playerid, morto[playerid][morto_int]);
+		SetPlayerSkin(playerid, playerSkin[playerid]);
+		ApplyAnimation(playerid, "ped", "KO_shot_front", 4.1, 0, 0, 0, 1, 0, 1);
+		new reset[mortoData];
+		morto[playerid] = reset;
+		morto[playerid][morto_dead] = true;
+ 	}
 	return 1;
 }
 
