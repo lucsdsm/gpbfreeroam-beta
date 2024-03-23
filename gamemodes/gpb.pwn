@@ -1,3 +1,5 @@
+//by Lucas
+
 #include <a_samp>
 
 //Definidores:
