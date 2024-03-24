@@ -650,10 +650,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				}
 				case 9: {
 					if (player[playerid][pEquipe] != 1) {
-							SendClientMessage(playerid, grey, "Apenas policiais podem portar a escopeta com munição elastômaro.");
+							SendClientMessage(playerid, grey, "Apenas policiais podem portar a escopeta com munição elastômero.");
 						}
 					else {
-						GivePlayerWeapon(playerid, 25, 500); // Escopeta (Elastômaro)
+						GivePlayerWeapon(playerid, 25, 500); // Escopeta (Elastômero)
 						player[playerid][pElastomero] = 1;
 					}
 				}
@@ -1059,10 +1059,10 @@ public RadioEmergencia(string[]) {
 //Funções CMD:
 CMD:comandos(playerid, params[]) {
 	SendClientMessage(playerid, grey, "[Servidor]: /comandos, /equipe, /hora, /clima, /tp, /ir, /objeto, /remover;");
-	SendClientMessage(playerid, grey, "[Chat]: /me, /do, /sus, /gl, /ooc, /gr, /r, /mf;");
-	SendClientMessage(playerid, grey, "[Personagem]: /reviver, /skin, /atividades, /equipar, /limpar;");
+	SendClientMessage(playerid, grey, "[Chat]: /me, /do, /sus, /gl, /ooc, /gr, /r, /mf, /mp;");
+	SendClientMessage(playerid, grey, "[Personagem]: /reviver, /skin, /atividades, /equipar, /derrubar, /limpar;");
 	SendClientMessage(playerid, grey, "[Veículo]: /vc, /vd, /chave, /luzes, /pintar, /fix, /capo, /mala;");
-	SendClientMessage(playerid, grey, "[Polícia]: /vcs, /vp, /rp, /ref, /algemar, /desalgemar, /derrubar, /levantar.");
+	SendClientMessage(playerid, grey, "[Polícia]: /vcs, /vp, /rp, /ref, /algemar, /desalgemar, /levantar.");
    	return 1;
 }
 
