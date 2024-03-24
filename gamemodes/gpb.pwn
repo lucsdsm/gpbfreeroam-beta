@@ -1,6 +1,13 @@
 //by Lucas
 
 #include <a_samp>
+#include <zcmd>
+#include <sscanf2>
+#include <foreach>
+#include <streamer>
+#include <callbacks>
+#include <a_zones>
+#include <sound>
 
 //Definidores:
 #define green 0x9ACD32AA
@@ -24,6 +31,7 @@ enum jogadorData {
    pAlgemado,
    pDerrubado,
    pAnim,
+   pElastomero,
 }
 
 enum mortoData {
@@ -161,6 +169,7 @@ public OnPlayerRequestClass(playerid, classid) {
 	player[playerid][pAnim] = 0;
 	player[playerid][pAlgemado] = 0;
 	player[playerid][pDerrubado] = 0;
+	player[playerid][pElastomero] = 0;
 	TogglePlayerSpectating(playerid, true);
 	SpawnPlayer(playerid);
  	SetSpawnInfo(playerid, -1, random(311), 1826, -1372, 14,269.2782,0,0,0,0,0,0);
