@@ -353,3 +353,55 @@ v0.3.7-R2, (C)2005-2015 SA-MP Team
 [06:42:38]   Loaded 1 filterscripts.
 
 [06:42:38] Number of vehicle models: 1
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[07:38:56] 
+[07:38:56] Server Plugins
+[07:38:56] --------------
+[07:38:56]  Loading plugin: sscanf
+[07:38:56] 
+[07:38:56]  ===============================
+[07:38:56] 
+[07:38:56]       sscanf plugin loaded.     
+[07:38:56] 
+[07:38:56]          Version: 2.13.8
+[07:38:56] 
+[07:38:56]    (c) 2022 Alex "Y_Less" Cole  
+[07:38:56] 
+[07:38:56]  ===============================
+[07:38:56] 
+[07:38:56]   Loaded.
+[07:38:56]  Loading plugin: crashdetect
+[07:38:56]   CrashDetect plugin 4.21
+[07:38:56]   Loaded.
+[07:38:56]  Loading plugin: streamer
+[07:38:56] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[07:38:56]   Loaded.
+[07:38:56]  Loading plugin: pawn-memory
+[07:38:56] ========================
+[07:38:56] = Memory access plugin =
+[07:38:56] =       Made by BigETI =
+[07:38:56] = Loaded!              =
+[07:38:56] ========================
+[07:38:56]   Loaded.
+[07:38:56]  Loaded 4 plugins.
+
+[07:38:56] 
+[07:38:56] Filterscripts
+[07:38:56] ---------------
+[07:38:56]   Loading filterscript 'mapa.amx'...
+[07:38:56]   Loaded 1 filterscripts.
+
+[07:38:56] Number of vehicle models: 1
+[07:39:15] [connection] incoming connection: 127.0.0.1:61875 id: 0
+[07:39:16] [join] [GPB]Lucas has joined the server (0:127.0.0.1)

@@ -1,0 +1,1620 @@
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[21:25:03] Error: Your password must be changed from the default password, please change it.
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[21:25:17] filterscripts = ""  (string)
+[21:25:17] 
+[21:25:17] Server Plugins
+[21:25:17] --------------
+[21:25:17]  Loaded 0 plugins.
+
+[21:25:17] 
+[21:25:17] Filterscripts
+[21:25:17] ---------------
+[21:25:17]   Loaded 0 filterscripts.
+
+[21:25:17] Loaded 3 vehicles from: vehicles/trains.txt
+[21:25:17] Loaded 3 vehicles from: vehicles/pilots.txt
+[21:25:17] Loaded 15 vehicles from: vehicles/lv_law.txt
+[21:25:17] Loaded 39 vehicles from: vehicles/lv_airport.txt
+[21:25:17] Loaded 255 vehicles from: vehicles/lv_gen.txt
+[21:25:17] Loaded 38 vehicles from: vehicles/sf_law.txt
+[21:25:17] Loaded 35 vehicles from: vehicles/sf_airport.txt
+[21:25:17] Loaded 353 vehicles from: vehicles/sf_gen.txt
+[21:25:17] Loaded 24 vehicles from: vehicles/ls_law.txt
+[21:25:17] Loaded 37 vehicles from: vehicles/ls_airport.txt
+[21:25:17] Loaded 98 vehicles from: vehicles/ls_gen_inner.txt
+[21:25:17] Loaded 389 vehicles from: vehicles/ls_gen_outer.txt
+[21:25:17] Loaded 71 vehicles from: vehicles/whetstone.txt
+[21:25:17] Loaded 168 vehicles from: vehicles/bone.txt
+[21:25:17] Loaded 61 vehicles from: vehicles/flint.txt
+[21:25:17] Loaded 96 vehicles from: vehicles/tierra.txt
+[21:25:17] Loaded 96 vehicles from: vehicles/red_county.txt
+[21:25:17] Total vehicles from files: 1781
+[21:25:17] 
+---------------------------------------
+[21:25:17] Running Grand Larceny - by the SA-MP team
+
+[21:25:17] ---------------------------------------
+
+[21:25:17] Number of vehicle models: 173
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[21:25:53] 
+[21:25:53] Server Plugins
+[21:25:53] --------------
+[21:25:53]  Loaded 0 plugins.
+
+[21:25:53] 
+[21:25:53] Filterscripts
+[21:25:53] ---------------
+[21:25:53]   Loading filterscript 'mapedit.amx'...
+[21:25:54]   Loaded 1 filterscripts.
+
+[21:25:54] Loaded 3 vehicles from: vehicles/trains.txt
+[21:25:54] Loaded 3 vehicles from: vehicles/pilots.txt
+[21:25:54] Loaded 15 vehicles from: vehicles/lv_law.txt
+[21:25:54] Loaded 39 vehicles from: vehicles/lv_airport.txt
+[21:25:54] Loaded 255 vehicles from: vehicles/lv_gen.txt
+[21:25:54] Loaded 38 vehicles from: vehicles/sf_law.txt
+[21:25:54] Loaded 35 vehicles from: vehicles/sf_airport.txt
+[21:25:54] Loaded 353 vehicles from: vehicles/sf_gen.txt
+[21:25:54] Loaded 24 vehicles from: vehicles/ls_law.txt
+[21:25:54] Loaded 37 vehicles from: vehicles/ls_airport.txt
+[21:25:54] Loaded 98 vehicles from: vehicles/ls_gen_inner.txt
+[21:25:54] Loaded 389 vehicles from: vehicles/ls_gen_outer.txt
+[21:25:54] Loaded 71 vehicles from: vehicles/whetstone.txt
+[21:25:54] Loaded 168 vehicles from: vehicles/bone.txt
+[21:25:54] Loaded 61 vehicles from: vehicles/flint.txt
+[21:25:54] Loaded 96 vehicles from: vehicles/tierra.txt
+[21:25:54] Loaded 96 vehicles from: vehicles/red_county.txt
+[21:25:54] Total vehicles from files: 1781
+[21:25:54] 
+---------------------------------------
+[21:25:54] Running Grand Larceny - by the SA-MP team
+
+[21:25:54] ---------------------------------------
+
+[21:25:54] Number of vehicle models: 173
+[21:27:20] [connection] 192.168.0.111:57268 requests connection cookie.
+[21:27:21] [connection] incoming connection: 192.168.0.111:57268 id: 0
+[21:27:32] [connection] incoming connection: 192.168.0.111:57270 id: 0
+[21:30:47] [connection] incoming connection: 192.168.0.111:51981 id: 0
+[21:30:59] [connection] 192.168.0.111:51983 requests connection cookie.
+[21:31:00] [connection] incoming connection: 192.168.0.111:51983 id: 0
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[22:07:33] 
+[22:07:33] Server Plugins
+[22:07:33] --------------
+[22:07:33]  Loaded 0 plugins.
+
+[22:07:33] 
+[22:07:33] Filterscripts
+[22:07:33] ---------------
+[22:07:33]   Loading filterscript 'mapedit.amx'...
+[22:07:33]   Loaded 1 filterscripts.
+
+[22:07:33] Loaded 3 vehicles from: vehicles/trains.txt
+[22:07:33] Loaded 3 vehicles from: vehicles/pilots.txt
+[22:07:33] Loaded 15 vehicles from: vehicles/lv_law.txt
+[22:07:33] Loaded 39 vehicles from: vehicles/lv_airport.txt
+[22:07:33] Loaded 255 vehicles from: vehicles/lv_gen.txt
+[22:07:33] Loaded 38 vehicles from: vehicles/sf_law.txt
+[22:07:33] Loaded 35 vehicles from: vehicles/sf_airport.txt
+[22:07:33] Loaded 353 vehicles from: vehicles/sf_gen.txt
+[22:07:33] Loaded 24 vehicles from: vehicles/ls_law.txt
+[22:07:33] Loaded 37 vehicles from: vehicles/ls_airport.txt
+[22:07:33] Loaded 98 vehicles from: vehicles/ls_gen_inner.txt
+[22:07:33] Loaded 389 vehicles from: vehicles/ls_gen_outer.txt
+[22:07:33] Loaded 71 vehicles from: vehicles/whetstone.txt
+[22:07:33] Loaded 168 vehicles from: vehicles/bone.txt
+[22:07:33] Loaded 61 vehicles from: vehicles/flint.txt
+[22:07:33] Loaded 96 vehicles from: vehicles/tierra.txt
+[22:07:33] Loaded 96 vehicles from: vehicles/red_county.txt
+[22:07:33] Total vehicles from files: 1781
+[22:07:33] 
+---------------------------------------
+[22:07:33] Running Grand Larceny - by the SA-MP team
+
+[22:07:33] ---------------------------------------
+
+[22:07:33] Number of vehicle models: 173
+[22:07:52] [connection] 192.168.0.111:54081 requests connection cookie.
+[22:07:53] [connection] incoming connection: 192.168.0.111:54081 id: 0
+[22:07:53] [join] GeoSoares has joined the server (0:192.168.0.111)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[22:09:31] 
+[22:09:31] Server Plugins
+[22:09:31] --------------
+[22:09:31]  Loading plugin: sscanf
+[22:09:31] 
+
+[22:09:31]  ===============================
+
+[22:09:31]       sscanf plugin loaded.     
+
+[22:09:31]          Version:  2.8.3        
+
+[22:09:31]   (c) 2018 Alex "Y_Less" Cole  
+
+[22:09:31]  ===============================
+
+[22:09:31]   Loaded.
+[22:09:31]  Loading plugin: streamer
+[22:09:31] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[22:09:31]   Loaded.
+[22:09:31]  Loaded 2 plugins.
+
+[22:09:31] 
+[22:09:31] Filterscripts
+[22:09:31] ---------------
+[22:09:31]   Loading filterscript 'mapedit.amx'...
+[22:09:31] 
+Fusez's Map Editor loaded successfully!
+
+[22:09:31]   Loaded 1 filterscripts.
+
+[22:09:31] Loaded 3 vehicles from: vehicles/trains.txt
+[22:09:31] Loaded 3 vehicles from: vehicles/pilots.txt
+[22:09:31] Loaded 15 vehicles from: vehicles/lv_law.txt
+[22:09:31] Loaded 39 vehicles from: vehicles/lv_airport.txt
+[22:09:31] Loaded 255 vehicles from: vehicles/lv_gen.txt
+[22:09:31] Loaded 38 vehicles from: vehicles/sf_law.txt
+[22:09:31] Loaded 35 vehicles from: vehicles/sf_airport.txt
+[22:09:31] Loaded 353 vehicles from: vehicles/sf_gen.txt
+[22:09:31] Loaded 24 vehicles from: vehicles/ls_law.txt
+[22:09:31] Loaded 37 vehicles from: vehicles/ls_airport.txt
+[22:09:31] Loaded 98 vehicles from: vehicles/ls_gen_inner.txt
+[22:09:31] Loaded 389 vehicles from: vehicles/ls_gen_outer.txt
+[22:09:31] Loaded 71 vehicles from: vehicles/whetstone.txt
+[22:09:31] Loaded 168 vehicles from: vehicles/bone.txt
+[22:09:31] Loaded 61 vehicles from: vehicles/flint.txt
+[22:09:31] Loaded 96 vehicles from: vehicles/tierra.txt
+[22:09:31] Loaded 96 vehicles from: vehicles/red_county.txt
+[22:09:31] Total vehicles from files: 1781
+[22:09:31] 
+---------------------------------------
+[22:09:31] Running Grand Larceny - by the SA-MP team
+
+[22:09:31] ---------------------------------------
+
+[22:09:31] Number of vehicle models: 173
+[22:09:39] [connection] 192.168.0.111:59772 requests connection cookie.
+[22:09:40] [connection] incoming connection: 192.168.0.111:59772 id: 0
+[22:09:40] [join] GeoSoares has joined the server (0:192.168.0.111)
+[23:01:21] [part] GeoSoares has left the server (0:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[21:25:49] 
+[21:25:49] Server Plugins
+[21:25:49] --------------
+[21:25:49]  Loading plugin: sscanf
+[21:25:49] 
+
+[21:25:49]  ===============================
+
+[21:25:49]       sscanf plugin loaded.     
+
+[21:25:49]          Version:  2.8.3        
+
+[21:25:49]   (c) 2018 Alex "Y_Less" Cole  
+
+[21:25:49]  ===============================
+
+[21:25:49]   Loaded.
+[21:25:49]  Loading plugin: streamer
+[21:25:49] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[21:25:49]   Loaded.
+[21:25:49]  Loaded 2 plugins.
+
+[21:25:49] 
+[21:25:49] Filterscripts
+[21:25:49] ---------------
+[21:25:49]   Loading filterscript 'mapedit.amx'...
+[21:25:49] 
+Fusez's Map Editor loaded successfully!
+
+[21:25:49]   Loaded 1 filterscripts.
+
+[21:25:49] Loaded 3 vehicles from: vehicles/trains.txt
+[21:25:49] Loaded 3 vehicles from: vehicles/pilots.txt
+[21:25:49] Loaded 15 vehicles from: vehicles/lv_law.txt
+[21:25:49] Loaded 39 vehicles from: vehicles/lv_airport.txt
+[21:25:49] Loaded 255 vehicles from: vehicles/lv_gen.txt
+[21:25:49] Loaded 38 vehicles from: vehicles/sf_law.txt
+[21:25:49] Loaded 35 vehicles from: vehicles/sf_airport.txt
+[21:25:49] Loaded 353 vehicles from: vehicles/sf_gen.txt
+[21:25:49] Loaded 24 vehicles from: vehicles/ls_law.txt
+[21:25:49] Loaded 37 vehicles from: vehicles/ls_airport.txt
+[21:25:49] Loaded 98 vehicles from: vehicles/ls_gen_inner.txt
+[21:25:49] Loaded 389 vehicles from: vehicles/ls_gen_outer.txt
+[21:25:49] Loaded 71 vehicles from: vehicles/whetstone.txt
+[21:25:49] Loaded 168 vehicles from: vehicles/bone.txt
+[21:25:49] Loaded 61 vehicles from: vehicles/flint.txt
+[21:25:49] Loaded 96 vehicles from: vehicles/tierra.txt
+[21:25:49] Loaded 96 vehicles from: vehicles/red_county.txt
+[21:25:49] Total vehicles from files: 1781
+[21:25:49] 
+---------------------------------------
+[21:25:49] Running Grand Larceny - by the SA-MP team
+
+[21:25:49] ---------------------------------------
+
+[21:25:49] Number of vehicle models: 173
+[21:26:02] [connection] 127.0.0.1:55779 requests connection cookie.
+[21:26:03] [connection] incoming connection: 127.0.0.1:55779 id: 0
+[21:26:03] [join] GeoSoares has joined the server (0:127.0.0.1)
+[21:51:54] [part] GeoSoares has left the server (0:1)
+[21:55:17] --- Server Shutting Down.
+[21:55:17] 
+
+[21:55:17]  ===============================
+
+[21:55:17]      sscanf plugin unloaded.    
+
+[21:55:17]  ===============================
+
+[21:55:17] 
+
+*** Streamer Plugin v2.9.4 by Incognito unloaded ***
+
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[15:23:49] 
+[15:23:49] Server Plugins
+[15:23:49] --------------
+[15:23:49]  Loading plugin: sscanf
+[15:23:49] 
+
+[15:23:49]  ===============================
+
+[15:23:49]       sscanf plugin loaded.     
+
+[15:23:49]          Version:  2.8.3        
+
+[15:23:49]   (c) 2018 Alex "Y_Less" Cole  
+
+[15:23:49]  ===============================
+
+[15:23:49]   Loaded.
+[15:23:49]  Loading plugin: streamer
+[15:23:50] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[15:23:50]   Loaded.
+[15:23:50]  Loaded 2 plugins.
+
+[15:23:50] 
+[15:23:50] Filterscripts
+[15:23:50] ---------------
+[15:23:50]   Loading filterscript 'mapedit.amx'...
+[15:23:50] 
+Fusez's Map Editor loaded successfully!
+
+[15:23:50]   Loaded 1 filterscripts.
+
+[15:23:50] Loaded 3 vehicles from: vehicles/trains.txt
+[15:23:50] Loaded 3 vehicles from: vehicles/pilots.txt
+[15:23:50] Loaded 15 vehicles from: vehicles/lv_law.txt
+[15:23:50] Loaded 39 vehicles from: vehicles/lv_airport.txt
+[15:23:50] Loaded 255 vehicles from: vehicles/lv_gen.txt
+[15:23:50] Loaded 38 vehicles from: vehicles/sf_law.txt
+[15:23:50] Loaded 35 vehicles from: vehicles/sf_airport.txt
+[15:23:50] Loaded 353 vehicles from: vehicles/sf_gen.txt
+[15:23:50] Loaded 24 vehicles from: vehicles/ls_law.txt
+[15:23:50] Loaded 37 vehicles from: vehicles/ls_airport.txt
+[15:23:50] Loaded 98 vehicles from: vehicles/ls_gen_inner.txt
+[15:23:50] Loaded 389 vehicles from: vehicles/ls_gen_outer.txt
+[15:23:50] Loaded 71 vehicles from: vehicles/whetstone.txt
+[15:23:50] Loaded 168 vehicles from: vehicles/bone.txt
+[15:23:50] Loaded 61 vehicles from: vehicles/flint.txt
+[15:23:50] Loaded 96 vehicles from: vehicles/tierra.txt
+[15:23:50] Loaded 96 vehicles from: vehicles/red_county.txt
+[15:23:50] Total vehicles from files: 1781
+[15:23:50] 
+---------------------------------------
+[15:23:50] Running Grand Larceny - by the SA-MP team
+
+[15:23:50] ---------------------------------------
+
+[15:23:50] Number of vehicle models: 173
+[15:24:13] [connection] 127.0.0.1:56812 requests connection cookie.
+[15:24:14] [connection] incoming connection: 127.0.0.1:56812 id: 0
+[15:24:14] [join] [V]ipe[X] has joined the server (0:127.0.0.1)
+[15:40:04] [part] [V]ipe[X] has left the server (0:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:00:46] 
+[16:00:46] Server Plugins
+[16:00:46] --------------
+[16:00:46]  Loading plugin: sscanf
+[16:00:46] 
+
+[16:00:46]  ===============================
+
+[16:00:46]       sscanf plugin loaded.     
+
+[16:00:46]          Version:  2.8.3        
+
+[16:00:46]   (c) 2018 Alex "Y_Less" Cole  
+
+[16:00:46]  ===============================
+
+[16:00:46]   Loaded.
+[16:00:46]  Loading plugin: streamer
+[16:00:46] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:00:46]   Loaded.
+[16:00:46]  Loaded 2 plugins.
+
+[16:00:46] 
+[16:00:46] Filterscripts
+[16:00:46] ---------------
+[16:00:46]   Loading filterscript 'mapedit.amx'...
+[16:00:46] 
+Fusez's Map Editor loaded successfully!
+
+[16:00:46]   Loaded 1 filterscripts.
+
+[16:00:46] Loaded 3 vehicles from: vehicles/trains.txt
+[16:00:46] Loaded 3 vehicles from: vehicles/pilots.txt
+[16:00:46] Loaded 15 vehicles from: vehicles/lv_law.txt
+[16:00:46] Loaded 39 vehicles from: vehicles/lv_airport.txt
+[16:00:46] Loaded 255 vehicles from: vehicles/lv_gen.txt
+[16:00:46] Loaded 38 vehicles from: vehicles/sf_law.txt
+[16:00:46] Loaded 35 vehicles from: vehicles/sf_airport.txt
+[16:00:46] Loaded 353 vehicles from: vehicles/sf_gen.txt
+[16:00:46] Loaded 24 vehicles from: vehicles/ls_law.txt
+[16:00:46] Loaded 37 vehicles from: vehicles/ls_airport.txt
+[16:00:46] Loaded 98 vehicles from: vehicles/ls_gen_inner.txt
+[16:00:46] Loaded 389 vehicles from: vehicles/ls_gen_outer.txt
+[16:00:46] Loaded 71 vehicles from: vehicles/whetstone.txt
+[16:00:46] Loaded 168 vehicles from: vehicles/bone.txt
+[16:00:46] Loaded 61 vehicles from: vehicles/flint.txt
+[16:00:46] Loaded 96 vehicles from: vehicles/tierra.txt
+[16:00:46] Loaded 96 vehicles from: vehicles/red_county.txt
+[16:00:46] Total vehicles from files: 1781
+[16:00:46] 
+---------------------------------------
+[16:00:46] Running Grand Larceny - by the SA-MP team
+
+[16:00:46] ---------------------------------------
+
+[16:00:46] Number of vehicle models: 173
+[16:01:02] [connection] 127.0.0.1:53951 requests connection cookie.
+[16:01:03] [connection] incoming connection: 127.0.0.1:53951 id: 0
+[16:01:03] [join] [V]ipe[X] has joined the server (0:127.0.0.1)
+[16:07:57] [part] [V]ipe[X] has left the server (0:0)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:09:01] 
+[16:09:01] Server Plugins
+[16:09:01] --------------
+[16:09:01]  Loading plugin: sscanf
+[16:09:01] 
+
+[16:09:01]  ===============================
+
+[16:09:01]       sscanf plugin loaded.     
+
+[16:09:01]          Version:  2.8.3        
+
+[16:09:01]   (c) 2018 Alex "Y_Less" Cole  
+
+[16:09:01]  ===============================
+
+[16:09:01]   Loaded.
+[16:09:01]  Loading plugin: streamer
+[16:09:01] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:09:01]   Loaded.
+[16:09:01]  Loaded 2 plugins.
+
+[16:09:01] 
+[16:09:01] Filterscripts
+[16:09:01] ---------------
+[16:09:01]   Loading filterscript 'mapedit.amx'...
+[16:09:01] 
+Fusez's Map Editor loaded successfully!
+
+[16:09:01]   Loaded 1 filterscripts.
+
+[16:09:01] Loaded 3 vehicles from: vehicles/trains.txt
+[16:09:01] Loaded 3 vehicles from: vehicles/pilots.txt
+[16:09:01] Loaded 15 vehicles from: vehicles/lv_law.txt
+[16:09:01] Loaded 39 vehicles from: vehicles/lv_airport.txt
+[16:09:01] Loaded 255 vehicles from: vehicles/lv_gen.txt
+[16:09:01] Loaded 38 vehicles from: vehicles/sf_law.txt
+[16:09:01] Loaded 35 vehicles from: vehicles/sf_airport.txt
+[16:09:01] Loaded 353 vehicles from: vehicles/sf_gen.txt
+[16:09:01] Loaded 24 vehicles from: vehicles/ls_law.txt
+[16:09:01] Loaded 37 vehicles from: vehicles/ls_airport.txt
+[16:09:01] Loaded 98 vehicles from: vehicles/ls_gen_inner.txt
+[16:09:01] Loaded 389 vehicles from: vehicles/ls_gen_outer.txt
+[16:09:01] Loaded 71 vehicles from: vehicles/whetstone.txt
+[16:09:01] Loaded 168 vehicles from: vehicles/bone.txt
+[16:09:01] Loaded 61 vehicles from: vehicles/flint.txt
+[16:09:01] Loaded 96 vehicles from: vehicles/tierra.txt
+[16:09:01] Loaded 96 vehicles from: vehicles/red_county.txt
+[16:09:01] Total vehicles from files: 1781
+[16:09:01] 
+---------------------------------------
+[16:09:01] Running Grand Larceny - by the SA-MP team
+
+[16:09:01] ---------------------------------------
+
+[16:09:01] Number of vehicle models: 173
+[16:11:23] [connection] 127.0.0.1:58593 requests connection cookie.
+[16:11:24] [connection] incoming connection: 127.0.0.1:58593 id: 0
+[16:11:25] [join] [V]ipe[X] has joined the server (0:127.0.0.1)
+[16:33:01] [part] [V]ipe[X] has left the server (0:0)
+[16:33:35] [connection] 127.0.0.1:56862 requests connection cookie.
+[16:33:36] [connection] incoming connection: 127.0.0.1:56862 id: 0
+[16:33:36] [join] [V]ipe[X] has joined the server (0:127.0.0.1)
+[16:46:13] [part] [V]ipe[X] has left the server (0:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[21:01:30] 
+[21:01:30] Server Plugins
+[21:01:30] --------------
+[21:01:30]  Loading plugin: sscanf
+[21:01:30] 
+
+[21:01:30]  ===============================
+
+[21:01:30]       sscanf plugin loaded.     
+
+[21:01:30]          Version:  2.8.3        
+
+[21:01:30]   (c) 2018 Alex "Y_Less" Cole  
+
+[21:01:30]  ===============================
+
+[21:01:30]   Loaded.
+[21:01:30]  Loading plugin: streamer
+[21:01:30] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[21:01:30]   Loaded.
+[21:01:30]  Loaded 2 plugins.
+
+[21:01:30] 
+[21:01:30] Filterscripts
+[21:01:30] ---------------
+[21:01:30]   Loading filterscript 'mapedit.amx'...
+[21:01:31] 
+Fusez's Map Editor loaded successfully!
+
+[21:01:31]   Loaded 1 filterscripts.
+
+[21:01:31] Loaded 3 vehicles from: vehicles/trains.txt
+[21:01:31] Loaded 3 vehicles from: vehicles/pilots.txt
+[21:01:31] Loaded 15 vehicles from: vehicles/lv_law.txt
+[21:01:31] Loaded 39 vehicles from: vehicles/lv_airport.txt
+[21:01:31] Loaded 255 vehicles from: vehicles/lv_gen.txt
+[21:01:31] Loaded 38 vehicles from: vehicles/sf_law.txt
+[21:01:31] Loaded 35 vehicles from: vehicles/sf_airport.txt
+[21:01:31] Loaded 353 vehicles from: vehicles/sf_gen.txt
+[21:01:31] Loaded 24 vehicles from: vehicles/ls_law.txt
+[21:01:31] Loaded 37 vehicles from: vehicles/ls_airport.txt
+[21:01:31] Loaded 98 vehicles from: vehicles/ls_gen_inner.txt
+[21:01:31] Loaded 389 vehicles from: vehicles/ls_gen_outer.txt
+[21:01:31] Loaded 71 vehicles from: vehicles/whetstone.txt
+[21:01:31] Loaded 168 vehicles from: vehicles/bone.txt
+[21:01:31] Loaded 61 vehicles from: vehicles/flint.txt
+[21:01:31] Loaded 96 vehicles from: vehicles/tierra.txt
+[21:01:31] Loaded 96 vehicles from: vehicles/red_county.txt
+[21:01:31] Total vehicles from files: 1781
+[21:01:31] 
+---------------------------------------
+[21:01:31] Running Grand Larceny - by the SA-MP team
+
+[21:01:31] ---------------------------------------
+
+[21:01:31] Number of vehicle models: 173
+[21:01:46] [connection] 127.0.0.1:62621 requests connection cookie.
+[21:01:47] [connection] incoming connection: 127.0.0.1:62621 id: 0
+[21:01:47] [join] [V]ipe[X] has joined the server (0:127.0.0.1)
+[22:56:37] [part] [V]ipe[X] has left the server (0:1)
+[22:57:12] [connection] 127.0.0.1:53258 requests connection cookie.
+[22:57:13] [connection] incoming connection: 127.0.0.1:53258 id: 0
+[22:57:13] [join] [V]ipe[X] has joined the server (0:127.0.0.1)
+[23:31:07] [part] [V]ipe[X] has left the server (0:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[15:07:02] 
+[15:07:02] Server Plugins
+[15:07:02] --------------
+[15:07:02]  Loading plugin: sscanf
+[15:07:02] 
+
+[15:07:02]  ===============================
+
+[15:07:02]       sscanf plugin loaded.     
+
+[15:07:02]          Version:  2.8.3        
+
+[15:07:02]   (c) 2018 Alex "Y_Less" Cole  
+
+[15:07:02]  ===============================
+
+[15:07:02]   Loaded.
+[15:07:02]  Loading plugin: streamer
+[15:07:02] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[15:07:02]   Loaded.
+[15:07:02]  Loaded 2 plugins.
+
+[15:07:02] 
+[15:07:02] Filterscripts
+[15:07:02] ---------------
+[15:07:02]   Loading filterscript 'mapedit.amx'...
+[15:07:02] 
+Fusez's Map Editor loaded successfully!
+
+[15:07:02]   Loaded 1 filterscripts.
+
+[15:07:02] Loaded 3 vehicles from: vehicles/trains.txt
+[15:07:02] Loaded 3 vehicles from: vehicles/pilots.txt
+[15:07:02] Loaded 15 vehicles from: vehicles/lv_law.txt
+[15:07:02] Loaded 39 vehicles from: vehicles/lv_airport.txt
+[15:07:02] Loaded 255 vehicles from: vehicles/lv_gen.txt
+[15:07:02] Loaded 38 vehicles from: vehicles/sf_law.txt
+[15:07:02] Loaded 35 vehicles from: vehicles/sf_airport.txt
+[15:07:02] Loaded 353 vehicles from: vehicles/sf_gen.txt
+[15:07:02] Loaded 24 vehicles from: vehicles/ls_law.txt
+[15:07:02] Loaded 37 vehicles from: vehicles/ls_airport.txt
+[15:07:02] Loaded 98 vehicles from: vehicles/ls_gen_inner.txt
+[15:07:02] Loaded 389 vehicles from: vehicles/ls_gen_outer.txt
+[15:07:02] Loaded 71 vehicles from: vehicles/whetstone.txt
+[15:07:02] Loaded 168 vehicles from: vehicles/bone.txt
+[15:07:02] Loaded 61 vehicles from: vehicles/flint.txt
+[15:07:02] Loaded 96 vehicles from: vehicles/tierra.txt
+[15:07:02] Loaded 96 vehicles from: vehicles/red_county.txt
+[15:07:02] Total vehicles from files: 1781
+[15:07:02] 
+---------------------------------------
+[15:07:02] Running Grand Larceny - by the SA-MP team
+
+[15:07:02] ---------------------------------------
+
+[15:07:02] Number of vehicle models: 173
+[15:07:15] [connection] 127.0.0.1:54424 requests connection cookie.
+[15:07:16] [connection] incoming connection: 127.0.0.1:54424 id: 0
+[15:07:16] [join] [V]ipe[X] has joined the server (0:127.0.0.1)
+[15:44:41] [part] [V]ipe[X] has left the server (0:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:05:51] 
+[16:05:51] Server Plugins
+[16:05:51] --------------
+[16:05:51]  Loading plugin: sscanf
+[16:05:51] 
+
+[16:05:51]  ===============================
+
+[16:05:51]       sscanf plugin loaded.     
+
+[16:05:51]          Version:  2.8.3        
+
+[16:05:51]   (c) 2018 Alex "Y_Less" Cole  
+
+[16:05:51]  ===============================
+
+[16:05:51]   Loaded.
+[16:05:51]  Loading plugin: streamer
+[16:05:51] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:05:51]   Loaded.
+[16:05:51]  Loaded 2 plugins.
+
+[16:05:51] 
+[16:05:51] Filterscripts
+[16:05:51] ---------------
+[16:05:51]   Loading filterscript 'mapedit.amx'...
+[16:05:51] 
+Fusez's Map Editor loaded successfully!
+
+[16:05:51]   Loaded 1 filterscripts.
+
+[16:05:51] Loaded 3 vehicles from: vehicles/trains.txt
+[16:05:51] Loaded 3 vehicles from: vehicles/pilots.txt
+[16:05:51] Loaded 15 vehicles from: vehicles/lv_law.txt
+[16:05:51] Loaded 39 vehicles from: vehicles/lv_airport.txt
+[16:05:51] Loaded 255 vehicles from: vehicles/lv_gen.txt
+[16:05:51] Loaded 38 vehicles from: vehicles/sf_law.txt
+[16:05:51] Loaded 35 vehicles from: vehicles/sf_airport.txt
+[16:05:51] Loaded 353 vehicles from: vehicles/sf_gen.txt
+[16:05:51] Loaded 24 vehicles from: vehicles/ls_law.txt
+[16:05:51] Loaded 37 vehicles from: vehicles/ls_airport.txt
+[16:05:51] Loaded 98 vehicles from: vehicles/ls_gen_inner.txt
+[16:05:51] Loaded 389 vehicles from: vehicles/ls_gen_outer.txt
+[16:05:51] Loaded 71 vehicles from: vehicles/whetstone.txt
+[16:05:51] Loaded 168 vehicles from: vehicles/bone.txt
+[16:05:51] Loaded 61 vehicles from: vehicles/flint.txt
+[16:05:51] Loaded 96 vehicles from: vehicles/tierra.txt
+[16:05:51] Loaded 96 vehicles from: vehicles/red_county.txt
+[16:05:51] Total vehicles from files: 1781
+[16:05:51] 
+---------------------------------------
+[16:05:51] Running Grand Larceny - by the SA-MP team
+
+[16:05:51] ---------------------------------------
+
+[16:05:51] Number of vehicle models: 173
+[16:06:28] [connection] 127.0.0.1:52194 requests connection cookie.
+[16:06:29] [connection] incoming connection: 127.0.0.1:52194 id: 0
+[16:06:29] [join] [V]ipe[X] has joined the server (0:127.0.0.1)
+[18:27:32] [part] [V]ipe[X] has left the server (0:0)
+[18:27:47] [connection] 127.0.0.1:64127 requests connection cookie.
+[18:27:48] [connection] incoming connection: 127.0.0.1:64127 id: 0
+[18:27:48] [join] [V]ipe[X] has joined the server (0:127.0.0.1)
+[20:05:16] [part] [V]ipe[X] has left the server (0:1)
+[21:17:50] [connection] 127.0.0.1:58723 requests connection cookie.
+[21:17:51] [connection] incoming connection: 127.0.0.1:58723 id: 0
+[21:17:52] [join] [V]ipe[X] has joined the server (0:127.0.0.1)
+[21:19:41] [part] [V]ipe[X] has left the server (0:1)
+[22:17:48] --- Server Shutting Down.
+[22:17:48] 
+
+[22:17:48]  ===============================
+
+[22:17:48]      sscanf plugin unloaded.    
+
+[22:17:48]  ===============================
+
+[22:17:48] 
+
+*** Streamer Plugin v2.9.4 by Incognito unloaded ***
+
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[11:17:28] 
+[11:17:28] Server Plugins
+[11:17:28] --------------
+[11:17:28]  Loading plugin: sscanf
+[11:17:28] 
+
+[11:17:28]  ===============================
+
+[11:17:28]       sscanf plugin loaded.     
+
+[11:17:28]          Version:  2.8.3        
+
+[11:17:28]   (c) 2018 Alex "Y_Less" Cole  
+
+[11:17:28]  ===============================
+
+[11:17:28]   Loaded.
+[11:17:28]  Loading plugin: streamer
+[11:17:28] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[11:17:28]   Loaded.
+[11:17:28]  Loaded 2 plugins.
+
+[11:17:29] 
+[11:17:29] Filterscripts
+[11:17:29] ---------------
+[11:17:29]   Loading filterscript 'mapedit.amx'...
+[11:17:29] 
+Fusez's Map Editor loaded successfully!
+
+[11:17:29]   Loaded 1 filterscripts.
+
+[11:17:29] Loaded 3 vehicles from: vehicles/trains.txt
+[11:17:29] Loaded 3 vehicles from: vehicles/pilots.txt
+[11:17:29] Loaded 15 vehicles from: vehicles/lv_law.txt
+[11:17:29] Loaded 39 vehicles from: vehicles/lv_airport.txt
+[11:17:29] Loaded 255 vehicles from: vehicles/lv_gen.txt
+[11:17:29] Loaded 38 vehicles from: vehicles/sf_law.txt
+[11:17:29] Loaded 35 vehicles from: vehicles/sf_airport.txt
+[11:17:29] Loaded 353 vehicles from: vehicles/sf_gen.txt
+[11:17:29] Loaded 24 vehicles from: vehicles/ls_law.txt
+[11:17:29] Loaded 37 vehicles from: vehicles/ls_airport.txt
+[11:17:29] Loaded 98 vehicles from: vehicles/ls_gen_inner.txt
+[11:17:29] Loaded 389 vehicles from: vehicles/ls_gen_outer.txt
+[11:17:29] Loaded 71 vehicles from: vehicles/whetstone.txt
+[11:17:29] Loaded 168 vehicles from: vehicles/bone.txt
+[11:17:29] Loaded 61 vehicles from: vehicles/flint.txt
+[11:17:29] Loaded 96 vehicles from: vehicles/tierra.txt
+[11:17:29] Loaded 96 vehicles from: vehicles/red_county.txt
+[11:17:29] Total vehicles from files: 1781
+[11:17:29] 
+---------------------------------------
+[11:17:29] Running Grand Larceny - by the SA-MP team
+
+[11:17:29] ---------------------------------------
+
+[11:17:29] Number of vehicle models: 173
+[11:17:50] [connection] 127.0.0.1:51323 requests connection cookie.
+[11:17:51] [connection] incoming connection: 127.0.0.1:51323 id: 0
+[11:17:52] [join] [V]ipe[X] has joined the server (0:127.0.0.1)
+[11:33:29] [part] [V]ipe[X] has left the server (0:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[13:38:33] 
+[13:38:33] Server Plugins
+[13:38:33] --------------
+[13:38:33]  Loading plugin: sscanf
+[13:38:33] 
+
+[13:38:33]  ===============================
+
+[13:38:33]       sscanf plugin loaded.     
+
+[13:38:33]          Version:  2.8.3        
+
+[13:38:33]   (c) 2018 Alex "Y_Less" Cole  
+
+[13:38:33]  ===============================
+
+[13:38:33]   Loaded.
+[13:38:33]  Loading plugin: streamer
+[13:38:33] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[13:38:33]   Loaded.
+[13:38:33]  Loaded 2 plugins.
+
+[13:38:33] 
+[13:38:33] Filterscripts
+[13:38:33] ---------------
+[13:38:33]   Loading filterscript 'mapedit.amx'...
+[13:38:33] 
+Fusez's Map Editor loaded successfully!
+
+[13:38:33]   Loaded 1 filterscripts.
+
+[13:38:33] Loaded 3 vehicles from: vehicles/trains.txt
+[13:38:33] Loaded 3 vehicles from: vehicles/pilots.txt
+[13:38:33] Loaded 15 vehicles from: vehicles/lv_law.txt
+[13:38:33] Loaded 39 vehicles from: vehicles/lv_airport.txt
+[13:38:33] Loaded 255 vehicles from: vehicles/lv_gen.txt
+[13:38:33] Loaded 38 vehicles from: vehicles/sf_law.txt
+[13:38:33] Loaded 35 vehicles from: vehicles/sf_airport.txt
+[13:38:33] Loaded 353 vehicles from: vehicles/sf_gen.txt
+[13:38:33] Loaded 24 vehicles from: vehicles/ls_law.txt
+[13:38:33] Loaded 37 vehicles from: vehicles/ls_airport.txt
+[13:38:33] Loaded 98 vehicles from: vehicles/ls_gen_inner.txt
+[13:38:33] Loaded 389 vehicles from: vehicles/ls_gen_outer.txt
+[13:38:33] Loaded 71 vehicles from: vehicles/whetstone.txt
+[13:38:33] Loaded 168 vehicles from: vehicles/bone.txt
+[13:38:33] Loaded 61 vehicles from: vehicles/flint.txt
+[13:38:33] Loaded 96 vehicles from: vehicles/tierra.txt
+[13:38:33] Loaded 96 vehicles from: vehicles/red_county.txt
+[13:38:33] Total vehicles from files: 1781
+[13:38:33] 
+---------------------------------------
+[13:38:33] Running Grand Larceny - by the SA-MP team
+
+[13:38:33] ---------------------------------------
+
+[13:38:33] Number of vehicle models: 173
+[13:40:03] [connection] 127.0.0.1:52656 requests connection cookie.
+[13:40:04] [connection] incoming connection: 127.0.0.1:52656 id: 0
+[13:40:04] [join] [V]ipe[X] has joined the server (0:127.0.0.1)
+[13:58:13] [part] [V]ipe[X] has left the server (0:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[22:00:04] 
+[22:00:04] Server Plugins
+[22:00:04] --------------
+[22:00:04]  Loading plugin: sscanf
+[22:00:04] 
+
+[22:00:04]  ===============================
+
+[22:00:04]       sscanf plugin loaded.     
+
+[22:00:04]          Version:  2.8.3        
+
+[22:00:04]   (c) 2018 Alex "Y_Less" Cole  
+
+[22:00:04]  ===============================
+
+[22:00:04]   Loaded.
+[22:00:04]  Loading plugin: streamer
+[22:00:04] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[22:00:04]   Loaded.
+[22:00:04]  Loaded 2 plugins.
+
+[22:00:04] 
+[22:00:04] Filterscripts
+[22:00:04] ---------------
+[22:00:04]   Loading filterscript 'mapedit.amx'...
+[22:00:04] 
+Fusez's Map Editor loaded successfully!
+
+[22:00:04]   Loaded 1 filterscripts.
+
+[22:00:04] Loaded 3 vehicles from: vehicles/trains.txt
+[22:00:04] Loaded 3 vehicles from: vehicles/pilots.txt
+[22:00:04] Loaded 15 vehicles from: vehicles/lv_law.txt
+[22:00:04] Loaded 39 vehicles from: vehicles/lv_airport.txt
+[22:00:04] Loaded 255 vehicles from: vehicles/lv_gen.txt
+[22:00:04] Loaded 38 vehicles from: vehicles/sf_law.txt
+[22:00:04] Loaded 35 vehicles from: vehicles/sf_airport.txt
+[22:00:04] Loaded 353 vehicles from: vehicles/sf_gen.txt
+[22:00:04] Loaded 24 vehicles from: vehicles/ls_law.txt
+[22:00:04] Loaded 37 vehicles from: vehicles/ls_airport.txt
+[22:00:04] Loaded 98 vehicles from: vehicles/ls_gen_inner.txt
+[22:00:04] Loaded 389 vehicles from: vehicles/ls_gen_outer.txt
+[22:00:04] Loaded 71 vehicles from: vehicles/whetstone.txt
+[22:00:04] Loaded 168 vehicles from: vehicles/bone.txt
+[22:00:04] Loaded 61 vehicles from: vehicles/flint.txt
+[22:00:04] Loaded 96 vehicles from: vehicles/tierra.txt
+[22:00:04] Loaded 96 vehicles from: vehicles/red_county.txt
+[22:00:04] Total vehicles from files: 1781
+[22:00:04] 
+---------------------------------------
+[22:00:04] Running Grand Larceny - by the SA-MP team
+
+[22:00:04] ---------------------------------------
+
+[22:00:04] Number of vehicle models: 173
+[22:00:18] [connection] 127.0.0.1:56901 requests connection cookie.
+[22:00:19] [connection] incoming connection: 127.0.0.1:56901 id: 0
+[22:00:19] [join] [V]ipe[X] has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[22:17:02] 
+[22:17:02] Server Plugins
+[22:17:02] --------------
+[22:17:02]  Loading plugin: sscanf
+[22:17:02] 
+
+[22:17:02]  ===============================
+
+[22:17:02]       sscanf plugin loaded.     
+
+[22:17:02]          Version:  2.8.3        
+
+[22:17:02]   (c) 2018 Alex "Y_Less" Cole  
+
+[22:17:02]  ===============================
+
+[22:17:02]   Loaded.
+[22:17:02]  Loading plugin: streamer
+[22:17:02] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[22:17:02]   Loaded.
+[22:17:02]  Loaded 2 plugins.
+
+[22:17:03] 
+[22:17:03] Filterscripts
+[22:17:03] ---------------
+[22:17:03]   Loading filterscript 'mapedit.amx'...
+[22:17:03] 
+Fusez's Map Editor loaded successfully!
+
+[22:17:03]   Loaded 1 filterscripts.
+
+[22:17:03] Loaded 3 vehicles from: vehicles/trains.txt
+[22:17:03] Loaded 3 vehicles from: vehicles/pilots.txt
+[22:17:03] Loaded 15 vehicles from: vehicles/lv_law.txt
+[22:17:03] Loaded 39 vehicles from: vehicles/lv_airport.txt
+[22:17:03] Loaded 255 vehicles from: vehicles/lv_gen.txt
+[22:17:03] Loaded 38 vehicles from: vehicles/sf_law.txt
+[22:17:03] Loaded 35 vehicles from: vehicles/sf_airport.txt
+[22:17:03] Loaded 353 vehicles from: vehicles/sf_gen.txt
+[22:17:03] Loaded 24 vehicles from: vehicles/ls_law.txt
+[22:17:03] Loaded 37 vehicles from: vehicles/ls_airport.txt
+[22:17:03] Loaded 98 vehicles from: vehicles/ls_gen_inner.txt
+[22:17:03] Loaded 389 vehicles from: vehicles/ls_gen_outer.txt
+[22:17:03] Loaded 71 vehicles from: vehicles/whetstone.txt
+[22:17:03] Loaded 168 vehicles from: vehicles/bone.txt
+[22:17:03] Loaded 61 vehicles from: vehicles/flint.txt
+[22:17:03] Loaded 96 vehicles from: vehicles/tierra.txt
+[22:17:03] Loaded 96 vehicles from: vehicles/red_county.txt
+[22:17:03] Total vehicles from files: 1781
+[22:17:03] 
+---------------------------------------
+[22:17:03] Running Grand Larceny - by the SA-MP team
+
+[22:17:03] ---------------------------------------
+
+[22:17:03] Number of vehicle models: 173
+[22:17:25] [connection] 127.0.0.1:61359 requests connection cookie.
+[22:17:26] [connection] incoming connection: 127.0.0.1:61359 id: 0
+[22:17:26] [join] [V]ipe[X] has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[15:33:18] 
+[15:33:18] Server Plugins
+[15:33:18] --------------
+[15:33:18]  Loading plugin: sscanf
+[15:33:19] 
+
+[15:33:19]  ===============================
+
+[15:33:19]       sscanf plugin loaded.     
+
+[15:33:19]          Version:  2.8.3        
+
+[15:33:19]   (c) 2018 Alex "Y_Less" Cole  
+
+[15:33:19]  ===============================
+
+[15:33:19]   Loaded.
+[15:33:19]  Loading plugin: streamer
+[15:33:19] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[15:33:19]   Loaded.
+[15:33:19]  Loaded 2 plugins.
+
+[15:33:19] 
+[15:33:19] Filterscripts
+[15:33:19] ---------------
+[15:33:19]   Loading filterscript 'mapedit.amx'...
+[15:33:19] 
+Fusez's Map Editor loaded successfully!
+
+[15:33:19]   Loaded 1 filterscripts.
+
+[15:33:19] Loaded 3 vehicles from: vehicles/trains.txt
+[15:33:19] Loaded 3 vehicles from: vehicles/pilots.txt
+[15:33:19] Loaded 15 vehicles from: vehicles/lv_law.txt
+[15:33:19] Loaded 39 vehicles from: vehicles/lv_airport.txt
+[15:33:19] Loaded 255 vehicles from: vehicles/lv_gen.txt
+[15:33:19] Loaded 38 vehicles from: vehicles/sf_law.txt
+[15:33:19] Loaded 35 vehicles from: vehicles/sf_airport.txt
+[15:33:19] Loaded 353 vehicles from: vehicles/sf_gen.txt
+[15:33:19] Loaded 24 vehicles from: vehicles/ls_law.txt
+[15:33:19] Loaded 37 vehicles from: vehicles/ls_airport.txt
+[15:33:19] Loaded 98 vehicles from: vehicles/ls_gen_inner.txt
+[15:33:19] Loaded 389 vehicles from: vehicles/ls_gen_outer.txt
+[15:33:19] Loaded 71 vehicles from: vehicles/whetstone.txt
+[15:33:19] Loaded 168 vehicles from: vehicles/bone.txt
+[15:33:19] Loaded 61 vehicles from: vehicles/flint.txt
+[15:33:19] Loaded 96 vehicles from: vehicles/tierra.txt
+[15:33:19] Loaded 96 vehicles from: vehicles/red_county.txt
+[15:33:19] Total vehicles from files: 1781
+[15:33:19] 
+---------------------------------------
+[15:33:19] Running Grand Larceny - by the SA-MP team
+
+[15:33:19] ---------------------------------------
+
+[15:33:19] Number of vehicle models: 173
+[15:33:49] [connection] 127.0.0.1:60925 requests connection cookie.
+[15:33:50] [connection] incoming connection: 127.0.0.1:60925 id: 0
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[15:35:04] 
+[15:35:04] Server Plugins
+[15:35:04] --------------
+[15:35:04]  Loading plugin: sscanf
+[15:35:04] 
+
+[15:35:04]  ===============================
+
+[15:35:04]       sscanf plugin loaded.     
+
+[15:35:04]          Version:  2.8.3        
+
+[15:35:04]   (c) 2018 Alex "Y_Less" Cole  
+
+[15:35:04]  ===============================
+
+[15:35:04]   Loaded.
+[15:35:04]  Loading plugin: streamer
+[15:35:04] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[15:35:04]   Loaded.
+[15:35:04]  Loaded 2 plugins.
+
+[15:35:04] 
+[15:35:04] Filterscripts
+[15:35:04] ---------------
+[15:35:04]   Loading filterscript 'mapedit.amx'...
+[15:35:05] 
+Fusez's Map Editor loaded successfully!
+
+[15:35:05]   Loaded 1 filterscripts.
+
+[15:35:05] Loaded 3 vehicles from: vehicles/trains.txt
+[15:35:05] Loaded 3 vehicles from: vehicles/pilots.txt
+[15:35:05] Loaded 15 vehicles from: vehicles/lv_law.txt
+[15:35:05] Loaded 39 vehicles from: vehicles/lv_airport.txt
+[15:35:05] Loaded 255 vehicles from: vehicles/lv_gen.txt
+[15:35:05] Loaded 38 vehicles from: vehicles/sf_law.txt
+[15:35:05] Loaded 35 vehicles from: vehicles/sf_airport.txt
+[15:35:05] Loaded 353 vehicles from: vehicles/sf_gen.txt
+[15:35:05] Loaded 24 vehicles from: vehicles/ls_law.txt
+[15:35:05] Loaded 37 vehicles from: vehicles/ls_airport.txt
+[15:35:05] Loaded 98 vehicles from: vehicles/ls_gen_inner.txt
+[15:35:05] Loaded 389 vehicles from: vehicles/ls_gen_outer.txt
+[15:35:05] Loaded 71 vehicles from: vehicles/whetstone.txt
+[15:35:05] Loaded 168 vehicles from: vehicles/bone.txt
+[15:35:05] Loaded 61 vehicles from: vehicles/flint.txt
+[15:35:05] Loaded 96 vehicles from: vehicles/tierra.txt
+[15:35:05] Loaded 96 vehicles from: vehicles/red_county.txt
+[15:35:05] Total vehicles from files: 1781
+[15:35:05] 
+---------------------------------------
+[15:35:05] Running Grand Larceny - by the SA-MP team
+
+[15:35:05] ---------------------------------------
+
+[15:35:05] Number of vehicle models: 173
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[15:53:02] 
+[15:53:02] Server Plugins
+[15:53:02] --------------
+[15:53:02]  Loading plugin: sscanf
+[15:53:02] 
+
+[15:53:02]  ===============================
+
+[15:53:02]       sscanf plugin loaded.     
+
+[15:53:02]          Version:  2.8.3        
+
+[15:53:02]   (c) 2018 Alex "Y_Less" Cole  
+
+[15:53:02]  ===============================
+
+[15:53:02]   Loaded.
+[15:53:02]  Loading plugin: streamer
+[15:53:02] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[15:53:02]   Loaded.
+[15:53:02]  Loaded 2 plugins.
+
+[15:53:02] 
+[15:53:02] Filterscripts
+[15:53:02] ---------------
+[15:53:02]   Loading filterscript 'mapedit.amx'...
+[15:53:02] 
+Fusez's Map Editor loaded successfully!
+
+[15:53:02]   Loaded 1 filterscripts.
+
+[15:53:02] Loaded 3 vehicles from: vehicles/trains.txt
+[15:53:02] Loaded 3 vehicles from: vehicles/pilots.txt
+[15:53:02] Loaded 15 vehicles from: vehicles/lv_law.txt
+[15:53:02] Loaded 39 vehicles from: vehicles/lv_airport.txt
+[15:53:02] Loaded 255 vehicles from: vehicles/lv_gen.txt
+[15:53:02] Loaded 38 vehicles from: vehicles/sf_law.txt
+[15:53:02] Loaded 35 vehicles from: vehicles/sf_airport.txt
+[15:53:02] Loaded 353 vehicles from: vehicles/sf_gen.txt
+[15:53:02] Loaded 24 vehicles from: vehicles/ls_law.txt
+[15:53:02] Loaded 37 vehicles from: vehicles/ls_airport.txt
+[15:53:02] Loaded 98 vehicles from: vehicles/ls_gen_inner.txt
+[15:53:02] Loaded 389 vehicles from: vehicles/ls_gen_outer.txt
+[15:53:02] Loaded 71 vehicles from: vehicles/whetstone.txt
+[15:53:02] Loaded 168 vehicles from: vehicles/bone.txt
+[15:53:02] Loaded 61 vehicles from: vehicles/flint.txt
+[15:53:02] Loaded 96 vehicles from: vehicles/tierra.txt
+[15:53:02] Loaded 96 vehicles from: vehicles/red_county.txt
+[15:53:02] Total vehicles from files: 1781
+[15:53:02] 
+---------------------------------------
+[15:53:02] Running Grand Larceny - by the SA-MP team
+
+[15:53:02] ---------------------------------------
+
+[15:53:02] Number of vehicle models: 173
+[15:53:24] [connection] 127.0.0.1:50704 requests connection cookie.
+[15:53:25] [connection] incoming connection: 127.0.0.1:50704 id: 0
+[15:53:25] [join] [V]ipe[X] has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[22:28:25] 
+[22:28:25] Server Plugins
+[22:28:25] --------------
+[22:28:25]  Loading plugin: sscanf
+[22:28:25] 
+
+[22:28:25]  ===============================
+
+[22:28:25]       sscanf plugin loaded.     
+
+[22:28:25]          Version:  2.8.3        
+
+[22:28:25]   (c) 2018 Alex "Y_Less" Cole  
+
+[22:28:25]  ===============================
+
+[22:28:25]   Loaded.
+[22:28:25]  Loading plugin: streamer
+[22:28:25] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[22:28:25]   Loaded.
+[22:28:25]  Loaded 2 plugins.
+
+[22:28:25] 
+[22:28:25] Filterscripts
+[22:28:25] ---------------
+[22:28:25]   Loading filterscript 'mapedit.amx'...
+[22:28:26] 
+Fusez's Map Editor loaded successfully!
+
+[22:28:26]   Loaded 1 filterscripts.
+
+[22:28:26] Loaded 3 vehicles from: vehicles/trains.txt
+[22:28:26] Loaded 3 vehicles from: vehicles/pilots.txt
+[22:28:26] Loaded 15 vehicles from: vehicles/lv_law.txt
+[22:28:26] Loaded 39 vehicles from: vehicles/lv_airport.txt
+[22:28:26] Loaded 255 vehicles from: vehicles/lv_gen.txt
+[22:28:26] Loaded 38 vehicles from: vehicles/sf_law.txt
+[22:28:26] Loaded 35 vehicles from: vehicles/sf_airport.txt
+[22:28:26] Loaded 353 vehicles from: vehicles/sf_gen.txt
+[22:28:26] Loaded 24 vehicles from: vehicles/ls_law.txt
+[22:28:26] Loaded 37 vehicles from: vehicles/ls_airport.txt
+[22:28:26] Loaded 98 vehicles from: vehicles/ls_gen_inner.txt
+[22:28:26] Loaded 389 vehicles from: vehicles/ls_gen_outer.txt
+[22:28:26] Loaded 71 vehicles from: vehicles/whetstone.txt
+[22:28:26] Loaded 168 vehicles from: vehicles/bone.txt
+[22:28:26] Loaded 61 vehicles from: vehicles/flint.txt
+[22:28:26] Loaded 96 vehicles from: vehicles/tierra.txt
+[22:28:26] Loaded 96 vehicles from: vehicles/red_county.txt
+[22:28:26] Total vehicles from files: 1781
+[22:28:26] 
+---------------------------------------
+[22:28:26] Running Grand Larceny - by the SA-MP team
+
+[22:28:26] ---------------------------------------
+
+[22:28:26] Number of vehicle models: 173
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[22:30:18] 
+[22:30:18] Server Plugins
+[22:30:18] --------------
+[22:30:18]  Loading plugin: sscanf
+[22:30:18] 
+
+[22:30:18]  ===============================
+
+[22:30:18]       sscanf plugin loaded.     
+
+[22:30:18]          Version:  2.8.3        
+
+[22:30:18]   (c) 2018 Alex "Y_Less" Cole  
+
+[22:30:18]  ===============================
+
+[22:30:18]   Loaded.
+[22:30:18]  Loading plugin: streamer
+[22:30:18] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[22:30:18]   Loaded.
+[22:30:18]  Loaded 2 plugins.
+
+[22:30:18] 
+[22:30:18] Filterscripts
+[22:30:18] ---------------
+[22:30:18]   Loading filterscript 'mapedit.amx'...
+[22:30:18] 
+Fusez's Map Editor loaded successfully!
+
+[22:30:18]   Loaded 1 filterscripts.
+
+[22:30:18] Loaded 3 vehicles from: vehicles/trains.txt
+[22:30:18] Loaded 3 vehicles from: vehicles/pilots.txt
+[22:30:18] Loaded 15 vehicles from: vehicles/lv_law.txt
+[22:30:18] Loaded 39 vehicles from: vehicles/lv_airport.txt
+[22:30:18] Loaded 255 vehicles from: vehicles/lv_gen.txt
+[22:30:18] Loaded 38 vehicles from: vehicles/sf_law.txt
+[22:30:18] Loaded 35 vehicles from: vehicles/sf_airport.txt
+[22:30:18] Loaded 353 vehicles from: vehicles/sf_gen.txt
+[22:30:18] Loaded 24 vehicles from: vehicles/ls_law.txt
+[22:30:18] Loaded 37 vehicles from: vehicles/ls_airport.txt
+[22:30:18] Loaded 98 vehicles from: vehicles/ls_gen_inner.txt
+[22:30:18] Loaded 389 vehicles from: vehicles/ls_gen_outer.txt
+[22:30:18] Loaded 71 vehicles from: vehicles/whetstone.txt
+[22:30:18] Loaded 168 vehicles from: vehicles/bone.txt
+[22:30:18] Loaded 61 vehicles from: vehicles/flint.txt
+[22:30:18] Loaded 96 vehicles from: vehicles/tierra.txt
+[22:30:18] Loaded 96 vehicles from: vehicles/red_county.txt
+[22:30:18] Total vehicles from files: 1781
+[22:30:18] 
+---------------------------------------
+[22:30:18] Running Grand Larceny - by the SA-MP team
+
+[22:30:18] ---------------------------------------
+
+[22:30:18] Number of vehicle models: 173
+[22:30:50] [connection] 127.0.0.1:49700 requests connection cookie.
+[22:30:51] [connection] incoming connection: 127.0.0.1:49700 id: 0
+[22:30:51] [join] [V]ipe[X] has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[21:24:33] 
+[21:24:33] Server Plugins
+[21:24:33] --------------
+[21:24:33]  Loading plugin: sscanf
+[21:24:33] 
+
+[21:24:33]  ===============================
+
+[21:24:33]       sscanf plugin loaded.     
+
+[21:24:33]          Version:  2.8.3        
+
+[21:24:33]   (c) 2018 Alex "Y_Less" Cole  
+
+[21:24:33]  ===============================
+
+[21:24:33]   Loaded.
+[21:24:33]  Loading plugin: streamer
+[21:24:33] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[21:24:33]   Loaded.
+[21:24:33]  Loaded 2 plugins.
+
+[21:24:33] 
+[21:24:33] Filterscripts
+[21:24:33] ---------------
+[21:24:33]   Loading filterscript 'mapedit.amx'...
+[21:24:33] 
+Fusez's Map Editor loaded successfully!
+
+[21:24:33]   Loaded 1 filterscripts.
+
+[21:24:33] Loaded 3 vehicles from: vehicles/trains.txt
+[21:24:33] Loaded 3 vehicles from: vehicles/pilots.txt
+[21:24:33] Loaded 15 vehicles from: vehicles/lv_law.txt
+[21:24:33] Loaded 39 vehicles from: vehicles/lv_airport.txt
+[21:24:33] Loaded 255 vehicles from: vehicles/lv_gen.txt
+[21:24:33] Loaded 38 vehicles from: vehicles/sf_law.txt
+[21:24:33] Loaded 35 vehicles from: vehicles/sf_airport.txt
+[21:24:33] Loaded 353 vehicles from: vehicles/sf_gen.txt
+[21:24:33] Loaded 24 vehicles from: vehicles/ls_law.txt
+[21:24:33] Loaded 37 vehicles from: vehicles/ls_airport.txt
+[21:24:33] Loaded 98 vehicles from: vehicles/ls_gen_inner.txt
+[21:24:33] Loaded 389 vehicles from: vehicles/ls_gen_outer.txt
+[21:24:33] Loaded 71 vehicles from: vehicles/whetstone.txt
+[21:24:33] Loaded 168 vehicles from: vehicles/bone.txt
+[21:24:33] Loaded 61 vehicles from: vehicles/flint.txt
+[21:24:33] Loaded 96 vehicles from: vehicles/tierra.txt
+[21:24:33] Loaded 96 vehicles from: vehicles/red_county.txt
+[21:24:33] Total vehicles from files: 1781
+[21:24:33] 
+---------------------------------------
+[21:24:33] Running Grand Larceny - by the SA-MP team
+
+[21:24:33] ---------------------------------------
+
+[21:24:33] Number of vehicle models: 173
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[21:54:36] 
+[21:54:36] Server Plugins
+[21:54:36] --------------
+[21:54:36]  Loading plugin: sscanf
+[21:54:36] 
+
+[21:54:36]  ===============================
+
+[21:54:36]       sscanf plugin loaded.     
+
+[21:54:36]          Version:  2.8.3        
+
+[21:54:36]   (c) 2018 Alex "Y_Less" Cole  
+
+[21:54:36]  ===============================
+
+[21:54:36]   Loaded.
+[21:54:36]  Loading plugin: streamer
+[21:54:36] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[21:54:36]   Loaded.
+[21:54:36]  Loaded 2 plugins.
+
+[21:54:36] 
+[21:54:36] Filterscripts
+[21:54:36] ---------------
+[21:54:36]   Loading filterscript 'mapedit.amx'...
+[21:54:36] 
+Fusez's Map Editor loaded successfully!
+
+[21:54:36]   Loaded 1 filterscripts.
+
+[21:54:36] Loaded 3 vehicles from: vehicles/trains.txt
+[21:54:36] Loaded 3 vehicles from: vehicles/pilots.txt
+[21:54:36] Loaded 15 vehicles from: vehicles/lv_law.txt
+[21:54:36] Loaded 39 vehicles from: vehicles/lv_airport.txt
+[21:54:36] Loaded 255 vehicles from: vehicles/lv_gen.txt
+[21:54:36] Loaded 38 vehicles from: vehicles/sf_law.txt
+[21:54:36] Loaded 35 vehicles from: vehicles/sf_airport.txt
+[21:54:36] Loaded 353 vehicles from: vehicles/sf_gen.txt
+[21:54:36] Loaded 24 vehicles from: vehicles/ls_law.txt
+[21:54:37] Loaded 37 vehicles from: vehicles/ls_airport.txt
+[21:54:37] Loaded 98 vehicles from: vehicles/ls_gen_inner.txt
+[21:54:37] Loaded 389 vehicles from: vehicles/ls_gen_outer.txt
+[21:54:37] Loaded 71 vehicles from: vehicles/whetstone.txt
+[21:54:37] Loaded 168 vehicles from: vehicles/bone.txt
+[21:54:37] Loaded 61 vehicles from: vehicles/flint.txt
+[21:54:37] Loaded 96 vehicles from: vehicles/tierra.txt
+[21:54:37] Loaded 96 vehicles from: vehicles/red_county.txt
+[21:54:37] Total vehicles from files: 1781
+[21:54:37] 
+---------------------------------------
+[21:54:37] Running Grand Larceny - by the SA-MP team
+
+[21:54:37] ---------------------------------------
+
+[21:54:37] Number of vehicle models: 173
+[21:55:03] [connection] 127.0.0.1:54177 requests connection cookie.
+[21:55:04] [connection] incoming connection: 127.0.0.1:54177 id: 0
+[21:55:05] [join] [V]ipe[X] has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[09:52:24] 
+[09:52:24] Server Plugins
+[09:52:24] --------------
+[09:52:24]  Loading plugin: sscanf
+[09:52:24] 
+
+[09:52:24]  ===============================
+
+[09:52:24]       sscanf plugin loaded.     
+
+[09:52:24]          Version:  2.8.3        
+
+[09:52:24]   (c) 2018 Alex "Y_Less" Cole  
+
+[09:52:24]  ===============================
+
+[09:52:24]   Loaded.
+[09:52:24]  Loading plugin: streamer
+[09:52:24] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[09:52:24]   Loaded.
+[09:52:24]  Loaded 2 plugins.
+
+[09:52:24] 
+[09:52:24] Filterscripts
+[09:52:24] ---------------
+[09:52:24]   Loading filterscript 'mapedit.amx'...
+[09:52:25] 
+Fusez's Map Editor loaded successfully!
+
+[09:52:25]   Loaded 1 filterscripts.
+
+[09:52:25] Loaded 3 vehicles from: vehicles/trains.txt
+[09:52:25] Loaded 3 vehicles from: vehicles/pilots.txt
+[09:52:25] Loaded 15 vehicles from: vehicles/lv_law.txt
+[09:52:25] Loaded 39 vehicles from: vehicles/lv_airport.txt
+[09:52:25] Loaded 255 vehicles from: vehicles/lv_gen.txt
+[09:52:25] Loaded 38 vehicles from: vehicles/sf_law.txt
+[09:52:25] Loaded 35 vehicles from: vehicles/sf_airport.txt
+[09:52:25] Loaded 353 vehicles from: vehicles/sf_gen.txt
+[09:52:25] Loaded 24 vehicles from: vehicles/ls_law.txt
+[09:52:25] Loaded 37 vehicles from: vehicles/ls_airport.txt
+[09:52:25] Loaded 98 vehicles from: vehicles/ls_gen_inner.txt
+[09:52:25] Loaded 389 vehicles from: vehicles/ls_gen_outer.txt
+[09:52:25] Loaded 71 vehicles from: vehicles/whetstone.txt
+[09:52:25] Loaded 168 vehicles from: vehicles/bone.txt
+[09:52:25] Loaded 61 vehicles from: vehicles/flint.txt
+[09:52:25] Loaded 96 vehicles from: vehicles/tierra.txt
+[09:52:25] Loaded 96 vehicles from: vehicles/red_county.txt
+[09:52:25] Total vehicles from files: 1781
+[09:52:25] 
+---------------------------------------
+[09:52:25] Running Grand Larceny - by the SA-MP team
+
+[09:52:25] ---------------------------------------
+
+[09:52:25] Number of vehicle models: 173
+[09:52:45] [connection] 127.0.0.1:52796 requests connection cookie.
+[09:52:46] [connection] incoming connection: 127.0.0.1:52796 id: 0
+[09:52:46] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+[09:54:27] [part] [GPB]Lucas has left the server (0:0)
+[09:59:53] [connection] 26.233.4.117:62935 requests connection cookie.
+[09:59:54] [connection] incoming connection: 26.233.4.117:62935 id: 0
+[09:59:54] [join] [GPB]amiguinho has joined the server (0:26.233.4.117)
