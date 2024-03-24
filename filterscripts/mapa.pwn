@@ -986,8 +986,6 @@ public OnFilterScriptInit() {
     o_Parte1[998] = CreateDynamicObject(997, 158.8362, -1549.7041, 10.0537, 0.7999, 3.7000, -128.0999); //lhouse_barrier3
     v_Parte1[0] = CreateVehicle(588, 2384.6193, -1745.4713, 13.5115, 271.4868, -1, -1, -1); //Hotdog
 
-    ////==========////////=======
-
     new o_Parte2[228];
     o_Parte2[0] = CreateDynamicObject(1257, 2221.3625, -1437.3112, 24.0642, 0.0000, 0.0000, 0.0000); //bustopm
     o_Parte2[1] = CreateDynamicObject(1229, 2218.0761, -1429.3271, 24.4818, 0.0000, 0.0000, 0.0000); //bussign1

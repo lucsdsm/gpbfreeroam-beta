@@ -270,7 +270,7 @@ stock CriaObjeto(Object, Float:x, Float:y, Float:z, Float:Angle) {
 
 //Funções públicas:
 public OnGameModeInit() {
-	SetGameModeText("GPB:F v0.3");
+	SetGameModeText("GPB:F v0.3.1");
     ManualVehicleEngineAndLights();
 	SetNameTagDrawDistance(20.0);
 	EnableStuntBonusForAll(0);
