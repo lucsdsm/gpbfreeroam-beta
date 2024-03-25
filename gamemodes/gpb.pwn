@@ -2814,7 +2814,7 @@ CMD:urinar(playerid, params[]) {
 }
 
 //Objetos
-CMD:objeto(playerid, params[]) {
+CMD:ob(playerid, params[]) {
 	new obj = strval(params);
 	new Float:objx, Float:objy, Float:objz, Float:obja;
 	GetPlayerPos(playerid, objx, objy, objz);
