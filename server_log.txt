@@ -602,3 +602,77 @@ Console input: gmx
 [16:49:12] Number of vehicle models: 0
 Console input: gmx
 [16:52:21] Number of vehicle models: 0
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[17:54:08] 
+[17:54:08] Server Plugins
+[17:54:08] --------------
+[17:54:08]  Loading plugin: sscanf
+[17:54:08] 
+[17:54:08]  ===============================
+[17:54:08] 
+[17:54:08]       sscanf plugin loaded.     
+[17:54:08] 
+[17:54:08]          Version: 2.13.8
+[17:54:08] 
+[17:54:08]    (c) 2022 Alex "Y_Less" Cole  
+[17:54:08] 
+[17:54:08]  ===============================
+[17:54:08] 
+[17:54:08]   Loaded.
+[17:54:08]  Loading plugin: crashdetect
+[17:54:08]   CrashDetect plugin 4.21
+[17:54:08]   Loaded.
+[17:54:08]  Loading plugin: streamer
+[17:54:08] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[17:54:08]   Loaded.
+[17:54:08]  Loading plugin: pawn-memory
+[17:54:08] ========================
+[17:54:08] = Memory access plugin =
+[17:54:08] =       Made by BigETI =
+[17:54:08] = Loaded!              =
+[17:54:08] ========================
+[17:54:08]   Loaded.
+[17:54:08]  Loaded 4 plugins.
+
+[17:54:08] 
+[17:54:08] Filterscripts
+[17:54:08] ---------------
+[17:54:08]   Loading filterscript 'mapa.amx'...
+[17:54:08]   Loaded 1 filterscripts.
+
+[17:54:08] Number of vehicle models: 1
+[17:54:33] [connection] incoming connection: 127.0.0.1:49431 id: 0
+[17:54:34] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+Console input: gmx
+[17:55:49] Number of vehicle models: 0
+[18:00:01] RCON (In-Game): Player #0 ([GPB]Lucas) has logged in.
+[18:00:04] RCON (In-Game): Player [[GPB]Lucas] sent command: players
+[18:00:04] ID	Name	Ping	IP
+[18:00:04] 0	[GPB]Lucas	31	127.0.0.1
+[18:00:37] RCON (In-Game): Player [[GPB]Lucas] sent command: say Coloquem o clima = 0.
+[18:00:53] RCON (In-Game): Player [[GPB]Lucas] sent command: time 1
+[18:00:54] RCON (In-Game): Player [[GPB]Lucas] sent command: time 2
+[18:00:57] RCON (In-Game): Player [[GPB]Lucas] sent command: hour 2
+Console input: gmx
+[18:05:59] Number of vehicle models: 0
+[18:07:43] [connection] incoming connection: 127.0.0.1:54459 id: 1
+[18:07:43] [join] [GPB]Kaio has joined the server (1:127.0.0.1)
+Console input: gmx
+[18:08:58] Number of vehicle models: 0
+Console input: gmx
+[18:10:32] Number of vehicle models: 0
+Console input: gmx
+[18:12:18] Number of vehicle models: 0
+Console input: gmx
+[18:14:07] Number of vehicle models: 0
