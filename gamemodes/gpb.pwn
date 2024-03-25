@@ -484,8 +484,38 @@ public OnVehicleDeath(vehicleid, killerid) {
 }
 
 public OnPlayerText(playerid, text[]) {
-	if (player[playerid][pFerido] == 0 && player[playerid][pAlgemado] == 0 && player[playerid][pAnim] == 0 && !IsPlayerInAnyVehicle(playerid)) {
-		ApplyAnimation(playerid, "MISC", "Idle_Chat_02", 4.1, 0, 0, 0, 0, 0, 0);
+	new Float:chat = random(9);
+	if (player[playerid][pFerido] == 0 && player[playerid][pAlgemado] == 0 && player[playerid][pAnim] == 0 && !IsPlayerInAnyVehicle(playerid)) { // Variação na animação de chat.
+		if (chat == 0) {
+			ApplyAnimation(playerid, "MISC", "Idle_Chat_02", 4.1, 0, 0, 0, 0, 0, 1);
+		}
+		else if (chat == 1) {
+			ApplyAnimation(playerid, "ped", "IDLE_chat", 4.1, 0, 0, 0, 0, 0, 1);
+		}
+		else if (chat == 2) {
+			ApplyAnimation(playerid, "GANGS", "prtial_gngtlkA", 4.1, 0, 0, 0, 0, 0, 1);
+		}
+		else if (chat == 3) {
+			ApplyAnimation(playerid, "GANGS", "prtial_gngtlkB", 4.1, 0, 0, 0, 0, 0, 1);
+		}
+		else if (chat == 4) {
+			ApplyAnimation(playerid, "GANGS", "prtial_gngtlkC", 4.1, 0, 0, 0, 0, 0, 1);
+		}
+		else if (chat == 5) {
+			ApplyAnimation(playerid, "GANGS", "prtial_gngtlkD", 4.1, 0, 0, 0, 0, 0, 1);
+		}
+		else if (chat == 6) {
+			ApplyAnimation(playerid, "GANGS", "prtial_gngtlkE", 4.1, 0, 0, 0, 0, 0, 1);
+		}
+		else if (chat == 7) {
+			ApplyAnimation(playerid, "GANGS", "prtial_gngtlkF", 4.1, 0, 0, 0, 0, 0, 1);
+		}
+		else if (chat == 8) {
+			ApplyAnimation(playerid, "GANGS", "prtial_gngtlkG", 4.1, 0, 0, 0, 0, 0, 1);
+		}
+		else if (chat == 9) {
+			ApplyAnimation(playerid, "GANGS", "prtial_gngtlkH", 4.1, 0, 0, 0, 0, 0, 1);
+		}
 	}
 	text[0] = toupper(text[0]);
 	format(gpbMensagem, 500, "%s — %s", GetName(playerid), text);
