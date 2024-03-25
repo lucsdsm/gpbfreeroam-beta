@@ -314,7 +314,7 @@ public OnPlayerDisconnect(playerid, reason) {
 }
 
 public OnPlayerSpawn(playerid) {
-    if(morto[playerid][morto_X]) {
+    if(morto[playerid][morto_X]) { // Faz o jogador spawnar no mesmo local em que morreu
 	    ClearAnimations(playerid);
 	    SetPlayerPos(playerid, morto[playerid][morto_X], morto[playerid][morto_Y], morto[playerid][morto_Z]);
 	    SetPlayerFacingAngle(playerid, morto[playerid][morto_A]);
@@ -332,23 +332,33 @@ public OnPlayerSpawn(playerid) {
 
 public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart) {
 	new Float:health;
+	new Float:chanceheadshot = random(3);
 	GetPlayerHealth(playerid,health);
-	if (player[playerid][pAnim] == 1) {
+	if (player[playerid][pAnim] == 1) { // Remove as animações ao atirar
 		player[playerid][pAnim] = 0;
+		ClearAnimations(playerid, 1);
+		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 	}
-	if ((health < 65 || bodypart == 9) && weaponid != 23 && weaponid != 25 && player[playerid][pFerido] == 0) { // Geral
+	if ((health < 65 || bodypart == 9) && !IsPlayerInAnyVehicle(playerid) && weaponid != 23 && weaponid != 25 && player[playerid][pFerido] == 0) { // Geral
 		player[playerid][pFerido] = 1;
 		SetPlayerHealth(playerid, 98303);
 		SetPlayerColor(playerid, red);
-		if (IsPlayerInAnyVehicle(playerid)) { // Animação dentro de algum veículo
+		ApplyAnimation(playerid, "ped", "KO_shot_front", 4.1, 0, 0, 0, 1, 0, 1);
+		SendClientMessage(playerid, grey, "Você está ferido. Para voltar ao controle do personagem use o /reviver.");
+
+	}
+	if (bodypart == 9 && IsPlayerInAnyVehicle(playerid)) { // Cria uma chance para headshot dentro de veículos
+		if (chanceheadshot == 0) {
+			player[playerid][pFerido] = 1;
+			SetPlayerHealth(playerid, 98303);
+			SetPlayerColor(playerid, red);
 			TogglePlayerControllable(playerid, false);
 			ApplyAnimation(playerid, "ped", "car_dead_lhs", 4.1, 0, 1, 0, 1, 0, 1);
 			SendClientMessage(playerid, grey, "Você está ferido. Para voltar ao controle do personagem use o /reviver.");
 		}
-		else { // Animação fora de algum veículo
-			ApplyAnimation(playerid, "ped", "KO_shot_front", 4.1, 0, 0, 0, 1, 0, 1);
-			SendClientMessage(playerid, grey, "Você está ferido. Para voltar ao controle do personagem use o /reviver.");
-		}
+		else {
+			SetPlayerHealth(playerid, health+amount);
+		}	
 	}
 	if ((health < 65)) { // Impedir mensagens duplicadas
 		if (weaponid == 37 || weaponid == 9) {
@@ -386,7 +396,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart)
 		}
 		else {
 			new Float:dano = 10;
-			new Float:chance = random(2);
+			new Float:chanceelastomero = random(2);
 			GetPlayerHealth(playerid, health);
 			SetPlayerHealth(playerid, health-dano);
 			
@@ -403,7 +413,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart)
 				}
 				return 1;
 			}
-			if (chance == 1 && player[playerid][pFerido] == 0) {
+			if (chanceelastomero == 1 && player[playerid][pFerido] == 0) {
 				player[playerid][pFerido] = 1;
 				SetPlayerHealth(playerid, 98303);
 				SetPlayerColor(playerid, red);
@@ -592,7 +602,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 			}
   		}
 	}
-	if (newkeys == KEY_FIRE) { // Limpar animação com o clique esquerdo
+	if (newkeys == KEY_SPRINT) { // Limpar animação com o clique esquerdo
 		if (player[playerid][pFerido] == 0 && player[playerid][pAlgemado] == 0 && player[playerid][pDerrubado] == 0 && !IsPlayerInAnyVehicle(playerid)) {
 			player[playerid][pAnim] = 0;
 			ClearAnimations(playerid, 1);
@@ -1057,6 +1067,22 @@ public RadioEmergencia(string[]) {
     }
 }
 
+forward RadioEmergenciasParaEmergencias(string[]);
+public RadioEmergenciasParaEmergencias(string[]) {
+    for(new i = 0; i < MAX_PLAYERS; i++) {
+        if(IsPlayerConnected(i)) {
+            if(player[i][pEquipe] == 1) {
+                SendClientMessage(i, red, string);
+				PlayAudioStreamForPlayer(i, "https://www.dl.dropboxusercontent.com/s/p26xc6hpnc606wy/gpb_ptt.mp3");
+            }
+			if(player[i][pEquipe] == 3) {
+                SendClientMessage(i, red, string);
+				PlayAudioStreamForPlayer(i, "https://www.dl.dropboxusercontent.com/s/p26xc6hpnc606wy/gpb_ptt.mp3");
+            }
+        }
+    }
+}
+
 //Funções CMD:
 CMD:comandos(playerid, params[]) {
 	SendClientMessage(playerid, grey, "[Servidor]: /comandos, /equipe, /hora, /clima, /tp, /ir, /objeto, /remover;");
@@ -1262,7 +1288,9 @@ CMD:ref(playerid) {
 		SendClientMessage(playerid, grey, "Você não pode utilizar esse comando.");
 	}
 	else {
-		ApplyAnimation(playerid, "ped", "phone_out", 2.0, 0, 0, 0, 0, 0, 1);
+		if (!IsPlayerInAnyVehicle(playerid)) {
+			ApplyAnimation(playerid, "ped", "phone_out", 2.0, 0, 0, 0, 0, 0, 1);
+		}
 		if (player[playerid][pEquipe] == 1){
 			new mensagem[128];
 			format(mensagem, sizeof(mensagem), "[ID: %i - F:%i]: Solicita apoio de unidades nas localidades de a(o) %s.", playerid, player[playerid][pEquipe], zone);
@@ -1280,6 +1308,22 @@ CMD:ref(playerid) {
 			format(mensagem, sizeof(mensagem), "[ID: %i - F:%i]: Requisitando ambulância próximo a(a) %s.", playerid, player[playerid][pEquipe], zone);
 			RadioParamedico(mensagem);
 		}
+	}
+	return 1;
+}
+
+CMD:d(playerid, text[]) {
+	if(isnull(text)) {
+		SendClientMessage(playerid, grey, "/d [mensagem]");
+	}
+	else {
+		if (!IsPlayerInAnyVehicle(playerid)) {
+			ApplyAnimation(playerid, "ped", "phone_talk", 2.0, 0, 0, 0, 0, 0, 1);
+		}
+		text[0] = toupper(text[0]);
+		new mensagem[128];
+		format(mensagem, sizeof(mensagem), "[ID: %i - F:%i] para todas as frequências: %s", playerid, player[playerid][pEquipe], text[0]);
+		RadioEmergenciasParaEmergencias(mensagem);
 	}
 	return 1;
 }
