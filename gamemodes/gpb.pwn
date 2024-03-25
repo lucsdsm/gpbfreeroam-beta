@@ -332,7 +332,7 @@ public OnPlayerSpawn(playerid) {
 
 public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart) {
 	new Float:health;
-	new Float:chanceheadshot = random(3);
+	new Float:headshot = random(3);
 	GetPlayerHealth(playerid,health);
 	if (player[playerid][pAnim] == 1) { // Remove as animações ao atirar
 		player[playerid][pAnim] = 0;
@@ -348,7 +348,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart)
 
 	}
 	if (bodypart == 9 && IsPlayerInAnyVehicle(playerid)) { // Cria uma chance para headshot dentro de veículos
-		if (chanceheadshot == 0) {
+		if (headshot == 1) {
 			player[playerid][pFerido] = 1;
 			SetPlayerHealth(playerid, 98303);
 			SetPlayerColor(playerid, red);
@@ -396,7 +396,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart)
 		}
 		else {
 			new Float:dano = 10;
-			new Float:chanceelastomero = random(2);
+			new Float:elastomero = random(2);
 			GetPlayerHealth(playerid, health);
 			SetPlayerHealth(playerid, health-dano);
 			
@@ -413,7 +413,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart)
 				}
 				return 1;
 			}
-			if (chanceelastomero == 1 && player[playerid][pFerido] == 0) {
+			if (elastomero == 1 && player[playerid][pFerido] == 0) {
 				player[playerid][pFerido] = 1;
 				SetPlayerHealth(playerid, 98303);
 				SetPlayerColor(playerid, red);
@@ -1119,6 +1119,19 @@ CMD:do(playerid, params[]) {
     return 1;
 }
 
+CMD:d(playerid, text[]) {
+	if(isnull(text)) {
+		SendClientMessage(playerid, grey, "/d [mensagem]");
+	}
+	else {
+		text[0] = toupper(text[0]);
+		format(gpbMensagem, 500, "[ID: %i]: %s", playerid, text);
+    	SendClientMessageToAll(red, gpbMensagem);
+
+	}
+	return 1;
+}
+
 CMD:gl(playerid, params[]) {
 	if(isnull(params)) {
 		SendClientMessage(playerid, grey, "/gl [texto]");
@@ -1308,22 +1321,6 @@ CMD:ref(playerid) {
 			format(mensagem, sizeof(mensagem), "[ID: %i - F:%i]: Requisitando ambulância próximo a(a) %s.", playerid, player[playerid][pEquipe], zone);
 			RadioParamedico(mensagem);
 		}
-	}
-	return 1;
-}
-
-CMD:d(playerid, text[]) {
-	if(isnull(text)) {
-		SendClientMessage(playerid, grey, "/d [mensagem]");
-	}
-	else {
-		if (!IsPlayerInAnyVehicle(playerid)) {
-			ApplyAnimation(playerid, "ped", "phone_talk", 2.0, 0, 0, 0, 0, 0, 1);
-		}
-		text[0] = toupper(text[0]);
-		new mensagem[128];
-		format(mensagem, sizeof(mensagem), "[ID: %i - F:%i] para todas as frequências: %s", playerid, player[playerid][pEquipe], text[0]);
-		RadioEmergenciasParaEmergencias(mensagem);
 	}
 	return 1;
 }
