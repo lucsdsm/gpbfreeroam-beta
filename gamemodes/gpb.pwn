@@ -1925,6 +1925,27 @@ CMD:hora(playerid, params[]) {
 	return 1;
 }
 
+CMD:hour(playerid, params[]) { // Hora global (admin)
+	if (IsPlayerAdmin(playerid)) {
+		new hora = strval(params);
+		if(isnull(params)) {
+			return SendClientMessage(playerid, grey, "/hora [0-24]");
+		}
+		if(hora >= 0 && hora <= 24) {
+			SetWorldTime(hora);
+			format(gpbMensagem, sizeof(gpbMensagem), "Horário local definido para às %d:00 em Los Santos.", hora);
+			SendClientMessageToAll(red, gpbMensagem);
+		}
+		else { 
+			SendClientMessage(playerid, grey, "/hora [0-24]");
+		}
+	}
+	else {
+		SendClientMessage(playerid, grey, "Você não tem permissão.");
+	}
+	return 1;
+}
+
 CMD:clima(playerid, params[]) {
 	new clima = strval(params);
 	if(isnull(params)) {
