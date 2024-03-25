@@ -475,7 +475,7 @@ public OnVehicleDeath(vehicleid, killerid) {
 
 public OnPlayerText(playerid, text[]) {
 	if (player[playerid][pFerido] == 0 && player[playerid][pAlgemado] == 0 && player[playerid][pAnim] == 0 && !IsPlayerInAnyVehicle(playerid)) {
-		ApplyAnimation(playerid, "GANGS", "prtial_gngtlkA", 4.1, 0, 0, 0, 0, 0, 1);
+		ApplyAnimation(playerid, "MISC", "Idle_Chat_02", 4.1, 0, 0, 0, 0, 0, 0);
 	}
 	text[0] = toupper(text[0]);
 	format(gpbMensagem, 500, "%s — %s", GetName(playerid), text);
@@ -592,9 +592,10 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 			}
   		}
 	}
-	else if(newkeys == KEY_SECONDARY_ATTACK) {
-		if (player[playerid][pAnim] == 1) {
+	if (newkeys == KEY_FIRE) { // Limpar animação com o clique esquerdo
+		if (player[playerid][pFerido] == 0 && player[playerid][pAlgemado] == 0 && player[playerid][pDerrubado] == 0 && !IsPlayerInAnyVehicle(playerid)) {
 			player[playerid][pAnim] = 0;
+			ClearAnimations(playerid, 1);
 			SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 		}
 	}
