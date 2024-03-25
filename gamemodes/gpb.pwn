@@ -1112,6 +1112,8 @@ CMD:ame(playerid, params[]) {
 	}
     else {
 		format(gpbMensagem, 500, "%s %s", GetName(playerid), params);
+    	SendClientMessage(playerid, purple, gpbMensagem);
+		format(gpbMensagem, 500, "%s %s", GetName(playerid), params);
 		SetPlayerChatBubble(playerid, gpbMensagem, purple, 20, 10000);
 	}
 	return 1;
