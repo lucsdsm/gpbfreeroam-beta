@@ -1085,11 +1085,11 @@ public RadioEmergenciasParaEmergencias(string[]) {
 
 //Funções CMD:
 CMD:comandos(playerid, params[]) {
-	SendClientMessage(playerid, grey, "[Servidor]: /comandos, /equipe, /hora, /clima, /tp, /ir, /objeto, /remover;");
-	SendClientMessage(playerid, grey, "[Chat]: /me, /do, /sus, /gl, /ooc, /gr, /r, /mf, /mp;");
-	SendClientMessage(playerid, grey, "[Personagem]: /reviver, /skin, /atividades, /equipar, /derrubar, /limpar;");
+	SendClientMessage(playerid, grey, "[Servidor]: /comandos, /equipe, /hora, /clima, /tp, /ir, /ob, /remover;");
+	SendClientMessage(playerid, grey, "[Chat]: /me, /ame, /do, /sus, /gl, /d, /ooc, /gr, /r, /mf, /mp;");
+	SendClientMessage(playerid, grey, "[Personagem]: /reviver, /skin, /atividades, /equipar, /derrubar, /levantar, /limpar;");
 	SendClientMessage(playerid, grey, "[Veículo]: /vc, /vd, /chave, /luzes, /pintar, /fix, /capo, /mala;");
-	SendClientMessage(playerid, grey, "[Polícia]: /vcs, /vp, /rp, /ref, /algemar, /desalgemar, /levantar.");
+	SendClientMessage(playerid, grey, "[Polícia]: /vcs, /vp, /rp, /ref, /algemar, /desalgemar.");
    	return 1;
 }
 
@@ -1097,11 +1097,21 @@ CMD:me(playerid, params[]) {
 	if(isnull(params)) {
 		SendClientMessage(playerid, grey, "/me [ação]");
 	}
-	
     else {
 		format(gpbMensagem, 500, "%s %s", GetName(playerid), params);
     	SendRangedMessage(playerid, purple, gpbMensagem, 20);
-		format(gpbMensagem, 500, "%s", params);
+		format(gpbMensagem, 500, "%s %s", GetName(playerid), params);
+		SetPlayerChatBubble(playerid, gpbMensagem, purple, 20, 10000);
+	}
+	return 1;
+}
+
+CMD:ame(playerid, params[]) {
+	if(isnull(params)) {
+		SendClientMessage(playerid, grey, "/me [ação]");
+	}
+    else {
+		format(gpbMensagem, 500, "%s %s", GetName(playerid), params);
 		SetPlayerChatBubble(playerid, gpbMensagem, purple, 20, 10000);
 	}
 	return 1;
