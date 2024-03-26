@@ -7,18 +7,11 @@
 #define grey  0xAFAFAFAA
 #define white 0xFFFFFFAA
 
-enum jogadorData {
-   pEquipe,
-}
-
 new TapeteCOP[MAX_PLAYERS];
 new CrieiTapete[MAX_PLAYERS];
 new TempoTapete[MAX_PLAYERS];
 new PassandoTapete[MAX_PLAYERS];
-new player[MAX_PLAYERS][jogadorData];
 new Float:AnguloTapete, Float:TapeteX, Float:TapeteY, Float:TapeteZ;
-
-
 
 public OnPlayerDisconnect(playerid, reason) {
     DeletarTapete(playerid);
@@ -36,7 +29,6 @@ public FurandoPneu() {
                 UpdateVehicleDamageStatus(GetPlayerVehicleID(i), Dano[0], Dano[1], Dano[2], TireDano(1, 1, 1, 1));
                 return 1;
             }
-
         }
     }
     return 0;
@@ -44,11 +36,7 @@ public FurandoPneu() {
 
 public OnPlayerCommandText(playerid, cmdtext[]) {
     if (strcmp("/tc", cmdtext, true, 10) == 0) {
-        if (player[playerid][pEquipe] != 1) {
-            SendClientMessage(playerid, grey, "Apenas policiais podem lançar tapetes de pregos.");
-            return 1;
-        }
-        else if(CrieiTapete[playerid] == 1) {
+        if(CrieiTapete[playerid] == 1) {
             SendClientMessage(playerid, grey, "Você já colocou um tapete de pregos. Remova-o para jogar outro.");
             return 1;
         }
