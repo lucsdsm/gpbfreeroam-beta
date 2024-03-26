@@ -1324,3 +1324,1542 @@ v0.3.7-R2, (C)2005-2015 SA-MP Team
 [06:40:50] Number of vehicle models: 1
 [06:41:08] [connection] incoming connection: 127.0.0.1:57975 id: 0
 [06:41:08] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[15:35:47] 
+[15:35:47] Server Plugins
+[15:35:47] --------------
+[15:35:47]  Loading plugin: sscanf
+[15:35:47] 
+[15:35:47]  ===============================
+[15:35:47] 
+[15:35:47]       sscanf plugin loaded.     
+[15:35:47] 
+[15:35:47]          Version: 2.13.8
+[15:35:47] 
+[15:35:47]    (c) 2022 Alex "Y_Less" Cole  
+[15:35:47] 
+[15:35:47]  ===============================
+[15:35:47] 
+[15:35:47]   Loaded.
+[15:35:47]  Loading plugin: crashdetect
+[15:35:47]   CrashDetect plugin 4.21
+[15:35:47]   Loaded.
+[15:35:47]  Loading plugin: streamer
+[15:35:47] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[15:35:47]   Loaded.
+[15:35:47]  Loading plugin: pawn-memory
+[15:35:47] ========================
+[15:35:47] = Memory access plugin =
+[15:35:47] =       Made by BigETI =
+[15:35:47] = Loaded!              =
+[15:35:47] ========================
+[15:35:47]   Loaded.
+[15:35:47]  Loaded 4 plugins.
+
+[15:35:47] 
+[15:35:47] Filterscripts
+[15:35:47] ---------------
+[15:35:47]   Loading filterscript 'mapa.amx'...
+[15:35:47]   Loading filterscript 'pregos.amx'...
+[15:35:47]   Loaded 2 filterscripts.
+
+[15:35:47] Number of vehicle models: 1
+[15:36:21] [connection] incoming connection: 127.0.0.1:63862 id: 0
+[15:36:21] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+Console input: gmx
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[15:38:10] 
+[15:38:10] Server Plugins
+[15:38:10] --------------
+[15:38:10]  Loading plugin: sscanf
+[15:38:10] 
+[15:38:10]  ===============================
+[15:38:10] 
+[15:38:10]       sscanf plugin loaded.     
+[15:38:10] 
+[15:38:10]          Version: 2.13.8
+[15:38:10] 
+[15:38:10]    (c) 2022 Alex "Y_Less" Cole  
+[15:38:10] 
+[15:38:10]  ===============================
+[15:38:10] 
+[15:38:10]   Loaded.
+[15:38:10]  Loading plugin: crashdetect
+[15:38:10]   CrashDetect plugin 4.21
+[15:38:10]   Loaded.
+[15:38:10]  Loading plugin: streamer
+[15:38:10] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[15:38:10]   Loaded.
+[15:38:10]  Loading plugin: pawn-memory
+[15:38:10] ========================
+[15:38:10] = Memory access plugin =
+[15:38:10] =       Made by BigETI =
+[15:38:10] = Loaded!              =
+[15:38:10] ========================
+[15:38:10]   Loaded.
+[15:38:10]  Loaded 4 plugins.
+
+[15:38:10] 
+[15:38:10] Filterscripts
+[15:38:10] ---------------
+[15:38:10]   Loading filterscript 'mapa.amx'...
+[15:38:10]   Loading filterscript 'pregos.amx'...
+[15:38:10]   Loaded 2 filterscripts.
+
+[15:38:10] Number of vehicle models: 1
+[15:38:23] [connection] incoming connection: 127.0.0.1:52458 id: 0
+[15:38:24] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[15:50:22] 
+[15:50:22] Server Plugins
+[15:50:22] --------------
+[15:50:22]  Loading plugin: sscanf
+[15:50:22] 
+[15:50:22]  ===============================
+[15:50:22] 
+[15:50:22]       sscanf plugin loaded.     
+[15:50:22] 
+[15:50:22]          Version: 2.13.8
+[15:50:22] 
+[15:50:22]    (c) 2022 Alex "Y_Less" Cole  
+[15:50:22] 
+[15:50:22]  ===============================
+[15:50:22] 
+[15:50:22]   Loaded.
+[15:50:22]  Loading plugin: crashdetect
+[15:50:22]   CrashDetect plugin 4.21
+[15:50:22]   Loaded.
+[15:50:22]  Loading plugin: streamer
+[15:50:22] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[15:50:22]   Loaded.
+[15:50:22]  Loading plugin: pawn-memory
+[15:50:22] ========================
+[15:50:22] = Memory access plugin =
+[15:50:22] =       Made by BigETI =
+[15:50:22] = Loaded!              =
+[15:50:22] ========================
+[15:50:22]   Loaded.
+[15:50:22]  Loaded 4 plugins.
+
+[15:50:22] 
+[15:50:22] Filterscripts
+[15:50:22] ---------------
+[15:50:22]   Loading filterscript 'mapa.amx'...
+[15:50:22]   Loading filterscript 'pregos.amx'...
+[15:50:22]   Loaded 2 filterscripts.
+
+[15:50:22] Number of vehicle models: 1
+[15:50:38] [connection] incoming connection: 127.0.0.1:54688 id: 0
+[15:50:39] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[15:53:01] 
+[15:53:01] Server Plugins
+[15:53:01] --------------
+[15:53:01]  Loading plugin: sscanf
+[15:53:01] 
+[15:53:01]  ===============================
+[15:53:01] 
+[15:53:01]       sscanf plugin loaded.     
+[15:53:01] 
+[15:53:01]          Version: 2.13.8
+[15:53:01] 
+[15:53:01]    (c) 2022 Alex "Y_Less" Cole  
+[15:53:01] 
+[15:53:01]  ===============================
+[15:53:01] 
+[15:53:01]   Loaded.
+[15:53:01]  Loading plugin: crashdetect
+[15:53:01]   CrashDetect plugin 4.21
+[15:53:01]   Loaded.
+[15:53:01]  Loading plugin: streamer
+[15:53:01] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[15:53:01]   Loaded.
+[15:53:01]  Loading plugin: pawn-memory
+[15:53:01] ========================
+[15:53:01] = Memory access plugin =
+[15:53:01] =       Made by BigETI =
+[15:53:01] = Loaded!              =
+[15:53:01] ========================
+[15:53:01]   Loaded.
+[15:53:01]  Loaded 4 plugins.
+
+[15:53:01] 
+[15:53:01] Filterscripts
+[15:53:01] ---------------
+[15:53:01]   Loading filterscript 'mapa.amx'...
+[15:53:01]   Loading filterscript 'pregos.amx'...
+[15:53:01]   Loaded 2 filterscripts.
+
+[15:53:01] Number of vehicle models: 1
+[15:53:12] [connection] incoming connection: 127.0.0.1:50829 id: 0
+[15:53:12] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+[15:54:48] [part] [GPB]Lucas has left the server (0:1)
+Console input: gmx
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[15:55:41] 
+[15:55:41] Server Plugins
+[15:55:41] --------------
+[15:55:41]  Loading plugin: sscanf
+[15:55:41] 
+[15:55:41]  ===============================
+[15:55:41] 
+[15:55:41]       sscanf plugin loaded.     
+[15:55:41] 
+[15:55:41]          Version: 2.13.8
+[15:55:41] 
+[15:55:41]    (c) 2022 Alex "Y_Less" Cole  
+[15:55:41] 
+[15:55:41]  ===============================
+[15:55:41] 
+[15:55:41]   Loaded.
+[15:55:41]  Loading plugin: crashdetect
+[15:55:41]   CrashDetect plugin 4.21
+[15:55:41]   Loaded.
+[15:55:41]  Loading plugin: streamer
+[15:55:41] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[15:55:41]   Loaded.
+[15:55:41]  Loading plugin: pawn-memory
+[15:55:41] ========================
+[15:55:41] = Memory access plugin =
+[15:55:41] =       Made by BigETI =
+[15:55:41] = Loaded!              =
+[15:55:41] ========================
+[15:55:41]   Loaded.
+[15:55:41]  Loaded 4 plugins.
+
+[15:55:41] 
+[15:55:41] Filterscripts
+[15:55:41] ---------------
+[15:55:41]   Loading filterscript 'mapa.amx'...
+[15:55:41]   Loading filterscript 'pregos.amx'...
+[15:55:41]   Loaded 2 filterscripts.
+
+[15:55:41] Number of vehicle models: 1
+[15:55:51] [connection] incoming connection: 127.0.0.1:55331 id: 0
+[15:55:51] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[15:57:23] 
+[15:57:23] Server Plugins
+[15:57:23] --------------
+[15:57:23]  Loading plugin: sscanf
+[15:57:23] 
+[15:57:23]  ===============================
+[15:57:23] 
+[15:57:23]       sscanf plugin loaded.     
+[15:57:23] 
+[15:57:23]          Version: 2.13.8
+[15:57:23] 
+[15:57:23]    (c) 2022 Alex "Y_Less" Cole  
+[15:57:23] 
+[15:57:23]  ===============================
+[15:57:23] 
+[15:57:23]   Loaded.
+[15:57:23]  Loading plugin: crashdetect
+[15:57:23]   CrashDetect plugin 4.21
+[15:57:23]   Loaded.
+[15:57:23]  Loading plugin: streamer
+[15:57:23] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[15:57:23]   Loaded.
+[15:57:23]  Loading plugin: pawn-memory
+[15:57:23] ========================
+[15:57:23] = Memory access plugin =
+[15:57:23] =       Made by BigETI =
+[15:57:23] = Loaded!              =
+[15:57:23] ========================
+[15:57:23]   Loaded.
+[15:57:23]  Loaded 4 plugins.
+
+[15:57:23] 
+[15:57:23] Filterscripts
+[15:57:23] ---------------
+[15:57:23]   Loading filterscript 'mapa.amx'...
+[15:57:23]   Loading filterscript 'pregos.amx'...
+[15:57:23]   Loaded 2 filterscripts.
+
+[15:57:23] Number of vehicle models: 1
+[15:57:52] [connection] incoming connection: 127.0.0.1:54972 id: 0
+[15:57:52] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:00:05] 
+[16:00:05] Server Plugins
+[16:00:05] --------------
+[16:00:05]  Loading plugin: sscanf
+[16:00:05] 
+[16:00:05]  ===============================
+[16:00:05] 
+[16:00:05]       sscanf plugin loaded.     
+[16:00:05] 
+[16:00:05]          Version: 2.13.8
+[16:00:05] 
+[16:00:05]    (c) 2022 Alex "Y_Less" Cole  
+[16:00:05] 
+[16:00:05]  ===============================
+[16:00:05] 
+[16:00:05]   Loaded.
+[16:00:05]  Loading plugin: crashdetect
+[16:00:05]   CrashDetect plugin 4.21
+[16:00:05]   Loaded.
+[16:00:05]  Loading plugin: streamer
+[16:00:05] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:00:05]   Loaded.
+[16:00:05]  Loading plugin: pawn-memory
+[16:00:05] ========================
+[16:00:05] = Memory access plugin =
+[16:00:05] =       Made by BigETI =
+[16:00:05] = Loaded!              =
+[16:00:05] ========================
+[16:00:05]   Loaded.
+[16:00:05]  Loaded 4 plugins.
+
+[16:00:05] 
+[16:00:05] Filterscripts
+[16:00:05] ---------------
+[16:00:05]   Loading filterscript 'mapa.amx'...
+[16:00:05]   Loading filterscript 'pregos.amx'...
+[16:00:05]   Loaded 2 filterscripts.
+
+[16:00:05] Number of vehicle models: 1
+[16:00:16] [connection] incoming connection: 127.0.0.1:51708 id: 0
+[16:00:16] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:08:27] 
+[16:08:27] Server Plugins
+[16:08:27] --------------
+[16:08:27]  Loading plugin: sscanf
+[16:08:27] 
+[16:08:27]  ===============================
+[16:08:27] 
+[16:08:27]       sscanf plugin loaded.     
+[16:08:27] 
+[16:08:27]          Version: 2.13.8
+[16:08:27] 
+[16:08:27]    (c) 2022 Alex "Y_Less" Cole  
+[16:08:27] 
+[16:08:27]  ===============================
+[16:08:27] 
+[16:08:27]   Loaded.
+[16:08:27]  Loading plugin: crashdetect
+[16:08:27]   CrashDetect plugin 4.21
+[16:08:27]   Loaded.
+[16:08:27]  Loading plugin: streamer
+[16:08:27] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:08:27]   Loaded.
+[16:08:27]  Loading plugin: pawn-memory
+[16:08:27] ========================
+[16:08:27] = Memory access plugin =
+[16:08:27] =       Made by BigETI =
+[16:08:27] = Loaded!              =
+[16:08:27] ========================
+[16:08:27]   Loaded.
+[16:08:27]  Loaded 4 plugins.
+
+[16:08:27] 
+[16:08:27] Filterscripts
+[16:08:27] ---------------
+[16:08:27]   Loading filterscript 'mapa.amx'...
+[16:08:27]   Loading filterscript 'pregos.amx'...
+[16:08:27]   Loaded 2 filterscripts.
+
+[16:08:27] Number of vehicle models: 1
+[16:08:41] [connection] incoming connection: 127.0.0.1:56454 id: 0
+[16:08:41] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:13:24] 
+[16:13:24] Server Plugins
+[16:13:24] --------------
+[16:13:24]  Loading plugin: sscanf
+[16:13:24] 
+[16:13:24]  ===============================
+[16:13:24] 
+[16:13:24]       sscanf plugin loaded.     
+[16:13:24] 
+[16:13:24]          Version: 2.13.8
+[16:13:24] 
+[16:13:24]    (c) 2022 Alex "Y_Less" Cole  
+[16:13:24] 
+[16:13:24]  ===============================
+[16:13:24] 
+[16:13:24]   Loaded.
+[16:13:24]  Loading plugin: crashdetect
+[16:13:24]   CrashDetect plugin 4.21
+[16:13:24]   Loaded.
+[16:13:24]  Loading plugin: streamer
+[16:13:24] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:13:24]   Loaded.
+[16:13:24]  Loading plugin: pawn-memory
+[16:13:24] ========================
+[16:13:24] = Memory access plugin =
+[16:13:24] =       Made by BigETI =
+[16:13:24] = Loaded!              =
+[16:13:24] ========================
+[16:13:24]   Loaded.
+[16:13:24]  Loaded 4 plugins.
+
+[16:13:24] 
+[16:13:24] Filterscripts
+[16:13:24] ---------------
+[16:13:24]   Loading filterscript 'mapa.amx'...
+[16:13:24]   Loading filterscript 'pregos.amx'...
+[16:13:24]   Loaded 2 filterscripts.
+
+[16:13:24] Number of vehicle models: 1
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:13:31] 
+[16:13:31] Server Plugins
+[16:13:31] --------------
+[16:13:31]  Loading plugin: sscanf
+[16:13:31] 
+[16:13:31]  ===============================
+[16:13:31] 
+[16:13:31]       sscanf plugin loaded.     
+[16:13:31] 
+[16:13:31]          Version: 2.13.8
+[16:13:31] 
+[16:13:31]    (c) 2022 Alex "Y_Less" Cole  
+[16:13:31] 
+[16:13:31]  ===============================
+[16:13:31] 
+[16:13:31]   Loaded.
+[16:13:31]  Loading plugin: crashdetect
+[16:13:31]   CrashDetect plugin 4.21
+[16:13:31]   Loaded.
+[16:13:31]  Loading plugin: streamer
+[16:13:31] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:13:31]   Loaded.
+[16:13:31]  Loading plugin: pawn-memory
+[16:13:31] ========================
+[16:13:31] = Memory access plugin =
+[16:13:31] =       Made by BigETI =
+[16:13:31] = Loaded!              =
+[16:13:31] ========================
+[16:13:31]   Loaded.
+[16:13:31]  Loaded 4 plugins.
+
+[16:13:31] 
+[16:13:31] Filterscripts
+[16:13:31] ---------------
+[16:13:31]   Loading filterscript 'mapa.amx'...
+[16:13:31]   Loading filterscript 'pregos.amx'...
+[16:13:31]   Loaded 2 filterscripts.
+
+[16:13:31] Number of vehicle models: 1
+[16:13:48] [connection] incoming connection: 127.0.0.1:55330 id: 0
+[16:13:49] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:17:32] 
+[16:17:32] Server Plugins
+[16:17:32] --------------
+[16:17:32]  Loading plugin: sscanf
+[16:17:32] 
+[16:17:32]  ===============================
+[16:17:32] 
+[16:17:32]       sscanf plugin loaded.     
+[16:17:32] 
+[16:17:32]          Version: 2.13.8
+[16:17:32] 
+[16:17:32]    (c) 2022 Alex "Y_Less" Cole  
+[16:17:32] 
+[16:17:32]  ===============================
+[16:17:32] 
+[16:17:32]   Loaded.
+[16:17:32]  Loading plugin: crashdetect
+[16:17:32]   CrashDetect plugin 4.21
+[16:17:32]   Loaded.
+[16:17:32]  Loading plugin: streamer
+[16:17:32] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:17:32]   Loaded.
+[16:17:32]  Loading plugin: pawn-memory
+[16:17:32] ========================
+[16:17:32] = Memory access plugin =
+[16:17:32] =       Made by BigETI =
+[16:17:32] = Loaded!              =
+[16:17:32] ========================
+[16:17:32]   Loaded.
+[16:17:32]  Loaded 4 plugins.
+
+[16:17:32] 
+[16:17:32] Filterscripts
+[16:17:32] ---------------
+[16:17:32]   Loading filterscript 'mapa.amx'...
+[16:17:32]   Loading filterscript 'pregos.amx'...
+[16:17:32]   Loaded 2 filterscripts.
+
+[16:17:32] Number of vehicle models: 1
+[16:17:44] [connection] incoming connection: 127.0.0.1:56807 id: 0
+[16:17:44] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:19:41] 
+[16:19:41] Server Plugins
+[16:19:41] --------------
+[16:19:41]  Loading plugin: sscanf
+[16:19:41] 
+[16:19:41]  ===============================
+[16:19:41] 
+[16:19:41]       sscanf plugin loaded.     
+[16:19:41] 
+[16:19:41]          Version: 2.13.8
+[16:19:41] 
+[16:19:41]    (c) 2022 Alex "Y_Less" Cole  
+[16:19:41] 
+[16:19:41]  ===============================
+[16:19:41] 
+[16:19:41]   Loaded.
+[16:19:41]  Loading plugin: crashdetect
+[16:19:41]   CrashDetect plugin 4.21
+[16:19:41]   Loaded.
+[16:19:41]  Loading plugin: streamer
+[16:19:41] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:19:41]   Loaded.
+[16:19:41]  Loading plugin: pawn-memory
+[16:19:41] ========================
+[16:19:41] = Memory access plugin =
+[16:19:41] =       Made by BigETI =
+[16:19:41] = Loaded!              =
+[16:19:41] ========================
+[16:19:41]   Loaded.
+[16:19:41]  Loaded 4 plugins.
+
+[16:19:41] 
+[16:19:41] Filterscripts
+[16:19:41] ---------------
+[16:19:41]   Loading filterscript 'mapa.amx'...
+[16:19:41]   Loading filterscript 'pregos.amx'...
+[16:19:41]   Loaded 2 filterscripts.
+
+[16:19:41] Number of vehicle models: 1
+[16:19:56] [connection] incoming connection: 127.0.0.1:59647 id: 0
+[16:19:56] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:23:16] 
+[16:23:16] Server Plugins
+[16:23:16] --------------
+[16:23:16]  Loading plugin: sscanf
+[16:23:16] 
+[16:23:16]  ===============================
+[16:23:16] 
+[16:23:16]       sscanf plugin loaded.     
+[16:23:16] 
+[16:23:16]          Version: 2.13.8
+[16:23:16] 
+[16:23:16]    (c) 2022 Alex "Y_Less" Cole  
+[16:23:16] 
+[16:23:16]  ===============================
+[16:23:16] 
+[16:23:16]   Loaded.
+[16:23:16]  Loading plugin: crashdetect
+[16:23:16]   CrashDetect plugin 4.21
+[16:23:16]   Loaded.
+[16:23:16]  Loading plugin: streamer
+[16:23:16] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:23:16]   Loaded.
+[16:23:16]  Loading plugin: pawn-memory
+[16:23:16] ========================
+[16:23:16] = Memory access plugin =
+[16:23:16] =       Made by BigETI =
+[16:23:16] = Loaded!              =
+[16:23:16] ========================
+[16:23:16]   Loaded.
+[16:23:16]  Loaded 4 plugins.
+
+[16:23:16] 
+[16:23:16] Filterscripts
+[16:23:16] ---------------
+[16:23:16]   Loading filterscript 'mapa.amx'...
+[16:23:16]   Loading filterscript 'pregos.amx'...
+[16:23:16]   Loaded 2 filterscripts.
+
+[16:23:16] Number of vehicle models: 1
+[16:23:25] [connection] incoming connection: 127.0.0.1:56953 id: 0
+[16:23:25] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:24:55] 
+[16:24:55] Server Plugins
+[16:24:55] --------------
+[16:24:55]  Loading plugin: sscanf
+[16:24:55] 
+[16:24:55]  ===============================
+[16:24:55] 
+[16:24:55]       sscanf plugin loaded.     
+[16:24:55] 
+[16:24:55]          Version: 2.13.8
+[16:24:55] 
+[16:24:55]    (c) 2022 Alex "Y_Less" Cole  
+[16:24:55] 
+[16:24:55]  ===============================
+[16:24:55] 
+[16:24:55]   Loaded.
+[16:24:55]  Loading plugin: crashdetect
+[16:24:55]   CrashDetect plugin 4.21
+[16:24:55]   Loaded.
+[16:24:55]  Loading plugin: streamer
+[16:24:55] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:24:55]   Loaded.
+[16:24:55]  Loading plugin: pawn-memory
+[16:24:55] ========================
+[16:24:55] = Memory access plugin =
+[16:24:55] =       Made by BigETI =
+[16:24:55] = Loaded!              =
+[16:24:55] ========================
+[16:24:55]   Loaded.
+[16:24:55]  Loaded 4 plugins.
+
+[16:24:55] 
+[16:24:55] Filterscripts
+[16:24:55] ---------------
+[16:24:55]   Loading filterscript 'mapa.amx'...
+[16:24:55]   Loading filterscript 'pregos.amx'...
+[16:24:55]   Loaded 2 filterscripts.
+
+[16:24:55] Number of vehicle models: 1
+[16:25:06] [connection] incoming connection: 127.0.0.1:60306 id: 0
+[16:25:06] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:26:30] 
+[16:26:30] Server Plugins
+[16:26:30] --------------
+[16:26:30]  Loading plugin: sscanf
+[16:26:30] 
+[16:26:30]  ===============================
+[16:26:30] 
+[16:26:30]       sscanf plugin loaded.     
+[16:26:30] 
+[16:26:30]          Version: 2.13.8
+[16:26:30] 
+[16:26:30]    (c) 2022 Alex "Y_Less" Cole  
+[16:26:30] 
+[16:26:30]  ===============================
+[16:26:30] 
+[16:26:30]   Loaded.
+[16:26:30]  Loading plugin: crashdetect
+[16:26:30]   CrashDetect plugin 4.21
+[16:26:30]   Loaded.
+[16:26:30]  Loading plugin: streamer
+[16:26:30] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:26:30]   Loaded.
+[16:26:30]  Loading plugin: pawn-memory
+[16:26:30] ========================
+[16:26:30] = Memory access plugin =
+[16:26:30] =       Made by BigETI =
+[16:26:30] = Loaded!              =
+[16:26:30] ========================
+[16:26:30]   Loaded.
+[16:26:30]  Loaded 4 plugins.
+
+[16:26:30] 
+[16:26:30] Filterscripts
+[16:26:30] ---------------
+[16:26:30]   Loading filterscript 'mapa.amx'...
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:26:30] 
+[16:26:30] Server Plugins
+[16:26:30] --------------
+[16:26:30]  Loading plugin: sscanf
+[16:26:30]   Loading filterscript 'pregos.amx'...
+[16:26:30]   Loaded 2 filterscripts.
+
+[16:26:30] 
+[16:26:30]  ===============================
+[16:26:30] 
+[16:26:30]       sscanf plugin loaded.     
+[16:26:30] 
+[16:26:30]          Version: 2.13.8
+[16:26:30] 
+[16:26:30]    (c) 2022 Alex "Y_Less" Cole  
+[16:26:30] 
+[16:26:30]  ===============================
+[16:26:30] 
+[16:26:30]   Loaded.
+[16:26:30]  Loading plugin: crashdetect
+[16:26:30]   CrashDetect plugin 4.21
+[16:26:30]   Loaded.
+[16:26:30]  Loading plugin: streamer
+[16:26:30] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:26:30]   Loaded.
+[16:26:30]  Loading plugin: pawn-memory
+[16:26:30] ========================
+[16:26:30] = Memory access plugin =
+[16:26:30] Number of vehicle models: 1
+[16:26:30] =       Made by BigETI =
+[16:26:30] = Loaded!              =
+[16:26:30] ========================
+[16:26:30]   Loaded.
+[16:26:30]  Loaded 4 plugins.
+
+[16:26:30] 
+[16:26:30] Filterscripts
+[16:26:30] ---------------
+[16:26:30]   Loading filterscript 'mapa.amx'...
+[16:26:30]   Loading filterscript 'pregos.amx'...
+[16:26:30]   Loaded 2 filterscripts.
+
+[16:26:30] Number of vehicle models: 1
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:26:35] 
+[16:26:35] Server Plugins
+[16:26:35] --------------
+[16:26:35]  Loading plugin: sscanf
+[16:26:35] 
+[16:26:35]  ===============================
+[16:26:35] 
+[16:26:35]       sscanf plugin loaded.     
+[16:26:35] 
+[16:26:35]          Version: 2.13.8
+[16:26:35] 
+[16:26:35]    (c) 2022 Alex "Y_Less" Cole  
+[16:26:35] 
+[16:26:35]  ===============================
+[16:26:35] 
+[16:26:35]   Loaded.
+[16:26:35]  Loading plugin: crashdetect
+[16:26:35]   CrashDetect plugin 4.21
+[16:26:35]   Loaded.
+[16:26:35]  Loading plugin: streamer
+[16:26:35] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:26:35]   Loaded.
+[16:26:35]  Loading plugin: pawn-memory
+[16:26:35] ========================
+[16:26:35] = Memory access plugin =
+[16:26:35] =       Made by BigETI =
+[16:26:35] = Loaded!              =
+[16:26:35] ========================
+[16:26:35]   Loaded.
+[16:26:35]  Loaded 4 plugins.
+
+[16:26:35] 
+[16:26:35] Filterscripts
+[16:26:35] ---------------
+[16:26:35]   Loading filterscript 'mapa.amx'...
+[16:26:35]   Loading filterscript 'pregos.amx'...
+[16:26:35]   Loaded 2 filterscripts.
+
+[16:26:35] Number of vehicle models: 1
+[16:26:51] [connection] incoming connection: 127.0.0.1:58760 id: 0
+[16:26:51] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+Console input: gmx
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:27:41] 
+[16:27:41] Server Plugins
+[16:27:41] --------------
+[16:27:41]  Loading plugin: sscanf
+[16:27:41] 
+[16:27:41]  ===============================
+[16:27:41] 
+[16:27:41]       sscanf plugin loaded.     
+[16:27:41] 
+[16:27:41]          Version: 2.13.8
+[16:27:41] 
+[16:27:41]    (c) 2022 Alex "Y_Less" Cole  
+[16:27:41] 
+[16:27:41]  ===============================
+[16:27:41] 
+[16:27:41]   Loaded.
+[16:27:41]  Loading plugin: crashdetect
+[16:27:41]   CrashDetect plugin 4.21
+[16:27:41]   Loaded.
+[16:27:41]  Loading plugin: streamer
+[16:27:41] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:27:41]   Loaded.
+[16:27:41]  Loading plugin: pawn-memory
+[16:27:41] ========================
+[16:27:41] = Memory access plugin =
+[16:27:41] =       Made by BigETI =
+[16:27:41] = Loaded!              =
+[16:27:41] ========================
+[16:27:41]   Loaded.
+[16:27:41]  Loaded 4 plugins.
+
+[16:27:41] 
+[16:27:41] Filterscripts
+[16:27:41] ---------------
+[16:27:41]   Loading filterscript 'mapa.amx'...
+[16:27:41]   Loading filterscript 'pregos.amx'...
+[16:27:41]   Loaded 2 filterscripts.
+
+[16:27:41] Number of vehicle models: 1
+[16:28:46] [connection] incoming connection: 127.0.0.1:59310 id: 0
+[16:28:46] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:32:34] 
+[16:32:34] Server Plugins
+[16:32:34] --------------
+[16:32:34]  Loading plugin: sscanf
+[16:32:34] 
+[16:32:34]  ===============================
+[16:32:34] 
+[16:32:34]       sscanf plugin loaded.     
+[16:32:34] 
+[16:32:34]          Version: 2.13.8
+[16:32:34] 
+[16:32:34]    (c) 2022 Alex "Y_Less" Cole  
+[16:32:34] 
+[16:32:34]  ===============================
+[16:32:34] 
+[16:32:34]   Loaded.
+[16:32:34]  Loading plugin: crashdetect
+[16:32:34]   CrashDetect plugin 4.21
+[16:32:34]   Loaded.
+[16:32:34]  Loading plugin: streamer
+[16:32:34] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:32:34]   Loaded.
+[16:32:34]  Loading plugin: pawn-memory
+[16:32:34] ========================
+[16:32:34] = Memory access plugin =
+[16:32:34] =       Made by BigETI =
+[16:32:34] = Loaded!              =
+[16:32:34] ========================
+[16:32:34]   Loaded.
+[16:32:34]  Loaded 4 plugins.
+
+[16:32:34] 
+[16:32:34] Filterscripts
+[16:32:34] ---------------
+[16:32:34]   Loading filterscript 'mapa.amx'...
+[16:32:34]   Loading filterscript 'pregos.amx'...
+[16:32:34]   Loaded 2 filterscripts.
+
+[16:32:34] Number of vehicle models: 1
+[16:32:45] [connection] incoming connection: 127.0.0.1:51896 id: 0
+[16:32:45] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:34:40] 
+[16:34:40] Server Plugins
+[16:34:40] --------------
+[16:34:40]  Loading plugin: sscanf
+[16:34:40] 
+[16:34:40]  ===============================
+[16:34:40] 
+[16:34:40]       sscanf plugin loaded.     
+[16:34:40] 
+[16:34:40]          Version: 2.13.8
+[16:34:40] 
+[16:34:40]    (c) 2022 Alex "Y_Less" Cole  
+[16:34:40] 
+[16:34:40]  ===============================
+[16:34:40] 
+[16:34:40]   Loaded.
+[16:34:40]  Loading plugin: crashdetect
+[16:34:40]   CrashDetect plugin 4.21
+[16:34:40]   Loaded.
+[16:34:40]  Loading plugin: streamer
+[16:34:40] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:34:40]   Loaded.
+[16:34:40]  Loading plugin: pawn-memory
+[16:34:40] ========================
+[16:34:40] = Memory access plugin =
+[16:34:40] =       Made by BigETI =
+[16:34:40] = Loaded!              =
+[16:34:40] ========================
+[16:34:40]   Loaded.
+[16:34:40]  Loaded 4 plugins.
+
+[16:34:40] 
+[16:34:40] Filterscripts
+[16:34:40] ---------------
+[16:34:40]   Loading filterscript 'mapa.amx'...
+[16:34:40]   Loading filterscript 'pregos.amx'...
+[16:34:40]   Loaded 2 filterscripts.
+
+[16:34:40] Number of vehicle models: 1
+[16:34:53] [connection] incoming connection: 127.0.0.1:63418 id: 0
+[16:34:53] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:36:59] 
+[16:36:59] Server Plugins
+[16:36:59] --------------
+[16:36:59]  Loading plugin: sscanf
+[16:36:59] 
+[16:36:59]  ===============================
+[16:36:59] 
+[16:36:59]       sscanf plugin loaded.     
+[16:36:59] 
+[16:36:59]          Version: 2.13.8
+[16:36:59] 
+[16:36:59]    (c) 2022 Alex "Y_Less" Cole  
+[16:36:59] 
+[16:36:59]  ===============================
+[16:36:59] 
+[16:36:59]   Loaded.
+[16:36:59]  Loading plugin: crashdetect
+[16:36:59]   CrashDetect plugin 4.21
+[16:36:59]   Loaded.
+[16:36:59]  Loading plugin: streamer
+[16:36:59] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:36:59]   Loaded.
+[16:36:59]  Loading plugin: pawn-memory
+[16:36:59] ========================
+[16:36:59] = Memory access plugin =
+[16:36:59] =       Made by BigETI =
+[16:36:59] = Loaded!              =
+[16:36:59] ========================
+[16:36:59]   Loaded.
+[16:36:59]  Loaded 4 plugins.
+
+[16:36:59] 
+[16:36:59] Filterscripts
+[16:36:59] ---------------
+[16:36:59]   Loading filterscript 'mapa.amx'...
+[16:36:59]   Loading filterscript 'pregos.amx'...
+[16:36:59]   Loaded 2 filterscripts.
+
+[16:36:59] Number of vehicle models: 1
+[16:37:10] [connection] incoming connection: 127.0.0.1:56782 id: 0
+[16:37:10] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:39:23] 
+[16:39:23] Server Plugins
+[16:39:23] --------------
+[16:39:23]  Loading plugin: sscanf
+[16:39:23] 
+[16:39:23]  ===============================
+[16:39:23] 
+[16:39:23]       sscanf plugin loaded.     
+[16:39:23] 
+[16:39:23]          Version: 2.13.8
+[16:39:23] 
+[16:39:23]    (c) 2022 Alex "Y_Less" Cole  
+[16:39:23] 
+[16:39:23]  ===============================
+[16:39:23] 
+[16:39:23]   Loaded.
+[16:39:23]  Loading plugin: crashdetect
+[16:39:23]   CrashDetect plugin 4.21
+[16:39:23]   Loaded.
+[16:39:23]  Loading plugin: streamer
+[16:39:23] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:39:23]   Loaded.
+[16:39:23]  Loading plugin: pawn-memory
+[16:39:23] ========================
+[16:39:23] = Memory access plugin =
+[16:39:23] =       Made by BigETI =
+[16:39:23] = Loaded!              =
+[16:39:23] ========================
+[16:39:23]   Loaded.
+[16:39:23]  Loaded 4 plugins.
+
+[16:39:23] 
+[16:39:23] Filterscripts
+[16:39:23] ---------------
+[16:39:23]   Loading filterscript 'mapa.amx'...
+[16:39:23]   Loading filterscript 'pregos.amx'...
+[16:39:23]   Loaded 2 filterscripts.
+
+[16:39:23] Number of vehicle models: 1
+[16:39:37] [connection] incoming connection: 127.0.0.1:53551 id: 0
+[16:39:37] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:47:20] 
+[16:47:20] Server Plugins
+[16:47:20] --------------
+[16:47:20]  Loading plugin: sscanf
+[16:47:20] 
+[16:47:20]  ===============================
+[16:47:20] 
+[16:47:20]       sscanf plugin loaded.     
+[16:47:20] 
+[16:47:20]          Version: 2.13.8
+[16:47:20] 
+[16:47:20]    (c) 2022 Alex "Y_Less" Cole  
+[16:47:20] 
+[16:47:20]  ===============================
+[16:47:20] 
+[16:47:20]   Loaded.
+[16:47:20]  Loading plugin: crashdetect
+[16:47:20]   CrashDetect plugin 4.21
+[16:47:20]   Loaded.
+[16:47:20]  Loading plugin: streamer
+[16:47:20] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:47:20]   Loaded.
+[16:47:20]  Loading plugin: pawn-memory
+[16:47:20] ========================
+[16:47:20] = Memory access plugin =
+[16:47:20] =       Made by BigETI =
+[16:47:20] = Loaded!              =
+[16:47:20] ========================
+[16:47:20]   Loaded.
+[16:47:20]  Loaded 4 plugins.
+
+[16:47:20] 
+[16:47:20] Filterscripts
+[16:47:20] ---------------
+[16:47:20]   Loading filterscript 'mapa.amx'...
+[16:47:20]   Loading filterscript 'pregos.amx'...
+[16:47:20]   Loaded 2 filterscripts.
+
+[16:47:20] Number of vehicle models: 1
+[16:47:43] [connection] incoming connection: 127.0.0.1:57109 id: 0
+[16:47:43] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:49:00] 
+[16:49:00] Server Plugins
+[16:49:00] --------------
+[16:49:00]  Loading plugin: sscanf
+[16:49:00] 
+[16:49:00]  ===============================
+[16:49:00] 
+[16:49:00]       sscanf plugin loaded.     
+[16:49:00] 
+[16:49:00]          Version: 2.13.8
+[16:49:00] 
+[16:49:00]    (c) 2022 Alex "Y_Less" Cole  
+[16:49:00] 
+[16:49:00]  ===============================
+[16:49:00] 
+[16:49:00]   Loaded.
+[16:49:00]  Loading plugin: crashdetect
+[16:49:00]   CrashDetect plugin 4.21
+[16:49:00]   Loaded.
+[16:49:00]  Loading plugin: streamer
+[16:49:00] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:49:00]   Loaded.
+[16:49:00]  Loading plugin: pawn-memory
+[16:49:00] ========================
+[16:49:00] = Memory access plugin =
+[16:49:00] =       Made by BigETI =
+[16:49:00] = Loaded!              =
+[16:49:00] ========================
+[16:49:00]   Loaded.
+[16:49:00]  Loaded 4 plugins.
+
+[16:49:00] 
+[16:49:00] Filterscripts
+[16:49:00] ---------------
+[16:49:00]   Loading filterscript 'mapa.amx'...
+[16:49:00]   Loading filterscript 'pregos.amx'...
+[16:49:00]   Loaded 2 filterscripts.
+
+[16:49:00] Number of vehicle models: 1
+[16:49:25] [connection] incoming connection: 127.0.0.1:50801 id: 0
+[16:49:25] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:51:06] 
+[16:51:06] Server Plugins
+[16:51:06] --------------
+[16:51:06]  Loading plugin: sscanf
+[16:51:06] 
+[16:51:06]  ===============================
+[16:51:06] 
+[16:51:06]       sscanf plugin loaded.     
+[16:51:06] 
+[16:51:06]          Version: 2.13.8
+[16:51:06] 
+[16:51:06]    (c) 2022 Alex "Y_Less" Cole  
+[16:51:06] 
+[16:51:06]  ===============================
+[16:51:06] 
+[16:51:06]   Loaded.
+[16:51:06]  Loading plugin: crashdetect
+[16:51:06]   CrashDetect plugin 4.21
+[16:51:06]   Loaded.
+[16:51:06]  Loading plugin: streamer
+[16:51:06] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:51:06]   Loaded.
+[16:51:06]  Loading plugin: pawn-memory
+[16:51:06] ========================
+[16:51:06] = Memory access plugin =
+[16:51:06] =       Made by BigETI =
+[16:51:06] = Loaded!              =
+[16:51:06] ========================
+[16:51:06]   Loaded.
+[16:51:06]  Loaded 4 plugins.
+
+[16:51:06] 
+[16:51:06] Filterscripts
+[16:51:06] ---------------
+[16:51:06]   Loading filterscript 'mapa.amx'...
+[16:51:06]   Loading filterscript 'pregos.amx'...
+[16:51:06]   Loaded 2 filterscripts.
+
+[16:51:06] Number of vehicle models: 1
+[16:51:17] [connection] incoming connection: 127.0.0.1:62870 id: 0
+[16:51:17] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:52:46] 
+[16:52:46] Server Plugins
+[16:52:46] --------------
+[16:52:46]  Loading plugin: sscanf
+[16:52:46] 
+[16:52:46]  ===============================
+[16:52:46] 
+[16:52:46]       sscanf plugin loaded.     
+[16:52:46] 
+[16:52:46]          Version: 2.13.8
+[16:52:46] 
+[16:52:46]    (c) 2022 Alex "Y_Less" Cole  
+[16:52:46] 
+[16:52:46]  ===============================
+[16:52:46] 
+[16:52:46]   Loaded.
+[16:52:46]  Loading plugin: crashdetect
+[16:52:46]   CrashDetect plugin 4.21
+[16:52:46]   Loaded.
+[16:52:46]  Loading plugin: streamer
+[16:52:46] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:52:46]   Loaded.
+[16:52:46]  Loading plugin: pawn-memory
+[16:52:46] ========================
+[16:52:46] = Memory access plugin =
+[16:52:46] =       Made by BigETI =
+[16:52:46] = Loaded!              =
+[16:52:46] ========================
+[16:52:46]   Loaded.
+[16:52:46]  Loaded 4 plugins.
+
+[16:52:46] 
+[16:52:46] Filterscripts
+[16:52:46] ---------------
+[16:52:46]   Loading filterscript 'mapa.amx'...
+[16:52:46]   Loading filterscript 'pregos.amx'...
+[16:52:46]   Loaded 2 filterscripts.
+
+[16:52:46] Number of vehicle models: 1
+[16:52:57] [connection] incoming connection: 127.0.0.1:56632 id: 0
+[16:52:58] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:53:33] 
+[16:53:33] Server Plugins
+[16:53:33] --------------
+[16:53:33]  Loading plugin: sscanf
+[16:53:33] 
+[16:53:33]  ===============================
+[16:53:33] 
+[16:53:33]       sscanf plugin loaded.     
+[16:53:33] 
+[16:53:33]          Version: 2.13.8
+[16:53:33] 
+[16:53:33]    (c) 2022 Alex "Y_Less" Cole  
+[16:53:33] 
+[16:53:33]  ===============================
+[16:53:33] 
+[16:53:33]   Loaded.
+[16:53:33]  Loading plugin: crashdetect
+[16:53:33]   CrashDetect plugin 4.21
+[16:53:33]   Loaded.
+[16:53:33]  Loading plugin: streamer
+[16:53:33] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:53:33]   Loaded.
+[16:53:33]  Loading plugin: pawn-memory
+[16:53:33] ========================
+[16:53:33] = Memory access plugin =
+[16:53:33] =       Made by BigETI =
+[16:53:33] = Loaded!              =
+[16:53:33] ========================
+[16:53:33]   Loaded.
+[16:53:33]  Loaded 4 plugins.
+
+[16:53:33] 
+[16:53:33] Filterscripts
+[16:53:33] ---------------
+[16:53:33]   Loading filterscript 'mapa.amx'...
+[16:53:33]   Loading filterscript 'pregos.amx'...
+[16:53:33]   Loaded 2 filterscripts.
+
+[16:53:33] Number of vehicle models: 1
+[16:53:45] [connection] incoming connection: 127.0.0.1:59077 id: 0
+[16:53:46] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[16:57:11] 
+[16:57:11] Server Plugins
+[16:57:11] --------------
+[16:57:11]  Loading plugin: sscanf
+[16:57:11] 
+[16:57:11]  ===============================
+[16:57:11] 
+[16:57:11]       sscanf plugin loaded.     
+[16:57:11] 
+[16:57:11]          Version: 2.13.8
+[16:57:11] 
+[16:57:11]    (c) 2022 Alex "Y_Less" Cole  
+[16:57:11] 
+[16:57:11]  ===============================
+[16:57:11] 
+[16:57:11]   Loaded.
+[16:57:11]  Loading plugin: crashdetect
+[16:57:11]   CrashDetect plugin 4.21
+[16:57:11]   Loaded.
+[16:57:11]  Loading plugin: streamer
+[16:57:11] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[16:57:11]   Loaded.
+[16:57:11]  Loading plugin: pawn-memory
+[16:57:11] ========================
+[16:57:11] = Memory access plugin =
+[16:57:11] =       Made by BigETI =
+[16:57:11] = Loaded!              =
+[16:57:11] ========================
+[16:57:11]   Loaded.
+[16:57:11]  Loaded 4 plugins.
+
+[16:57:11] 
+[16:57:11] Filterscripts
+[16:57:11] ---------------
+[16:57:11]   Loading filterscript 'mapa.amx'...
+[16:57:11]   Loading filterscript 'pregos.amx'...
+[16:57:11]   Loaded 2 filterscripts.
+
+[16:57:11] Number of vehicle models: 1
+[16:57:27] [connection] incoming connection: 127.0.0.1:58770 id: 0
+[16:57:27] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+[16:58:52] [part] [GPB]Lucas has left the server (0:0)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[17:01:07] 
+[17:01:07] Server Plugins
+[17:01:07] --------------
+[17:01:07]  Loading plugin: sscanf
+[17:01:07] 
+[17:01:07]  ===============================
+[17:01:07] 
+[17:01:07]       sscanf plugin loaded.     
+[17:01:07] 
+[17:01:07]          Version: 2.13.8
+[17:01:07] 
+[17:01:07]    (c) 2022 Alex "Y_Less" Cole  
+[17:01:07] 
+[17:01:07]  ===============================
+[17:01:07] 
+[17:01:07]   Loaded.
+[17:01:07]  Loading plugin: crashdetect
+[17:01:07]   CrashDetect plugin 4.21
+[17:01:07]   Loaded.
+[17:01:07]  Loading plugin: streamer
+[17:01:07] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[17:01:07]   Loaded.
+[17:01:07]  Loading plugin: pawn-memory
+[17:01:07] ========================
+[17:01:07] = Memory access plugin =
+[17:01:07] =       Made by BigETI =
+[17:01:07] = Loaded!              =
+[17:01:07] ========================
+[17:01:07]   Loaded.
+[17:01:07]  Loaded 4 plugins.
+
+[17:01:07] 
+[17:01:07] Filterscripts
+[17:01:07] ---------------
+[17:01:07]   Loading filterscript 'mapa.amx'...
+[17:01:07] [debug] Long callback execution detected (hang or performance issue)
+[17:01:07] [debug] AMX backtrace:
+[17:01:07] [debug] #0 0004acfc in public OnFilterScriptInit () at D:\gpbfreeroam\filterscripts\mapa.pwn:1590
+[17:01:07]   Loading filterscript 'pregos.amx'...
+[17:01:07]   Loaded 2 filterscripts.
+
+[17:01:07] Number of vehicle models: 1
+[17:01:23] [connection] incoming connection: 127.0.0.1:55024 id: 0
+[17:01:23] [join] [GPB]Lucas has joined the server (0:127.0.0.1)

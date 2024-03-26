@@ -7,10 +7,15 @@
 #define grey  0xAFAFAFAA
 #define white 0xFFFFFFAA
 
+enum jogadorData {
+   pEquipe,
+}
+
 new TapeteCOP[MAX_PLAYERS];
 new CrieiTapete[MAX_PLAYERS];
 new TempoTapete[MAX_PLAYERS];
 new PassandoTapete[MAX_PLAYERS];
+new player[MAX_PLAYERS][jogadorData];
 new Float:AnguloTapete, Float:TapeteX, Float:TapeteY, Float:TapeteZ;
 
 
@@ -33,29 +38,31 @@ public FurandoPneu() {
             }
 
         }
-            }
+    }
     return 0;
 }
 
 public OnPlayerCommandText(playerid, cmdtext[]) {
     if (strcmp("/tc", cmdtext, true, 10) == 0) {
-        if(CrieiTapete[playerid] == 1) {
+        if (player[playerid][pEquipe] != 1) {
+            SendClientMessage(playerid, grey, "Apenas policiais podem lançar tapetes de pregos.");
+            return 1;
+        }
+        else if(CrieiTapete[playerid] == 1) {
             SendClientMessage(playerid, grey, "Você já colocou um tapete de pregos. Remova-o para jogar outro.");
+            return 1;
         }
         else {
             GetPlayerPos(playerid,TapeteX,TapeteY,TapeteZ);
             if(IsPlayerInAnyVehicle(playerid)) {
                 SendClientMessage(playerid, grey, "Você não pode jogar um tapete de pregos dentro de um veículo.");
+                return 1;
             }
             else {
-                GetPlayerFacingAngle(playerid, AnguloTapete);
-                CrieiTapete[playerid] = 1;
-                TapeteCOP[playerid] = CreateObject(2899, TapeteX,TapeteY,TapeteZ-0.9, 0, 0, AnguloTapete+268.0);
-                KillTimer(PassandoTapete[playerid]);
-                PassandoTapete[playerid] = SetTimer("FurandoPneu",199,1);
-                SendClientMessage(playerid, grey, "Tapete de pregos criado.");
+                ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 0, 0, 0, 0, 0, 1);
+                SetTimer("CriarTapete", 2200, 0);
+                return 1;
             }
-            return 1;
         }
     }
     if (strcmp("/tr", cmdtext, true, 10) == 0) {
@@ -64,29 +71,42 @@ public OnPlayerCommandText(playerid, cmdtext[]) {
             return 1;
         }
         else {
-            CrieiTapete[playerid] = 0;
-            DestroyObject(TapeteCOP[playerid]);
-            KillTimer(TempoTapete[playerid]);
-            KillTimer(PassandoTapete[playerid]);
-            //Evita que os pneus sejam furados depois que o Tapete for retirado!
-            TapeteX = 0.000000, TapeteY = 0.000000, TapeteZ = 0.000000;
-            SendClientMessage(playerid, grey, "Tapete de pregos removido.");
-        }
-        return 1;
+            if(PlayerToPoint(5.0, playerid,TapeteX,TapeteY,TapeteZ)) {
+                ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 0, 0, 0, 0, 0, 1);
+                SetTimer("DeletarTapete", 2200, 0);
+                return 1;
+            }
+            else {
+                SendClientMessage(playerid, grey, "Você não está próximo o suficiente do tapete criado.");
+                return 1;
+            }
+        } 
     }
     return 0;
 }
 
+forward CriarTapete(playerid);
+public CriarTapete(playerid) {
+    if(CrieiTapete[playerid] == 0) {
+        GetPlayerFacingAngle(playerid, AnguloTapete);
+        CrieiTapete[playerid] = 1;
+        TapeteCOP[playerid] = CreateObject(2899, TapeteX,TapeteY,TapeteZ-0.9, 0, 0, AnguloTapete+90);
+        KillTimer(PassandoTapete[playerid]);
+        PassandoTapete[playerid] = SetTimer("FurandoPneu",199,1);
+        SendClientMessage(playerid, grey, "Tapete de pregos criado.");
+    }
+    return 1;
+}
 
 forward DeletarTapete(playerid);
 public DeletarTapete(playerid) {
     if(CrieiTapete[playerid] == 1) {
         CrieiTapete[playerid] = 0;
         DestroyObject(TapeteCOP[playerid]);
-        GameTextForPlayer(playerid,"~y~Tapete de pregos ~n~~r~foi removido",5000,1);
         KillTimer(PassandoTapete[playerid]);
         KillTimer(TempoTapete[playerid]);
         TapeteX = 0.000000, TapeteY = 0.000000, TapeteZ = 0.000000;
+        SendClientMessage(playerid, grey, "Tapete de pregos removido.");
     }
     return 1;
 }
