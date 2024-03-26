@@ -1451,20 +1451,19 @@ CMD:911(playerid, text[]) {
 			new zone[MAX_ZONE_NAME];
 			text[0] = toupper(text[0]);
 			format(gpbMensagem2, 500, "[...] %s", text[75]);
+			SendClientMessage(playerid, grey, "Seu chamado foi encaminhado para as unidades de emergência.");
 			format(mensagem, sizeof(mensagem), "[Central] Relato recebido próximo a(o) %s: %s", zone, text[0]);
 			RadioEmergencia(mensagem);
 			RadioEmergencia(gpbMensagem2);
-			SendClientMessage(playerid, grey, "Seu chamado foi encaminhado para as unidades de emergência.");
-			strdel(text, 75, 149);
 		}
 		else {
 			text[0] = toupper(text[0]);
 			new mensagem[128];
 			new zone[MAX_ZONE_NAME];
 			GetPlayer2DZone(playerid, zone, MAX_ZONE_NAME);
+			SendClientMessage(playerid, grey, "Seu chamado foi encaminhado para as unidades de emergência.");
 			format(mensagem, sizeof(mensagem), "[Central] Relato recebido próximo a(o) %s: %s", zone, text[0]);
 			RadioEmergencia(mensagem);
-			SendClientMessage(playerid, grey, "Seu chamado foi encaminhado para as unidades de emergência.");
 		}
 	}
 	return 1;
