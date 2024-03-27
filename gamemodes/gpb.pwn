@@ -1549,11 +1549,13 @@ CMD:ref(playerid) {
 }
 
 CMD:radiopd(playerid, params[]) {
+	SendClientMessage(playerid, grey, "Rádio ativado.");
     PlayAudioStreamForPlayer(playerid,"http://broadcastify.cdnstream1.com/20296");
     return 1;
 }
 
 CMD:radiopausar(playerid, params[]) {
+	SendClientMessage(playerid, grey, "Rádio desativado.");
     StopAudioStreamForPlayer(playerid);
     return 1;
 }
@@ -2033,7 +2035,7 @@ CMD:skin(playerid, params[]) {
   		SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
 	}
 	else if (IsPlayerInAnyVehicle(playerid)) {
-		SendClientMessage(playerid, grey, "Primeiro saia do veículo.");
+		SendClientMessage(playerid, grey, "Não é possível mudar o personagem dentro de um veículo.");
 	}
 	else if(isnull(params)) {
  		SendClientMessage(playerid, grey, "/skin [id]");
