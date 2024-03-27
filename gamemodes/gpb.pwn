@@ -1548,6 +1548,16 @@ CMD:ref(playerid) {
 	return 1;
 }
 
+CMD:radiopd(playerid, params[]) {
+    PlayAudioStreamForPlayer(playerid,"http://broadcastify.cdnstream1.com/20296");
+    return 1;
+}
+
+CMD:radiopausar(playerid, params[]) {
+    StopAudioStreamForPlayer(playerid);
+    return 1;
+}
+
 CMD:vc(playerid, params[]) { 
 	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
   		SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
