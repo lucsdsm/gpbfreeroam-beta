@@ -7,11 +7,15 @@
 #define grey  0xAFAFAFAA
 #define white 0xFFFFFFAA
 
+enum jogadorTapete {
+   pTapete
+}
+
 new TapeteCOP[MAX_PLAYERS];
-new CrieiTapete[MAX_PLAYERS];
 new TempoTapete[MAX_PLAYERS];
 new PassandoTapete[MAX_PLAYERS];
 new Float:AnguloTapete, Float:TapeteX, Float:TapeteY, Float:TapeteZ;
+new player[MAX_PLAYERS][jogadorTapete];
 
 public OnPlayerDisconnect(playerid, reason) {
     DeletarTapete(playerid);
@@ -34,9 +38,14 @@ public FurandoPneu() {
     return 0;
 }
 
+public OnPlayerRequestClass(playerid, classid) {
+	player[playerid][pTapete] = 0;
+    return 1;
+}
+
 public OnPlayerCommandText(playerid, cmdtext[]) {
     if (strcmp("/tc", cmdtext, true, 10) == 0) {
-        if(CrieiTapete[playerid] == 1) {
+        if(player[playerid][pTapete]  == 1) {
             SendClientMessage(playerid, grey, "Você já colocou um tapete de pregos. Remova-o para jogar outro.");
             return 1;
         }
@@ -54,7 +63,7 @@ public OnPlayerCommandText(playerid, cmdtext[]) {
         }
     }
     if (strcmp("/tr", cmdtext, true, 10) == 0) {
-        if(CrieiTapete[playerid] == 0) {
+        if(player[playerid][pTapete]  == 0) {
             SendClientMessage(playerid, grey, "Você não criou nenhum tapete de pregos.");
             return 1;
         }
@@ -75,9 +84,9 @@ public OnPlayerCommandText(playerid, cmdtext[]) {
 
 forward CriarTapete(playerid);
 public CriarTapete(playerid) {
-    if(CrieiTapete[playerid] == 0) {
+    if(player[playerid][pTapete]  == 0) {
+        player[playerid][pTapete] = 1;
         GetPlayerFacingAngle(playerid, AnguloTapete);
-        CrieiTapete[playerid] = 1;
         TapeteCOP[playerid] = CreateObject(2899, TapeteX,TapeteY,TapeteZ-0.9, 0, 0, AnguloTapete+90);
         KillTimer(PassandoTapete[playerid]);
         PassandoTapete[playerid] = SetTimer("FurandoPneu",199,1);
@@ -88,8 +97,8 @@ public CriarTapete(playerid) {
 
 forward DeletarTapete(playerid);
 public DeletarTapete(playerid) {
-    if(CrieiTapete[playerid] == 1) {
-        CrieiTapete[playerid] = 0;
+    if(player[playerid][pTapete]  == 1) {
+        player[playerid][pTapete] = 0;
         DestroyObject(TapeteCOP[playerid]);
         KillTimer(PassandoTapete[playerid]);
         KillTimer(TempoTapete[playerid]);
