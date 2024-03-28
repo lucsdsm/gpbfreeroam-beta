@@ -44,7 +44,6 @@ enum jogadorData {
    pDerrubado,
    pAnim,
    pElastomero,
-   pTapete,
 }
 
 enum mortoData {
@@ -64,7 +63,6 @@ enum objetoData {
     Float:sZ,
     sObject,
 };
-
 
 //Variáveis globais:
 new veiculosNomes[212][] =  {
@@ -108,8 +106,6 @@ new playerSkin[MAX_PLAYERS];
 new PlayerInfo[MAX_PLAYERS][jogadorData];
 new morto[MAX_PLAYERS][mortoData];
 new objeto[MAX_OBJETOS][objetoData];
-new tapete[MAX_PLAYERS];
-new Float:tapeteAngulo, Float:tapeteX, Float:tapeteY, Float:tapeteZ;
 
 //Returns:
 ReturnVehicleId(vName[]) {
@@ -272,7 +268,6 @@ stock CriaObjeto(Object, Float:x, Float:y, Float:z, Float:Angle) {
 	return 0;
 }
 
-
 //Funções públicas:
 public OnGameModeInit() {
 	SetGameModeText("GPB:F v0.3.1");
@@ -294,7 +289,6 @@ public OnPlayerRequestClass(playerid, classid) {
 	player[playerid][pAlgemado] = 0;
 	player[playerid][pDerrubado] = 0;
 	player[playerid][pElastomero] = 0;
-	player[playerid][pTapete] = 0;
  	TogglePlayerSpectating(playerid, true);
 	SpawnPlayer(playerid);
  	SetSpawnInfo(playerid, -1, random(311), 1826, -1372, 14,269.2782,0,0,0,0,0,0);
@@ -316,7 +310,6 @@ public OnPlayerConnect(playerid) {
 
 public OnPlayerDisconnect(playerid, reason) {
 	JogadorDesconecta(playerid, reason);
-	DeletarTapete(playerid);
 	return 1;
 }
 
@@ -1114,61 +1107,6 @@ public RadioEmergencia(string[]) {
             }
         }
     }
-}
-
-forward CriarTapete(playerid);
-public CriarTapete(playerid) {
-    if(player[playerid][pTapete]  == 0) {
-        player[playerid][pTapete] = 1;
-        GetPlayerFacingAngle(playerid, tapeteAngulo);
-        tapete[playerid] = CreateObject(2899, tapeteX,tapeteY,tapeteZ-0.9, 0, 0, tapeteAngulo+90);
-		SetTimer("PneuFurando",199,1);
-        SendClientMessage(playerid, grey, "Tapete de pregos criado.");
-    }
-    return 1;
-}
-
-forward DeletarTapete(playerid);
-public DeletarTapete(playerid) {
-    if(player[playerid][pTapete]  == 1) {
-        player[playerid][pTapete] = 0;
-        DestroyObject(tapete[playerid]);
-        tapeteX = 0.000000, tapeteY = 0.000000, tapeteZ = 0.000000;
-        SendClientMessage(playerid, grey, "Tapete de pregos removido.");
-    }
-    return 1;
-}
-
-forward PneuFurando();
-public PneuFurando() {
-    for(new i; i < MAX_PLAYERS; i++) {
-        new Dano[4];
-        if(IsPlayerInAnyVehicle(i)) {
-            if(PlayerToPoint(4.0, i,tapeteX,tapeteY,tapeteZ)) {
-                //4.0 a distância ideal entre o veículo e o tapete, para furar os pneus
-                GetVehicleDamageStatus(GetPlayerVehicleID(i), Dano[0], Dano[1], Dano[2], Dano[3]);
-                UpdateVehicleDamageStatus(GetPlayerVehicleID(i), Dano[0], Dano[1], Dano[2], TireDano(1, 1, 1, 1));
-                return 1;
-            }
-        }
-    }
-    return 0;
-}
-
-forward PlayerToPoint(Float:radi, playerid, Float:x, Float:y, Float:z);
-public PlayerToPoint(Float:radi, playerid, Float:x, Float:y, Float:z) {
-    if(IsPlayerConnected(playerid)) {
-        new Float:oldposx, Float:oldposy, Float:oldposz;
-        new Float:tempposx, Float:tempposy, Float:tempposz;
-        GetPlayerPos(playerid, oldposx, oldposy, oldposz);
-        tempposx = (oldposx -x);
-        tempposy = (oldposy -y);
-        tempposz = (oldposz -z);
-        if (((tempposx < radi) && (tempposx > -radi)) && ((tempposy < radi) && (tempposy > -radi)) && ((tempposz < radi) && (tempposz > -radi))) {
-            return 1;
-        }
-    }
-    return 0;
 }
 
 //Funções CMD:
@@ -2073,43 +2011,6 @@ CMD:rp(playerid, params[]) {
         veiculoPrefixo[vehicleid] = 0;
     }
     return 1;
-}
-
-CMD:tc(playerid, params[]) {
-	if(player[playerid][pTapete]  == 1) {
-        SendClientMessage(playerid, grey, "Você já colocou um tapete de pregos. Remova-o para jogar outro.");
-        return 1;
-    }
-    else {
-        GetPlayerPos(playerid,tapeteX,tapeteY,tapeteZ);
-        if(IsPlayerInAnyVehicle(playerid)) {
-            SendClientMessage(playerid, grey, "Você não pode jogar um tapete de pregos dentro de um veículo.");
-            return 1;
-        }
-        else {
-            ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 0, 0, 0, 0, 0, 1);
-            SetTimer("CriarTapete", 2200, 0);
-            return 1;
-        }
-    }
-}
-
-CMD:tr(playerid, params[]) {
-	if(player[playerid][pTapete]  == 0) {
-        SendClientMessage(playerid, grey, "Você não criou nenhum tapete de pregos.");
-        return 1;
-    }
-    else {
-        if(PlayerToPoint(5.0, playerid,tapeteX,tapeteY,tapeteZ)) {
-            ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 0, 0, 0, 0, 0, 1);
-            SetTimer("DeletarTapete", 2200, 0);
-            return 1;
-        }
-        else {
-            SendClientMessage(playerid, grey, "Você não está próximo o suficiente do tapete criado.");
-            return 1;
-        }
-    }
 }
 
 CMD:skin(playerid, params[]) {
