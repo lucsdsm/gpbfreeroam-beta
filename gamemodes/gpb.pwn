@@ -25,8 +25,6 @@
 
 #define MAX_OBJETOS 1000
 
-#define TireDano(%1,%2,%3,%4) %1 | (%2 << 1) | (%3 << 2) | (%4 << 3)
-
 #define textbox_equipamentos 0
 #define textbox_teletransportes 1
 #define textbox_equipes 2
@@ -57,7 +55,7 @@ enum mortoData {
 };
 
 enum objetoData {
-    sCreated,
+    objetoCriado,
     Float:sX,
     Float:sY,
     Float:sZ,
@@ -256,8 +254,8 @@ stock IsPlayerNearPlayer(playerid, targetid, Float:radius) {
 
 stock CriaObjeto(Object, Float:x, Float:y, Float:z, Float:Angle) {
     for(new i = 0; i < sizeof(objeto); i++) {
-    	if(objeto[i][sCreated] == 0) {
-            objeto[i][sCreated] = 1;
+    	if(objeto[i][objetoCriado] == 0) {
+            objeto[i][objetoCriado] = 1;
             objeto[i][sX] = x;
             objeto[i][sY] = y;
             objeto[i][sZ] = z-0.7;
@@ -659,6 +657,9 @@ public OnRconLoginAttempt(ip[], password[], success) {
 }
 
 public OnPlayerUpdate(playerid) {
+	if (player[playerid][pFerido] == 1) {
+		SendClientMessage(playerid, grey, "Tá ferido.");
+	}
 	return 1;
 }
 
@@ -3253,8 +3254,8 @@ CMD:remover(playerid, params[]) {
     else {
         for(new i = 0; i < sizeof(objeto); i++) {
     	if(IsPlayerInRangeOfPoint(playerid, 2.0, objeto[i][sX], objeto[i][sY], objeto[i][sZ])) {
-        	if(objeto[i][sCreated] == 1) {
-                objeto[i][sCreated] = 0;
+        	if(objeto[i][objetoCriado] == 1) {
+                objeto[i][objetoCriado] = 0;
                 objeto[i][sX] = 0.0;
                 objeto[i][sY] = 0.0;
                 objeto[i][sZ] = 0.0;

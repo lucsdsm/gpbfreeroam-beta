@@ -31,11 +31,8 @@ main() { }
 
 public OnGameModeInit()
 {
-	SetGameModeText("Objects Physics - Pool Demo");
 	AddPlayerClass(0, 2442.1621,2059.5051,10.8203, 269.1425, 0, 0, 0, 0, 0, 0);
-
 	LoadPool();
-
 	return 1;
 }
 
@@ -52,7 +49,7 @@ public OnPlayerRequestClass(playerid, classid)
 	return 1;
 }
 
-command(play, playerid, params[])
+command(sinuca, playerid, params[])
 {
 	if(!PlayingPool[playerid])
 	{
@@ -717,7 +714,7 @@ stock LoadPool()
 	TextDrawBoxColor(PoolTD[2], -1949699841);
 	TextDrawTextSize(PoolTD[2], 501.000000, 0.000000);
 
-	PoolTD[3] = TextDrawCreate(503.000000, 240.000000, "Power");
+	PoolTD[3] = TextDrawCreate(503.000000, 240.000000, "Força");
 	TextDrawBackgroundColor(PoolTD[3], 255);
 	TextDrawFont(PoolTD[3], 2);
 	TextDrawLetterSize(PoolTD[3], 0.280000, 1.699999);
