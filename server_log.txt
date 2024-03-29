@@ -6076,3 +6076,60 @@ Console input: gmx
 [06:56:39] [debug] 72c10000 - 72c6d000 fwpuclnt.dll
 [06:56:39] [debug] 72c00000 - 72c08000 rasadhlp.dll
 [06:56:39] [debug] 76ab0000 - 76b12000 bcryptPrimitives.dll
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[06:56:43] 
+[06:56:43] Server Plugins
+[06:56:43] --------------
+[06:56:43]  Loading plugin: sscanf
+[06:56:43] 
+[06:56:43]  ===============================
+[06:56:43] 
+[06:56:43]       sscanf plugin loaded.     
+[06:56:43] 
+[06:56:43]          Version: 2.13.8
+[06:56:43] 
+[06:56:43]    (c) 2022 Alex "Y_Less" Cole  
+[06:56:43] 
+[06:56:43]  ===============================
+[06:56:43] 
+[06:56:43]   Loaded.
+[06:56:43]  Loading plugin: crashdetect
+[06:56:43]   CrashDetect plugin 4.21
+[06:56:43]   Loaded.
+[06:56:43]  Loading plugin: streamer
+[06:56:43] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[06:56:43]   Loaded.
+[06:56:43]  Loading plugin: pawn-memory
+[06:56:43] ========================
+[06:56:43] = Memory access plugin =
+[06:56:43] =       Made by BigETI =
+[06:56:43] = Loaded!              =
+[06:56:43] ========================
+[06:56:43]   Loaded.
+[06:56:43]  Loaded 4 plugins.
+
+[06:56:43] 
+[06:56:43] Filterscripts
+[06:56:43] ---------------
+[06:56:43]   Loading filterscript 'mapa.amx'...
+[06:56:43]   Loading filterscript 'sinuca.amx'...
+[06:56:43]   Loaded 2 filterscripts.
+
+[06:56:43] Number of vehicle models: 1
+[06:56:55] [connection] incoming connection: 127.0.0.1:59252 id: 0
+[06:56:55] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+Console input: gmx
+[07:20:04] Number of vehicle models: 0
+Console input: gmx
+[07:20:51] Number of vehicle models: 0
