@@ -533,3 +533,57 @@ v0.3.7-R2, (C)2005-2015 SA-MP Team
 [15:43:07] [connection] incoming connection: 127.0.0.1:49477 id: 0
 [15:43:07] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
 [15:44:45] [part] [GPB]Lucas has left the server (0:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[15:50:04] 
+[15:50:04] Server Plugins
+[15:50:04] --------------
+[15:50:04]  Loading plugin: sscanf
+[15:50:04] 
+[15:50:04]  ===============================
+[15:50:04] 
+[15:50:04]       sscanf plugin loaded.     
+[15:50:04] 
+[15:50:04]          Version: 2.13.8
+[15:50:04] 
+[15:50:04]    (c) 2022 Alex "Y_Less" Cole  
+[15:50:04] 
+[15:50:04]  ===============================
+[15:50:04] 
+[15:50:04]   Loaded.
+[15:50:04]  Loading plugin: crashdetect
+[15:50:04]   CrashDetect plugin 4.21
+[15:50:04]   Loaded.
+[15:50:04]  Loading plugin: streamer
+[15:50:04] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[15:50:04]   Loaded.
+[15:50:04]  Loading plugin: pawn-memory
+[15:50:04] ========================
+[15:50:04] = Memory access plugin =
+[15:50:04] =       Made by BigETI =
+[15:50:04] = Loaded!              =
+[15:50:04] ========================
+[15:50:04]   Loaded.
+[15:50:04]  Loaded 4 plugins.
+
+[15:50:04] 
+[15:50:04] Filterscripts
+[15:50:04] ---------------
+[15:50:04]   Loading filterscript 'mapa.amx'...
+[15:50:04]   Loading filterscript 'sinuca.amx'...
+[15:50:04]   Loaded 2 filterscripts.
+
+[15:50:04] Number of vehicle models: 1
+[15:50:18] [connection] incoming connection: 127.0.0.1:54128 id: 0
+[15:50:18] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+[15:51:44] [part] [GPB]Lucas has left the server (0:1)
