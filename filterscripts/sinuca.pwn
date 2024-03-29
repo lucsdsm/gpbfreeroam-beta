@@ -5,6 +5,8 @@
 
 #define OBJ_SLOT_POOL (0)
 
+#define grey  0xAFAFAFAA
+
 enum poolBall
 {
 	bObject,
@@ -51,31 +53,38 @@ public OnPlayerRequestClass(playerid, classid)
 
 command(sinuca, playerid, params[])
 {
-	if(!PlayingPool[playerid])
-	{
-		PlayingPool[playerid] = 1;
-		PlayerPlaySound(playerid, 1085, 0.0, 0.0, 0.0);
-		GivePlayerWeapon(playerid, 7, 1);
-		PoolScore[playerid] = 0;
-		if(!PoolStarted)
-		{
-			PoolStarted = 1;
-			RespawnPoolBalls(1);
-		}
+	new interior = GetPlayerInterior(playerid);
+	if (interior != 11) {
+		SendClientMessage(playerid, grey, "Você precisa estar no bar para começar uma partida de sinuca.");
 	}
-	else
-	{
-		if(PoolAimer != playerid)
+	else {
+		if(!PlayingPool[playerid])
 		{
-			PlayingPool[playerid] = 0;
-			new
-				count = GetPoolPlayersCount();
-			if(count <= 0)
+			PlayingPool[playerid] = 1;
+			PlayerPlaySound(playerid, 1085, 0.0, 0.0, 0.0);
+			GivePlayerWeapon(playerid, 7, 1);
+			PoolScore[playerid] = 0;
+			if(!PoolStarted)
 			{
-				PoolStarted = 0;
-				RespawnPoolBalls();
+				PoolStarted = 1;
+				RespawnPoolBalls(1);
 			}
 		}
+		else
+		{
+			if(PoolAimer != playerid)
+			{
+				PlayingPool[playerid] = 0;
+				new
+					count = GetPoolPlayersCount();
+				if(count <= 0)
+				{
+					PoolStarted = 0;
+					RespawnPoolBalls();
+				}
+			}
+		}
+		return 1;
 	}
 	return 1;
 }
@@ -714,7 +723,7 @@ stock LoadPool()
 	TextDrawBoxColor(PoolTD[2], -1949699841);
 	TextDrawTextSize(PoolTD[2], 501.000000, 0.000000);
 
-	PoolTD[3] = TextDrawCreate(503.000000, 240.000000, "Força");
+	PoolTD[3] = TextDrawCreate(503.000000, 240.000000, "Vigor");
 	TextDrawBackgroundColor(PoolTD[3], 255);
 	TextDrawFont(PoolTD[3], 2);
 	TextDrawLetterSize(PoolTD[3], 0.280000, 1.699999);

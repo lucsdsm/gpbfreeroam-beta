@@ -29,6 +29,23 @@
 #define textbox_teletransportes 1
 #define textbox_equipes 2
 #define textbox_atividades 3
+#define textbox_acenar 4
+#define textbox_apontar 5
+#define textbox_beijar 6
+#define textbox_comer 7
+#define textbox_comemorar 8
+#define textbox_conversar 9
+#define textbox_cruzar 10
+#define textbox_dancar 11
+#define textbox_deitarse 12
+#define textbox_dormir 13
+#define textbox_drogarse 14
+#define textbox_masturbarse 15
+#define textbox_negociar 16
+#define textbox_recarregar 17
+#define textbox_sinalizar 18
+
+#define PreloadAnimLib(%1,%2)	ApplyAnimation(%1,%2,"null",0.0,0,0,0,0,0)
 
 //#define ALLOWED_PICKUPS 350 // Uncomment this if you know that you will never reach 2048 pickups.
  
@@ -103,6 +120,36 @@ new veiculosNomes[212][] =  {
 {"Sadler"},{"Luggage Trailer A"},{"Luggage Trailer B"},{"Stair Trailer"},{"Boxville"},{"Farm Plow"},
 {"Utility Trailer"}};
 
+new const AnimLibs[][] = {
+  "AIRPORT",      "ATTRACTORS",   "BAR",          "BASEBALL",     "BD_FIRE",
+  "BEACH",        "BENCHPRESS",   "BF_INJECTION", "BIKE_DBZ",     "BIKED",
+  "BIKEH",        "BIKELEAP",     "BIKES",        "BIKEV",        "BLOWJOBZ",
+  "BMX",          "BOMBER",       "BOX",          "BSKTBALL",     "BUDDY",
+  "BUS",          "CAMERA",       "CAR",          "CAR_CHAT",     "CARRY",
+  "CASINO",       "CHAINSAW",     "CHOPPA",       "CLOTHES",      "COACH",
+  "COLT45",       "COP_AMBIENT",  "COP_DVBYZ",    "CRACK",        "CRIB",
+  "DAM_JUMP",     "DANCING",      "DEALER",       "DILDO",        "DODGE",
+  "DOZER",        "DRIVEBYS",     "FAT",          "FIGHT_B",      "FIGHT_C",
+  "FIGHT_D",      "FIGHT_E",      "FINALE",       "FINALE2",      "FLAME",
+  "FLOWERS",      "FOOD",         "FREEWEIGHTS",  "GANGS",        "GFUNK",
+  "GHANDS",       "GHETTO_DB",    "GOGGLES",      "GRAFFITI",     "GRAVEYARD",
+  "GRENADE",      "GYMNASIUM",    "HAIRCUTS",     "HEIST9",       "INT_HOUSE",
+  "INT_OFFICE",   "INT_SHOP",     "JST_BUISNESS", "KART",         "KISSING",
+  "KNIFE",        "LAPDAN1",      "LAPDAN2",      "LAPDAN3",      "LOWRIDER",
+  "MD_CHASE",     "MD_END",       "MEDIC",        "MISC",         "MTB",
+  "MUSCULAR",     "NEVADA",       "ON_LOOKERS",   "OTB",          "PARACHUTE",
+  "PARK",         "PAULNMAC",     "PED",          "PLAYER_DVBYS", "PLAYIDLES",
+  "POLICE",       "POOL",         "POOR",         "PYTHON",       "QUAD",
+  "QUAD_DBZ",     "RAPPING",      "RIFLE",        "RIOT",         "ROB_BANK",
+  "ROCKET",       "RUNNINGMAN",   "RUSTLER",      "RYDER",        "SCRATCHING",
+  "SEX",          "SHAMAL",       "SHOP",         "SHOTGUN",      "SILENCED",
+  "SKATE",        "SMOKING",      "SNIPER",       "SNM",          "SPRAYCAN",
+  "STRIP",        "SUNBATHE",     "SWAT",         "SWEET",        "SWIM",
+  "SWORD",        "TANK",         "TATTOOS",      "TEC",          "TRAIN",
+  "TRUCK",        "UZI",          "VAN",          "VENDING",      "VORTEX",
+  "WAYFARER",     "WEAPONS",      "WOP",          "WUZI"
+};
+
 new gpbMensagem[128];
 new veiculoMotor[MAX_VEHICLES];
 new veiculoAvariado[MAX_VEHICLES];
@@ -128,6 +175,13 @@ ReturnVehicleId(vName[]) {
 native IsValidVehicle(vehicleid);
 
 //Funções stocks:
+stock PreloadAnimLibs(playerid) {
+  for(new i = 0; i < sizeof(AnimLibs); i++) {
+      ApplyAnimation(playerid, AnimLibs[i], "null", 4.0, 0, 0, 0, 0, 0, 1);
+  }
+  return 1;
+}
+
 stock SendRangedMessage(sourceid, color, message[], Float:range) {
     new Float:x, Float:y, Float: z;
     GetPlayerPos(sourceid, x, y, z);
@@ -357,6 +411,7 @@ public OnPlayerConnect(playerid) {
 	GivePlayerMoney(playerid, 1000);
 	SendClientMessage(playerid, white, "Digite /comandos para ver os comandos existentes no servidor.");
 	SendClientMessage(playerid, white, "Você spawnou como um civil. Digite /equipe para entrar em alguma corporação.");
+	PreloadAnimLibs(playerid);
 	return 1;
 }
 
@@ -1018,6 +1073,456 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 	}
 	switch(dialogid) {
   		case textbox_atividades: {
+			switch(listitem) { 
+				case 0: { // Parar animação
+					if (IsPlayerInAnyVehicle(playerid)) {
+						return 1;
+					}
+					else {
+						ClearAnimations(playerid);
+						SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
+						player[playerid][pAnim] = 0;
+					}
+				}
+				case 1: { // Agachar
+					ApplyAnimation(playerid, "PED", "cower", 4.1, 0, 0, 0, 1, 0, 1);
+					player[playerid][pAnim] = 1;
+				}
+				case 2: { // Cambalear
+					ApplyAnimation(playerid, "PED", "WALK_drunk", 4.1, 1, 1, 1, 1, 1, 1);
+					player[playerid][pAnim] = 1;
+				}
+				case 3: { // Cansar
+					ApplyAnimation(playerid, "PED", "IDLE_tired", 4.1, 1, 0, 0, 0, 0, 1);
+					player[playerid][pAnim] = 1;
+				}
+				case 4: { // Carregar
+					SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
+					player[playerid][pAnim] = 1;
+				}
+				case 5: { // Chorar
+					ApplyAnimation(playerid, "GRAVEYARD", "mrnF_loop", 4.1, 1, 0, 0, 0, 0, 1);
+					player[playerid][pAnim] = 1;
+				}
+				case 6: { // Braço para fora do veículo
+					if (IsPlayerInAnyVehicle(playerid)) {
+						new playerseat = GetPlayerVehicleSeat(playerid);
+						if(playerseat == 0 || playerseat == 2) {
+							ApplyAnimation(playerid, "CAR", "Sit_relaxed", 4.1, 1, 0, 0, 0, 0, 1);
+						} 
+						else {
+							ApplyAnimation(playerid, "PED", "Tap_handP", 4.1, 1, 0, 0, 0, 0, 1);
+						}
+					}
+					else {
+						SendClientMessage(playerid, grey, "Você precisa estar em algum veículo.");
+					}
+				}
+				case 7: { // Fotografar
+					ApplyAnimation(playerid, "CAMERA", "camstnd_to_camcrch", 4.1, 0, 0, 0, 1, 0, 1);
+					player[playerid][pAnim] = 1;
+				}
+				case 8: { // Fumar
+					SetPlayerSpecialAction(playerid, SPECIAL_ACTION_SMOKE_CIGGY);
+					ApplyAnimation(playerid, "GANGS", "smkcig_prtl", 0.1, 1, 0, 0, 0, 0, 1);
+				}
+				case 9: { // Meditar
+					ApplyAnimation(playerid, "PARK", "Tai_Chi_Loop", 4.1, 1, 0, 0, 0, 0, 1);
+					player[playerid][pAnim] = 1;
+				}
+				case 10: { // Plantar
+					ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 0, 0, 0, 0, 0, 1);
+				}
+				case 11: { // Ressucitar
+					ApplyAnimation(playerid, "MEDIC", "CPR", 4.1, 0, 0, 0, 0, 0, 1);
+				}
+				case 12: { // Revistar
+					ApplyAnimation(playerid, "POLICE", "plc_drgbst_02", 4.1, 0, 0, 0, 0, 0, 1);
+				}
+				case 13: { // Urinar
+					SetPlayerSpecialAction(playerid, 68);
+					player[playerid][pAnim] = 1;
+				}
+				case 14: { // Vomitar
+					ApplyAnimation(playerid, "FOOD", "EAT_Vomit_P", 4.1, 0, 0, 0, 0, 0, 1);
+				}
+				case 15: { // Acenar
+					ShowPlayerDialog(playerid, textbox_acenar, DIALOG_STYLE_INPUT, "Acenar", "Digite um número entre 1 e 3:", "Confirmar", "");
+				}
+				case 16: { // Apontar
+					ShowPlayerDialog(playerid, textbox_apontar, DIALOG_STYLE_INPUT, "Apontar", "Digite um número entre 1 e 4:", "Confirmar", "");
+				}
+				case 17: { // Beijar
+					ShowPlayerDialog(playerid, textbox_beijar, DIALOG_STYLE_INPUT, "Beijar", "Digite um número entre 1 e 6:", "Confirmar", "");
+				}
+				case 18: { // Comer
+					ShowPlayerDialog(playerid, textbox_comer, DIALOG_STYLE_INPUT, "Comer", "Digite um número entre 1 e 3:", "Confirmar", "");
+				}
+				case 19: { // Comemorar
+					ShowPlayerDialog(playerid, textbox_comemorar, DIALOG_STYLE_INPUT, "Comemorar", "Digite um número entre 1 e 8:", "Confirmar", "");
+				}
+				case 20: { // Conversar
+					ShowPlayerDialog(playerid, textbox_conversar, DIALOG_STYLE_INPUT, "Conversar", "Digite um número entre 1 e 6:", "Confirmar", "");
+				}
+				case 21: { // Cruzar
+					ShowPlayerDialog(playerid, textbox_cruzar, DIALOG_STYLE_INPUT, "Cruzar", "Digite um número entre 1 e 4:", "Confirmar", "");
+				}
+				case 22: { // Dançar
+					ShowPlayerDialog(playerid, textbox_dancar, DIALOG_STYLE_INPUT, "Dançar", "Digite um número entre 1 e 10:", "Confirmar", "");
+				}
+				case 23: { // Deitar-se
+					ShowPlayerDialog(playerid, textbox_deitarse, DIALOG_STYLE_INPUT, "Deitar-se", "Digite um número entre 1 e 5:", "Confirmar", "");
+				}
+				case 24: { // Dormir
+					ShowPlayerDialog(playerid, textbox_dormir, DIALOG_STYLE_INPUT, "Dormir", "Digite um número entre 1 e 2:", "Confirmar", "");
+				}
+				case 25: { // Drogar-se
+					ShowPlayerDialog(playerid, textbox_drogarse, DIALOG_STYLE_INPUT, "Drogar-se", "Digite um número entre 1 e 6:", "Confirmar", "");
+				}
+				case 26: { // Masturbar-se
+					ShowPlayerDialog(playerid, textbox_masturbarse, DIALOG_STYLE_INPUT, "Masturbar-se", "Digite um número entre 1 e 3:", "Confirmar", "");
+				}
+				case 27: { // Negociar
+					ShowPlayerDialog(playerid, textbox_negociar, DIALOG_STYLE_INPUT, "Negociar", "Digite um número entre 1 e 6:", "Confirmar", "");
+				}
+				case 28: { // Recarregar
+					ShowPlayerDialog(playerid, textbox_recarregar, DIALOG_STYLE_INPUT, "Recarregar", "Digite um número entre 1 e 4:", "Confirmar", "");
+				}
+				case 29: { // Sinalizar
+					ShowPlayerDialog(playerid, textbox_sinalizar, DIALOG_STYLE_INPUT, "Sinalizar", "Digite um número entre 1 e 15:", "Confirmar", "");
+				}
+			}
+		}
+	}
+	switch(dialogid) {
+  		case textbox_acenar: {
+			new type;
+			if (sscanf(inputtext, "d", type)) {
+				return 1;
+			}
+			else if (type < 1 || type > 3) {
+				return 1;
+			}
+			else {
+				switch(type) {
+					case 1: {
+						ApplyAnimation(playerid, "PED", "endchat_03", 4.1, 0, 0, 0, 0, 0, 1);
+					}
+					case 2: {
+						ApplyAnimation(playerid, "KISSING", "gfwave2", 4.1, 0, 0, 0, 0, 0, 1);
+					}
+					case 3: {
+						ApplyAnimation(playerid, "ON_LOOKERS", "wave_loop", 4.1, 1, 0, 0, 0, 0, 1);
+						player[playerid][pAnim] = 1;
+					}
+				}
+			}
+		}
+	}
+	switch(dialogid) {
+  		case textbox_apontar: {
+			new type;
+			if (sscanf(inputtext, "d", type)) {
+				return 1;
+			}
+			else if (type < 1 || type > 4) {
+				return 1;
+			}
+			else {
+				player[playerid][pAnim] = 1;
+				switch(type) {
+					case 1: ApplyAnimation(playerid, "PED", "ARRESTgun", 4.1, 0, 0, 0, 1, 0, 1);
+					case 2: ApplyAnimation(playerid, "SHOP", "ROB_Loop_Threat", 4.1, 1, 0, 0, 0, 0, 1);
+					case 3: ApplyAnimation(playerid, "ON_LOOKERS", "point_loop", 4.1, 1, 0, 0, 0, 0, 1);
+					case 4: ApplyAnimation(playerid, "ON_LOOKERS", "Pointup_loop", 4.1, 1, 0, 0, 0, 0, 1);
+				}
+			}
+		}
+	}
+	switch(dialogid) {
+  		case textbox_beijar: {
+			new type;
+			if (sscanf(inputtext, "d", type)) {
+				return 1;
+			}
+			else if (type < 1 || type > 6) {
+				return 1;
+			}
+			else {
+				switch(type) {
+					case 1: ApplyAnimation(playerid, "KISSING", "Grlfrd_Kiss_01", 4.1, 0, 0, 0, 0, 0, 1);
+					case 2: ApplyAnimation(playerid, "KISSING", "Grlfrd_Kiss_02", 4.1, 0, 0, 0, 0, 0, 1);
+					case 3: ApplyAnimation(playerid, "KISSING", "Grlfrd_Kiss_03", 4.1, 0, 0, 0, 0, 0, 1);
+					case 4: ApplyAnimation(playerid, "KISSING", "Playa_Kiss_01", 4.1, 0, 0, 0, 0, 0, 1);
+					case 5: ApplyAnimation(playerid, "KISSING", "Playa_Kiss_02", 4.1, 0, 0, 0, 0, 0, 1);
+					case 6: ApplyAnimation(playerid, "KISSING", "Playa_Kiss_03", 4.1, 0, 0, 0, 0, 0, 1);
+				}
+			}
+		}
+	}
+	switch(dialogid) {
+  		case textbox_comer: {
+			new type;
+			if (sscanf(inputtext, "d", type)) {
+				return 1;
+			}
+			else if (type < 1 || type > 3) {
+				return 1;
+			}
+			else {
+				switch(type) {
+					case 1: ApplyAnimation(playerid, "FOOD", "EAT_Burger", 4.1, 0, 0, 0, 0, 0, 1);
+					case 2: ApplyAnimation(playerid, "FOOD", "EAT_Chicken", 4.1, 0, 0, 0, 0, 0, 1);
+					case 3: ApplyAnimation(playerid, "FOOD", "EAT_Pizza", 4.1, 0, 0, 0, 0, 0, 1);
+				}
+			}
+		}
+	}
+	switch(dialogid) {
+  		case textbox_comemorar: {
+			new type;
+			if (sscanf(inputtext, "d", type)) {
+				return 1;
+			}
+			else if (type < 1 || type > 8) {
+				return 1;
+			}
+			else {
+				switch(type) {
+					case 1: ApplyAnimation(playerid, "ON_LOOKERS", "shout_01", 4.1, 0, 0, 0, 0, 0, 1);
+					case 2: ApplyAnimation(playerid, "ON_LOOKERS", "shout_02", 4.1, 0, 0, 0, 0, 0, 1);
+					case 3: ApplyAnimation(playerid, "ON_LOOKERS", "shout_in", 4.1, 0, 0, 0, 0, 0, 1);
+					case 4: ApplyAnimation(playerid, "RIOT", "RIOT_ANGRY_B", 4.1, 1, 0, 0, 0, 0, 1);
+					case 5: ApplyAnimation(playerid, "RIOT", "RIOT_CHANT", 4.1, 0, 0, 0, 0, 0, 1);
+					case 6: ApplyAnimation(playerid, "RIOT", "RIOT_shout", 4.1, 0, 0, 0, 0, 0, 1);
+					case 7: ApplyAnimation(playerid, "STRIP", "PUN_HOLLER", 4.1, 0, 0, 0, 0, 0, 1);
+					case 8: ApplyAnimation(playerid, "OTB", "wtchrace_win", 4.1, 0, 0, 0, 0, 0, 1);
+				}
+			}
+		}
+	}
+	switch(dialogid) {
+  		case textbox_conversar: {
+			new type;
+			if (sscanf(inputtext, "d", type)) {
+				return 1;
+			}
+			else if (type < 1 || type > 6) {
+				return 1;
+			}
+			else {
+				switch(type) {
+					case 1: ApplyAnimation(playerid, "GANGS", "prtial_gngtlkA", 4.1, 0, 0, 0, 0, 0, 1);
+					case 2: ApplyAnimation(playerid, "GANGS", "prtial_gngtlkB", 4.1, 0, 0, 0, 0, 0, 1);
+					case 3: ApplyAnimation(playerid, "GANGS", "prtial_gngtlkE", 4.1, 0, 0, 0, 0, 0, 1);
+					case 4: ApplyAnimation(playerid, "GANGS", "prtial_gngtlkF", 4.1, 0, 0, 0, 0, 0, 1);
+					case 5: ApplyAnimation(playerid, "GANGS", "prtial_gngtlkG", 4.1, 0, 0, 0, 0, 0, 1);
+					case 6: ApplyAnimation(playerid, "GANGS", "prtial_gngtlkH", 4.1, 0, 0, 0, 0, 0, 1);
+				}
+			}
+		}
+	}
+	switch(dialogid) {
+  		case textbox_cruzar: {
+			new type;
+			if (sscanf(inputtext, "d", type)) {
+				return 1;
+			}
+			else if (type < 1 || type > 4) {
+				return 1;
+			}
+			else {
+				player[playerid][pAnim] = 1;
+				switch(type) {
+					case 1: ApplyAnimation(playerid, "COP_AMBIENT", "Coplook_loop", 4.1, 0, 1, 1, 1, 0, 1);
+					case 2: ApplyAnimation(playerid, "GRAVEYARD", "prst_loopa", 4.1, 1, 0, 0, 0, 0, 1);
+					case 3: ApplyAnimation(playerid, "GRAVEYARD", "mrnM_loop", 4.1, 1, 0, 0, 0, 0, 1);
+					case 4: ApplyAnimation(playerid, "DEALER", "DEALER_IDLE", 4.1, 0, 1, 1, 1, 0, 1);
+				}
+			}
+		}
+	}
+	switch(dialogid) {
+  		case textbox_dancar: {
+			new type;
+			if (sscanf(inputtext, "d", type)) {
+				return 1;
+			}
+			else if (type < 1 || type > 10) {
+				return 1;
+			}
+			else {
+				player[playerid][pAnim] = 1;
+				switch(type) {
+					case 1: ApplyAnimation(playerid, "DANCING", "dance_loop", 4.1, 1, 0, 0, 0, 0, 1);
+					case 2: ApplyAnimation(playerid, "DANCING", "DAN_Left_A", 4.1, 1, 0, 0, 0, 0, 1);
+					case 3: ApplyAnimation(playerid, "DANCING", "DAN_Right_A", 4.1, 1, 0, 0, 0, 0, 1);
+					case 4: ApplyAnimation(playerid, "DANCING", "DAN_Loop_A", 4.1, 1, 0, 0, 0, 0, 1);
+					case 5: ApplyAnimation(playerid, "DANCING", "DAN_Up_A", 4.1, 1, 0, 0, 0, 0, 1);
+					case 6: ApplyAnimation(playerid, "DANCING", "DAN_Down_A", 4.1, 1, 0, 0, 0, 0, 1);
+					case 7: ApplyAnimation(playerid, "DANCING", "dnce_M_a", 4.1, 1, 0, 0, 0, 0, 1);
+					case 8: ApplyAnimation(playerid, "DANCING", "dnce_M_e", 4.1, 1, 0, 0, 0, 0, 1);
+					case 9: ApplyAnimation(playerid, "DANCING", "dnce_M_b", 4.1, 1, 0, 0, 0, 0, 1);
+					case 10: ApplyAnimation(playerid, "DANCING", "dnce_M_c", 4.1, 1, 0, 0, 0, 0, 1);
+				}
+			}
+		}
+	}
+	switch(dialogid) {
+  		case textbox_deitarse: {
+			new type;
+			if (sscanf(inputtext, "d", type)) {
+				return 1;
+			}
+			else if (type < 1 || type > 5) {
+				return 1;
+			}
+			else {
+				player[playerid][pAnim] = 1;
+				switch(type) {
+					case 1: ApplyAnimation(playerid, "BEACH", "bather", 4.1, 1, 0, 0, 0, 0, 1);
+					case 2: ApplyAnimation(playerid, "BEACH", "Lay_Bac_Loop", 4.1, 1, 0, 0, 0, 0, 1);
+					case 3: ApplyAnimation(playerid, "BEACH", "ParkSit_M_loop", 4.1, 1, 0, 0, 0, 0, 1);
+					case 4: ApplyAnimation(playerid, "BEACH", "ParkSit_W_loop", 4.1, 1, 0, 0, 0, 0, 1);
+					case 5: ApplyAnimation(playerid, "BEACH", "SitnWait_loop_W", 4.1, 1, 0, 0, 0, 0, 1);
+				}
+			}
+		}
+	}
+	switch(dialogid) {
+  		case textbox_dormir: {
+			new type;
+			if (sscanf(inputtext, "d", type)) {
+				return 1;
+			}
+			else if (type < 1 || type > 2) {
+				return 1;
+			}
+			else {
+				player[playerid][pAnim] = 1;
+				switch(type) {
+					case 1: ApplyAnimation(playerid, "CRACK", "crckdeth4", 4.1, 0, 0, 0, 1, 0, 1);
+	    			case 2: ApplyAnimation(playerid, "CRACK", "crckidle4", 4.1, 0, 0, 0, 1, 0, 1);
+				}
+			}
+		}
+	}
+	switch(dialogid) {
+  		case textbox_drogarse: {
+			new type;
+			if (sscanf(inputtext, "d", type)) {
+				return 1;
+			}
+			else if (type < 1 || type > 6) {
+				return 1;
+			}
+			else {
+				player[playerid][pAnim] = 1;
+				switch(type) {
+					case 1: ApplyAnimation(playerid, "CRACK", "crckdeth1", 4.1, 0, 0, 0, 1, 0, 1);
+					case 2: ApplyAnimation(playerid, "CRACK", "crckdeth2", 4.1, 1, 0, 0, 0, 0, 1);
+					case 3: ApplyAnimation(playerid, "CRACK", "crckdeth3", 4.1, 0, 0, 0, 1, 0, 1);
+					case 4: ApplyAnimation(playerid, "CRACK", "crckidle1", 4.1, 0, 0, 0, 1, 0, 1);
+					case 5: ApplyAnimation(playerid, "CRACK", "crckidle2", 4.1, 0, 0, 0, 1, 0, 1);
+					case 6: ApplyAnimation(playerid, "CRACK", "crckidle3", 4.1, 0, 0, 0, 1, 0, 1);
+				}
+			}
+		}
+	}
+	switch(dialogid) {
+  		case textbox_masturbarse: {
+			new type;
+			if (sscanf(inputtext, "d", type)) {
+				return 1;
+			}
+			else if (type < 1 || type > 4) {
+				return 1;
+			}
+			else {
+				player[playerid][pAnim] = 1;
+				switch(type) {
+					case 1: ApplyAnimation(playerid, "BLOWJOBZ", "BJ_COUCH_LOOP_W", 4.1, 1, 0, 0, 0, 0, 1);
+					case 2: ApplyAnimation(playerid, "BLOWJOBZ", "BJ_COUCH_LOOP_P", 4.1, 1, 0, 0, 0, 0, 1);
+					case 3: ApplyAnimation(playerid, "BLOWJOBZ", "BJ_STAND_LOOP_W", 4.1, 1, 0, 0, 0, 0, 1);
+					case 4: ApplyAnimation(playerid, "BLOWJOBZ", "BJ_STAND_LOOP_P", 4.1, 1, 0, 0, 0, 0, 1);
+				}
+			}
+		}
+	}
+	switch(dialogid) {
+  		case textbox_negociar: {
+			new type;
+			if (sscanf(inputtext, "d", type)) {
+				return 1;
+			}
+			else if (type < 1 || type > 4) {
+				return 1;
+			}
+			else {
+				switch(type) {
+					case 1: ApplyAnimation(playerid, "DEALER", "DEALER_DEAL", 4.1, 0, 0, 0, 0, 0, 1);
+					case 2: ApplyAnimation(playerid, "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0, 1);
+					case 3: ApplyAnimation(playerid, "DEALER", "shop_pay", 4.1, 0, 0, 0, 0, 0, 1);
+					case 4: ApplyAnimation(playerid, "DEALER", "DEALER_IDLE_01", 4.1, 1, 0, 0, 0, 0, 1);
+					case 5: {
+						ApplyAnimation(playerid, "DEALER", "DEALER_IDLE_02", 4.1, 1, 0, 0, 0, 0, 1);
+						player[playerid][pAnim] = 1;
+					}
+					case 6: {
+						ApplyAnimation(playerid, "DEALER", "DEALER_IDLE_03", 4.1, 1, 0, 0, 0, 0, 1);
+						player[playerid][pAnim] = 1;
+					}
+				}
+			}
+		}
+	}
+	switch(dialogid) {
+  		case textbox_recarregar: {
+			new type;
+			if (sscanf(inputtext, "d", type)) {
+				return 1;
+			}
+			else if (type < 1 || type > 4) {
+				return 1;
+			}
+			else {
+				switch(type) {
+					case 1: ApplyAnimation(playerid, "BUDDY", "buddy_reload", 4.1, 0, 0, 0, 0, 0, 1);
+					case 2: ApplyAnimation(playerid, "UZI", "UZI_reload", 4.1, 0, 0, 0, 0, 0, 1);
+					case 3: ApplyAnimation(playerid, "COLT45", "colt45_reload", 4.1, 0, 0, 0, 0, 0, 1);
+					case 4: ApplyAnimation(playerid, "RIFLE", "rifle_load", 4.1, 0, 0, 0, 0, 0, 1);
+				}
+			}
+		}
+	}
+	switch(dialogid) {
+  		case textbox_sinalizar: {
+			new type;
+			if (sscanf(inputtext, "d", type)) {
+				return 1;
+			}
+			else if (type < 1 || type > 15) {
+				return 1;
+			}
+			else {
+				switch(type) {
+					case 1: ApplyAnimation(playerid, "GHANDS", "gsign1", 4.1, 0, 0, 0, 0, 0, 1);
+					case 2: ApplyAnimation(playerid, "GHANDS", "gsign1LH", 4.1, 0, 0, 0, 0, 0, 1);
+					case 3: ApplyAnimation(playerid, "GHANDS", "gsign2", 4.1, 0, 0, 0, 0, 0, 1);
+					case 4: ApplyAnimation(playerid, "GHANDS", "gsign2LH", 4.1, 0, 0, 0, 0, 0, 1);
+					case 5: ApplyAnimation(playerid, "GHANDS", "gsign3", 4.1, 0, 0, 0, 0, 0, 1);
+					case 6: ApplyAnimation(playerid, "GHANDS", "gsign3LH", 4.1, 0, 0, 0, 0, 0, 1);
+					case 7: ApplyAnimation(playerid, "GHANDS", "gsign4", 4.1, 0, 0, 0, 0, 0, 1);
+					case 8: ApplyAnimation(playerid, "GHANDS", "gsign4LH", 4.1, 0, 0, 0, 0, 0, 1);
+					case 9: ApplyAnimation(playerid, "GHANDS", "gsign5", 4.1, 0, 0, 0, 0, 0, 1);
+					case 10: ApplyAnimation(playerid, "GHANDS", "gsign5", 4.1, 0, 0, 0, 0, 0, 1);
+					case 11: ApplyAnimation(playerid, "GHANDS", "gsign5LH", 4.1, 0, 0, 0, 0, 0, 1);
+					case 12: ApplyAnimation(playerid, "GANGS", "Invite_No", 4.1, 0, 0, 0, 0, 0, 1);
+					case 13: ApplyAnimation(playerid, "GANGS", "Invite_Yes", 4.1, 0, 0, 0, 0, 0, 1);
+					case 14: ApplyAnimation(playerid, "GANGS", "prtial_gngtlkD", 4.1, 0, 0, 0, 0, 0, 1);
+					case 15: ApplyAnimation(playerid, "GANGS", "smkcig_prtl", 4.1, 0, 0, 0, 0, 0, 1);
+				}
+			}
 		}
 	}
 	return 1;
@@ -1235,11 +1740,11 @@ public DestroyStinger(stingerid){
 
 //Funções CMD:
 CMD:comandos(playerid, params[]) {
-	SendClientMessage(playerid, grey, "[Servidor]: /comandos, /equipe, /hora, /clima, /tp, /ir, /ob, /remover;");
-	SendClientMessage(playerid, grey, "[Chat]: /me, /ame, /do, /sus, /gl, /d, /ooc, /gr, /r, /911, /190, /mf, /mp;");
+	SendClientMessage(playerid, grey, "[Servidor]: /comandos, /equipe, /hora, /clima, /tp, /ir, /tc, /tr, /ob, /remover;");
+	SendClientMessage(playerid, grey, "[Chat]: /me, /ame, /do, /sus, /gl, /d, /ooc, /gr, /r, /911, /190, /mp;");
 	SendClientMessage(playerid, grey, "[Personagem]: /reviver, /skin, /atividades, /equipar, /derrubar, /levantar, /limpar;");
 	SendClientMessage(playerid, grey, "[Veículo]: /vc, /vd, /chave, /luzes, /pintar, /fix, /capo, /mala;");
-	SendClientMessage(playerid, grey, "[Polícia]: /vcs, /vp, /rp, /ref, /algemar, /desalgemar.");
+	SendClientMessage(playerid, grey, "[Polícia]: /vcs, /vp, /rp, /mf, /ref, /algemar, /desalgemar.");
    	return 1;
 }
 
@@ -2514,727 +3019,44 @@ CMD:levantar(playerid, params[]) {
 }
 
 //Atividades
-CMD:listar(playerid, params[]) {
-	SendClientMessage(playerid, grey, "[Atividades]: /parar, /render, /bailar, /bater, /tapear, /masturbar, /plantar, /drogar;");
-	SendClientMessage(playerid, grey, "/dormir, /portar, /fotografar, /revistar, /deitar, /negociar, /comer, /vomitar;");
-	SendClientMessage(playerid, grey, "/sinalizar, /conversar, /pichar, /beijar, /ressucitar, /relaxar, /apontar;");
-	SendClientMessage(playerid, grey, "/acenar, /fumar, /recarregar, /meditar, /jambrar, /agachar; /comemorar;");
-	SendClientMessage(playerid, grey, "/cruzar, /xingar, /andar, /urinar, /chorar, /cansar /cambalear.");
-   	return 1;
-}
-
 CMD:atividades(playerid, params[]) {
 	if (player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
-		SendClientMessage(playerid, grey, "Você não pode realizar animações no momento");
+		SendClientMessage(playerid, grey, "Você não pode realizar animações no momento.");
 	}
 	else {
 		ShowPlayerDialog(playerid, textbox_atividades, DIALOG_STYLE_TABLIST_HEADERS, "Atividades",
 		"Descrição\tEscopo\n\
-		Parar\t\n\
-		Dançar\t[1-10]\n\
-		Plantar\t\n\
-		Carregar\t\n\
-		Drogar-se\t[1-6]\n\
-		Dormir\t[1-2]\n\
-		Fotografar\t\n\
-		Revistar\t\n\
-		Deitar-se\t[1-5]\n\
-		Negociar\t[1-6]\n\
-		Comer\t[1-3]\n\
-		Vomitar\t\n\
-		Sinalizar\t[1-15]\n\
-		Conversar\t[1-6]\n\
-		Beijar\t[1-6]\n\
-		Ressucitar\t\n\
-		Colocar braço para fora\t\n\
-		Apontar\t[1-4]\n\
-		Comemorar\t[1-8]\n\
-		Acenar\t[1-3]\n\
-		Fumar\t\n\
-		Recarregar\t[1-4]\n\
-		Meditar\t\n\
-		Masturbar-se\t[1-3]\n\
+		Parar\tY\n\
 		Agachar\t\n\
 		Cambalear\t\n\
-		Chorar\t\n\
 		Cansar\t\n\
+		Carregar\t\n\
+		Chorar\t\n\
+		Colocar braço para fora\t\n\
+		Fotografar\t\n\
+		Fumar\t\n\
+		Meditar\t\n\
+		Plantar\t\n\
+		Ressucitar\t\n\
+		Revistar\t\n\
+		Urinar\t\n\
+		Vomitar\t\n\
+		Acenar\t[1-3]\n\
+		Apontar\t[1-4]\n\
+		Beijar\t[1-6]\n\
+		Comer\t[1-3]\n\
+		Comemorar\t[1-8]\n\
+		Conversar\t[1-6]\n\
 		Cruzar\t[1-4]\n\
-		Urinar\t\n",
+		Dançar\t[1-10]\n\
+		Deitar-se\t[1-5]\n\
+		Dormir\t[1-2]\n\
+		Drogar-se\t[1-6]\n\
+		Masturbar-se\t[1-3]\n\
+		Negociar\t[1-6]\n\
+		Recarregar\t[1-4]\n\
+		Sinalizar\t[1-15]\n",
 		"Confirmar", "");
-
-	}
-	return 1;
-}
-
-CMD:parar(playerid, params[]){
-    if (player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
-  		SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else if (IsPlayerInAnyVehicle(playerid)) {
-		return 1;
-	}
-	else {
-        ClearAnimations(playerid);
-		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
-	    player[playerid][pAnim] = 0;
-    }
-	return 1;
-}
-
-CMD:render(playerid, params[]) {
-    if(player[playerid][pFerido] == 1 || player[playerid][pAnim] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
-  		SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else if(IsPlayerInAnyVehicle(playerid)) {
-		SendClientMessage(playerid, grey, "Você não pode fazer isso.");
-	}
-	else {
-		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_HANDSUP);
-		player[playerid][pAnim] = 1;
-		format(gpbMensagem, 500, "%s rendeu-se.", GetName(playerid));
-		SendRangedMessage(playerid, purple, gpbMensagem, 15);
-	}
-	return 1;
-}
-
-CMD:bailar(playerid, params[]) {
-	new type;
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else if (sscanf(params, "d", type)) {
-		SendClientMessage(playerid, grey, "/bailar [1-10]");
-	}
-	else if (type < 1 || type > 10) {
-		SendClientMessage(playerid, grey, "/bailar [1-10]");
-	} 
-	else {
-		switch (type) {
-			case 1: ApplyAnimation(playerid, "DANCING", "dance_loop", 4.1, 1, 0, 0, 0, 0, 1);
-			case 2: ApplyAnimation(playerid, "DANCING", "DAN_Left_A", 4.1, 1, 0, 0, 0, 0, 1);
-			case 3: ApplyAnimation(playerid, "DANCING", "DAN_Right_A", 4.1, 1, 0, 0, 0, 0, 1);
-			case 4: ApplyAnimation(playerid, "DANCING", "DAN_Loop_A", 4.1, 1, 0, 0, 0, 0, 1);
-			case 5: ApplyAnimation(playerid, "DANCING", "DAN_Up_A", 4.1, 1, 0, 0, 0, 0, 1);
-			case 6: ApplyAnimation(playerid, "DANCING", "DAN_Down_A", 4.1, 1, 0, 0, 0, 0, 1);
-			case 7: ApplyAnimation(playerid, "DANCING", "dnce_M_a", 4.1, 1, 0, 0, 0, 0, 1);
-			case 8: ApplyAnimation(playerid, "DANCING", "dnce_M_e", 4.1, 1, 0, 0, 0, 0, 1);
-			case 9: ApplyAnimation(playerid, "DANCING", "dnce_M_b", 4.1, 1, 0, 0, 0, 0, 1);
-			case 10: ApplyAnimation(playerid, "DANCING", "dnce_M_c", 4.1, 1, 0, 0, 0, 0, 1);
-		}
-		player[playerid][pAnim] = 1;
-	}
-	return 1;
-}
-
-CMD:bater(playerid, params[]) {
-    new type;
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else if (sscanf(params, "d", type)) {
-	    SendClientMessage(playerid, grey, "/bater [1-5]");
-	}
-	else if (type < 1 || type > 5) {
-		SendClientMessage(playerid, grey, "/bater [1-5]");
-	} 
-	else {
-		switch (type) {
-			case 1: ApplyAnimation(playerid, "BASEBALL", "Bat_1", 4.1, 0, 1, 1, 0, 0, 1);
-			case 2: ApplyAnimation(playerid, "BASEBALL", "Bat_2", 4.1, 0, 1, 1, 0, 0, 1);
-			case 3: ApplyAnimation(playerid, "BASEBALL", "Bat_3", 4.1, 0, 1, 1, 0, 0, 1);
-			case 4: ApplyAnimation(playerid, "BASEBALL", "Bat_4", 4.1, 0, 0, 0, 0, 0, 1);
-			case 5: {
-				ApplyAnimation(playerid, "BASEBALL", "Bat_IDLE", 4.1, 1, 0, 0, 0, 0, 1);
-				player[playerid][pAnim] = 1;
-			}
-		}
-	}
-	return 1;
-}
-
-CMD:tapear(playerid, params[]) {
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	} 
-	else {
-		ApplyAnimation(playerid, "BASEBALL", "Bat_M", 4.1, 0, 0, 0, 0, 0, 1);
-	}
-	return 1;
-}
-
-CMD:masturbar(playerid, params[]) {
-    new type;
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}   
-	else if (sscanf(params, "d", type)) {
-		SendClientMessage(playerid, grey, "/masturbar [1-4]");
-	}
-	else if (type < 1 || type > 4) {
-		SendClientMessage(playerid, grey, "/masturbar [1-4]");
-	}
-	   
-	else {
-		switch (type) {
-			case 1: ApplyAnimation(playerid, "BLOWJOBZ", "BJ_COUCH_LOOP_W", 4.1, 1, 0, 0, 0, 0, 1);
-			case 2: ApplyAnimation(playerid, "BLOWJOBZ", "BJ_COUCH_LOOP_P", 4.1, 1, 0, 0, 0, 0, 1);
-			case 3: ApplyAnimation(playerid, "BLOWJOBZ", "BJ_STAND_LOOP_W", 4.1, 1, 0, 0, 0, 0, 1);
-			case 4: ApplyAnimation(playerid, "BLOWJOBZ", "BJ_STAND_LOOP_P", 4.1, 1, 0, 0, 0, 0, 1);
-		}
-		player[playerid][pAnim] = 1;
-	}
-	return 1;
-}
-
-CMD:plantar(playerid, params[]) {
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else {
-		ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 0, 0, 0, 0, 0, 1);
-	}	
-	return 1;
-}
-
-CMD:carregar(playerid, params[]) {
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}   
-	else {
-		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
-		player[playerid][pAnim] = 1;
-	}
-	return 1;
-}
-
-CMD:drogar(playerid, params[]) {
-	new type;
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else if (sscanf(params, "d", type))
-	    SendClientMessage(playerid, grey, "/drogar [1-6]");
-	else if (type < 1 || type > 6)
-	    SendClientMessage(playerid, grey, "/drogar [1-6]");
-	else {
-		switch (type) {
-			case 1: ApplyAnimation(playerid, "CRACK", "crckdeth1", 4.1, 0, 0, 0, 1, 0, 1);
-			case 2: ApplyAnimation(playerid, "CRACK", "crckdeth2", 4.1, 1, 0, 0, 0, 0, 1);
-			case 3: ApplyAnimation(playerid, "CRACK", "crckdeth3", 4.1, 0, 0, 0, 1, 0, 1);
-			case 4: ApplyAnimation(playerid, "CRACK", "crckidle1", 4.1, 0, 0, 0, 1, 0, 1);
-			case 5: ApplyAnimation(playerid, "CRACK", "crckidle2", 4.1, 0, 0, 0, 1, 0, 1);
-			case 6: ApplyAnimation(playerid, "CRACK", "crckidle3", 4.1, 0, 0, 0, 1, 0, 1);
-		}
-		player[playerid][pAnim] = 1;
-	}
-	return 1;
-}
-
-CMD:dormir(playerid, params[]) {
-	new type;
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}	    
-	else if (sscanf(params, "d", type))
-	    SendClientMessage(playerid, grey, "/dormir [1-2]");
-	else if (type < 1 || type > 2)
-	    SendClientMessage(playerid, grey, "/dormir [1-2]");
-	else {
-		switch (type) {
-			case 1: ApplyAnimation(playerid, "CRACK", "crckdeth4", 4.1, 0, 0, 0, 1, 0, 1);
-	    	case 2: ApplyAnimation(playerid, "CRACK", "crckidle4", 4.1, 0, 0, 0, 1, 0, 1);
-		}
-		player[playerid][pAnim] = 1;
-	}
-	return 1;
-}
-
-CMD:portar(playerid, params[]) {
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else {
-		ApplyAnimation(playerid, "ped", "IDLE_armed", 4.1, 0, 0, 0, 1, 0, 1);
-		player[playerid][pAnim] = 1;
-	}	
-	return 1;
-}
-
-CMD:fotografar(playerid, params[]) {
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else {
-		ApplyAnimation(playerid, "CAMERA", "camstnd_to_camcrch", 4.1, 0, 0, 0, 1, 0, 1);
-		player[playerid][pAnim] = 1;
-	}	
-	return 1;
-}
-
-CMD:revistar(playerid, params[]) {
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else {
-		ApplyAnimation(playerid, "POLICE", "plc_drgbst_02", 4.1, 0, 0, 0, 0, 0, 1);
-	}	
-	return 1;
-}
-
-CMD:deitar(playerid, params[]) {
-	new type;
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else if (sscanf(params, "d", type))
-	    SendClientMessage(playerid, grey, "/deitar [1-5]");
-	else if (type < 1 || type > 5)
-	    SendClientMessage(playerid, grey, "/deitar [1-5]");
-	else {
-		switch (type) {
-			case 1: ApplyAnimation(playerid, "BEACH", "bather", 4.1, 1, 0, 0, 0, 0, 1);
-			case 2: ApplyAnimation(playerid, "BEACH", "Lay_Bac_Loop", 4.1, 1, 0, 0, 0, 0, 1);
-			case 3: ApplyAnimation(playerid, "BEACH", "ParkSit_M_loop", 4.1, 1, 0, 0, 0, 0, 1);
-			case 4: ApplyAnimation(playerid, "BEACH", "ParkSit_W_loop", 4.1, 1, 0, 0, 0, 0, 1);
-			case 5: ApplyAnimation(playerid, "BEACH", "SitnWait_loop_W", 4.1, 1, 0, 0, 0, 0, 1);
-		}
-		player[playerid][pAnim] = 1;
-	}	
-	return 1;
-}
-
-CMD:negociar(playerid, params[]) {
-	new type;
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else if (sscanf(params, "d", type))
-	    SendClientMessage(playerid, grey, "/negociar [1-6]");
-	else if (type < 1 || type > 6)
-	    SendClientMessage(playerid, grey, "/negociar [1-6]");
-	else {
-		switch (type) {
-			case 1: ApplyAnimation(playerid, "DEALER", "DEALER_DEAL", 4.1, 0, 0, 0, 0, 0, 1);
-			case 2: ApplyAnimation(playerid, "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0, 1);
-			case 3: ApplyAnimation(playerid, "DEALER", "shop_pay", 4.1, 0, 0, 0, 0, 0, 1);
-			case 4: ApplyAnimation(playerid, "DEALER", "DEALER_IDLE_01", 4.1, 1, 0, 0, 0, 0, 1);
-			case 5: {
-				ApplyAnimation(playerid, "DEALER", "DEALER_IDLE_02", 4.1, 1, 0, 0, 0, 0, 1);
-				player[playerid][pAnim] = 1;
-			}
-			case 6: {
-				ApplyAnimation(playerid, "DEALER", "DEALER_IDLE_03", 4.1, 1, 0, 0, 0, 0, 1);
-				player[playerid][pAnim] = 1;
-			}
-		}
-	}	
-	return 1;
-}
-
-CMD:comer(playerid, params[]) {
-	new type;
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else if (sscanf(params, "d", type))
-	    SendClientMessage(playerid, grey, "/comer [1-3]");
-	else if (type < 1 || type > 3)
-	    SendClientMessage(playerid, grey, "/comer [1-3]");
-	else {
-		switch (type) {
-			case 1: ApplyAnimation(playerid, "FOOD", "EAT_Burger", 4.1, 0, 0, 0, 0, 0, 1);
-			case 2: ApplyAnimation(playerid, "FOOD", "EAT_Chicken", 4.1, 0, 0, 0, 0, 0, 1);
-			case 3: ApplyAnimation(playerid, "FOOD", "EAT_Pizza", 4.1, 0, 0, 0, 0, 0, 1);
-			}
-		}	
-	return 1;
-}
-
-CMD:vomitar(playerid, params[]) {
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else {
-		ApplyAnimation(playerid, "FOOD", "EAT_Vomit_P", 4.1, 0, 0, 0, 0, 0, 1);
-	}
-	return 1;
-}
-
-CMD:sinalizar(playerid, params[]) {
-	new type;
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else if (sscanf(params, "d", type))
-	    SendClientMessage(playerid, grey, "/sinalizar [1-15]");
-	else if (type < 1 || type > 15)
-	    SendClientMessage(playerid, grey, "/sinalizar [1-15]");
-	else {
-		switch (type) {
-			case 1: ApplyAnimation(playerid, "GHANDS", "gsign1", 4.1, 0, 0, 0, 0, 0, 1);
-			case 2: ApplyAnimation(playerid, "GHANDS", "gsign1LH", 4.1, 0, 0, 0, 0, 0, 1);
-			case 3: ApplyAnimation(playerid, "GHANDS", "gsign2", 4.1, 0, 0, 0, 0, 0, 1);
-			case 4: ApplyAnimation(playerid, "GHANDS", "gsign2LH", 4.1, 0, 0, 0, 0, 0, 1);
-			case 5: ApplyAnimation(playerid, "GHANDS", "gsign3", 4.1, 0, 0, 0, 0, 0, 1);
-			case 6: ApplyAnimation(playerid, "GHANDS", "gsign3LH", 4.1, 0, 0, 0, 0, 0, 1);
-			case 7: ApplyAnimation(playerid, "GHANDS", "gsign4", 4.1, 0, 0, 0, 0, 0, 1);
-			case 8: ApplyAnimation(playerid, "GHANDS", "gsign4LH", 4.1, 0, 0, 0, 0, 0, 1);
-			case 9: ApplyAnimation(playerid, "GHANDS", "gsign5", 4.1, 0, 0, 0, 0, 0, 1);
-			case 10: ApplyAnimation(playerid, "GHANDS", "gsign5", 4.1, 0, 0, 0, 0, 0, 1);
-			case 11: ApplyAnimation(playerid, "GHANDS", "gsign5LH", 4.1, 0, 0, 0, 0, 0, 1);
-			case 12: ApplyAnimation(playerid, "GANGS", "Invite_No", 4.1, 0, 0, 0, 0, 0, 1);
-			case 13: ApplyAnimation(playerid, "GANGS", "Invite_Yes", 4.1, 0, 0, 0, 0, 0, 1);
-			case 14: ApplyAnimation(playerid, "GANGS", "prtial_gngtlkD", 4.1, 0, 0, 0, 0, 0, 1);
-			case 15: ApplyAnimation(playerid, "GANGS", "smkcig_prtl", 4.1, 0, 0, 0, 0, 0, 1);
-			}
-		}	
-	return 1;
-}
-
-CMD:conversar(playerid, params[]) {
-	new type;
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else if (sscanf(params, "d", type))
-	    SendClientMessage(playerid, grey, "/conversar [1-6]");
-	else if (type < 1 || type > 6)
-	    SendClientMessage(playerid, grey, "/conversar [1-6]");
-	else {
-		switch (type) {
-			case 1: ApplyAnimation(playerid, "GANGS", "prtial_gngtlkA", 4.1, 0, 0, 0, 0, 0, 1);
-			case 2: ApplyAnimation(playerid, "GANGS", "prtial_gngtlkB", 4.1, 0, 0, 0, 0, 0, 1);
-			case 3: ApplyAnimation(playerid, "GANGS", "prtial_gngtlkE", 4.1, 0, 0, 0, 0, 0, 1);
-			case 4: ApplyAnimation(playerid, "GANGS", "prtial_gngtlkF", 4.1, 0, 0, 0, 0, 0, 1);
-			case 5: ApplyAnimation(playerid, "GANGS", "prtial_gngtlkG", 4.1, 0, 0, 0, 0, 0, 1);
-			case 6: ApplyAnimation(playerid, "GANGS", "prtial_gngtlkH", 4.1, 0, 0, 0, 0, 0, 1);
-			}
-		}	
-	return 1;
-}
-
-CMD:pichar(playerid, params[]) {
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else {
-		ApplyAnimation(playerid, "GRAFFITI", "spraycan_fire", 2.0, 1, 0, 0, 0, 0, 1);
-		player[playerid][pAnim] = 1;
-	}
-	return 1;
-}
-
-CMD:beijar(playerid, params[]) {
-	new type;
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else if (sscanf(params, "d", type))
-	    SendClientMessage(playerid, grey, "/beijar [1-6]");
-	else if (type < 1 || type > 6)
-	    SendClientMessage(playerid, grey, "/beijar [1-6]");
-	else {
-		switch (type) {
-			case 1: ApplyAnimation(playerid, "KISSING", "Grlfrd_Kiss_01", 4.1, 0, 0, 0, 0, 0, 1);
-			case 2: ApplyAnimation(playerid, "KISSING", "Grlfrd_Kiss_02", 4.1, 0, 0, 0, 0, 0, 1);
-			case 3: ApplyAnimation(playerid, "KISSING", "Grlfrd_Kiss_03", 4.1, 0, 0, 0, 0, 0, 1);
-			case 4: ApplyAnimation(playerid, "KISSING", "Playa_Kiss_01", 4.1, 0, 0, 0, 0, 0, 1);
-			case 5: ApplyAnimation(playerid, "KISSING", "Playa_Kiss_02", 4.1, 0, 0, 0, 0, 0, 1);
-			case 6: ApplyAnimation(playerid, "KISSING", "Playa_Kiss_03", 4.1, 0, 0, 0, 0, 0, 1);
-			}
-		}	
-	return 1;
-}
-
-CMD:ressucitar(playerid, params[]) {
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else {
-		ApplyAnimation(playerid, "MEDIC", "CPR", 4.1, 0, 0, 0, 0, 0, 1);
-	}
-	return 1;
-}
-
-CMD:relaxar(playerid, params[]) {
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else if (IsPlayerInAnyVehicle(playerid)) {
-		new playerseat = GetPlayerVehicleSeat(playerid);
-		if(playerseat == 0 || playerseat == 2) {
-    		ApplyAnimation(playerid, "CAR", "Sit_relaxed", 4.1, 1, 0, 0, 0, 0, 1);
-		} 
-		else {
-    		ApplyAnimation(playerid, "PED", "Tap_handP", 4.1, 1, 0, 0, 0, 0, 1);
-		}
-	}
-	else {
-		SendClientMessage(playerid, grey, "Você precisa estar em algum veículo.");
-	}
-	return 1;
-}
-
-CMD:apontar(playerid, params[]) {
-	new type;
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else if (sscanf(params, "d", type)) {
-		SendClientMessage(playerid, grey, "/apontar [1-4]");
-	}	    
-	else if (type < 1 || type > 4) {
-		SendClientMessage(playerid, grey, "/apontar [1-4]");
-	}	    
-	else {
-		switch (type) {
-			case 1: ApplyAnimation(playerid, "PED", "ARRESTgun", 4.1, 0, 0, 0, 1, 0, 1);
-			case 2: ApplyAnimation(playerid, "SHOP", "ROB_Loop_Threat", 4.1, 1, 0, 0, 0, 0, 1);
-			case 3: ApplyAnimation(playerid, "ON_LOOKERS", "point_loop", 4.1, 1, 0, 0, 0, 0, 1);
-			case 4: ApplyAnimation(playerid, "ON_LOOKERS", "Pointup_loop", 4.1, 1, 0, 0, 0, 0, 1);
-		}
-		player[playerid][pAnim] = 1;
-	}
-	return 1;
-}
-
-CMD:comemorar(playerid, params[]) {
-	new type;
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else if (sscanf(params, "d", type)) {
-		SendClientMessage(playerid, grey, "/comemorar [1-8]");
-	}	    
-	else if (type < 1 || type > 8) {
-		SendClientMessage(playerid, grey, "/comemorar [1-8]");
-	}	    
-	else {
-		switch (type) {
-			case 1: ApplyAnimation(playerid, "ON_LOOKERS", "shout_01", 4.1, 0, 0, 0, 0, 0, 1);
-			case 2: ApplyAnimation(playerid, "ON_LOOKERS", "shout_02", 4.1, 0, 0, 0, 0, 0, 1);
-			case 3: ApplyAnimation(playerid, "ON_LOOKERS", "shout_in", 4.1, 0, 0, 0, 0, 0, 1);
-			case 4: ApplyAnimation(playerid, "RIOT", "RIOT_ANGRY_B", 4.1, 1, 0, 0, 0, 0, 1);
-			case 5: ApplyAnimation(playerid, "RIOT", "RIOT_CHANT", 4.1, 0, 0, 0, 0, 0, 1);
-			case 6: ApplyAnimation(playerid, "RIOT", "RIOT_shout", 4.1, 0, 0, 0, 0, 0, 1);
-			case 7: ApplyAnimation(playerid, "STRIP", "PUN_HOLLER", 4.1, 0, 0, 0, 0, 0, 1);
-			case 8: ApplyAnimation(playerid, "OTB", "wtchrace_win", 4.1, 0, 0, 0, 0, 0, 1);
-		}
-	}
-	return 1;
-}
-
-CMD:acenar(playerid, params[]) {
-	new type;
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else if (sscanf(params, "d", type)) {
-		SendClientMessage(playerid, grey, "/acenar [1-3]");
-	}	    
-	else if (type < 1 || type > 3) {
-		SendClientMessage(playerid, grey, "/acenar [1-3]");
-	}	    
-	else {
-		switch (type) {
-			case 1: ApplyAnimation(playerid, "PED", "endchat_03", 4.1, 0, 0, 0, 0, 0, 1);
-	    	case 2: ApplyAnimation(playerid, "KISSING", "gfwave2", 4.1, 0, 0, 0, 0, 0, 1);
-	    	case 3: {
-				ApplyAnimation(playerid, "ON_LOOKERS", "wave_loop", 4.1, 1, 0, 0, 0, 0, 1);
-				player[playerid][pAnim] = 1;
-			}
-		}
-	}
-	return 1;
-}
-
-CMD:fumar(playerid, params[]) {
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}	    
-	else {
-		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_SMOKE_CIGGY);
-		ApplyAnimation(playerid, "GANGS", "smkcig_prtl", 0.1, 1, 0, 0, 0, 0, 1);
-	}
-	return 1;
-}
-
-CMD:recarregar(playerid, params[]) {
-	new type;
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else if (sscanf(params, "d", type)) {
-		SendClientMessage(playerid, grey, "/recarregar [1-4]");
-	}	    
-	else if (type < 1 || type > 4) {
-		SendClientMessage(playerid, grey, "/recarregar [1-4]");
-	}	    
-	else {
-		switch (type) {
-			case 1: ApplyAnimation(playerid, "BUDDY", "buddy_reload", 4.1, 0, 0, 0, 0, 0, 1);
-			case 2: ApplyAnimation(playerid, "UZI", "UZI_reload", 4.1, 0, 0, 0, 0, 0, 1);
-			case 3: ApplyAnimation(playerid, "COLT45", "colt45_reload", 4.1, 0, 0, 0, 0, 0, 1);
-			case 4: ApplyAnimation(playerid, "RIFLE", "rifle_load", 4.1, 0, 0, 0, 0, 0, 1);
-		}
-	}
-	return 1;
-}
-
-CMD:meditar(playerid, params[]) {
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}	    
-	else {
-		ApplyAnimation(playerid, "PARK", "Tai_Chi_Loop", 4.1, 1, 0, 0, 0, 0, 1);
-		player[playerid][pAnim] = 1;
-	}
-	return 1;
-}
-
-CMD:jambrar(playerid, params[]) {
-	new type;
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else if (sscanf(params, "d", type)) {
-		SendClientMessage(playerid, grey, "/jambrar [1-3]");
-	}	    
-	else if (type < 1 || type > 3) {
-		SendClientMessage(playerid, grey, "/jambrar [1-3]");
-	}	    
-	else {
-		switch (type) {
-			case 1: {
-				ApplyAnimation(playerid, "PAULNMAC", "wank_loop", 4.1, 1, 0, 0, 0, 0, 1);
-				player[playerid][pAnim] = 1;
-			}
-			case 2: ApplyAnimation(playerid, "PAULNMAC", "wank_in", 4.1, 0, 0, 0, 0, 0, 1);
-			case 3: ApplyAnimation(playerid, "PAULNMAC", "wank_out", 4.1, 0, 0, 0, 0, 0, 1);
-		}
-	}
-	return 1;
-}
-
-CMD:agachar(playerid, params[]) {
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}	    
-	else {
-		ApplyAnimation(playerid, "PED", "cower", 4.1, 0, 0, 0, 1, 0, 1);
-		player[playerid][pAnim] = 1;
-	}
-	return 1;
-}
-
-CMD:cambalear(playerid, params[]) {
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}	    
-	else {
-		ApplyAnimation(playerid, "PED", "WALK_drunk", 4.1, 1, 1, 1, 1, 1, 1);
-		player[playerid][pAnim] = 1;
-	}
-	return 1;
-}
-
-CMD:chorar(playerid, params[]) {
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}	    
-	else {
-		ApplyAnimation(playerid, "GRAVEYARD", "mrnF_loop", 4.1, 1, 0, 0, 0, 0, 1);
-		player[playerid][pAnim] = 1;
-	}
-	return 1;
-}
-
-CMD:cansar(playerid, params[]) {
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}	    
-	else {
-		ApplyAnimation(playerid, "PED", "IDLE_tired", 4.1, 1, 0, 0, 0, 0, 1);
-		player[playerid][pAnim] = 1;
-	}
-	return 1;
-}
-
-CMD:cruzar(playerid, params[]) {
-	new type;
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else if (sscanf(params, "d", type)) {
-		SendClientMessage(playerid, grey, "/cruzar [1-4]");
-	}	    
-	else if (type < 1 || type > 4) {
-		SendClientMessage(playerid, grey, "/cruzar [1-4]");
-	}	    
-	else {
-		switch (type) {
-			case 1: ApplyAnimation(playerid, "COP_AMBIENT", "Coplook_loop", 4.1, 0, 1, 1, 1, 0, 1);
-			case 2: ApplyAnimation(playerid, "GRAVEYARD", "prst_loopa", 4.1, 1, 0, 0, 0, 0, 1);
-			case 3: ApplyAnimation(playerid, "GRAVEYARD", "mrnM_loop", 4.1, 1, 0, 0, 0, 0, 1);
-			case 4: ApplyAnimation(playerid, "DEALER", "DEALER_IDLE", 4.1, 0, 1, 1, 1, 0, 1);
-		}
-		player[playerid][pAnim] = 1;
-	}
-	return 1;
-}
-
-CMD:xingar(playerid, params[]) {
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}	    
-	else {
-		ApplyAnimation(playerid, "PED", "fucku", 4.1, 0, 0, 0, 0, 0);
-	}
-	return 1;
-}
-
-CMD:andar(playerid, params[]) {
-	new type;
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else if (sscanf(params, "d", type)) {
-		SendClientMessage(playerid, grey, "/andar [1-16]");
-	}	    
-	else if (type < 1 || type > 16) {
-		SendClientMessage(playerid, grey, "/andar [1-16]");
-	}	    
-	else {
-		switch (type) {
-			case 1: ApplyAnimation(playerid, "FAT", "FatWalk", 4.1, 1, 1, 1, 1, 1, 1);
-			case 2: ApplyAnimation(playerid, "MUSCULAR", "MuscleWalk", 4.1, 1, 1, 1, 1, 1, 1);
-			case 3: ApplyAnimation(playerid, "PED", "WALK_armed", 4.1, 1, 1, 1, 1, 1, 1);
-			case 4: ApplyAnimation(playerid, "PED", "WALK_civi", 4.1, 1, 1, 1, 1, 1, 1);
-			case 5: ApplyAnimation(playerid, "PED", "WALK_fat", 4.1, 1, 1, 1, 1, 1, 1);
-			case 6: ApplyAnimation(playerid, "PED", "WALK_fatold", 4.1, 1, 1, 1, 1, 1, 1);
-			case 7: ApplyAnimation(playerid, "PED", "WALK_gang1", 4.1, 1, 1, 1, 1, 1, 1);
-			case 8: ApplyAnimation(playerid, "PED", "WALK_gang2", 4.1, 1, 1, 1, 1, 1, 1);
-			case 9: ApplyAnimation(playerid, "PED", "WALK_player", 4.1, 1, 1, 1, 1, 1, 1);
-			case 10: ApplyAnimation(playerid, "PED", "WALK_old", 4.1, 1, 1, 1, 1, 1, 1);
-			case 11: ApplyAnimation(playerid, "PED", "WALK_wuzi", 4.1, 1, 1, 1, 1, 1, 1);
-			case 12: ApplyAnimation(playerid, "PED", "WOMAN_walkbusy", 4.1, 1, 1, 1, 1, 1, 1);
-			case 13: ApplyAnimation(playerid, "PED", "WOMAN_walkfatold", 4.1, 1, 1, 1, 1, 1, 1);
-			case 14: ApplyAnimation(playerid, "PED", "WOMAN_walknorm", 4.1, 1, 1, 1, 1, 1, 1);
-			case 15: ApplyAnimation(playerid, "PED", "WOMAN_walksexy", 4.1, 1, 1, 1, 1, 1, 1);
-			case 16: ApplyAnimation(playerid, "PED", "WOMAN_walkshop", 4.1, 1, 1, 1, 1, 1, 1);
-		}
-		player[playerid][pAnim] = 1;
-	}
-	return 1;
-}
-
-CMD:urinar(playerid, params[]) {
-	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || IsPlayerInAnyVehicle(playerid)){
-	    SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}	    
-	else {
-		SetPlayerSpecialAction(playerid, 68);
-		player[playerid][pAnim] = 1;
 	}
 	return 1;
 }
