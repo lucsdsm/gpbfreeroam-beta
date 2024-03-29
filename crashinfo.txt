@@ -69,3 +69,74 @@ winrnr.dll	A: 0x72CB0000 - 0x72CBE000	(C:\Windows\System32\winrnr.dll)
 wshbth.dll	A: 0x72C90000 - 0x72CA1000	(C:\Windows\system32\wshbth.dll)
 rasadhlp.dll	A: 0x72C00000 - 0x72C08000	(C:\Windows\System32\rasadhlp.dll)
 bcryptPrimitives.dll	A: 0x76AB0000 - 0x76B12000	(C:\Windows\System32\bcryptPrimitives.dll)
+
+--------------------------
+SA-MP Server: 0.3.7-R2
+
+Exception At Address: 0x00401694 Module: (samp-server.exe)
+
+Registers:
+EAX: 0x00000000	EBX: 0x004B5B54	ECX: 0x00000000	EDX: 0x74C434C8
+ESI: 0x00000000	EDI: 0x0019FCC8	EBP: 0x0019FCAC	ESP: 0x0019FC40
+EFLAGS: 0x00010216
+
+Stack:
++0000: 0x00401726   0x00000000   0x0019FC5C   0x0019FCC8
++0010: 0x00000000   0x0019FCAC   0x004B5B54   0x0100007F
++0020: 0x0045A4AE   0x004B9D24   0x0019FD00   0x00000001
++0030: 0xFB5FF597   0x0019FC88   0x74BF91E1   0x00000000
++0040: 0x74BF3505   0x00000000   0x004B5B54   0x0019FCC8
++0050: 0x74C434C8   0x00000000   0x004B5B54   0x0019FCC8
++0060: 0x0298BA00   0x00000000   0x00000000   0x00000000
++0070: 0x0046D98E   0x00000000   0x004B5B54   0x0019FCC8
++0080: 0x00000000   0x00000000   0x00000000   0x00465F96
++0090: 0x00000000   0x00000001   0x02459100   0x7584EA00
++00A0: 0x7584D7A0   0x00000000   0x00000000   0x0298A9C0
++00B0: 0x0048F482   0x7584EA00   0x7584E9B0   0x00000000
++00C0: 0x00000000   0x00000800   0x00000000   0x0019FD11
++00D0: 0x0000AA01   0x771114B2   0x0019FD70   0x0019FD74
++00E0: 0x00000000   0xFFFFFFFF   0x00000000   0x00000000
++00F0: 0x00000000   0x00000000   0xD02D6BEA   0x0019FDB0
++0100: 0x771111A0   0xFFFFFFFF   0xD02D6B9A   0x0019FDC4
++0110: 0x771111A0   0xFFFFFFFF   0x0019FD74   0x771112BA
++0120: 0x75849970   0x00000000   0x00000000   0x00CD4624
++0130: 0x00488664   0x0000014C   0x031B744B   0x00CD4624
+
+--------------------------
+
+Loaded Modules:
+samp-server.exe	A: 0x00400000 - 0x00519000	(D:\gpbfreeroam\samp-server.exe)
+ntdll.dll	A: 0x770B0000 - 0x77261000	(C:\Windows\SYSTEM32\ntdll.dll)
+KERNEL32.DLL	A: 0x75830000 - 0x75920000	(C:\Windows\System32\KERNEL32.DLL)
+KERNELBASE.dll	A: 0x763D0000 - 0x76644000	(C:\Windows\System32\KERNELBASE.dll)
+SHELL32.dll	A: 0x75BB0000 - 0x76247000	(C:\Windows\System32\SHELL32.dll)
+msvcp_win.dll	A: 0x77020000 - 0x77099000	(C:\Windows\System32\msvcp_win.dll)
+ucrtbase.dll	A: 0x76650000 - 0x76762000	(C:\Windows\System32\ucrtbase.dll)
+USER32.dll	A: 0x74FB0000 - 0x75158000	(C:\Windows\System32\USER32.dll)
+win32u.dll	A: 0x757B0000 - 0x757CA000	(C:\Windows\System32\win32u.dll)
+GDI32.dll	A: 0x76BB0000 - 0x76BD3000	(C:\Windows\System32\GDI32.dll)
+gdi32full.dll	A: 0x75920000 - 0x75A02000	(C:\Windows\System32\gdi32full.dll)
+WSOCK32.dll	A: 0x74B30000 - 0x74B38000	(C:\Windows\SYSTEM32\WSOCK32.dll)
+msvcrt.dll	A: 0x75440000 - 0x75504000	(C:\Windows\System32\msvcrt.dll)
+WS2_32.dll	A: 0x76370000 - 0x763CF000	(C:\Windows\System32\WS2_32.dll)
+RPCRT4.dll	A: 0x74D30000 - 0x74DEA000	(C:\Windows\System32\RPCRT4.dll)
+WINMM.dll	A: 0x74420000 - 0x74451000	(C:\Windows\SYSTEM32\WINMM.dll)
+IMM32.DLL	A: 0x75510000 - 0x75535000	(C:\Windows\System32\IMM32.DLL)
+sscanf.DLL	A: 0x74CF0000 - 0x74D1A000	(D:\gpbfreeroam\plugins\sscanf.DLL)
+VCRUNTIME140.dll	A: 0x74C60000 - 0x74C75000	(C:\Windows\SYSTEM32\VCRUNTIME140.dll)
+MSVCP140.dll	A: 0x74C80000 - 0x74CED000	(C:\Windows\SYSTEM32\MSVCP140.dll)
+MSVCP120.dll	A: 0x748C0000 - 0x74931000	(C:\Windows\SYSTEM32\MSVCP120.dll)
+MSVCR120.dll	A: 0x747D0000 - 0x748BE000	(C:\Windows\SYSTEM32\MSVCR120.dll)
+streamer.DLL	A: 0x74BF0000 - 0x74C57000	(D:\gpbfreeroam\plugins\streamer.DLL)
+pawn-memory.DLL	A: 0x747C0000 - 0x747CA000	(D:\gpbfreeroam\plugins\pawn-memory.DLL)
+mswsock.dll	A: 0x73AE0000 - 0x73B31000	(C:\Windows\system32\mswsock.dll)
+napinsp.dll	A: 0x72CE0000 - 0x72CF2000	(C:\Windows\system32\napinsp.dll)
+sechost.dll	A: 0x75AB0000 - 0x75B32000	(C:\Windows\System32\sechost.dll)
+pnrpnsp.dll	A: 0x72CC0000 - 0x72CD6000	(C:\Windows\system32\pnrpnsp.dll)
+DNSAPI.dll	A: 0x736A0000 - 0x7375C000	(C:\Windows\SYSTEM32\DNSAPI.dll)
+IPHLPAPI.DLL	A: 0x74AB0000 - 0x74AD4000	(C:\Windows\SYSTEM32\IPHLPAPI.DLL)
+NSI.dll	A: 0x752C0000 - 0x752C7000	(C:\Windows\System32\NSI.dll)
+winrnr.dll	A: 0x72CB0000 - 0x72CBE000	(C:\Windows\System32\winrnr.dll)
+wshbth.dll	A: 0x72C90000 - 0x72CA1000	(C:\Windows\system32\wshbth.dll)
+rasadhlp.dll	A: 0x72C00000 - 0x72C08000	(C:\Windows\System32\rasadhlp.dll)
+bcryptPrimitives.dll	A: 0x76AB0000 - 0x76B12000	(C:\Windows\System32\bcryptPrimitives.dll)

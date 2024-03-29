@@ -28,6 +28,7 @@
 #define textbox_equipamentos 0
 #define textbox_teletransportes 1
 #define textbox_equipes 2
+#define textbox_atividades 3
 
 //#define ALLOWED_PICKUPS 350 // Uncomment this if you know that you will never reach 2048 pickups.
  
@@ -313,7 +314,7 @@ stock CreateSmallStinger(Float:X, Float:Y, Float:Z, Float:A, virtualworld){
 
 //Funções públicas:
 public OnGameModeInit() {
-	SetGameModeText("GPB:F v0.3.1");
+	SetGameModeText("GPB:F v0.4");
     ManualVehicleEngineAndLights();
 	SetNameTagDrawDistance(20.0);
 	EnableStuntBonusForAll(0);
@@ -329,13 +330,6 @@ public OnGameModeInit() {
 }
 
 public OnGameModeExit() {
-	for(new i = 0; i < sizeof(iPickups); i++){
-        DestroyObject(iPickups[i][0]);
-        DestroyPickup(iPickups[i][1]);
-        DestroyPickup(iPickups[i][2]);
-        DestroyPickup(iPickups[i][3]);
-        DestroyPickup(iPickups[i][4]);
-    }
 	return 1;
 }
 
@@ -1020,6 +1014,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						SetPlayerColor(playerid, white);
 					}
 			}
+		}
+	}
+	switch(dialogid) {
+  		case textbox_atividades: {
 		}
 	}
 	return 1;
@@ -2516,13 +2514,56 @@ CMD:levantar(playerid, params[]) {
 }
 
 //Atividades
-CMD:atividades(playerid, params[]) {
+CMD:listar(playerid, params[]) {
 	SendClientMessage(playerid, grey, "[Atividades]: /parar, /render, /bailar, /bater, /tapear, /masturbar, /plantar, /drogar;");
 	SendClientMessage(playerid, grey, "/dormir, /portar, /fotografar, /revistar, /deitar, /negociar, /comer, /vomitar;");
 	SendClientMessage(playerid, grey, "/sinalizar, /conversar, /pichar, /beijar, /ressucitar, /relaxar, /apontar;");
 	SendClientMessage(playerid, grey, "/acenar, /fumar, /recarregar, /meditar, /jambrar, /agachar; /comemorar;");
 	SendClientMessage(playerid, grey, "/cruzar, /xingar, /andar, /urinar, /chorar, /cansar /cambalear.");
    	return 1;
+}
+
+CMD:atividades(playerid, params[]) {
+	if (player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
+		SendClientMessage(playerid, grey, "Você não pode realizar animações no momento");
+	}
+	else {
+		ShowPlayerDialog(playerid, textbox_atividades, DIALOG_STYLE_TABLIST_HEADERS, "Atividades",
+		"Descrição\tEscopo\n\
+		Parar\t\n\
+		Dançar\t[1-10]\n\
+		Plantar\t\n\
+		Carregar\t\n\
+		Drogar-se\t[1-6]\n\
+		Dormir\t[1-2]\n\
+		Fotografar\t\n\
+		Revistar\t\n\
+		Deitar-se\t[1-5]\n\
+		Negociar\t[1-6]\n\
+		Comer\t[1-3]\n\
+		Vomitar\t\n\
+		Sinalizar\t[1-15]\n\
+		Conversar\t[1-6]\n\
+		Beijar\t[1-6]\n\
+		Ressucitar\t\n\
+		Colocar braço para fora\t\n\
+		Apontar\t[1-4]\n\
+		Comemorar\t[1-8]\n\
+		Acenar\t[1-3]\n\
+		Fumar\t\n\
+		Recarregar\t[1-4]\n\
+		Meditar\t\n\
+		Masturbar-se\t[1-3]\n\
+		Agachar\t\n\
+		Cambalear\t\n\
+		Chorar\t\n\
+		Cansar\t\n\
+		Cruzar\t[1-4]\n\
+		Urinar\t\n",
+		"Confirmar", "");
+
+	}
+	return 1;
 }
 
 CMD:parar(playerid, params[]){

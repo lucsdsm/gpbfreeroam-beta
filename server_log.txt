@@ -5906,3 +5906,173 @@ Console input: gmx
 [06:20:47] [part] [GPB]Lucas has left the server (0:0)
 [06:20:57] [connection] incoming connection: 127.0.0.1:55484 id: 0
 [06:20:57] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+[06:24:14] [part] [GPB]Lucas has left the server (0:0)
+Console input: gmx
+[06:25:50] Number of vehicle models: 0
+[06:25:54] [connection] incoming connection: 127.0.0.1:63425 id: 0
+[06:25:54] [join] [GPB]Kaio has joined the server (0:127.0.0.1)
+Console input: gmx
+[06:27:13] Number of vehicle models: 0
+Console input: gmx
+[06:31:48] Number of vehicle models: 0
+[06:32:28] [debug] Long callback execution detected (hang or performance issue)
+[06:32:28] [debug] AMX backtrace:
+[06:32:28] [debug] #0 0000ad04 in VeiculoRaio (Float:radi=5.00000, playerid=0, vehicleid=922) at D:\gpbfreeroam\gamemodes\gpb.pwn:233
+[06:32:28] [debug] #1 0001fe30 in public cmd_vd (playerid=0, params[]=@00585b90 "") at D:\gpbfreeroam\gamemodes\gpb.pwn:1910
+[06:32:28] [debug] #2 native CallLocalFunction () in samp-server.exe
+[06:32:28] [debug] #3 00000948 in public OnPlayerCommandText (playerid=0, cmdtext[]=@00585b80 "/vd") at D:\gpbfreeroam\pawno\include\zcmd.inc:104
+[06:33:20] [connection] incoming connection: 127.0.0.1:49779 id: 1
+[06:33:21] [join] [GPB]Lucas has joined the server (1:127.0.0.1)
+[06:35:17] [debug] Long callback execution detected (hang or performance issue)
+[06:35:17] [debug] AMX backtrace:
+[06:35:17] [debug] #0 0000acd0 in VeiculoRaio (Float:radi=4.00000, playerid=1, vehicleid=1834) at D:\gpbfreeroam\gamemodes\gpb.pwn:233
+[06:35:17] [debug] #1 00021998 in public cmd_mala (playerid=1, params[]=@00585b98 "") at D:\gpbfreeroam\gamemodes\gpb.pwn:2061
+[06:35:17] [debug] #2 native CallLocalFunction () in samp-server.exe
+[06:35:17] [debug] #3 00000948 in public OnPlayerCommandText (playerid=1, cmdtext[]=@00585b80 "/mala") at D:\gpbfreeroam\pawno\include\zcmd.inc:104
+Console input: gmx
+[06:42:15] [debug] Long callback execution detected (hang or performance issue)
+[06:42:15] [debug] AMX backtrace:
+[06:42:15] [debug] #0 0000bfec in public OnGameModeExit () at D:\gpbfreeroam\gamemodes\gpb.pwn:334
+[06:42:27] Number of vehicle models: 0
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[06:42:40] 
+[06:42:40] Server Plugins
+[06:42:40] --------------
+[06:42:40]  Loading plugin: sscanf
+[06:42:40] 
+[06:42:40]  ===============================
+[06:42:40] 
+[06:42:40]       sscanf plugin loaded.     
+[06:42:40] 
+[06:42:40]          Version: 2.13.8
+[06:42:40] 
+[06:42:40]    (c) 2022 Alex "Y_Less" Cole  
+[06:42:40] 
+[06:42:40]  ===============================
+[06:42:40] 
+[06:42:40]   Loaded.
+[06:42:40]  Loading plugin: crashdetect
+[06:42:40]   CrashDetect plugin 4.21
+[06:42:40]   Loaded.
+[06:42:40]  Loading plugin: streamer
+[06:42:40] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[06:42:40]   Loaded.
+[06:42:40]  Loading plugin: pawn-memory
+[06:42:40] ========================
+[06:42:40] = Memory access plugin =
+[06:42:40] =       Made by BigETI =
+[06:42:40] = Loaded!              =
+[06:42:40] ========================
+[06:42:40]   Loaded.
+[06:42:40]  Loaded 4 plugins.
+
+[06:42:40] 
+[06:42:40] Filterscripts
+[06:42:40] ---------------
+[06:42:40]   Loading filterscript 'mapa.amx'...
+[06:42:40]   Loading filterscript 'sinuca.amx'...
+[06:42:40]   Loaded 2 filterscripts.
+
+[06:42:40] Number of vehicle models: 1
+[06:43:01] [connection] incoming connection: 127.0.0.1:56621 id: 0
+[06:43:01] [join] [GPB]Kaio has joined the server (0:127.0.0.1)
+[06:44:20] [part] [GPB]Kaio has left the server (0:0)
+Console input: gmx
+[06:48:20] Number of vehicle models: 0
+[06:48:23] [connection] incoming connection: 127.0.0.1:64413 id: 0
+[06:48:23] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+Console input: gmx
+[06:52:39] Number of vehicle models: 0
+Console input: gmx
+Console input: gmx
+[06:56:39] [debug] Server crashed due to an unknown error
+[06:56:39] [debug] Native backtrace:
+[06:56:39] [debug] #0 00401694 in ?? () in samp-server.exe
+[06:56:39] [debug] #1 0046d98e in ?? () in samp-server.exe
+[06:56:39] [debug] Registers:
+[06:56:39] [debug] EAX: 00000000 EBX: 004b5b54 ECX: 00000000 EDX: 74c434c8
+[06:56:39] [debug] ESI: 00000000 EDI: 0019fcc8 EBP: 0019fcac ESP: 0019fc40
+[06:56:39] [debug] EIP: 00401694 EFLAGS: 00010216
+[06:56:39] [debug] Stack:
+[06:56:39] [debug] ESP+00000000: 00401726 00000000 0019fc5c 0019fcc8
+[06:56:39] [debug] ESP+00000020: 0045a4ae 004b9d24 0019fd00 00000001
+[06:56:39] [debug] ESP+00000040: 74bf3505 00000000 004b5b54 0019fcc8
+[06:56:39] [debug] ESP+00000060: 0298ba00 00000000 00000000 00000000
+[06:56:39] [debug] ESP+00000080: 00000000 00000000 00000000 00465f96
+[06:56:39] [debug] ESP+000000a0: 7584d7a0 00000000 00000000 0298a9c0
+[06:56:39] [debug] ESP+000000c0: 00000000 00000800 00000000 0019fd11
+[06:56:39] [debug] ESP+000000e0: 00000000 ffffffff 00000000 00000000
+[06:56:39] [debug] ESP+00000100: 771111a0 ffffffff d02d6b9a 0019fdc4
+[06:56:39] [debug] ESP+00000120: 75849970 00000000 00000000 00cd4624
+[06:56:39] [debug] ESP+00000140: 0048c294 0000029b 00000000 00000000
+[06:56:39] [debug] ESP+00000160: 5abd76c1 0000d6f0 595c027f 000000ac
+[06:56:39] [debug] ESP+00000180: 006ed388 0019fde8 74c3edbd 74c182c6
+[06:56:39] [debug] ESP+000001a0: 553063e0 000002dc 0019fe10 74c39c93
+[06:56:39] [debug] ESP+000001c0: 46e70380 00011e11 46e70060 44480000
+[06:56:39] [debug] ESP+000001e0: 0048d4ef 00000000 000023f0 0019ff74
+[06:56:39] [debug] ESP+00000200: 00001e61 00000198 00003eec 02459100
+[06:56:39] [debug] ESP+00000220: 004c401c 00317000 004ab530 0019fe5c
+[06:56:39] [debug] ESP+00000240: ffffffff 0049b531 0049b541 004ab530
+[06:56:39] [debug] ESP+00000260: 00000001 02451340 02451370 00000094
+[06:56:39] [debug] ESP+00000280: 00000000 00000000 00000000 00000000
+[06:56:39] [debug] ESP+000002a0: 00000000 00000000 00000000 00000000
+[06:56:39] [debug] ESP+000002c0: 00000000 00000000 00000000 00000000
+[06:56:39] [debug] ESP+000002e0: 00000000 00000000 00000000 00000000
+[06:56:39] [debug] ESP+00000300: 0049cbca 0049cbca 00317000 00000000
+[06:56:39] [debug] ESP+00000320: 0019f67c 0019ffcc 0049d298 004ba530
+[06:56:39] [debug] ESP+00000340: 75847b90 0019ffdc 7711bd2b 00317000
+[06:56:39] [debug] ESP+00000360: 00000000 00000000 00000000 00000000
+[06:56:39] [debug] ESP+00000380: 00000000 0019ff90 00000000 0019ffe4
+[06:56:39] [debug] ESP+000003a0: 7711bcaf ffffffff 771492be 00000000
+[06:56:39] [debug] ESP+000003c0: 78746341 00000020 00000001 000032fc
+[06:56:39] [debug] ESP+000003e0: 00000014 00000001 00000007 00000034
+[06:56:39] [debug] Loaded modules:
+[06:56:39] [debug] 00400000 - 00519000 samp-server.exe
+[06:56:39] [debug] 770b0000 - 77261000 ntdll.dll
+[06:56:39] [debug] 75830000 - 75920000 KERNEL32.DLL
+[06:56:39] [debug] 763d0000 - 76644000 KERNELBASE.dll
+[06:56:39] [debug] 75bb0000 - 76247000 SHELL32.dll
+[06:56:39] [debug] 77020000 - 77099000 msvcp_win.dll
+[06:56:39] [debug] 76650000 - 76762000 ucrtbase.dll
+[06:56:39] [debug] 74fb0000 - 75158000 USER32.dll
+[06:56:39] [debug] 757b0000 - 757ca000 win32u.dll
+[06:56:39] [debug] 76bb0000 - 76bd3000 GDI32.dll
+[06:56:39] [debug] 75920000 - 75a02000 gdi32full.dll
+[06:56:39] [debug] 74b30000 - 74b38000 WSOCK32.dll
+[06:56:39] [debug] 75440000 - 75504000 msvcrt.dll
+[06:56:39] [debug] 76370000 - 763cf000 WS2_32.dll
+[06:56:39] [debug] 74d30000 - 74dea000 RPCRT4.dll
+[06:56:39] [debug] 74420000 - 74451000 WINMM.dll
+[06:56:39] [debug] 75510000 - 75535000 IMM32.DLL
+[06:56:39] [debug] 74cf0000 - 74d1a000 sscanf.DLL
+[06:56:39] [debug] 74c60000 - 74c75000 VCRUNTIME140.dll
+[06:56:39] [debug] 74c80000 - 74ced000 MSVCP140.dll
+[06:56:39] [debug] 74940000 - 749c9000 crashdetect.DLL
+[06:56:39] [debug] 748c0000 - 74931000 MSVCP120.dll
+[06:56:39] [debug] 747d0000 - 748be000 MSVCR120.dll
+[06:56:39] [debug] 74bf0000 - 74c57000 streamer.DLL
+[06:56:39] [debug] 747c0000 - 747ca000 pawn-memory.DLL
+[06:56:39] [debug] 73ae0000 - 73b31000 mswsock.dll
+[06:56:39] [debug] 72ce0000 - 72cf2000 napinsp.dll
+[06:56:39] [debug] 75ab0000 - 75b32000 sechost.dll
+[06:56:39] [debug] 72cc0000 - 72cd6000 pnrpnsp.dll
+[06:56:39] [debug] 736a0000 - 7375c000 DNSAPI.dll
+[06:56:39] [debug] 74ab0000 - 74ad4000 IPHLPAPI.DLL
+[06:56:39] [debug] 752c0000 - 752c7000 NSI.dll
+[06:56:39] [debug] 72cb0000 - 72cbe000 winrnr.dll
+[06:56:39] [debug] 72c90000 - 72ca1000 wshbth.dll
+[06:56:39] [debug] 72c70000 - 72c88000 nlansp_c.dll
+[06:56:39] [debug] 72c10000 - 72c6d000 fwpuclnt.dll
+[06:56:39] [debug] 72c00000 - 72c08000 rasadhlp.dll
+[06:56:39] [debug] 76ab0000 - 76b12000 bcryptPrimitives.dll
