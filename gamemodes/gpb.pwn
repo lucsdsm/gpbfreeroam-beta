@@ -29,6 +29,14 @@
 #define textbox_teletransportes 1
 #define textbox_equipes 2
 
+//#define ALLOWED_PICKUPS 350 // Uncomment this if you know that you will never reach 2048 pickups.
+ 
+#if defined ALLOWED_PICKUPS
+    new iPickups[ALLOWED_PICKUPS][5];
+#else
+    new iPickups[MAX_PICKUPS][5];
+#endif
+
 main() {
 }
 
@@ -37,11 +45,11 @@ enum jogadorData {
    pSpawnVehicle,
    pEquipe,
    pFerido,
-   pSolicitandoReforco,
    pAlgemado,
    pDerrubado,
    pAnim,
    pElastomero,
+   pRadioPD,
 }
 
 enum mortoData {
@@ -266,6 +274,43 @@ stock CriaObjeto(Object, Float:x, Float:y, Float:z, Float:Angle) {
 	return 0;
 }
 
+stock PopPlayerTires(playerid){
+    new vehicleid = GetPlayerVehicleID(playerid);
+    if(vehicleid != 0){
+        new panels, doors, lights, tires;
+        GetVehicleDamageStatus(vehicleid, panels, doors, lights, tires);
+        UpdateVehicleDamageStatus(vehicleid, panels, doors, lights, 15);
+    }
+}
+ 
+stock CreateLargeStinger(Float:X, Float:Y, Float:Z, Float:A, virtualworld){
+    for(new stingerid = 0; stingerid < sizeof(iPickups); stingerid++){
+        if(iPickups[stingerid][0] == -1){
+            new Float:dis1 = floatsin(-A, degrees), Float:dis2 = floatcos(-A, degrees);
+            iPickups[stingerid][0] = CreateObject(2892, X, Y, Z, 0.0, 0.0, A);
+            iPickups[stingerid][1] = CreatePickup(1007, 14, X+(4.0*dis1), Y+(4.0*dis2), Z, virtualworld);
+            iPickups[stingerid][2] = CreatePickup(1007, 14, X+(1.25*dis1), Y+(1.25*dis2), Z, virtualworld);
+            iPickups[stingerid][3] = CreatePickup(1007, 14, X-(4.0*dis1), Y-(4.0*dis2), Z, virtualworld);
+            iPickups[stingerid][4] = CreatePickup(1007, 14, X-(1.25*dis1), Y-(1.25*dis2), Z, virtualworld);
+            return stingerid;
+        }
+    }
+    return -1;
+}
+ 
+stock CreateSmallStinger(Float:X, Float:Y, Float:Z, Float:A, virtualworld){
+    for(new stingerid = 0; stingerid < sizeof(iPickups); stingerid++){
+        if(iPickups[stingerid][0] == -1){
+            new Float:dis1 = floatsin(-A, degrees), Float:dis2 = floatcos(-A, degrees);
+            iPickups[stingerid][0] = CreateObject(2899, X, Y, Z, 0.0, 0.0, A);
+            iPickups[stingerid][1] = CreatePickup(1007, 14, X+(1.5*dis1), Y+(1.5*dis2), Z, virtualworld);
+            iPickups[stingerid][2] = CreatePickup(1007, 14, X-(1.5*dis1), Y-(1.5*dis2), Z, virtualworld);
+            return stingerid;
+        }
+    }
+    return -1;
+}
+
 //Funções públicas:
 public OnGameModeInit() {
 	SetGameModeText("GPB:F v0.3.1");
@@ -273,10 +318,24 @@ public OnGameModeInit() {
 	SetNameTagDrawDistance(20.0);
 	EnableStuntBonusForAll(0);
 	SetWorldTime(20);
+	for(new i = 0; i < sizeof(iPickups); i++){
+        iPickups[i][0] = -1;
+        iPickups[i][1] = -1;
+        iPickups[i][2] = -1;
+        iPickups[i][3] = -1;
+        iPickups[i][4] = -1;
+    }
 	return 1;
 }
 
 public OnGameModeExit() {
+	for(new i = 0; i < sizeof(iPickups); i++){
+        DestroyObject(iPickups[i][0]);
+        DestroyPickup(iPickups[i][1]);
+        DestroyPickup(iPickups[i][2]);
+        DestroyPickup(iPickups[i][3]);
+        DestroyPickup(iPickups[i][4]);
+    }
 	return 1;
 }
 
@@ -287,6 +346,7 @@ public OnPlayerRequestClass(playerid, classid) {
 	player[playerid][pAlgemado] = 0;
 	player[playerid][pDerrubado] = 0;
 	player[playerid][pElastomero] = 0;
+	player[playerid][pRadioPD] = 0;
  	TogglePlayerSpectating(playerid, true);
 	SpawnPlayer(playerid);
  	SetSpawnInfo(playerid, -1, random(311), 1826, -1372, 14,269.2782,0,0,0,0,0,0);
@@ -392,13 +452,16 @@ public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart)
 		if (player[playerid][pFerido] == 1 || player[playerid][pDerrubado] == 1) {
 			return 0;
 		}
+		else if (IsPlayerInAnyVehicle(playerid)) {
+			SetPlayerHealth(playerid, 100);
+		}
 		else {
 			new Float:dano = 10;
 			new Float:elastomero = random(2);
 			GetPlayerHealth(playerid, health);
 			SetPlayerHealth(playerid, health-dano);
 			
-			if (bodypart == 9 && player[playerid][pFerido] == 0) {
+			if (bodypart == 9 && player[playerid][pFerido] == 0 && !IsPlayerInAnyVehicle(playerid)) {
 				player[playerid][pFerido] = 1;
 				SetPlayerHealth(playerid, 98303);
 				SetPlayerColor(playerid, red);
@@ -419,7 +482,6 @@ public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart)
 				ApplyAnimation(playerid, "sweet", "Sweet_injuredloop", 4.1, 0, 0, 0, 1, 0, 1);
 				return 1;
 			}
-
 			if (health <= 65 && player[playerid][pFerido] == 0) {
 				player[playerid][pFerido] = 1;
 				SetPlayerHealth(playerid, 98303);
@@ -589,7 +651,59 @@ public OnPlayerObjectMoved(playerid, objectid) {
 }
 
 public OnPlayerPickUpPickup(playerid, pickupid) {
-	return 1;
+	for(new stingerid = 0; stingerid < sizeof(iPickups); stingerid++){
+        if(pickupid == iPickups[stingerid][1]){
+            new Float:X, Float:Y, Float:Z, Float:A;
+            GetObjectPos(iPickups[stingerid][0], X, Y, Z);
+            GetObjectRot(iPickups[stingerid][0], A, A, A);
+            new Float:dis1 = floatsin(-A, degrees), Float:dis2 = floatcos(-A, degrees);
+            PopPlayerTires(playerid);
+            DestroyPickup(pickupid);
+            if(iPickups[stingerid][3] == -1){ // Small Stinger
+                iPickups[stingerid][1] = CreatePickup(1007, 14, X+(1.5*dis1), Y+(1.5*dis2), Z, GetPlayerVirtualWorld(playerid));
+            }
+            else{ // Large Stinger
+                iPickups[stingerid][1] = CreatePickup(1007, 14, X+(4.0*dis1), Y+(4.0*dis2), Z, GetPlayerVirtualWorld(playerid));
+            }
+            break;
+        }
+        else if(pickupid == iPickups[stingerid][2]){
+            new Float:X, Float:Y, Float:Z, Float:A;
+            GetObjectPos(iPickups[stingerid][0], X, Y, Z);
+            GetObjectRot(iPickups[stingerid][0], A, A, A);
+            new Float:dis1 = floatsin(-A, degrees), Float:dis2 = floatcos(-A, degrees);
+            PopPlayerTires(playerid);
+            DestroyPickup(pickupid);
+            if(iPickups[stingerid][3] == -1){ // Small Stinger
+                iPickups[stingerid][2] = CreatePickup(1007, 14, X-(1.5*dis1), Y-(1.5*dis2), Z, GetPlayerVirtualWorld(playerid));
+            }
+            else{ // Large Stinger
+                iPickups[stingerid][2] = CreatePickup(1007, 14, X+(1.25*dis1), Y+(1.25*dis2), Z, GetPlayerVirtualWorld(playerid));
+            }
+            break;
+        }
+        else if(pickupid == iPickups[stingerid][3]){
+            new Float:X, Float:Y, Float:Z, Float:A;
+            GetObjectPos(iPickups[stingerid][0], X, Y, Z);
+            GetObjectRot(iPickups[stingerid][0], A, A, A);
+            new Float:dis1 = floatsin(-A, degrees), Float:dis2 = floatcos(-A, degrees);
+            PopPlayerTires(playerid);
+            DestroyPickup(pickupid);
+            iPickups[stingerid][3] = CreatePickup(1007, 14, X-(4.0*dis1), Y-(4.0*dis2), Z, GetPlayerVirtualWorld(playerid));
+            break;
+        }
+        else if(pickupid == iPickups[stingerid][4]){
+            new Float:X, Float:Y, Float:Z, Float:A;
+            GetObjectPos(iPickups[stingerid][0], X, Y, Z);
+            GetObjectRot(iPickups[stingerid][0], A, A, A);
+            new Float:dis1 = floatsin(-A, degrees), Float:dis2 = floatcos(-A, degrees);
+            PopPlayerTires(playerid);
+            DestroyPickup(pickupid);
+            iPickups[stingerid][4] = CreatePickup(1007, 14, X-(1.25*dis1), Y-(1.25*dis2), Z, GetPlayerVirtualWorld(playerid));
+            break;
+        }
+    }
+    return 1;
 }
 
 public OnVehicleMod(playerid, vehicleid, componentid) {
@@ -657,9 +771,6 @@ public OnRconLoginAttempt(ip[], password[], success) {
 }
 
 public OnPlayerUpdate(playerid) {
-	if (player[playerid][pFerido] == 1) {
-		SendClientMessage(playerid, grey, "Tá ferido.");
-	}
 	return 1;
 }
 
@@ -688,7 +799,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				case 2: GivePlayerWeapon(playerid, 41 , 0x7FFFFFFF); // Spray
 				case 3: GivePlayerWeapon(playerid, 3, 1); // Cacetete
 				case 4: GivePlayerWeapon(playerid, 4, 1); //  Faca
-				case 5: GivePlayerWeapon(playerid, 22, 500); // 9mm
+				case 5: GivePlayerWeapon(playerid, 22, 100); // 9mm
 				case 6: {
 					if (player[playerid][pEquipe] != 1) {
 						SendClientMessage(playerid, grey, "Apenas policiais podem portar o taser.");
@@ -699,7 +810,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				}
 				case 7: GivePlayerWeapon(playerid, 24, 500); // Desert Eagle
 				case 8: {
-					GivePlayerWeapon(playerid, 25, 500); // Escopeta
+					GivePlayerWeapon(playerid, 25, 100); // Escopeta
 					player[playerid][pElastomero] = 0;
 				}
 				case 9: {
@@ -707,21 +818,21 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 							SendClientMessage(playerid, grey, "Apenas policiais podem portar a escopeta com munição elastômero.");
 						}
 					else {
-						GivePlayerWeapon(playerid, 25, 500); // Escopeta (Elastômero)
+						GivePlayerWeapon(playerid, 25, 100); // Escopeta (Elastômero)
 						player[playerid][pElastomero] = 1;
 					}
 				}
-				case 10: GivePlayerWeapon(playerid, 27, 500); // Escopeta de combate
-				case 11: GivePlayerWeapon(playerid, 26, 500); // Escopeta de cano serrado
+				case 10: GivePlayerWeapon(playerid, 27, 100); // Escopeta de combate
+				case 11: GivePlayerWeapon(playerid, 26, 100); // Escopeta de cano serrado
 				case 12: GivePlayerWeapon(playerid, 28, 500); // UZI
 				case 13: GivePlayerWeapon(playerid, 32, 500); // TEC9
 				case 14: GivePlayerWeapon(playerid, 29, 500); // MP5
 				case 15: GivePlayerWeapon(playerid, 31, 500); // M4
 				case 16: GivePlayerWeapon(playerid, 30, 500); // AK47
-				case 17: GivePlayerWeapon(playerid, 34,  10); // Sniper
-				case 18: GivePlayerWeapon(playerid, 33, 20); // Rifle de caça
+				case 17: GivePlayerWeapon(playerid, 34,  50); // Sniper
+				case 18: GivePlayerWeapon(playerid, 33, 50); // Rifle de caça
 				case 19: GivePlayerWeapon(playerid, 17, 10); // Granada de fumaça
-				case 20: GivePlayerWeapon(playerid, 18, 10); // Molotov
+				case 20: GivePlayerWeapon(playerid, 18, 5); // Molotov
 				case 21: GivePlayerWeapon(playerid, 40, 1); // Detonador
 				case 22: GivePlayerWeapon(playerid, 43, 0x7FFFFFFF); // Câmera
 				case 23: GivePlayerWeapon(playerid, 46, 1); // Paraquedas
@@ -1108,6 +1219,20 @@ public RadioEmergencia(string[]) {
             }
         }
     }
+}
+
+forward DestroyStinger(stingerid);
+public DestroyStinger(stingerid){
+    DestroyObject(iPickups[stingerid][0]);
+    DestroyPickup(iPickups[stingerid][1]);
+    DestroyPickup(iPickups[stingerid][2]);
+    DestroyPickup(iPickups[stingerid][3]);
+    DestroyPickup(iPickups[stingerid][4]);
+    iPickups[stingerid][0] = -1;
+    iPickups[stingerid][1] = -1;
+    iPickups[stingerid][2] = -1;
+    iPickups[stingerid][3] = -1;
+    iPickups[stingerid][4] = -1;
 }
 
 //Funções CMD:
@@ -1533,15 +1658,64 @@ CMD:ref(playerid) {
 	return 1;
 }
 
-CMD:radiopd(playerid, params[]) {
-	SendClientMessage(playerid, grey, "Rádio ativado.");
-    PlayAudioStreamForPlayer(playerid,"http://broadcastify.cdnstream1.com/20296");
-    return 1;
+CMD:tc(playerid, params[]) {
+	if(IsPlayerInAnyVehicle(playerid)){
+            SendClientMessage(playerid, grey, "Você não pode criar um tapete de pregos de dentro do veículo.");
+        }
+        else if (player[playerid][pFerido] == 1 || player[playerid][pDerrubado] == 1 || player[playerid][pAlgemado] == 1) {
+            SendClientMessage(playerid, grey, "Você não pode fazer isso. ");
+        }
+        else {
+            new Float:X, Float:Y, Float:Z, Float:A;
+            GetPlayerPos(playerid, X, Y, Z);
+            GetPlayerFacingAngle(playerid, A);
+            CreateSmallStinger(X+(floatsin(-A, degrees)), Y+(floatcos(-A, degrees)), Z-0.825, A+90, GetPlayerVirtualWorld(playerid));
+            ApplyAnimation(playerid, "COLT45", "2guns_crouchfire", 4.1, 0, 0, 0, 0, 0, 1);
+            SendClientMessage(playerid, grey, "Tapete de pregos criado com sucesso.");
+        }
+        /* else {
+            new vehicleid = GetPlayerVehicleID(playerid);
+            new Float:X, Float:Y, Float:Z, Float:A;
+            GetVehiclePos(vehicleid, X, Y, Z);
+            GetVehicleZAngle(vehicleid, A);
+            CreateLargeStinger(X-(floatsin(-A, degrees)), Y-(floatcos(-A, degrees)), Z-0.325, A+90, GetPlayerVirtualWorld(playerid));
+        } */
+	return 1;
 }
 
-CMD:radiopausar(playerid, params[]) {
-	SendClientMessage(playerid, grey, "Rádio desativado.");
-    StopAudioStreamForPlayer(playerid);
+CMD:tr(playerid, params[]) {
+	new Float:X, Float:Y, Float:Z;
+	if (player[playerid][pFerido] == 1 || player[playerid][pDerrubado] == 1 || player[playerid][pAlgemado] == 1) {
+        SendClientMessage(playerid, grey, "Você não pode fazer isso. ");
+    }
+    else {
+		for(new stingerid = 0; stingerid < sizeof(iPickups); stingerid++) {
+			if(iPickups[stingerid][0] == -1)
+				continue;
+			
+			GetObjectPos(iPickups[stingerid][0], X, Y, Z);
+			if(IsPlayerInRangeOfPoint(playerid, 2.0, X, Y, Z)){
+				SetTimerEx("DestroyStinger", 2100, 0, "i", stingerid);
+				ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 0, 0, 0, 0, 0, 1);
+				SendClientMessage(playerid, grey, "Tapete de pregos removido.");
+				break;
+        	}
+    	}
+	}
+	return 1;
+}
+
+CMD:radiopd(playerid, params[]) {
+	if (player[playerid][pRadioPD] == 0) {
+		PlayAudioStreamForPlayer(playerid,"http://broadcastify.cdnstream1.com/20296");
+		player[playerid][pRadioPD] = 1;
+		SendClientMessage(playerid, grey, "Rádio sincronizado com sucesso.");
+	}
+	else {
+		SendClientMessage(playerid, grey, "Rádio definido para transmitir apenas texto.");
+		StopAudioStreamForPlayer(playerid);
+		player[playerid][pRadioPD] = 0;
+	}
     return 1;
 }
 
