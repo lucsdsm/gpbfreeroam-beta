@@ -2198,7 +2198,7 @@ CMD:tr(playerid, params[]) {
 			
 			GetObjectPos(iPickups[stingerid][0], X, Y, Z);
 			if(IsPlayerInRangeOfPoint(playerid, 2.0, X, Y, Z)){
-				SetTimerEx("DestroyStinger", 2100, 0, "i", stingerid);
+				DestroyStinger(stingerid);
 				ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 0, 0, 0, 0, 0, 1);
 				SendClientMessage(playerid, grey, "Tapete de pregos removido.");
 				break;
