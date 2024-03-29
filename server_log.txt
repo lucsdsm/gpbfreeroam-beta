@@ -1,0 +1,51 @@
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[07:24:43] 
+[07:24:43] Server Plugins
+[07:24:43] --------------
+[07:24:43]  Loading plugin: sscanf
+[07:24:43] 
+[07:24:43]  ===============================
+[07:24:43] 
+[07:24:43]       sscanf plugin loaded.     
+[07:24:43] 
+[07:24:43]          Version: 2.13.8
+[07:24:43] 
+[07:24:43]    (c) 2022 Alex "Y_Less" Cole  
+[07:24:43] 
+[07:24:43]  ===============================
+[07:24:43] 
+[07:24:43]   Loaded.
+[07:24:43]  Loading plugin: crashdetect
+[07:24:43]   CrashDetect plugin 4.21
+[07:24:43]   Loaded.
+[07:24:43]  Loading plugin: streamer
+[07:24:43] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[07:24:43]   Loaded.
+[07:24:43]  Loading plugin: pawn-memory
+[07:24:43] ========================
+[07:24:43] = Memory access plugin =
+[07:24:43] =       Made by BigETI =
+[07:24:43] = Loaded!              =
+[07:24:43] ========================
+[07:24:43]   Loaded.
+[07:24:43]  Loaded 4 plugins.
+
+[07:24:43] 
+[07:24:43] Filterscripts
+[07:24:43] ---------------
+[07:24:43]   Loading filterscript 'mapa.amx'...
+[07:24:43]   Loading filterscript 'sinuca.amx'...
+[07:24:43]   Loaded 2 filterscripts.
+
+[07:24:43] Number of vehicle models: 1
