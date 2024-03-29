@@ -1670,7 +1670,7 @@ CMD:tc(playerid, params[]) {
             GetPlayerPos(playerid, X, Y, Z);
             GetPlayerFacingAngle(playerid, A);
             CreateSmallStinger(X+(floatsin(-A, degrees)), Y+(floatcos(-A, degrees)), Z-0.825, A+90, GetPlayerVirtualWorld(playerid));
-            ApplyAnimation(playerid, "COLT45", "2guns_crouchfire", 4.1, 0, 0, 0, 0, 0, 1);
+            ApplyAnimation(playerid, "GRENADE", "WEAPON_throwu", 4.1, 0, 0, 0, 0, 0, 1);
             SendClientMessage(playerid, grey, "Tapete de pregos criado com sucesso.");
         }
         /* else {
