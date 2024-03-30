@@ -682,3 +682,45 @@ Console input: gmx
 [19:36:23] Number of vehicle models: 0
 Console input: gmx
 [19:41:59] Number of vehicle models: 0
+Console input: gmx
+[19:43:54] Number of vehicle models: 0
+Console input: gmx
+[19:48:19] Number of vehicle models: 0
+[19:48:27] [debug] Run time error 5: "Invalid memory access"
+[19:48:27] [debug] AMX backtrace:
+[19:48:27] [debug] #0 0001ae84 in public MensagemLonga (playerid=0, text[]=@ffffffaa "", 5789952, 20) at D:\gpbfreeroam\gamemodes\gpb.pwn:1587
+Console input: gmx
+[19:49:06] Number of vehicle models: 0
+[19:49:06] [debug] Run time error 5: "Invalid memory access"
+[19:49:06] [debug] AMX backtrace:
+[19:49:06] [debug] #0 0001ae84 in public MensagemLonga (playerid=0, text[]=@ffffffaa "", 5789948, 20) at D:\gpbfreeroam\gamemodes\gpb.pwn:1587
+[19:49:11] [debug] Run time error 5: "Invalid memory access"
+[19:49:11] [debug] AMX backtrace:
+[19:49:11] [debug] #0 0001ae84 in public MensagemLonga (playerid=0, text[]=@ffffffaa "", 5789948, 20) at D:\gpbfreeroam\gamemodes\gpb.pwn:1587
+[19:49:23] [debug] Run time error 5: "Invalid memory access"
+[19:49:23] [debug] AMX backtrace:
+[19:49:23] [debug] #0 0001ae84 in public MensagemLonga (playerid=0, text[]=@ffffffaa "", 5789948, 20) at D:\gpbfreeroam\gamemodes\gpb.pwn:1587
+Console input: gmxgmx
+Console input: gmx
+[19:50:17] Number of vehicle models: 0
+[19:50:21] [debug] Run time error 5: "Invalid memory access"
+[19:50:21] [debug] AMX backtrace:
+[19:50:21] [debug] #0 0001ae84 in public MensagemLonga (playerid=0, text[]=@ffffffaa "", 5789968, 20, 26880, 4390912, 4390912, 4390912, 1979711488) at D:\gpbfreeroam\gamemodes\gpb.pwn:1587
+Console input: gmx
+[19:50:48] Number of vehicle models: 0
+[19:50:50] [debug] Run time error 5: "Invalid memory access"
+[19:50:50] [debug] AMX backtrace:
+[19:50:50] [debug] #0 0001ae84 in public MensagemLonga (playerid=0, text[]=@ffffffaa "", 5789960, 20, 26880, 4390912, 4390912) at D:\gpbfreeroam\gamemodes\gpb.pwn:1587
+Console input: gmx
+[19:52:32] Number of vehicle models: 0
+Console input: gmx
+[19:53:19] Number of vehicle models: 0
+Console input: gmx
+[19:56:28] Number of vehicle models: 0
+Console input: gmx
+[19:57:07] Number of vehicle models: 0
+Console input: gmx
+[19:58:48] Number of vehicle models: 0
+Console input: gmx
+[20:01:43] Number of vehicle models: 0
+[20:02:25] [part] [GPB]Lucas has left the server (0:0)
