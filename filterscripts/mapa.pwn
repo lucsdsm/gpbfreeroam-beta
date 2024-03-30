@@ -1708,7 +1708,6 @@ public OnFilterScriptInit() {
     o_Parte4[416] = CreateObject(1434, 2914.5063, -1313.4875, 9.8843, 0.0000, 0.3000, -77.2000); //DYN_ROADBARRIER_5a
     o_Parte4[417] = CreateObject(1434, 2915.8151, -1319.2509, 9.8534, 0.0000, 0.3000, -77.2000); //DYN_ROADBARRIER_5a
     o_Parte4[418] = CreateObject(1434, 2916.8884, -1324.6057, 9.8248, 0.0000, 0.3000, -77.2000); //DYN_ROADBARRIER_5a
-    
     return 1;
 
 }

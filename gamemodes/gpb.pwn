@@ -1945,15 +1945,11 @@ CMD:mp(playerid, params[]) {
 		SendClientMessage(destinatario, yellow, gpbMensagem);
 		SendClientMessage(playerid, yellow, gpbMensagem2);
 		SendClientMessage(destinatario, yellow, gpbMensagem2);
-		PlayerPlaySound(playerid, 1058, 0.0, 0.0, 0.0);
-		PlayerPlaySound(destinatario, 1058, 0.0, 0.0, 0.0);
 	}
 	else {
 		format(gpbMensagem, sizeof(gpbMensagem), "%s para %s: %s", GetName(playerid), GetName(destinatario), text);
 		SendClientMessage(playerid, yellow, gpbMensagem);
 		SendClientMessage(destinatario, yellow, gpbMensagem);
-		PlayerPlaySound(playerid, 1058, 0.0, 0.0, 0.0);
-		PlayerPlaySound(destinatario, 1058, 0.0, 0.0, 0.0);
 	}
 	return 1;
 }
@@ -2403,7 +2399,7 @@ CMD:vd(playerid, params[]) {
 		DestroyVehicle(vehicleid);
 	}
 	else {
-		if(VehicleAsDriver(playerid) == 1) {
+		if(Vehicle) {
 			SendClientMessage(playerid, grey, "Você não pode excluir um veículo com um jogador dentro.");
 		}
 		else {
