@@ -633,7 +633,7 @@ public OnPlayerText(playerid, text[]) {
 		strdel(text, 75, 149);
 		format(gpbMensagem, 500, "%s — %s [...]", GetName(playerid), text);
 		SendRangedMessage(playerid, white, gpbMensagem, 20);
-		SendRangedMessage(playerid, white, gpbMensagem2, 20);
+		// SendRangedMessage(playerid, white, gpbMensagem, 20);
 		SetPlayerChatBubble(playerid, gpbMensagem, white, 20, 10000);
 	}
 	else {
@@ -1582,6 +1582,16 @@ public DelayedKick(playerid) {
     return 1;
 }
 
+forward MensagemLonga(playerid, text[]);
+public MensagemLonga(playerid, text[]) {
+	text[0] = toupper(text[0]);
+	new gpbMensagem2[128];
+	format(gpbMensagem2, 500, "[...] %s", text[75]);
+	strdel(text, 75, 149);
+	format(gpbMensagem, 500, "%s — %s [...]", GetName(playerid), text);
+	SendRangedMessage(playerid, white, gpbMensagem2, 20);
+}
+
 forward VerificaNome(playerid);
 public VerificaNome(playerid) {
 	new playerName[MAX_PLAYER_NAME];
@@ -1758,7 +1768,7 @@ CMD:me(playerid, text[]) {
 		strdel(text, 75, 149);
 		format(gpbMensagem, 500, "%s %s [...]", GetName(playerid), text);
 		SendRangedMessage(playerid, purple, gpbMensagem, 20);
-		SendRangedMessage(playerid, purple, gpbMensagem2, 20);
+		// SendRangedMessage(playerid, purple, gpbMensagem2, 20);
 		SetPlayerChatBubble(playerid, gpbMensagem, purple, 20, 10000);
 	}
 	else {
@@ -1780,7 +1790,7 @@ CMD:ame(playerid, text[]) {
 		strdel(text, 75, 149);
 		format(gpbMensagem, 500, "%s %s [...]", GetName(playerid), text);
 		SendClientMessage(playerid, purple, gpbMensagem);
-		SendClientMessage(playerid, purple, gpbMensagem2);
+		// SendClientMessage(playerid, purple, gpbMensagem2);
 		SetPlayerChatBubble(playerid, gpbMensagem, purple, 20, 10000);
 	}
 	else {
@@ -1803,7 +1813,7 @@ CMD:do(playerid, text[]) {
 		strdel(text, 75, 149);
 		format(gpbMensagem, 500, "[ID: %i]: %s [...]", playerid, text);
 		SendRangedMessage(playerid, green, gpbMensagem, 20);
-		SendRangedMessage(playerid, green, gpbMensagem2, 20);
+		// SendRangedMessage(playerid, green, gpbMensagem2, 20);
 	}
 	else {
 		text[0] = toupper(text[0]);
@@ -1824,7 +1834,7 @@ CMD:d(playerid, text[]) {
 		strdel(text, 75, 149);
 		format(gpbMensagem, 500, "[ID: %i]: %s [...]", playerid, text);
 		SendClientMessageToAll(red, gpbMensagem);
-		SendClientMessageToAll(red, gpbMensagem2);
+		// SendClientMessageToAll(red, gpbMensagem2);
 	}
 	else {
 		text[0] = toupper(text[0]);
@@ -1845,7 +1855,7 @@ CMD:gl(playerid, text[]) {
 		strdel(text, 75, 149);
 		format(gpbMensagem, 500, "%s: %s [...]",  GetName(playerid), text);
 		SendClientMessageToAll(orange, gpbMensagem);
-		SendClientMessageToAll(orange, gpbMensagem2);
+		// SendClientMessageToAll(orange, gpbMensagem2);
 	}
 	else {
 		format(gpbMensagem, 500, "%s: %s", GetName(playerid), text);
@@ -1865,7 +1875,7 @@ CMD:ooc(playerid, text[]) {
 		strdel(text, 75, 149);
 		format(gpbMensagem, 500, "%s [ooc] — %s",  GetName(playerid), text);
 		SendClientMessageToAll(indigo, gpbMensagem);
-		SendClientMessageToAll(indigo, gpbMensagem2);
+		// SendClientMessageToAll(indigo, gpbMensagem2);
 	}
 	else {
 		format(gpbMensagem, 500, "%s [ooc] — %s", GetName(playerid), text);
@@ -1892,7 +1902,7 @@ CMD:gr(playerid, text[]) {
 			strdel(text, 75, 149);
 			format(gpbMensagem, 500, "%s gritou — %s [...]", GetName(playerid), text);
 			SendClientMessageToAll(white, gpbMensagem);
-			SendClientMessageToAll(white, gpbMensagem2);
+			// SendClientMessageToAll(white, gpbMensagem2);
 		}
 		 else {
 			format(gpbMensagem, 500, "%s gritou — %s!", GetName(playerid), text);
@@ -1914,7 +1924,7 @@ CMD:sus(playerid, text[]) {
 		strdel(text, 75, 149);
 		format(gpbMensagem, 500, "%s susurra — %s [...]", GetName(playerid), text);
 		SendClientMessageToAll(grey, gpbMensagem);
-		SendClientMessageToAll(grey, gpbMensagem2);
+		// SendClientMessageToAll(grey, gpbMensagem2);
 	}
 	else {
 		text[0] = toupper(text[0]);
@@ -1944,7 +1954,7 @@ CMD:mp(playerid, params[]) {
 		SendClientMessage(playerid, yellow, gpbMensagem);
 		SendClientMessage(destinatario, yellow, gpbMensagem);
 		SendClientMessage(playerid, yellow, gpbMensagem2);
-		SendClientMessage(destinatario, yellow, gpbMensagem2);
+		// SendClientMessage(destinatario, yellow, gpbMensagem2);
 	}
 	else {
 		format(gpbMensagem, sizeof(gpbMensagem), "%s para %s: %s", GetName(playerid), GetName(destinatario), text);
@@ -1980,15 +1990,15 @@ CMD:r(playerid, text[]) {
 			format(mensagem, sizeof(mensagem), "[ID: %i - F:%i]: %s [...]", playerid, player[playerid][pEquipe], text[0]);
 			if (player[playerid][pEquipe] == 1) {
 				RadioPolicia(mensagem);
-				RadioPolicia(gpbMensagem2);
+				// RadioPolicia(gpbMensagem2);
 			}
 			else if (player[playerid][pEquipe] == 2) {
 				RadioCriminoso(mensagem);
-				RadioCriminoso(gpbMensagem2);
+				// RadioCriminoso(gpbMensagem2);
 			}
 			else if (player[playerid][pEquipe] == 3) {
 				RadioParamedico(mensagem);
-				RadioParamedico(gpbMensagem2);
+				// RadioParamedico(gpbMensagem2);
 			}
 		} 
 		else {
@@ -2038,7 +2048,7 @@ CMD:mf(playerid, text[]) {
 			strdel(text, 75, 149);
 			format(gpbMensagem, 500, "[ID: %i] pelo megafone — %s [...]", playerid, text);
 			SendRangedMessage(playerid, yellow, gpbMensagem, 75);
-    		SendRangedMessage(playerid, yellow, gpbMensagem2, 75);
+    		// SendRangedMessage(playerid, yellow, gpbMensagem2, 75);
 		}
 		else {
 			format(gpbMensagem, 500, "[ID: %i] pelo megafone — %s", playerid, text);
@@ -2063,7 +2073,7 @@ CMD:911(playerid, text[]) {
 			SendClientMessage(playerid, grey, "Seu chamado foi encaminhado para as unidades de emergência.");
 			format(mensagem, sizeof(mensagem), "[Central] Relato recebido próximo a(o) %s: %s", zone, text[0]);
 			RadioEmergencia(mensagem);
-			RadioEmergencia(gpbMensagem2);
+			// RadioEmergencia(gpbMensagem2);
 		}
 		else {
 			text[0] = toupper(text[0]);
@@ -2092,7 +2102,7 @@ CMD:190(playerid, text[]) {
 			format(gpbMensagem2, 500, "[...] %s", text[75]);
 			format(mensagem, sizeof(mensagem), "[Central] Relato recebido próximo a(o) %s: %s", zone, text[0]);
 			RadioEmergencia(mensagem);
-			RadioEmergencia(gpbMensagem2);
+			// RadioEmergencia(gpbMensagem2);
 			SendClientMessage(playerid, grey, "Seu chamado foi encaminhado para as unidades de emergência.");
 			strdel(text, 75, 149);
 		}
@@ -2399,7 +2409,7 @@ CMD:vd(playerid, params[]) {
 		DestroyVehicle(vehicleid);
 	}
 	else {
-		if(Vehicle) {
+		if(VehicleAsDriver(playerid)) {
 			SendClientMessage(playerid, grey, "Você não pode excluir um veículo com um jogador dentro.");
 		}
 		else {
