@@ -2113,7 +2113,9 @@ CMD:911(playerid, text[]) {
 		SendClientMessage(playerid, grey, "/911 [mensagem]");
 	}
 	else {
-		ApplyAnimation(playerid, "ped", "phone_talk", 2.0, 0, 0, 0, 0, 0, 1);
+		if (GetPlayerSpecialAction(playerid) != SPECIAL_ACTION_DUCK && player[playerid][pDerrubado] == 0  && player[playerid][pFerido] == 1 && player[playerid][pAnim] == 1) {
+			ApplyAnimation(playerid, "ped", "phone_talk", 2.0, 0, 0, 0, 0, 0, 1);
+		}
 		if(strlen(text) > 75) {
 			new mensagem[128];
 			new gpbMensagem2[128];
@@ -2143,7 +2145,9 @@ CMD:190(playerid, text[]) {
 		SendClientMessage(playerid, grey, "/190 [mensagem]");
 	}
 	else {
-		ApplyAnimation(playerid, "ped", "phone_talk", 2.0, 0, 0, 0, 0, 0, 1);
+		if (GetPlayerSpecialAction(playerid) != SPECIAL_ACTION_DUCK && player[playerid][pDerrubado] == 0  && player[playerid][pFerido] == 1 && player[playerid][pAnim] == 1) {
+			ApplyAnimation(playerid, "ped", "phone_talk", 2.0, 0, 0, 0, 0, 0, 1);
+		}
 		if(strlen(text) > 75) {
 			new mensagem[128];
 			new gpbMensagem2[128];
