@@ -1058,6 +1058,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						SendClientMessage(playerid, grey, "Agora você é um policial. Use /r para comunicar-se com sua equipe.");
 						PlayAudioStreamForPlayer(playerid, "https://www.dl.dropboxusercontent.com/s/e5r1ncgz5ghaypn/gpb_noise.mp3");
 						SetPlayerColor(playerid, white);
+						SetTimerEx("RadioEntra", 2000, false, "i", playerid);
 					}
 				case 2: // Criminoso
 					if(player[playerid][pEquipe] == 2) {
@@ -1068,6 +1069,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						SendClientMessage(playerid, grey, "Criminoso. Use /r caso queira comunicar-se com mais criminosos.");
 						PlayAudioStreamForPlayer(playerid, "https://www.dl.dropboxusercontent.com/s/e5r1ncgz5ghaypn/gpb_noise.mp3");
 						SetPlayerColor(playerid, white);
+						SetTimerEx("RadioEntra", 2000, false, "i", playerid);
 					}
 				case 3: // Paramédico
 					if(player[playerid][pEquipe] == 3) {
@@ -1077,6 +1079,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						player[playerid][pEquipe] = 3;
 						SendClientMessage(playerid, grey, "Paramédico selecionado com sucesso. Você ganhou um rádio para comunicar-se com sua equipe.");
 						PlayAudioStreamForPlayer(playerid, "https://www.dl.dropboxusercontent.com/s/e5r1ncgz5ghaypn/gpb_noise.mp3");
+						SetTimerEx("RadioEntra", 2000, false, "i", playerid);
 						SetPlayerColor(playerid, white);
 					}
 			}
@@ -1685,6 +1688,19 @@ public DesligarMotor(playerid) {
 		SendRangedMessage(playerid, purple, gpbMensagem, 10);
 		veiculoMotor[vehicleid] = 0;
 	}
+}
+
+forward RadioEntra(playerid);
+public RadioEntra(playerid) {
+    for(new i = 0; i < MAX_PLAYERS; i++) {
+        if(IsPlayerConnected(i)) {
+            if(player[i][pEquipe] == 1) {
+				format(gpbMensagem, sizeof(gpbMensagem), "[ID: %i - F:%i] entrou na frequência.", playerid, player[playerid][pEquipe]);
+				SendClientMessage(i, rose, gpbMensagem);
+				PlayAudioStreamForPlayer(i, "https://www.dl.dropboxusercontent.com/s/xkslcjrnxvlngvm/gpb_radioon.mp3");
+            }
+        }
+    }
 }
 
 forward RadioPolicia(string[]);
