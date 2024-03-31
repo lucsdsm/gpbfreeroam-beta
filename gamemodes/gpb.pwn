@@ -439,14 +439,14 @@ public OnPlayerSpawn(playerid) {
 
 public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart) {
 	new Float:health;
-	new Float:headshot = random(3);
+	// new Float:headshot = random(3);
 	GetPlayerHealth(playerid,health);
 	if (player[playerid][pAnim] == 1) { // Remove as animações ao atirar
 		player[playerid][pAnim] = 0;
 		ClearAnimations(playerid, 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 	}
-	if ((health < 65 || bodypart == 9) && !IsPlayerInAnyVehicle(playerid) && weaponid != 23 && weaponid != 25 && player[playerid][pFerido] == 0) { // Geral
+	if ((health < 65 /*|| bodypart == 9*/) && !IsPlayerInAnyVehicle(playerid) && weaponid != 23 && weaponid != 25 && player[playerid][pFerido] == 0) { // Geral
 		player[playerid][pFerido] = 1;
 		SetPlayerHealth(playerid, 98303);
 		SetPlayerColor(playerid, red);
@@ -454,7 +454,15 @@ public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart)
 		SendClientMessage(playerid, grey, "Você está ferido. Para voltar ao controle do personagem use o /reviver.");
 
 	}
-	if (bodypart == 9 && IsPlayerInAnyVehicle(playerid)) { // Cria uma chance para headshot dentro de veículos
+	if ((health < 65 /*|| bodypart == 9*/) && IsPlayerInAnyVehicle(playerid) && weaponid != 23 && weaponid != 25 && player[playerid][pFerido] == 0) { // Vítima em algum veículo
+		player[playerid][pFerido] = 1;
+		SetPlayerHealth(playerid, 98303);
+		SetPlayerColor(playerid, red);
+		ApplyAnimation(playerid, "ped", "car_dead_lhs", 4.1, 0, 1, 0, 1, 0, 1);
+		SendClientMessage(playerid, grey, "Você está ferido. Para voltar ao controle do personagem use o /reviver.");
+
+	}
+	/* if (bodypart == 9 && IsPlayerInAnyVehicle(playerid)) { // Cria uma chance para headshot dentro de veículos
 		if (headshot == 1) {
 			player[playerid][pFerido] = 1;
 			SetPlayerHealth(playerid, 98303);
@@ -466,7 +474,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart)
 		else {
 			SetPlayerHealth(playerid, health+amount);
 		}	
-	}
+	} */
 	if ((health < 65)) { // Impedir mensagens duplicadas
 		if (weaponid == 37 || weaponid == 9) {
 			return 1;
@@ -510,7 +518,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart)
 			GetPlayerHealth(playerid, health);
 			SetPlayerHealth(playerid, health-dano);
 			
-			if (bodypart == 9 && player[playerid][pFerido] == 0 && !IsPlayerInAnyVehicle(playerid)) {
+			if (/*bodypart == 9 &&*/ player[playerid][pFerido] == 0 && !IsPlayerInAnyVehicle(playerid)) {
 				player[playerid][pFerido] = 1;
 				SetPlayerHealth(playerid, 98303);
 				SetPlayerColor(playerid, red);
@@ -626,14 +634,13 @@ public OnPlayerText(playerid, text[]) {
 			ApplyAnimation(playerid, "GANGS", "prtial_gngtlkH", 4.1, 0, 0, 0, 0, 0, 1);
 		}
 	}
-	if(strlen(text) > 75) {
+	if(strlen(text) > 65) {
 		text[0] = toupper(text[0]);
 		new gpbMensagem2[128];
-		format(gpbMensagem2, 500, "[...] %s", text[75]);
-		strdel(text, 75, 149);
-		format(gpbMensagem, 500, "%s — %s [...]", GetName(playerid), text);
+		format(gpbMensagem, sizeof(gpbMensagem), "%s — %.64s [...]", GetName(playerid), text);
+		format(gpbMensagem2, sizeof(gpbMensagem2), "[...]%s", text[64]);
 		SendRangedMessage(playerid, white, gpbMensagem, 20);
-		// SendRangedMessage(playerid, white, gpbMensagem, 20);
+		SendRangedMessage(playerid, white, gpbMensagem2, 20);
 		SetPlayerChatBubble(playerid, gpbMensagem, white, 20, 10000);
 	}
 	else {
@@ -1550,10 +1557,8 @@ public OnVehicleDamageStatusUpdate(vehicleid, playerid) {
 		GetVehicleParamsEx(GetPlayerVehicleID(playerid),enginem, lights, alarm, doors, bonnet, boot, objective);
 		SetVehicleParamsEx(GetPlayerVehicleID(playerid),VEHICLE_PARAMS_OFF, lights, alarm, doors, bonnet, boot, objective);
 		veiculoAvariado[vehicleid] = 1;
-	}
-	if (health == 400) {
 		SendClientMessage(playerid, grey, "Seu veículo avariou. Use o comando /fix para usá-lo novamente.");
-	} 
+	}
 	return 1;
 }
 
@@ -1582,14 +1587,10 @@ public DelayedKick(playerid) {
     return 1;
 }
 
-forward MensagemLonga(playerid, text[]);
-public MensagemLonga(playerid, text[]) {
-	text[0] = toupper(text[0]);
-	new gpbMensagem2[128];
-	format(gpbMensagem2, 500, "[...] %s", text[75]);
-	strdel(text, 75, 149);
-	format(gpbMensagem, 500, "%s — %s [...]", GetName(playerid), text);
-	SendRangedMessage(playerid, white, gpbMensagem2, 20);
+forward DelayRadioAudio(i);
+public DelayRadioAudio(i) {
+	PlayAudioStreamForPlayer(i, "https://www.dl.dropboxusercontent.com/s/p26xc6hpnc606wy/gpb_ptt.mp3");
+	return 1;
 }
 
 forward VerificaNome(playerid);
@@ -1694,6 +1695,17 @@ public RadioPolicia(string[]) {
     }
 }
 
+forward RadioPoliciaLongo(string[]);
+public RadioPoliciaLongo(string[]) {
+    for(new i = 0; i < MAX_PLAYERS; i++) {
+        if(IsPlayerConnected(i)) {
+            if(player[i][pEquipe] == 1) {
+                SendClientMessage(i, rose, string);
+            }
+        }
+    }
+}
+
 forward RadioCriminoso(string[]);
 public RadioCriminoso(string[]) {
     for(new i = 0; i < MAX_PLAYERS; i++) {
@@ -1701,6 +1713,17 @@ public RadioCriminoso(string[]) {
             if(player[i][pEquipe] == 2) {
                 SendClientMessage(i, rose, string);
 				PlayAudioStreamForPlayer(i, "https://www.dl.dropboxusercontent.com/s/p26xc6hpnc606wy/gpb_ptt.mp3");
+            }
+        }
+    }
+}
+
+forward RadioCriminosoLongo(string[]);
+public RadioCriminosoLongo(string[]) {
+    for(new i = 0; i < MAX_PLAYERS; i++) {
+        if(IsPlayerConnected(i)) {
+            if(player[i][pEquipe] == 2) {
+                SendClientMessage(i, rose, string);
             }
         }
     }
@@ -1718,6 +1741,17 @@ public RadioParamedico(string[]) {
     }
 }
 
+forward RadioParamedicoLongo(string[]);
+public RadioParamedicoLongo(string[]) {
+    for(new i = 0; i < MAX_PLAYERS; i++) {
+        if(IsPlayerConnected(i)) {
+            if(player[i][pEquipe] == 3) {
+                SendClientMessage(i, rose, string);
+            }
+        }
+    }
+}
+
 forward RadioEmergencia(string[]);
 public RadioEmergencia(string[]) {
     for(new i = 0; i < MAX_PLAYERS; i++) {
@@ -1729,6 +1763,20 @@ public RadioEmergencia(string[]) {
 			if(player[i][pEquipe] == 3) {
                 SendClientMessage(i, rose, string);
 				PlayAudioStreamForPlayer(i, "https://www.dl.dropboxusercontent.com/s/p26xc6hpnc606wy/gpb_ptt.mp3");
+            }
+        }
+    }
+}
+
+forward RadioEmergenciaLongo(string[]);
+public RadioEmergenciaLongo(string[]) {
+    for(new i = 0; i < MAX_PLAYERS; i++) {
+        if(IsPlayerConnected(i)) {
+            if(player[i][pEquipe] == 1) {
+                SendClientMessage(i, rose, string);
+            }
+			if(player[i][pEquipe] == 3) {
+                SendClientMessage(i, rose, string);
             }
         }
     }
@@ -1768,7 +1816,7 @@ CMD:me(playerid, text[]) {
 		strdel(text, 75, 149);
 		format(gpbMensagem, 500, "%s %s [...]", GetName(playerid), text);
 		SendRangedMessage(playerid, purple, gpbMensagem, 20);
-		// SendRangedMessage(playerid, purple, gpbMensagem2, 20);
+		SendRangedMessage(playerid, purple, gpbMensagem2, 20);
 		SetPlayerChatBubble(playerid, gpbMensagem, purple, 20, 10000);
 	}
 	else {
@@ -1790,7 +1838,7 @@ CMD:ame(playerid, text[]) {
 		strdel(text, 75, 149);
 		format(gpbMensagem, 500, "%s %s [...]", GetName(playerid), text);
 		SendClientMessage(playerid, purple, gpbMensagem);
-		// SendClientMessage(playerid, purple, gpbMensagem2);
+		SendClientMessage(playerid, purple, gpbMensagem2);
 		SetPlayerChatBubble(playerid, gpbMensagem, purple, 20, 10000);
 	}
 	else {
@@ -1813,7 +1861,7 @@ CMD:do(playerid, text[]) {
 		strdel(text, 75, 149);
 		format(gpbMensagem, 500, "[ID: %i]: %s [...]", playerid, text);
 		SendRangedMessage(playerid, green, gpbMensagem, 20);
-		// SendRangedMessage(playerid, green, gpbMensagem2, 20);
+		SendRangedMessage(playerid, green, gpbMensagem2, 20);
 	}
 	else {
 		text[0] = toupper(text[0]);
@@ -1834,7 +1882,7 @@ CMD:d(playerid, text[]) {
 		strdel(text, 75, 149);
 		format(gpbMensagem, 500, "[ID: %i]: %s [...]", playerid, text);
 		SendClientMessageToAll(red, gpbMensagem);
-		// SendClientMessageToAll(red, gpbMensagem2);
+		SendClientMessageToAll(red, gpbMensagem2);
 	}
 	else {
 		text[0] = toupper(text[0]);
@@ -1855,7 +1903,7 @@ CMD:gl(playerid, text[]) {
 		strdel(text, 75, 149);
 		format(gpbMensagem, 500, "%s: %s [...]",  GetName(playerid), text);
 		SendClientMessageToAll(orange, gpbMensagem);
-		// SendClientMessageToAll(orange, gpbMensagem2);
+		SendClientMessageToAll(orange, gpbMensagem2);
 	}
 	else {
 		format(gpbMensagem, 500, "%s: %s", GetName(playerid), text);
@@ -1875,7 +1923,7 @@ CMD:ooc(playerid, text[]) {
 		strdel(text, 75, 149);
 		format(gpbMensagem, 500, "%s [ooc] — %s",  GetName(playerid), text);
 		SendClientMessageToAll(indigo, gpbMensagem);
-		// SendClientMessageToAll(indigo, gpbMensagem2);
+		SendClientMessageToAll(indigo, gpbMensagem2);
 	}
 	else {
 		format(gpbMensagem, 500, "%s [ooc] — %s", GetName(playerid), text);
@@ -1902,7 +1950,7 @@ CMD:gr(playerid, text[]) {
 			strdel(text, 75, 149);
 			format(gpbMensagem, 500, "%s gritou — %s [...]", GetName(playerid), text);
 			SendClientMessageToAll(white, gpbMensagem);
-			// SendClientMessageToAll(white, gpbMensagem2);
+			SendClientMessageToAll(white, gpbMensagem2);
 		}
 		 else {
 			format(gpbMensagem, 500, "%s gritou — %s!", GetName(playerid), text);
@@ -1923,8 +1971,8 @@ CMD:sus(playerid, text[]) {
 		format(gpbMensagem2, 500, "[...] %s", text[75]);
 		strdel(text, 75, 149);
 		format(gpbMensagem, 500, "%s susurra — %s [...]", GetName(playerid), text);
-		SendClientMessageToAll(grey, gpbMensagem);
-		// SendClientMessageToAll(grey, gpbMensagem2);
+		SendRangedMessage(playerid, grey, gpbMensagem, 3);
+		SendRangedMessage(playerid, grey, gpbMensagem2, 3);
 	}
 	else {
 		text[0] = toupper(text[0]);
@@ -1954,7 +2002,7 @@ CMD:mp(playerid, params[]) {
 		SendClientMessage(playerid, yellow, gpbMensagem);
 		SendClientMessage(destinatario, yellow, gpbMensagem);
 		SendClientMessage(playerid, yellow, gpbMensagem2);
-		// SendClientMessage(destinatario, yellow, gpbMensagem2);
+		SendClientMessage(destinatario, yellow, gpbMensagem2);
 	}
 	else {
 		format(gpbMensagem, sizeof(gpbMensagem), "%s para %s: %s", GetName(playerid), GetName(destinatario), text);
@@ -1983,36 +2031,33 @@ CMD:r(playerid, text[]) {
 		}
 		if(strlen(text) > 75) {
 			text[0] = toupper(text[0]);
-			new gpbMensagem2[128];
-			format(gpbMensagem2, 500, "[...] %s", text[75]);
-			strdel(text, 75, 149);
-			new mensagem[128];
-			format(mensagem, sizeof(mensagem), "[ID: %i - F:%i]: %s [...]", playerid, player[playerid][pEquipe], text[0]);
+			new gpbMensagem2[67];
+			format(gpbMensagem, sizeof(gpbMensagem), "[ID: %i - F:%i]: %.64s [...]", playerid, player[playerid][pEquipe], text[0]);
+			format(gpbMensagem2, sizeof(gpbMensagem2), "[...]%s", text[64]);
 			if (player[playerid][pEquipe] == 1) {
-				RadioPolicia(mensagem);
-				// RadioPolicia(gpbMensagem2);
+				RadioPolicia(gpbMensagem);
+				RadioPoliciaLongo(gpbMensagem2);
 			}
 			else if (player[playerid][pEquipe] == 2) {
-				RadioCriminoso(mensagem);
-				// RadioCriminoso(gpbMensagem2);
+				RadioCriminoso(gpbMensagem);
+				RadioCriminosoLongo(gpbMensagem2);
 			}
 			else if (player[playerid][pEquipe] == 3) {
-				RadioParamedico(mensagem);
-				// RadioParamedico(gpbMensagem2);
+				RadioParamedico(gpbMensagem);
+				RadioParamedicoLongo(gpbMensagem2);
 			}
 		} 
 		else {
 			text[0] = toupper(text[0]);
-			new mensagem[128];
-			format(mensagem, sizeof(mensagem), "[ID: %i - F:%i]: %s", playerid, player[playerid][pEquipe], text[0]);
+			format(gpbMensagem, sizeof(gpbMensagem), "[ID: %i - F:%i]: %s", playerid, player[playerid][pEquipe], text[0]);
 			if (player[playerid][pEquipe] == 1) {
-				RadioPolicia(mensagem);
+				RadioPolicia(gpbMensagem);
 			}
 			else if (player[playerid][pEquipe] == 2) {
-				RadioCriminoso(mensagem);
+				RadioCriminoso(gpbMensagem);
 			}
 			else if (player[playerid][pEquipe] == 3) {
-				RadioParamedico(mensagem);
+				RadioParamedico(gpbMensagem);
 			}
 		}
 	}
@@ -2048,7 +2093,7 @@ CMD:mf(playerid, text[]) {
 			strdel(text, 75, 149);
 			format(gpbMensagem, 500, "[ID: %i] pelo megafone — %s [...]", playerid, text);
 			SendRangedMessage(playerid, yellow, gpbMensagem, 75);
-    		// SendRangedMessage(playerid, yellow, gpbMensagem2, 75);
+    		SendRangedMessage(playerid, yellow, gpbMensagem2, 75);
 		}
 		else {
 			format(gpbMensagem, 500, "[ID: %i] pelo megafone — %s", playerid, text);
@@ -2073,7 +2118,7 @@ CMD:911(playerid, text[]) {
 			SendClientMessage(playerid, grey, "Seu chamado foi encaminhado para as unidades de emergência.");
 			format(mensagem, sizeof(mensagem), "[Central] Relato recebido próximo a(o) %s: %s", zone, text[0]);
 			RadioEmergencia(mensagem);
-			// RadioEmergencia(gpbMensagem2);
+			RadioEmergenciaLongo(gpbMensagem2);
 		}
 		else {
 			text[0] = toupper(text[0]);
@@ -2102,7 +2147,7 @@ CMD:190(playerid, text[]) {
 			format(gpbMensagem2, 500, "[...] %s", text[75]);
 			format(mensagem, sizeof(mensagem), "[Central] Relato recebido próximo a(o) %s: %s", zone, text[0]);
 			RadioEmergencia(mensagem);
-			// RadioEmergencia(gpbMensagem2);
+			RadioEmergenciaLongo(gpbMensagem2);
 			SendClientMessage(playerid, grey, "Seu chamado foi encaminhado para as unidades de emergência.");
 			strdel(text, 75, 149);
 		}
