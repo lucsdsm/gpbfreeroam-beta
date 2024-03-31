@@ -66,6 +66,7 @@ enum jogadorData {
    pAlgemado,
    pDerrubado,
    pAnim,
+   pAgachado,
    pElastomero,
    pRadioPD,
 }
@@ -368,7 +369,7 @@ stock CreateSmallStinger(Float:X, Float:Y, Float:Z, Float:A, virtualworld){
 
 //Funções públicas:
 public OnGameModeInit() {
-	SetGameModeText("GPB:F v0.4");
+	SetGameModeText("GPB:F v0.4.1");
     ManualVehicleEngineAndLights();
 	SetNameTagDrawDistance(20.0);
 	EnableStuntBonusForAll(0);
@@ -603,7 +604,10 @@ public OnVehicleDeath(vehicleid, killerid) {
 public OnPlayerText(playerid, text[]) {
 	new Float:chat = random(9);
 	if (player[playerid][pFerido] == 0 && player[playerid][pAlgemado] == 0 && player[playerid][pAnim] == 0 && !IsPlayerInAnyVehicle(playerid)) { // Variação na animação de chat.
-		if (chat == 0) {
+		if (GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_DUCK) {
+			return 1;
+		}
+		else if (chat == 0) {
 			ApplyAnimation(playerid, "MISC", "Idle_Chat_02", 4.1, 0, 0, 0, 0, 0, 1);
 		}
 		else if (chat == 1) {
@@ -650,6 +654,7 @@ public OnPlayerText(playerid, text[]) {
 		format(gpbMensagem, 500, "— %s", text);
 		SetPlayerChatBubble(playerid, gpbMensagem, white, 20, 10000);
 	}
+	return 1;
 }
 
 public OnPlayerCommandText(playerid, cmdtext[]) {
@@ -819,7 +824,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 			SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 		}
 	}
-	return 1;
+	return 1;	
 }
 
 public OnRconLoginAttempt(ip[], password[], success) {
@@ -2023,7 +2028,7 @@ CMD:r(playerid, text[]) {
         SendClientMessage(playerid, grey, "Você está ferido. Primeiro use o /reviver.");
     }
 	else {
-		if (!IsPlayerInAnyVehicle(playerid)) {
+		if (!IsPlayerInAnyVehicle(playerid) && GetPlayerSpecialAction(playerid) != SPECIAL_ACTION_DUCK) {
 			ApplyAnimation(playerid, "ped", "phone_out", 2.0, 0, 0, 0, 0, 0, 1);
 		}
 		else if (IsPlayerInAnyVehicle(playerid)) {
