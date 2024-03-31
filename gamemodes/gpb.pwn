@@ -651,10 +651,9 @@ public OnPlayerText(playerid, text[]) {
 		text[0] = toupper(text[0]);
 		format(gpbMensagem, 500, "%s — %s", GetName(playerid), text);
 		SendRangedMessage(playerid, white, gpbMensagem, 20);
-		format(gpbMensagem, 500, "— %s", text);
 		SetPlayerChatBubble(playerid, gpbMensagem, white, 20, 10000);
 	}
-	return 1;
+	return 0;
 }
 
 public OnPlayerCommandText(playerid, cmdtext[]) {
