@@ -1505,3 +1505,76 @@ Console input: gmx
 [07:35:38] Number of vehicle models: 0
 Console input: gmx
 [07:36:10] Number of vehicle models: 0
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[08:05:54] 
+[08:05:54] Server Plugins
+[08:05:54] --------------
+[08:05:54]  Loading plugin: sscanf
+[08:05:54] 
+[08:05:54]  ===============================
+[08:05:54] 
+[08:05:54]       sscanf plugin loaded.     
+[08:05:54] 
+[08:05:54]          Version: 2.13.8
+[08:05:54] 
+[08:05:54]    (c) 2022 Alex "Y_Less" Cole  
+[08:05:54] 
+[08:05:54]  ===============================
+[08:05:54] 
+[08:05:54]   Loaded.
+[08:05:54]  Loading plugin: crashdetect
+[08:05:54]   CrashDetect plugin 4.21
+[08:05:54]   Loaded.
+[08:05:54]  Loading plugin: streamer
+[08:05:54] 
+
+*** Streamer Plugin v2.9.4 by Incognito loaded ***
+
+[08:05:54]   Loaded.
+[08:05:54]  Loading plugin: pawn-memory
+[08:05:54] ========================
+[08:05:54] = Memory access plugin =
+[08:05:54] =       Made by BigETI =
+[08:05:54] = Loaded!              =
+[08:05:54] ========================
+[08:05:54]   Loaded.
+[08:05:54]  Loaded 4 plugins.
+
+[08:05:54] 
+[08:05:54] Filterscripts
+[08:05:54] ---------------
+[08:05:54]   Loading filterscript 'mapa.amx'...
+[08:05:54]   Loading filterscript 'sinuca.amx'...
+[08:05:54]   Loaded 2 filterscripts.
+
+[08:05:54] Number of vehicle models: 1
+[08:06:09] [connection] incoming connection: 127.0.0.1:55707 id: 0
+[08:06:09] [join] [GPB]Lucas has joined the server (0:127.0.0.1)
+Console input: gmx
+[08:07:10] Number of vehicle models: 0
+Console input: gmx
+[08:08:00] Number of vehicle models: 0
+Console input: gmx
+[08:11:07] Number of vehicle models: 0
+Console input: gmx
+[08:12:42] Number of vehicle models: 0
+Console input: gmx
+[08:18:39] Number of vehicle models: 0
+[08:20:02] [connection] incoming connection: 127.0.0.1:51879 id: 1
+[08:20:02] [join] [GPB]Kaio has joined the server (1:127.0.0.1)
+[08:20:21] [debug] Long callback execution detected (hang or performance issue)
+[08:20:21] [debug] AMX backtrace:
+[08:20:21] [debug] #0 0000a0c4 in ReturnVehicleId (vName[]=@00589500 "ls") at D:\gpbfreeroam\gamemodes\gpb.pwn:166
+[08:20:21] [debug] #1 00022d10 in public cmd_vc (playerid=0, params[]=@00585664 "ls") at D:\gpbfreeroam\gamemodes\gpb.pwn:2285
+[08:20:21] [debug] #2 native CallLocalFunction () in samp-server.exe
+[08:20:21] [debug] #3 00000a8c in public OnPlayerCommandText (playerid=0, cmdtext[]=@00585648 "/vc ls") at D:\gpbfreeroam\pawno\include\zcmd.inc:110
+Console input: gmx
+[08:24:50] Number of vehicle models: 0
