@@ -1825,7 +1825,6 @@ public RadioPolicialSai(playerid) {
             if(player[i][pEquipe] == 1) {
 				format(gpbMensagem, sizeof(gpbMensagem), "[ID: %i - F:%i] saiu da frequência.", playerid, player[playerid][pEquipe]);
 				SendClientMessage(i, rose, gpbMensagem);
-				PlayerPlaySound(i, 45400, 0, 0, 0);
             }
         }
     }
@@ -1851,7 +1850,6 @@ public RadioCriminosoSai(playerid) {
             if(player[i][pEquipe] == 2) {
 				format(gpbMensagem, sizeof(gpbMensagem), "[ID: %i - F:%i] saiu da frequência.", playerid, player[playerid][pEquipe]);
 				SendClientMessage(i, rose, gpbMensagem);
-				PlayerPlaySound(i, 45400, 0, 0, 0);
             }
         }
     }
@@ -1877,7 +1875,6 @@ public RadioParamedicoSai(playerid) {
             if(player[i][pEquipe] == 3) {
 				format(gpbMensagem, sizeof(gpbMensagem), "[ID: %i - F:%i] saiu da frequência.", playerid, player[playerid][pEquipe]);
 				SendClientMessage(i, rose, gpbMensagem);
-				PlayerPlaySound(i, 45400, 0, 0, 0);
             }
         }
     }
