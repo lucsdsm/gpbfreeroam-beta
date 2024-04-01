@@ -28,7 +28,7 @@
 #define textbox_equipamentos 0
 #define textbox_teletransportes 1
 #define textbox_equipes 2
-#define textbox_atividades 3
+#define textbox_animes1 3
 #define textbox_acenar 4
 #define textbox_apontar 5
 #define textbox_beijar 6
@@ -44,6 +44,7 @@
 #define textbox_negociar 16
 #define textbox_recarregar 17
 #define textbox_sinalizar 18
+#define textbox_animes2 19
 
 #define PreloadAnimLib(%1,%2)	ApplyAnimation(%1,%2,"null",0.0,0,0,0,0,0)
 
@@ -66,7 +67,6 @@ enum jogadorData {
    pAlgemado,
    pDerrubado,
    pAnim,
-   pAgachado,
    pElastomero,
    pRadioPD,
 }
@@ -396,6 +396,7 @@ public OnPlayerRequestClass(playerid, classid) {
 	player[playerid][pDerrubado] = 0;
 	player[playerid][pElastomero] = 0;
 	player[playerid][pRadioPD] = 0;
+	SetPlayerColor(playerid, white);
  	TogglePlayerSpectating(playerid, true);
 	SpawnPlayer(playerid);
  	SetSpawnInfo(playerid, -1, random(311), 1826, -1372, 14,269.2782,0,0,0,0,0,0);
@@ -404,7 +405,13 @@ public OnPlayerRequestClass(playerid, classid) {
 }
 
 public OnPlayerConnect(playerid) {
-	SetPlayerColor(playerid, white);
+	player[playerid][pFerido] = 0;
+	player[playerid][pEquipe] = 0;
+	player[playerid][pAnim] = 0;
+	player[playerid][pAlgemado] = 0;
+	player[playerid][pDerrubado] = 0;
+	player[playerid][pElastomero] = 0;
+	player[playerid][pRadioPD] = 0;
  	JogadorConecta(playerid);
 	SetPlayerVirtualWorld(playerid, 0);
 	ShowPlayerMarkers(0);
@@ -1058,7 +1065,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						SendClientMessage(playerid, grey, "Agora você é um policial. Use /r para comunicar-se com sua equipe.");
 						PlayAudioStreamForPlayer(playerid, "https://www.dl.dropboxusercontent.com/s/e5r1ncgz5ghaypn/gpb_noise.mp3");
 						SetPlayerColor(playerid, white);
-						SetTimerEx("RadioEntra", 2000, false, "i", playerid);
+						SetTimerEx("RadioPoliciaEntra", 1500, false, "i", playerid);
 					}
 				case 2: // Criminoso
 					if(player[playerid][pEquipe] == 2) {
@@ -1069,7 +1076,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						SendClientMessage(playerid, grey, "Criminoso. Use /r caso queira comunicar-se com mais criminosos.");
 						PlayAudioStreamForPlayer(playerid, "https://www.dl.dropboxusercontent.com/s/e5r1ncgz5ghaypn/gpb_noise.mp3");
 						SetPlayerColor(playerid, white);
-						SetTimerEx("RadioEntra", 2000, false, "i", playerid);
+						SetTimerEx("RadioCriminosoEntra", 1500, false, "i", playerid);
 					}
 				case 3: // Paramédico
 					if(player[playerid][pEquipe] == 3) {
@@ -1079,14 +1086,14 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						player[playerid][pEquipe] = 3;
 						SendClientMessage(playerid, grey, "Paramédico selecionado com sucesso. Você ganhou um rádio para comunicar-se com sua equipe.");
 						PlayAudioStreamForPlayer(playerid, "https://www.dl.dropboxusercontent.com/s/e5r1ncgz5ghaypn/gpb_noise.mp3");
-						SetTimerEx("RadioEntra", 2000, false, "i", playerid);
+						SetTimerEx("RadioParamedicoEntra", 1500, false, "i", playerid);
 						SetPlayerColor(playerid, white);
 					}
 			}
 		}
 	}
 	switch(dialogid) {
-  		case textbox_atividades: {
+  		case textbox_animes1: {
 			switch(listitem) { 
 				case 0: { // Parar animação
 					if (IsPlayerInAnyVehicle(playerid)) {
@@ -1142,20 +1149,18 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				}
 				case 9: { // Meditar
 					ApplyAnimation(playerid, "PARK", "Tai_Chi_Loop", 4.1, 1, 0, 0, 0, 0, 1);
-					player[playerid][pAnim] = 1;
 				}
 				case 10: { // Plantar
 					ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 0, 0, 0, 0, 0, 1);
 				}
-				case 11: { // Ressucitar
-					ApplyAnimation(playerid, "MEDIC", "CPR", 4.1, 0, 0, 0, 0, 0, 1);
+				case 11: { // Portar
+					ApplyAnimation(playerid, "ped", "IDLE_armed", 4.1, 0, 0, 0, 1, 0, 1);
 				}
 				case 12: { // Revistar
 					ApplyAnimation(playerid, "POLICE", "plc_drgbst_02", 4.1, 0, 0, 0, 0, 0, 1);
 				}
 				case 13: { // Urinar
 					SetPlayerSpecialAction(playerid, 68);
-					player[playerid][pAnim] = 1;
 				}
 				case 14: { // Vomitar
 					ApplyAnimation(playerid, "FOOD", "EAT_Vomit_P", 4.1, 0, 0, 0, 0, 0, 1);
@@ -1202,8 +1207,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				case 28: { // Recarregar
 					ShowPlayerDialog(playerid, textbox_recarregar, DIALOG_STYLE_INPUT, "Recarregar", "Digite um número entre 1 e 4:", "Confirmar", "");
 				}
-				case 29: { // Sinalizar
-					ShowPlayerDialog(playerid, textbox_sinalizar, DIALOG_STYLE_INPUT, "Sinalizar", "Digite um número entre 1 e 15:", "Confirmar", "");
+				case 29: { // Próxima página
+					ShowPlayerDialog(playerid, textbox_animes2, DIALOG_STYLE_TABLIST_HEADERS, "Animações",
+					"Descrição\tEscopo\n\
+					Voltar página\t<\n",
+					"Confirmar", "");
 				}
 			}
 		}
@@ -1539,6 +1547,47 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			}
 		}
 	}
+	switch(dialogid) {
+  		case textbox_animes2: {
+			switch(listitem) { 
+				case 0: { // Voltar página
+					ShowPlayerDialog(playerid, textbox_animes1, DIALOG_STYLE_TABLIST_HEADERS, "Animações",
+					"Descrição\tEscopo\n\
+					Parar\tY\n\
+					Agachar\t\n\
+					Cambalear\t\n\
+					Cansar\t\n\
+					Carregar\t\n\
+					Chorar\t\n\
+					Colocar braço para fora\t\n\
+					Fotografar\t\n\
+					Fumar\t\n\
+					Meditar\t\n\
+					Plantar\t\n\
+					Portar\t\n\
+					Revistar\t\n\
+					Urinar\t\n\
+					Vomitar\t\n\
+					Acenar\t[1-3]\n\
+					Apontar\t[1-4]\n\
+					Beijar\t[1-6]\n\
+					Comer\t[1-3]\n\
+					Comemorar\t[1-8]\n\
+					Conversar\t[1-6]\n\
+					Cruzar\t[1-4]\n\
+					Dançar\t[1-10]\n\
+					Deitar-se\t[1-5]\n\
+					Dormir\t[1-2]\n\
+					Drogar-se\t[1-6]\n\
+					Masturbar-se\t[1-3]\n\
+					Negociar\t[1-6]\n\
+					Recarregar\t[1-4]\n\
+					Próxima página\t>\n",
+					"Confirmar", "");
+				}
+			}
+		}
+	}
 	return 1;
 }
 
@@ -1690,11 +1739,37 @@ public DesligarMotor(playerid) {
 	}
 }
 
-forward RadioEntra(playerid);
-public RadioEntra(playerid) {
+forward RadioPoliciaEntra(playerid);
+public RadioPoliciaEntra(playerid) {
     for(new i = 0; i < MAX_PLAYERS; i++) {
         if(IsPlayerConnected(i)) {
             if(player[i][pEquipe] == 1) {
+				format(gpbMensagem, sizeof(gpbMensagem), "[ID: %i - F:%i] entrou na frequência.", playerid, player[playerid][pEquipe]);
+				SendClientMessage(i, rose, gpbMensagem);
+				PlayAudioStreamForPlayer(i, "https://www.dl.dropboxusercontent.com/s/xkslcjrnxvlngvm/gpb_radioon.mp3");
+            }
+        }
+    }
+}
+
+forward RadioCriminosoEntra(playerid);
+public RadioCriminosoEntra(playerid) {
+    for(new i = 0; i < MAX_PLAYERS; i++) {
+        if(IsPlayerConnected(i)) {
+            if(player[i][pEquipe] == 2) {
+				format(gpbMensagem, sizeof(gpbMensagem), "[ID: %i - F:%i] entrou na frequência.", playerid, player[playerid][pEquipe]);
+				SendClientMessage(i, rose, gpbMensagem);
+				PlayAudioStreamForPlayer(i, "https://www.dl.dropboxusercontent.com/s/xkslcjrnxvlngvm/gpb_radioon.mp3");
+            }
+        }
+    }
+}
+
+forward RadioParamedicoEntra(playerid);
+public RadioParamedicoEntra(playerid) {
+    for(new i = 0; i < MAX_PLAYERS; i++) {
+        if(IsPlayerConnected(i)) {
+            if(player[i][pEquipe] == 3) {
 				format(gpbMensagem, sizeof(gpbMensagem), "[ID: %i - F:%i] entrou na frequência.", playerid, player[playerid][pEquipe]);
 				SendClientMessage(i, rose, gpbMensagem);
 				PlayAudioStreamForPlayer(i, "https://www.dl.dropboxusercontent.com/s/xkslcjrnxvlngvm/gpb_radioon.mp3");
@@ -1820,7 +1895,7 @@ public DestroyStinger(stingerid){
 CMD:comandos(playerid, params[]) {
 	SendClientMessage(playerid, grey, "[Servidor]: /comandos, /equipe, /hora, /clima, /tp, /ir, /tc, /tr, /ob, /remover;");
 	SendClientMessage(playerid, grey, "[Chat]: /me, /ame, /do, /sus, /gl, /d, /ooc, /gr, /r, /911, /190, /mp;");
-	SendClientMessage(playerid, grey, "[Personagem]: /reviver, /skin, /atividades, /equipar, /derrubar, /levantar, /limpar;");
+	SendClientMessage(playerid, grey, "[Personagem]: /reviver, /skin, /animes, /equipar, /derrubar, /levantar, /limpar;");
 	SendClientMessage(playerid, grey, "[Veículo]: /vc, /vd, /chave, /luzes, /pintar, /fix, /capo, /mala;");
 	SendClientMessage(playerid, grey, "[Polícia]: /vcs, /vp, /rp, /mf, /ref, /algemar, /desalgemar.");
    	return 1;
@@ -1960,9 +2035,6 @@ CMD:gr(playerid, text[]) {
 		new x,y;
 		while ((y = text[x])){
 			text[x++] = toupper(y);
-		}
-		if (player[playerid][pFerido] == 0 && player[playerid][pAlgemado] == 0 && player[playerid][pAnim] == 0 && !IsPlayerInAnyVehicle(playerid)) {
-			ApplyAnimation(playerid, "ON_LOOKERS", "RIOT_shout", 4.1, 0, 0, 0, 0, 0, 1);
 		}
 		if(strlen(text) > 75) {
 			new gpbMensagem2[128];
@@ -2470,7 +2542,7 @@ CMD:vcs(playerid, params[]) {
 }
 
 CMD:vd(playerid, params[]) {
-	if(player[playerid][pFerido] == 1 || player[playerid][pAnim] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
+	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
   		SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
 	}
 	else if(IsPlayerInAnyVehicle(playerid) == 1) {
@@ -2545,7 +2617,7 @@ CMD:luzes(playerid) {
 }
 
 CMD:capo(playerid, params[]) {
-	if(player[playerid][pFerido] == 1 || player[playerid][pAnim] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
+	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
   		SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
 	}
 	else {
@@ -2629,7 +2701,7 @@ CMD:capo(playerid, params[]) {
 }
 
 CMD:mala(playerid, params[]) {
-	if(player[playerid][pFerido] == 1 || player[playerid][pAnim] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
+	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
   		SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
 	}
 	else {
@@ -2768,7 +2840,7 @@ CMD:rp(playerid, params[]) {
 
 CMD:skin(playerid, params[]) {
 	new skin = strval(params);
-	if(player[playerid][pFerido] == 1 || player[playerid][pAnim] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
+	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
   		SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
 	}
 	else if (IsPlayerInAnyVehicle(playerid)) {
@@ -2789,7 +2861,7 @@ CMD:skin(playerid, params[]) {
 	return 1;
 }
 
-CMD:ferir(playerid) {
+CMD:morrer(playerid) {
     if(IsPlayerInAnyVehicle(playerid)) {
         TogglePlayerControllable(playerid, 0);
 		player[playerid][pFerido] = 1;
@@ -2832,7 +2904,7 @@ CMD:reviver(playerid) {
 }
 
 CMD:equipar(playerid, params[]) {
-    if(player[playerid][pFerido] == 1 || player[playerid][pAnim] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
+    if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
   		SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
 	}
 	else {
@@ -2897,7 +2969,7 @@ CMD:clima(playerid, params[]) {
 }
 
 CMD:tp(playerid, params[]) {
-    if(player[playerid][pFerido] == 1 || player[playerid][pAnim] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
+    if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
   		SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
 	}
 	else {
@@ -2911,7 +2983,7 @@ CMD:tp(playerid, params[]) {
 CMD:ir(playerid, params[]) {
 	new objetivo = strval(params);
 	new Float:pos[3];
-	if(player[playerid][pFerido] == 1 || player[playerid][pAnim] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
+	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
   		SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
 	}
 	else if (isnull(params)) {
@@ -2966,7 +3038,7 @@ CMD:algemar(playerid, params[]) {
 	else if (player[userid][pAlgemado] == 1) {
 		SendClientMessage(playerid, grey, "O jogador já está algemado");
 	}
-	else if (player[playerid][pFerido] == 1 || player[playerid][pAnim] == 1 || player[playerid][pAlgemado] == 1) {
+	else if (player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1) {
   		SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
 	}
     else if (!IsPlayerNearPlayer(playerid, userid, 2.0)) {
@@ -3093,13 +3165,13 @@ CMD:levantar(playerid, params[]) {
 	return 1;
 }
 
-//Atividades
-CMD:atividades(playerid, params[]) {
+//animes
+CMD:animes(playerid, params[]) {
 	if (player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
 		SendClientMessage(playerid, grey, "Você não pode realizar animações no momento.");
 	}
 	else {
-		ShowPlayerDialog(playerid, textbox_atividades, DIALOG_STYLE_TABLIST_HEADERS, "Atividades",
+		ShowPlayerDialog(playerid, textbox_animes1, DIALOG_STYLE_TABLIST_HEADERS, "Animações",
 		"Descrição\tEscopo\n\
 		Parar\tY\n\
 		Agachar\t\n\
@@ -3112,7 +3184,7 @@ CMD:atividades(playerid, params[]) {
 		Fumar\t\n\
 		Meditar\t\n\
 		Plantar\t\n\
-		Ressucitar\t\n\
+		Portar\t\n\
 		Revistar\t\n\
 		Urinar\t\n\
 		Vomitar\t\n\
@@ -3130,7 +3202,7 @@ CMD:atividades(playerid, params[]) {
 		Masturbar-se\t[1-3]\n\
 		Negociar\t[1-6]\n\
 		Recarregar\t[1-4]\n\
-		Sinalizar\t[1-15]\n",
+		Próxima página\t>\n",
 		"Confirmar", "");
 	}
 	return 1;
