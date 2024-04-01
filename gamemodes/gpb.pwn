@@ -294,15 +294,14 @@ stock VeiculoRaio(Float:radi, playerid, vehicleid) {
     return 0;
 }
 
-stock VehicleAsDriver(vehicleid) {
-    new stats = 0;
-    for(new i; i < MAX_PLAYERS; i++){
-        if(IsPlayerInVehicle(i, vehicleid) && GetPlayerState(i) == PLAYER_STATE_DRIVER) {
-            stats = 1;
-            break;
-        }
-    }
-    return stats;
+stock VeiculoComJogador(vehicleid) {
+    for(new i = 0; i < MAX_PLAYERS; i++) {
+		if(IsPlayerInVehicle(i, vehicleid) && (GetPlayerState(i) == PLAYER_STATE_DRIVER || GetPlayerState(i) == PLAYER_STATE_PASSENGER)) {
+			return 1;
+		}
+	}
+    return 0;
+    
 }
 
 stock IsPlayerNearPlayer(playerid, targetid, Float:radius) {
@@ -2652,27 +2651,32 @@ CMD:vd(playerid, params[]) {
 		DestroyVehicle(vehicleid);
 	}
 	else {
-		if(VehicleAsDriver(playerid)) {
-			SendClientMessage(playerid, grey, "Você não pode excluir um veículo com um jogador dentro.");
-		}
-		else {
-			new counter = 0;
-			new result;
-			for(new i; i != MAX_VEHICLES; i++) {
-				new dist = VeiculoRaio(5, playerid, i);
-				if(dist) {
-					result = i;
-					counter++;
-				}
+		new counter = 0;
+		new result;
+		for(new i; i != MAX_VEHICLES; i++) {
+			new dist = VeiculoRaio(5, playerid, i);
+			if(dist) {
+				result = i;
+				counter++;
 			}
-			switch(counter) {
-				case 0: {
-					SendClientMessage(playerid, grey, "Não há nenhum veículo próximo o bastante.");
+		}
+		switch(counter) {
+			case 0: {
+				SendClientMessage(playerid, grey, "Não há nenhum veículo próximo o bastante.");
+			}
+			case 1: {
+				if(VeiculoComJogador(result)) {
+					SendClientMessage(playerid, grey, "Não é possível excluir um veículo com um jogador dentro.");
 				}
-				case 1: {
+				else {
 					DestroyVehicle(result);
 				}
-				default: {
+			}
+			default: {
+				if(VeiculoComJogador(result)) {
+					SendClientMessage(playerid, grey, "Não é possível excluir um veículo com um jogador dentro.");
+				}
+				else {
 					DestroyVehicle(result);
 				}
 			}
