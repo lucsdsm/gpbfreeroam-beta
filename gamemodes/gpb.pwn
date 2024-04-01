@@ -1051,6 +1051,24 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 					if(player[playerid][pEquipe] == 0) {
 						SendClientMessage(playerid, grey, "Você já é um civil.");
 					}
+					else if(player[playerid][pEquipe] == 1) {
+						RadioPolicialSai(playerid);
+						player[playerid][pEquipe] = 0;
+						SendClientMessage(playerid, grey, "Você agora é um civil."); 
+						SetPlayerColor(playerid, white);
+					}
+					else if(player[playerid][pEquipe] == 2) {
+						RadioCriminosoSai(playerid);
+						player[playerid][pEquipe] = 0;
+						SendClientMessage(playerid, grey, "Você agora é um civil."); 
+						SetPlayerColor(playerid, white);
+					}
+					else if(player[playerid][pEquipe] == 3) {
+						RadioParamedicoSai(playerid);
+						player[playerid][pEquipe] = 0;
+						SendClientMessage(playerid, grey, "Você agora é um civil."); 
+						SetPlayerColor(playerid, white);
+					}
 					else {
 						player[playerid][pEquipe] = 0;
 						SendClientMessage(playerid, grey, "Você agora é um civil."); 
@@ -1062,16 +1080,16 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 					}
 					else if(player[playerid][pEquipe] == 2) {
 						RadioCriminosoSai(playerid);
-						player[playerid][pEquipe] = 2;
-						SendClientMessage(playerid, grey, "Criminoso. Use /r caso queira comunicar-se com mais criminosos.");
+						player[playerid][pEquipe] = 1;
+						SendClientMessage(playerid, grey, "Agora você é um policial. Use /r caso queira comunicar-se com mais criminosos.");
 						PlayAudioStreamForPlayer(playerid, "https://www.dl.dropboxusercontent.com/s/e5r1ncgz5ghaypn/gpb_noise.mp3");
 						SetPlayerColor(playerid, white);
 						SetTimerEx("RadioPolicialEntra", 1500, false, "i", playerid);
 					}
 					else if(player[playerid][pEquipe] == 3) {
 						RadioParamedicoSai(playerid);
-						player[playerid][pEquipe] = 2;
-						SendClientMessage(playerid, grey, "Criminoso. Use /r caso queira comunicar-se com mais criminosos.");
+						player[playerid][pEquipe] = 1;
+						SendClientMessage(playerid, grey, "Agora você é um policial.. Use /r caso queira comunicar-se com mais criminosos.");
 						PlayAudioStreamForPlayer(playerid, "https://www.dl.dropboxusercontent.com/s/e5r1ncgz5ghaypn/gpb_noise.mp3");
 						SetPlayerColor(playerid, white);
 						SetTimerEx("RadioPolicialEntra", 1500, false, "i", playerid);
@@ -1081,14 +1099,14 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						SendClientMessage(playerid, grey, "Agora você é um policial. Use /r para comunicar-se com sua equipe.");
 						PlayAudioStreamForPlayer(playerid, "https://www.dl.dropboxusercontent.com/s/e5r1ncgz5ghaypn/gpb_noise.mp3");
 						SetPlayerColor(playerid, white);
-						SetTimerEx("RadioPoliciaEntra", 1500, false, "i", playerid);
+						SetTimerEx("RadioPolicialEntra", 1500, false, "i", playerid);
 					}
 				case 2: // Criminoso
 					if(player[playerid][pEquipe] == 2) {
 						SendClientMessage(playerid, grey, "Você já é um criminoso.");
 					}
 					else if(player[playerid][pEquipe] == 1) {
-						RadioPoliciaSai(playerid);
+						RadioPolicialSai(playerid);
 						player[playerid][pEquipe] = 2;
 						SendClientMessage(playerid, grey, "Criminoso. Use /r caso queira comunicar-se com mais criminosos.");
 						PlayAudioStreamForPlayer(playerid, "https://www.dl.dropboxusercontent.com/s/e5r1ncgz5ghaypn/gpb_noise.mp3");
@@ -1105,7 +1123,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 					}
 					else {
 						player[playerid][pEquipe] = 2;
-						SendClientMessage(playerid, grey, "Criminoso. Use /r caso queira comunicar-se com mais criminosos.");
+						SendClientMessage(playerid, grey, "Paramédico selecionado com sucesso. Use /r caso queira comunicar-se com mais criminosos.");
 						PlayAudioStreamForPlayer(playerid, "https://www.dl.dropboxusercontent.com/s/e5r1ncgz5ghaypn/gpb_noise.mp3");
 						SetPlayerColor(playerid, white);
 						SetTimerEx("RadioCriminosoEntra", 1500, false, "i", playerid);
@@ -1115,17 +1133,17 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						SendClientMessage(playerid, grey, "Você já é um paramédico.");
 					}
 					else if(player[playerid][pEquipe] == 1) {
-						RadioPoliciaSai(playerid);
-						player[playerid][pEquipe] = 2;
-						SendClientMessage(playerid, grey, "Criminoso. Use /r caso queira comunicar-se com mais criminosos.");
+						RadioPolicialSai(playerid);
+						player[playerid][pEquipe] = 3;
+						SendClientMessage(playerid, grey, "Paramédico selecionado com sucesso. Use /r caso queira comunicar-se com mais criminosos.");
 						PlayAudioStreamForPlayer(playerid, "https://www.dl.dropboxusercontent.com/s/e5r1ncgz5ghaypn/gpb_noise.mp3");
 						SetPlayerColor(playerid, white);
 						SetTimerEx("RadioParamedicoEntra", 1500, false, "i", playerid);
 					}
 					else if(player[playerid][pEquipe] == 2) {
 						RadioCriminosoSai(playerid);
-						player[playerid][pEquipe] = 2;
-						SendClientMessage(playerid, grey, "Criminoso. Use /r caso queira comunicar-se com mais criminosos.");
+						player[playerid][pEquipe] = 3;
+						SendClientMessage(playerid, grey, "Paramédico selecionado com sucesso. Use /r caso queira comunicar-se com mais criminosos.");
 						PlayAudioStreamForPlayer(playerid, "https://www.dl.dropboxusercontent.com/s/e5r1ncgz5ghaypn/gpb_noise.mp3");
 						SetPlayerColor(playerid, white);
 						SetTimerEx("RadioParamedicoEntra", 1500, false, "i", playerid);
@@ -1787,8 +1805,8 @@ public DesligarMotor(playerid) {
 	}
 }
 
-forward RadioPoliciaEntra(playerid);
-public RadioPoliciaEntra(playerid) {
+forward RadioPolicialEntra(playerid);
+public RadioPolicialEntra(playerid) {
     for(new i = 0; i < MAX_PLAYERS; i++) {
         if(IsPlayerConnected(i)) {
             if(player[i][pEquipe] == 1) {
@@ -1800,8 +1818,8 @@ public RadioPoliciaEntra(playerid) {
     }
 }
 
-forward RadioPoliciaSai(playerid);
-public RadioPoliciaSai(playerid) {
+forward RadioPolicialSai(playerid);
+public RadioPolicialSai(playerid) {
     for(new i = 0; i < MAX_PLAYERS; i++) {
         if(IsPlayerConnected(i)) {
             if(player[i][pEquipe] == 1) {
@@ -1830,7 +1848,7 @@ forward RadioCriminosoSai(playerid);
 public RadioCriminosoSai(playerid) {
     for(new i = 0; i < MAX_PLAYERS; i++) {
         if(IsPlayerConnected(i)) {
-            if(player[i][pEquipe] == 1) {
+            if(player[i][pEquipe] == 2) {
 				format(gpbMensagem, sizeof(gpbMensagem), "[ID: %i - F:%i] saiu da frequência.", playerid, player[playerid][pEquipe]);
 				SendClientMessage(i, rose, gpbMensagem);
 				PlayerPlaySound(i, 45400, 0, 0, 0);
@@ -1856,7 +1874,7 @@ forward RadioParamedicoSai(playerid);
 public RadioParamedicoSai(playerid) {
     for(new i = 0; i < MAX_PLAYERS; i++) {
         if(IsPlayerConnected(i)) {
-            if(player[i][pEquipe] == 1) {
+            if(player[i][pEquipe] == 3) {
 				format(gpbMensagem, sizeof(gpbMensagem), "[ID: %i - F:%i] saiu da frequência.", playerid, player[playerid][pEquipe]);
 				SendClientMessage(i, rose, gpbMensagem);
 				PlayerPlaySound(i, 45400, 0, 0, 0);
