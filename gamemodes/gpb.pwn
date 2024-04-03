@@ -1170,27 +1170,23 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						player[playerid][pAnim] = 0;
 					}
 				}
-				case 1: { // Agachar
-					ApplyAnimation(playerid, "PED", "cower", 4.1, 0, 0, 0, 1, 0, 1);
-					player[playerid][pAnim] = 1;
-				}
-				case 2: { // Cambalear
+				case 1: { // Cambalear
 					ApplyAnimation(playerid, "PED", "WALK_drunk", 4.1, 1, 1, 1, 1, 1, 1);
 					player[playerid][pAnim] = 1;
 				}
-				case 3: { // Cansar
+				case 2: { // Cansar
 					ApplyAnimation(playerid, "PED", "IDLE_tired", 4.1, 1, 0, 0, 0, 0, 1);
 					player[playerid][pAnim] = 1;
 				}
-				case 4: { // Carregar
+				case 3: { // Carregar
 					SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
 					player[playerid][pAnim] = 1;
 				}
-				case 5: { // Chorar
+				case 4: { // Chorar
 					ApplyAnimation(playerid, "GRAVEYARD", "mrnF_loop", 4.1, 1, 0, 0, 0, 0, 1);
 					player[playerid][pAnim] = 1;
 				}
-				case 6: { // Braço para fora do veículo
+				case 5: { // Braço para fora do veículo
 					if (IsPlayerInAnyVehicle(playerid)) {
 						new playerseat = GetPlayerVehicleSeat(playerid);
 						if(playerseat == 0 || playerseat == 2) {
@@ -1203,6 +1199,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 					else {
 						SendClientMessage(playerid, grey, "Você precisa estar em algum veículo.");
 					}
+				}
+				case 6: { // Colocar mãos para cima
+					ApplyAnimation(playerid, "SHOP", "SHP_Rob_HandsUp", 4.1, 1, 0, 0, 1, 0, 1);
+					player[playerid][pAnim] = 1;
 				}
 				case 7: { // Fotografar
 					ApplyAnimation(playerid, "CAMERA", "camstnd_to_camcrch", 4.1, 0, 0, 0, 1, 0, 1);
@@ -1275,6 +1275,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				case 29: { // Próxima página
 					ShowPlayerDialog(playerid, textbox_animes2, DIALOG_STYLE_TABLIST_HEADERS, "Animações",
 					"Descrição\tEscopo\n\
+					Agachar\t\n\
 					Voltar página\t<\n",
 					"Confirmar", "");
 				}
@@ -1615,16 +1616,20 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 	switch(dialogid) {
   		case textbox_animes2: {
 			switch(listitem) { 
-				case 0: { // Voltar página
+				case 0: { // Agachar
+					ApplyAnimation(playerid, "PED", "cower", 4.1, 0, 0, 0, 1, 0, 1);
+					player[playerid][pAnim] = 1;
+				}
+				case 1: { // Voltar página
 					ShowPlayerDialog(playerid, textbox_animes1, DIALOG_STYLE_TABLIST_HEADERS, "Animações",
 					"Descrição\tEscopo\n\
 					Parar\tY\n\
-					Agachar\t\n\
 					Cambalear\t\n\
 					Cansar\t\n\
 					Carregar\t\n\
 					Chorar\t\n\
 					Colocar braço para fora\t\n\
+					Colocar mãos acima\t\n\
 					Fotografar\t\n\
 					Fumar\t\n\
 					Meditar\t\n\
@@ -3280,12 +3285,12 @@ CMD:animes(playerid, params[]) {
 		ShowPlayerDialog(playerid, textbox_animes1, DIALOG_STYLE_TABLIST_HEADERS, "Animações",
 		"Descrição\tEscopo\n\
 		Parar\tY\n\
-		Agachar\t\n\
 		Cambalear\t\n\
 		Cansar\t\n\
 		Carregar\t\n\
 		Chorar\t\n\
 		Colocar braço para fora\t\n\
+		Colocar mãos acima\t\n\
 		Fotografar\t\n\
 		Fumar\t\n\
 		Meditar\t\n\
