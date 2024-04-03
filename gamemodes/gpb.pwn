@@ -157,6 +157,7 @@ new veiculoMotor[MAX_VEHICLES];
 new veiculoAvariado[MAX_VEHICLES];
 new veiculoPrefixo[MAX_VEHICLES];
 new Text3D:veiculoPrefixo3D[MAX_VEHICLES];
+new veiculoTrancado[MAX_VEHICLES];
 new player[MAX_PLAYERS][jogadorData];
 new playerSkin[MAX_PLAYERS];
 new PlayerInfo[MAX_PLAYERS][jogadorData];
@@ -673,6 +674,12 @@ public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger) {
 		GetVehicleParamsEx(vehicleid, enginem, lights, alarm, doors, bonnet, boot, objective);
 		SetVehicleParamsEx(vehicleid, VEHICLE_PARAMS_ON, lights, alarm, doors, bonnet, boot, objective);
 		veiculoMotor[vehicleid] = 1;
+	}
+	if (veiculoTrancado[vehicleid] == 1) {
+		new Float:X, Float:Y, Float:Z;
+		SendClientMessage(playerid, grey, "Este veículo está trancado.");
+		GetPlayerPos(playerid, X, Y, Z);
+		SetPlayerPos(playerid, X, Y, Z);
 	}
 	return 1;
 }
@@ -2573,6 +2580,7 @@ CMD:vc(playerid, params[]) {
 				LinkVehicleToInterior(modeloId,GetPlayerInterior(playerid));
 				PutPlayerInVehicle(playerid, modeloId, 0);
 				player[playerid][pAnim] = 0;
+				veiculoTrancado[vehicleid] = 0;
 				if (HasNoEngine(modeloId) == 1) {
 					new enginem, lights, alarm, doors, bonnet, boot, objective;
 					GetVehicleParamsEx(modeloId, enginem, lights, alarm, doors, bonnet, boot, objective);
@@ -2604,6 +2612,7 @@ CMD:vc(playerid, params[]) {
 				LinkVehicleToInterior(PlayerInfo[playerid][pSpawnVehicle], GetPlayerInterior(playerid));
 				PutPlayerInVehicle(playerid, PlayerInfo[playerid][pSpawnVehicle], 0);
 				player[playerid][pAnim] = 0;
+				veiculoTrancado[vehicleid] = 0;
 				if (HasNoEngine(PlayerInfo[playerid][pSpawnVehicle]) == 1) {
 					new enginem, lights, alarm, doors, bonnet, boot, objective;
 					GetVehicleParamsEx(PlayerInfo[playerid][pSpawnVehicle], enginem, lights, alarm, doors, bonnet, boot, objective);
@@ -2659,6 +2668,7 @@ CMD:vcs(playerid, params[]) {
 				LinkVehicleToInterior(modeloId,GetPlayerInterior(playerid));
 				PutPlayerInVehicle(playerid, modeloId, 0);
 				player[playerid][pAnim] = 0;
+				veiculoTrancado[vehicleid] = 0;
 				if (HasNoEngine(modeloId) == 1) {
 					new enginem, lights, alarm, doors, bonnet, boot, objective;
 					GetVehicleParamsEx(modeloId, enginem, lights, alarm, doors, bonnet, boot, objective);
@@ -2690,6 +2700,7 @@ CMD:vcs(playerid, params[]) {
 				LinkVehicleToInterior(PlayerInfo[playerid][pSpawnVehicle], GetPlayerInterior(playerid));
 				PutPlayerInVehicle(playerid, PlayerInfo[playerid][pSpawnVehicle], 0);
 				player[playerid][pAnim] = 0;
+				veiculoTrancado[vehicleid] = 0;
 				if (HasNoEngine(PlayerInfo[playerid][pSpawnVehicle]) == 1) {
 					new enginem, lights, alarm, doors, bonnet, boot, objective;
 					GetVehicleParamsEx(PlayerInfo[playerid][pSpawnVehicle], enginem, lights, alarm, doors, bonnet, boot, objective);
@@ -2787,6 +2798,34 @@ CMD:luzes(playerid) {
 	else {
 		ControlaLuzes(vehicleid);
 	}
+	return 1;
+}
+
+CMD:travas(playerid) {
+	if(!IsPlayerInAnyVehicle(playerid) || GetPlayerState(playerid) == PLAYER_STATE_PASSENGER) {
+		SendClientMessage(playerid, grey, "Você precisa estar como motorista de um veículo.");
+	}
+    else {
+		new vehicleid = GetPlayerVehicleID(playerid);
+		if (veiculoTrancado[vehicleid] == 0) {
+			veiculoTrancado[vehicleid] = 1;
+			SendClientMessage(playerid, grey, "Veículo trancado.");
+			for(new i=0; i < MAX_PLAYERS; i++) {
+				if(i == playerid) {
+					SetVehicleParamsForPlayer(GetPlayerVehicleID(playerid), i, 0, 1);
+				}
+			}
+		}
+		else if (veiculoTrancado[vehicleid] == 1) {
+			veiculoTrancado[vehicleid] = 0;
+			SendClientMessage(playerid, grey, "Veículo destrancado.");
+			for(new i=0; i < MAX_PLAYERS; i++) {
+				if(i == playerid) {
+					SetVehicleParamsForPlayer(GetPlayerVehicleID(playerid), i, 0, 0);
+				}
+			}
+		}
+	}    
 	return 1;
 }
 
