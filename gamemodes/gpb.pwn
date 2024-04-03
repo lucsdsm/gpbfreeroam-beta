@@ -2580,7 +2580,7 @@ CMD:vc(playerid, params[]) {
 				LinkVehicleToInterior(modeloId,GetPlayerInterior(playerid));
 				PutPlayerInVehicle(playerid, modeloId, 0);
 				player[playerid][pAnim] = 0;
-				veiculoTrancado[vehicleid] = 0;
+				veiculoTrancado[modeloId] = 0;
 				if (HasNoEngine(modeloId) == 1) {
 					new enginem, lights, alarm, doors, bonnet, boot, objective;
 					GetVehicleParamsEx(modeloId, enginem, lights, alarm, doors, bonnet, boot, objective);
@@ -2612,7 +2612,7 @@ CMD:vc(playerid, params[]) {
 				LinkVehicleToInterior(PlayerInfo[playerid][pSpawnVehicle], GetPlayerInterior(playerid));
 				PutPlayerInVehicle(playerid, PlayerInfo[playerid][pSpawnVehicle], 0);
 				player[playerid][pAnim] = 0;
-				veiculoTrancado[vehicleid] = 0;
+				veiculoTrancado[pSpawnVehicle] = 0;
 				if (HasNoEngine(PlayerInfo[playerid][pSpawnVehicle]) == 1) {
 					new enginem, lights, alarm, doors, bonnet, boot, objective;
 					GetVehicleParamsEx(PlayerInfo[playerid][pSpawnVehicle], enginem, lights, alarm, doors, bonnet, boot, objective);
@@ -2668,7 +2668,7 @@ CMD:vcs(playerid, params[]) {
 				LinkVehicleToInterior(modeloId,GetPlayerInterior(playerid));
 				PutPlayerInVehicle(playerid, modeloId, 0);
 				player[playerid][pAnim] = 0;
-				veiculoTrancado[vehicleid] = 0;
+				veiculoTrancado[modeloId] = 0;
 				if (HasNoEngine(modeloId) == 1) {
 					new enginem, lights, alarm, doors, bonnet, boot, objective;
 					GetVehicleParamsEx(modeloId, enginem, lights, alarm, doors, bonnet, boot, objective);
@@ -2700,7 +2700,7 @@ CMD:vcs(playerid, params[]) {
 				LinkVehicleToInterior(PlayerInfo[playerid][pSpawnVehicle], GetPlayerInterior(playerid));
 				PutPlayerInVehicle(playerid, PlayerInfo[playerid][pSpawnVehicle], 0);
 				player[playerid][pAnim] = 0;
-				veiculoTrancado[vehicleid] = 0;
+				veiculoTrancado[pSpawnVehicle] = 0;
 				if (HasNoEngine(PlayerInfo[playerid][pSpawnVehicle]) == 1) {
 					new enginem, lights, alarm, doors, bonnet, boot, objective;
 					GetVehicleParamsEx(PlayerInfo[playerid][pSpawnVehicle], enginem, lights, alarm, doors, bonnet, boot, objective);
@@ -2935,6 +2935,8 @@ CMD:mala(playerid, params[]) {
 				new enginem, lights, alarm, doors, bonnet, boot, objective;
 				GetVehicleParamsEx(result, enginem, lights, alarm, doors, bonnet, boot, objective);
 				if (boot != VEHICLE_PARAMS_ON) {
+					veiculoTrancado[result] = 0;
+					SetVehicleParamsForPlayer(result, playerid, 0, 0);
 					ApplyAnimation(playerid, "ped", "Walk_DoorPartial", 4.1, 0, 0, 0, 0, 0, 1);
 					SetVehicleParamsEx(result, enginem, lights, alarm, doors, bonnet, VEHICLE_PARAMS_ON, objective);
 					format(gpbMensagem, 500, "%s abre a mala do veículo.", GetName(playerid));
