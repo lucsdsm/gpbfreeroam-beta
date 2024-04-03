@@ -45,6 +45,7 @@
 #define textbox_recarregar 17
 #define textbox_sinalizar 18
 #define textbox_animes2 19
+#define textbox_cintura 20
 
 #define PreloadAnimLib(%1,%2)	ApplyAnimation(%1,%2,"null",0.0,0,0,0,0,0)
 
@@ -1276,6 +1277,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 					ShowPlayerDialog(playerid, textbox_animes2, DIALOG_STYLE_TABLIST_HEADERS, "Animações",
 					"Descrição\tEscopo\n\
 					Agachar\t\n\
+					Encostar\t\n\
+					Mãos na cintura\t[1-2]\n\
+					Sinalizar\t[1-15]\n\
 					Voltar página\t<\n",
 					"Confirmar", "");
 				}
@@ -1292,6 +1296,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				return 1;
 			}
 			else {
+				player[playerid][pAnim] = 0;
 				switch(type) {
 					case 1: {
 						ApplyAnimation(playerid, "PED", "endchat_03", 4.1, 0, 0, 0, 0, 0, 1);
@@ -1337,6 +1342,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				return 1;
 			}
 			else {
+				player[playerid][pAnim] = 0;
 				switch(type) {
 					case 1: ApplyAnimation(playerid, "KISSING", "Grlfrd_Kiss_01", 4.1, 0, 0, 0, 0, 0, 1);
 					case 2: ApplyAnimation(playerid, "KISSING", "Grlfrd_Kiss_02", 4.1, 0, 0, 0, 0, 0, 1);
@@ -1358,6 +1364,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				return 1;
 			}
 			else {
+				player[playerid][pAnim] = 0;
 				switch(type) {
 					case 1: ApplyAnimation(playerid, "FOOD", "EAT_Burger", 4.1, 0, 0, 0, 0, 0, 1);
 					case 2: ApplyAnimation(playerid, "FOOD", "EAT_Chicken", 4.1, 0, 0, 0, 0, 0, 1);
@@ -1376,6 +1383,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				return 1;
 			}
 			else {
+				player[playerid][pAnim] = 0;
 				switch(type) {
 					case 1: ApplyAnimation(playerid, "ON_LOOKERS", "shout_01", 4.1, 0, 0, 0, 0, 0, 1);
 					case 2: ApplyAnimation(playerid, "ON_LOOKERS", "shout_02", 4.1, 0, 0, 0, 0, 0, 1);
@@ -1399,6 +1407,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				return 1;
 			}
 			else {
+				player[playerid][pAnim] = 0;
 				switch(type) {
 					case 1: ApplyAnimation(playerid, "GANGS", "prtial_gngtlkA", 4.1, 0, 0, 0, 0, 0, 1);
 					case 2: ApplyAnimation(playerid, "GANGS", "prtial_gngtlkB", 4.1, 0, 0, 0, 0, 0, 1);
@@ -1529,10 +1538,17 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			else {
 				player[playerid][pAnim] = 1;
 				switch(type) {
-					case 1: ApplyAnimation(playerid, "BLOWJOBZ", "BJ_COUCH_LOOP_W", 4.1, 1, 0, 0, 0, 0, 1);
-					case 2: ApplyAnimation(playerid, "BLOWJOBZ", "BJ_COUCH_LOOP_P", 4.1, 1, 0, 0, 0, 0, 1);
-					case 3: ApplyAnimation(playerid, "BLOWJOBZ", "BJ_STAND_LOOP_W", 4.1, 1, 0, 0, 0, 0, 1);
-					case 4: ApplyAnimation(playerid, "BLOWJOBZ", "BJ_STAND_LOOP_P", 4.1, 1, 0, 0, 0, 0, 1);
+					case 1: {
+						ApplyAnimation(playerid, "PAULNMAC", "wank_loop", 4.1, 1, 0, 0, 0, 0, 1);
+						player[playerid][pAnim] = 1;
+					}
+					case 2: {
+						ApplyAnimation(playerid, "PAULNMAC", "wank_in", 4.1, 0, 0, 0, 0, 0, 1);
+						player[playerid][pAnim] = 0;
+					}
+					case 3: {
+						ApplyAnimation(playerid, "PAULNMAC", "wank_out", 4.1, 0, 0, 0, 0, 0, 1);
+					}
 				}
 			}
 		}
@@ -1548,10 +1564,22 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			}
 			else {
 				switch(type) {
-					case 1: ApplyAnimation(playerid, "DEALER", "DEALER_DEAL", 4.1, 0, 0, 0, 0, 0, 1);
-					case 2: ApplyAnimation(playerid, "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0, 1);
-					case 3: ApplyAnimation(playerid, "DEALER", "shop_pay", 4.1, 0, 0, 0, 0, 0, 1);
-					case 4: ApplyAnimation(playerid, "DEALER", "DEALER_IDLE_01", 4.1, 1, 0, 0, 0, 0, 1);
+					case 1: {
+						ApplyAnimation(playerid, "DEALER", "DEALER_DEAL", 4.1, 0, 0, 0, 0, 0, 1);
+						player[playerid][pAnim] = 0;
+					}
+					case 2: {
+						ApplyAnimation(playerid, "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0, 1);
+						player[playerid][pAnim] = 0;
+					}
+					case 3: {
+						ApplyAnimation(playerid, "DEALER", "shop_pay", 4.1, 0, 0, 0, 0, 0, 1);
+						player[playerid][pAnim] = 0;
+					}
+					case 4: {
+						ApplyAnimation(playerid, "DEALER", "DEALER_IDLE_01", 4.1, 1, 0, 0, 0, 0, 1);
+						player[playerid][pAnim] = 0;
+					}
 					case 5: {
 						ApplyAnimation(playerid, "DEALER", "DEALER_IDLE_02", 4.1, 1, 0, 0, 0, 0, 1);
 						player[playerid][pAnim] = 1;
@@ -1574,41 +1602,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				return 1;
 			}
 			else {
+				player[playerid][pAnim] = 0;
 				switch(type) {
 					case 1: ApplyAnimation(playerid, "BUDDY", "buddy_reload", 4.1, 0, 0, 0, 0, 0, 1);
 					case 2: ApplyAnimation(playerid, "UZI", "UZI_reload", 4.1, 0, 0, 0, 0, 0, 1);
 					case 3: ApplyAnimation(playerid, "COLT45", "colt45_reload", 4.1, 0, 0, 0, 0, 0, 1);
 					case 4: ApplyAnimation(playerid, "RIFLE", "rifle_load", 4.1, 0, 0, 0, 0, 0, 1);
-				}
-			}
-		}
-	}
-	switch(dialogid) {
-  		case textbox_sinalizar: {
-			new type;
-			if (sscanf(inputtext, "d", type)) {
-				return 1;
-			}
-			else if (type < 1 || type > 15) {
-				return 1;
-			}
-			else {
-				switch(type) {
-					case 1: ApplyAnimation(playerid, "GHANDS", "gsign1", 4.1, 0, 0, 0, 0, 0, 1);
-					case 2: ApplyAnimation(playerid, "GHANDS", "gsign1LH", 4.1, 0, 0, 0, 0, 0, 1);
-					case 3: ApplyAnimation(playerid, "GHANDS", "gsign2", 4.1, 0, 0, 0, 0, 0, 1);
-					case 4: ApplyAnimation(playerid, "GHANDS", "gsign2LH", 4.1, 0, 0, 0, 0, 0, 1);
-					case 5: ApplyAnimation(playerid, "GHANDS", "gsign3", 4.1, 0, 0, 0, 0, 0, 1);
-					case 6: ApplyAnimation(playerid, "GHANDS", "gsign3LH", 4.1, 0, 0, 0, 0, 0, 1);
-					case 7: ApplyAnimation(playerid, "GHANDS", "gsign4", 4.1, 0, 0, 0, 0, 0, 1);
-					case 8: ApplyAnimation(playerid, "GHANDS", "gsign4LH", 4.1, 0, 0, 0, 0, 0, 1);
-					case 9: ApplyAnimation(playerid, "GHANDS", "gsign5", 4.1, 0, 0, 0, 0, 0, 1);
-					case 10: ApplyAnimation(playerid, "GHANDS", "gsign5", 4.1, 0, 0, 0, 0, 0, 1);
-					case 11: ApplyAnimation(playerid, "GHANDS", "gsign5LH", 4.1, 0, 0, 0, 0, 0, 1);
-					case 12: ApplyAnimation(playerid, "GANGS", "Invite_No", 4.1, 0, 0, 0, 0, 0, 1);
-					case 13: ApplyAnimation(playerid, "GANGS", "Invite_Yes", 4.1, 0, 0, 0, 0, 0, 1);
-					case 14: ApplyAnimation(playerid, "GANGS", "prtial_gngtlkD", 4.1, 0, 0, 0, 0, 0, 1);
-					case 15: ApplyAnimation(playerid, "GANGS", "smkcig_prtl", 4.1, 0, 0, 0, 0, 0, 1);
 				}
 			}
 		}
@@ -1620,7 +1619,17 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 					ApplyAnimation(playerid, "PED", "cower", 4.1, 0, 0, 0, 1, 0, 1);
 					player[playerid][pAnim] = 1;
 				}
-				case 1: { // Voltar página
+				case 1: { // Encostar
+					ApplyAnimation(playerid, "GANGS", "leanIDLE", 4.1, 1, 0, 0, 1, 0, 1);
+					player[playerid][pAnim] = 1;
+				}
+				case 2: { // Mãos na cintura
+					ShowPlayerDialog(playerid, textbox_cintura, DIALOG_STYLE_INPUT, "Mãos na cintura", "Digite um número entre 1 e 2:", "Confirmar", "");
+				}
+				case 3: { // Sinalizar
+					ShowPlayerDialog(playerid, textbox_sinalizar, DIALOG_STYLE_INPUT, "Sinalizar", "Digite um número entre 1 e 15:", "Confirmar", "");
+				}
+				case 4: { // Voltar página
 					ShowPlayerDialog(playerid, textbox_animes1, DIALOG_STYLE_TABLIST_HEADERS, "Animações",
 					"Descrição\tEscopo\n\
 					Parar\tY\n\
@@ -1654,6 +1663,60 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 					Recarregar\t[1-4]\n\
 					Próxima página\t>\n",
 					"Confirmar", "");
+				}
+			}
+		}
+	}
+	switch(dialogid) {
+  		case textbox_cintura: {
+			new type;
+			if (sscanf(inputtext, "d", type)) {
+				return 1;
+			}
+			else if (type < 1 || type > 2) {
+				return 1;
+			}
+			else {
+				switch(type) {
+					case 1: {
+						ApplyAnimation(playerid, "COP_AMBIENT", "Coplook_nod", 4.1, 0, 0, 0, 1, 0, 1);
+						player[playerid][pAnim] = 1;
+					}
+					case 2: {
+						ApplyAnimation(playerid, "COP_AMBIENT", "Coplook_shake", 4.1, 0, 0, 0, 1, 0, 1);
+						player[playerid][pAnim] = 1;
+					}
+				}
+			}
+		}
+	}
+	switch(dialogid) {
+  		case textbox_sinalizar: {
+			new type;
+			if (sscanf(inputtext, "d", type)) {
+				return 1;
+			}
+			else if (type < 1 || type > 15) {
+				return 1;
+			}
+			else {
+				player[playerid][pAnim] = 0;
+				switch(type) {
+					case 1: ApplyAnimation(playerid, "GHANDS", "gsign1", 4.1, 0, 0, 0, 0, 0, 1);
+					case 2: ApplyAnimation(playerid, "GHANDS", "gsign1LH", 4.1, 0, 0, 0, 0, 0, 1);
+					case 3: ApplyAnimation(playerid, "GHANDS", "gsign2", 4.1, 0, 0, 0, 0, 0, 1);
+					case 4: ApplyAnimation(playerid, "GHANDS", "gsign2LH", 4.1, 0, 0, 0, 0, 0, 1);
+					case 5: ApplyAnimation(playerid, "GHANDS", "gsign3", 4.1, 0, 0, 0, 0, 0, 1);
+					case 6: ApplyAnimation(playerid, "GHANDS", "gsign3LH", 4.1, 0, 0, 0, 0, 0, 1);
+					case 7: ApplyAnimation(playerid, "GHANDS", "gsign4", 4.1, 0, 0, 0, 0, 0, 1);
+					case 8: ApplyAnimation(playerid, "GHANDS", "gsign4LH", 4.1, 0, 0, 0, 0, 0, 1);
+					case 9: ApplyAnimation(playerid, "GHANDS", "gsign5", 4.1, 0, 0, 0, 0, 0, 1);
+					case 10: ApplyAnimation(playerid, "GHANDS", "gsign5", 4.1, 0, 0, 0, 0, 0, 1);
+					case 11: ApplyAnimation(playerid, "GHANDS", "gsign5LH", 4.1, 0, 0, 0, 0, 0, 1);
+					case 12: ApplyAnimation(playerid, "GANGS", "Invite_No", 4.1, 0, 0, 0, 0, 0, 1);
+					case 13: ApplyAnimation(playerid, "GANGS", "Invite_Yes", 4.1, 0, 0, 0, 0, 0, 1);
+					case 14: ApplyAnimation(playerid, "GANGS", "prtial_gngtlkD", 4.1, 0, 0, 0, 0, 0, 1);
+					case 15: ApplyAnimation(playerid, "GANGS", "smkcig_prtl", 4.1, 0, 0, 0, 0, 0, 1);
 				}
 			}
 		}
@@ -2306,7 +2369,7 @@ CMD:911(playerid, text[]) {
 		SendClientMessage(playerid, grey, "/911 [mensagem]");
 	}
 	else {
-		if (GetPlayerSpecialAction(playerid) != SPECIAL_ACTION_DUCK && player[playerid][pDerrubado] == 0  && player[playerid][pFerido] == 1 && player[playerid][pAnim] == 1) {
+		if (GetPlayerSpecialAction(playerid) != SPECIAL_ACTION_DUCK && player[playerid][pDerrubado] == 0  && player[playerid][pFerido] == 0 && player[playerid][pAnim] == 0) {
 			ApplyAnimation(playerid, "ped", "phone_talk", 2.0, 0, 0, 0, 0, 0, 1);
 		}
 		if(strlen(text) > 75) {
@@ -2338,7 +2401,7 @@ CMD:190(playerid, text[]) {
 		SendClientMessage(playerid, grey, "/190 [mensagem]");
 	}
 	else {
-		if (GetPlayerSpecialAction(playerid) != SPECIAL_ACTION_DUCK && player[playerid][pDerrubado] == 0  && player[playerid][pFerido] == 1 && player[playerid][pAnim] == 1) {
+		if (GetPlayerSpecialAction(playerid) != SPECIAL_ACTION_DUCK && player[playerid][pDerrubado] == 0  && player[playerid][pFerido] == 0 && player[playerid][pAnim] == 0) {
 			ApplyAnimation(playerid, "ped", "phone_talk", 2.0, 0, 0, 0, 0, 0, 1);
 		}
 		if(strlen(text) > 75) {
@@ -2961,6 +3024,7 @@ CMD:skin(playerid, params[]) {
  		SendClientMessage(playerid, grey, "/skin [id]");
 	}
 	else if(skin >= 0 && skin <= 311 && skin != 74) {
+		player[playerid][pAnim] = 0;
 		SetPlayerSkin(playerid, skin);
 		new mensagem[120];
         format(mensagem, sizeof(mensagem), "Você mudou para a skin ID %d com sucesso.", skin);
