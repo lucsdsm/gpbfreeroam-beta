@@ -1092,6 +1092,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						PlayAudioStreamForPlayer(playerid, "https://www.dl.dropboxusercontent.com/s/e5r1ncgz5ghaypn/gpb_noise.mp3");
 						SetPlayerColor(playerid, white);
 						SetTimerEx("RadioPolicialEntra", 1500, false, "i", playerid);
+						if(player[playerid][pRadioPD] == 1) {
+							SetTimerEx("RadioPD", 5000, false, "i", playerid);
+						}
 					}
 					else if(player[playerid][pEquipe] == 3) {
 						RadioParamedicoSai(playerid);
@@ -1100,6 +1103,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						PlayAudioStreamForPlayer(playerid, "https://www.dl.dropboxusercontent.com/s/e5r1ncgz5ghaypn/gpb_noise.mp3");
 						SetPlayerColor(playerid, white);
 						SetTimerEx("RadioPolicialEntra", 1500, false, "i", playerid);
+						if(player[playerid][pRadioPD] == 1) {
+							SetTimerEx("RadioPD", 5000, false, "i", playerid);
+						}
 					}
 					else {
 						player[playerid][pEquipe] = 1;
@@ -1107,6 +1113,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						PlayAudioStreamForPlayer(playerid, "https://www.dl.dropboxusercontent.com/s/e5r1ncgz5ghaypn/gpb_noise.mp3");
 						SetPlayerColor(playerid, white);
 						SetTimerEx("RadioPolicialEntra", 1500, false, "i", playerid);
+						if(player[playerid][pRadioPD] == 1) {
+							SetTimerEx("RadioPD", 5000, false, "i", playerid);
+						}
 					}
 				case 2: // Criminoso
 					if(player[playerid][pEquipe] == 2) {
@@ -1119,6 +1128,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						PlayAudioStreamForPlayer(playerid, "https://www.dl.dropboxusercontent.com/s/e5r1ncgz5ghaypn/gpb_noise.mp3");
 						SetPlayerColor(playerid, white);
 						SetTimerEx("RadioCriminosoEntra", 1500, false, "i", playerid);
+						if(player[playerid][pRadioPD] == 1) {
+							SetTimerEx("RadioPD", 5000, false, "i", playerid);
+						}
 					}
 					else if(player[playerid][pEquipe] == 3) {
 						RadioParamedicoSai(playerid);
@@ -1127,6 +1139,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						PlayAudioStreamForPlayer(playerid, "https://www.dl.dropboxusercontent.com/s/e5r1ncgz5ghaypn/gpb_noise.mp3");
 						SetPlayerColor(playerid, white);
 						SetTimerEx("RadioCriminosoEntra", 1500, false, "i", playerid);
+						if(player[playerid][pRadioPD] == 1) {
+							SetTimerEx("RadioPD", 5000, false, "i", playerid);
+						}
 					}
 					else {
 						player[playerid][pEquipe] = 2;
@@ -1134,6 +1149,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						PlayAudioStreamForPlayer(playerid, "https://www.dl.dropboxusercontent.com/s/e5r1ncgz5ghaypn/gpb_noise.mp3");
 						SetPlayerColor(playerid, white);
 						SetTimerEx("RadioCriminosoEntra", 1500, false, "i", playerid);
+						if(player[playerid][pRadioPD] == 1) {
+							SetTimerEx("RadioPD", 5000, false, "i", playerid);
+						}
 					}
 				case 3: // Paramédico
 					if(player[playerid][pEquipe] == 3) {
@@ -1146,6 +1164,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						PlayAudioStreamForPlayer(playerid, "https://www.dl.dropboxusercontent.com/s/e5r1ncgz5ghaypn/gpb_noise.mp3");
 						SetPlayerColor(playerid, white);
 						SetTimerEx("RadioParamedicoEntra", 1500, false, "i", playerid);
+						if(player[playerid][pRadioPD] == 1) {
+							SetTimerEx("RadioPD", 5000, false, "i", playerid);
+						}
 					}
 					else if(player[playerid][pEquipe] == 2) {
 						RadioCriminosoSai(playerid);
@@ -1154,6 +1175,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						PlayAudioStreamForPlayer(playerid, "https://www.dl.dropboxusercontent.com/s/e5r1ncgz5ghaypn/gpb_noise.mp3");
 						SetPlayerColor(playerid, white);
 						SetTimerEx("RadioParamedicoEntra", 1500, false, "i", playerid);
+						if(player[playerid][pRadioPD] == 1) {
+							SetTimerEx("RadioPD", 5000, false, "i", playerid);
+						}
 					}
 					else {
 						player[playerid][pEquipe] = 3;
@@ -1161,6 +1185,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						PlayAudioStreamForPlayer(playerid, "https://www.dl.dropboxusercontent.com/s/e5r1ncgz5ghaypn/gpb_noise.mp3");
 						SetTimerEx("RadioParamedicoEntra", 1500, false, "i", playerid);
 						SetPlayerColor(playerid, white);
+						if(player[playerid][pRadioPD] == 1) {
+							SetTimerEx("RadioPD", 5000, false, "i", playerid);
+						}
 					}
 			}
 		}
@@ -1962,6 +1989,9 @@ public RadioPolicia(string[]) {
                 SendClientMessage(i, rose, string);
 				PlayAudioStreamForPlayer(i, "https://www.dl.dropboxusercontent.com/s/p26xc6hpnc606wy/gpb_ptt.mp3");
             }
+			if(player[i][pRadioPD] == 1) {
+				SetTimerEx("RadioPD", 5000, false, "i", i);
+			}
         }
     }
 }
@@ -1985,6 +2015,9 @@ public RadioCriminoso(string[]) {
                 SendClientMessage(i, rose, string);
 				PlayAudioStreamForPlayer(i, "https://www.dl.dropboxusercontent.com/s/p26xc6hpnc606wy/gpb_ptt.mp3");
             }
+			if(player[i][pRadioPD] == 1) {
+				SetTimerEx("RadioPD", 5000, false, "i", i);
+			}
         }
     }
 }
@@ -2008,6 +2041,9 @@ public RadioParamedico(string[]) {
                 SendClientMessage(i, rose, string);
 				PlayAudioStreamForPlayer(i, "https://www.dl.dropboxusercontent.com/s/p26xc6hpnc606wy/gpb_ptt.mp3");
             }
+			if(player[i][pRadioPD] == 1) {
+				SetTimerEx("RadioPD", 5000, false, "i", i);
+			}
         }
     }
 }
@@ -2051,6 +2087,12 @@ public RadioEmergenciaLongo(string[]) {
             }
         }
     }
+}
+
+forward RadioPD(playerid);
+public RadioPD(playerid) {
+    PlayAudioStreamForPlayer(playerid,"http://broadcastify.cdnstream1.com/20296");
+    return 1;
 }
 
 forward DestroyStinger(stingerid);
@@ -2552,7 +2594,7 @@ CMD:tr(playerid, params[]) {
 
 CMD:radiopd(playerid, params[]) {
 	if (player[playerid][pRadioPD] == 0) {
-		PlayAudioStreamForPlayer(playerid,"http://broadcastify.cdnstream1.com/20296");
+		RadioPD(playerid);
 		player[playerid][pRadioPD] = 1;
 		SendClientMessage(playerid, grey, "Rádio sincronizado com sucesso.");
 	}
