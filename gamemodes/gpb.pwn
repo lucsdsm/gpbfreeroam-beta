@@ -3241,10 +3241,18 @@ CMD:ir(playerid, params[]) {
 		if(IsPlayerInAnyVehicle(playerid)) {
 			GetPlayerPos(objetivo, pos[0], pos[1], pos[2]);
 			SetVehiclePos(GetPlayerVehicleID(playerid), pos[0]+1, pos[1]+1, pos[2]);
+			format(gpbMensagem, sizeof(gpbMensagem), "Voce foi até %s.", GetName(objetivo));
+			SendClientMessage(playerid, grey, gpbMensagem);
+			format(gpbMensagem, sizeof(gpbMensagem), "%s veio até sua localização.", GetName(playerid));
+			SendClientMessage(objetivo, grey, gpbMensagem);
 		}
 		else {
 			GetPlayerPos(objetivo, pos[0], pos[1], pos[2]);
 			SetPlayerPos(playerid, pos[0]+1, pos[1]+1, pos[2]);
+			format(gpbMensagem, sizeof(gpbMensagem), "Voce foi até %s.", GetName(objetivo));
+			SendClientMessage(playerid, grey, gpbMensagem);
+			format(gpbMensagem, sizeof(gpbMensagem), "%s veio até sua localização.", GetName(playerid));
+			SendClientMessage(objetivo, grey, gpbMensagem);
 		}
 	}	
 	return 1;
