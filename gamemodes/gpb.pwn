@@ -2077,6 +2077,25 @@ CMD:comandos(playerid, params[]) {
    	return 1;
 }
 
+CMD:c(playerid, text[]) {
+	if(strlen(text) > 65) {
+		text[0] = toupper(text[0]);
+		new gpbMensagem2[128];
+		format(gpbMensagem, sizeof(gpbMensagem), "%s — %.64s [...]", GetName(playerid), text);
+		format(gpbMensagem2, sizeof(gpbMensagem2), "[...]%s", text[64]);
+		SendRangedMessage(playerid, white, gpbMensagem, 20);
+		SendRangedMessage(playerid, white, gpbMensagem2, 20);
+		SetPlayerChatBubble(playerid, gpbMensagem, white, 20, 10000);
+	}
+	else {
+		text[0] = toupper(text[0]);
+		format(gpbMensagem, 500, "%s — %s", GetName(playerid), text);
+		SendRangedMessage(playerid, white, gpbMensagem, 20);
+		SetPlayerChatBubble(playerid, gpbMensagem, white, 20, 10000);
+	}
+	return 1;
+}
+
 CMD:me(playerid, text[]) {
 	if(isnull(text)) {
 		SendClientMessage(playerid, grey, "/me [ação]");
