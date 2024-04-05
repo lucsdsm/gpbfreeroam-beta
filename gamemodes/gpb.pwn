@@ -370,7 +370,7 @@ stock CreateSmallStinger(Float:X, Float:Y, Float:Z, Float:A, virtualworld){
 
 //Funções públicas:
 public OnGameModeInit() {
-	SetGameModeText("GPB:F v0.4.1");
+	SetGameModeText("GPB:F v0.5");
     ManualVehicleEngineAndLights();
 	SetNameTagDrawDistance(20.0);
 	EnableStuntBonusForAll(0);
