@@ -2120,9 +2120,9 @@ public Reanima(userid) {
 //Funções CMD:
 CMD:comandos(playerid, params[]) {
 	SendClientMessage(playerid, grey, "[Servidor]: /comandos, /equipe, /hora, /clima, /tp, /ir, /tc, /tr, /ob, /remover;");
-	SendClientMessage(playerid, grey, "[Chat]: /me, /ame, /do, /sus, /gl, /d, /ooc, /gr, /r, /911, /190, /mp;");
-	SendClientMessage(playerid, grey, "[Personagem]: /reviver, /skin, /animes, /equipar, /derrubar, /levantar, /limpar;");
-	SendClientMessage(playerid, grey, "[Veículo]: /vc, /vd, /chave, /luzes, /pintar, /fix, /capo, /mala;");
+	SendClientMessage(playerid, grey, "[Chat]: /c, /me, /ame, /do, /sus, /gl, /d, /ooc, /gr, /r, /911, /190, /mp;");
+	SendClientMessage(playerid, grey, "[Personagem]: /reviver, /skin, /animes, /equipar, /derrubar, /levantar, /limpar, /morrer;");
+	SendClientMessage(playerid, grey, "[Veículo]: /vc, /vd, /chave, /luzes, /pintar, /fix, /travas, /capo, /mala;");
 	SendClientMessage(playerid, grey, "[Polícia]: /vcs, /vp, /rp, /mf, /ref, /algemar, /desalgemar.");
    	return 1;
 }
