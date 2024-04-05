@@ -437,7 +437,7 @@ public OnPlayerSpawn(playerid) {
 	    SetPlayerVirtualWorld(playerid, morto[playerid][morto_vw]);
 	    SetPlayerInterior(playerid, morto[playerid][morto_int]);
 		SetPlayerSkin(playerid, playerSkin[playerid]);
-		ApplyAnimation(playerid, "ped", "KO_shot_front", 4.1, 0, 0, 0, 1, 0, 1);
+		ApplyAnimation(playerid, "ped", "KO_skid_front", 4.1, 0, 0, 0, 1, 0, 1);
 		new reset[mortoData];
 		morto[playerid] = reset;
 		morto[playerid][morto_dead] = true;
@@ -459,7 +459,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart)
 		player[playerid][pFerido] = 1;
 		SetPlayerHealth(playerid, 98303);
 		SetPlayerColor(playerid, red);
-		ApplyAnimation(playerid, "ped", "KO_shot_front", 4.1, 0, 0, 0, 1, 0, 1);
+		ApplyAnimation(playerid, "ped", "KO_skid_front", 4.1, 0, 0, 0, 1, 0, 1);
 		SendClientMessage(playerid, grey, "Você está ferido. Para voltar ao controle do personagem use o /reviver.");
 
 	}
@@ -504,7 +504,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart)
 				player[playerid][pDerrubado] = 1;
 				SetPlayerHealth(playerid, 98303);
 				SetPlayerColor(playerid, yellow);
-				ApplyAnimation(playerid, "ped", "KO_shot_front", 4.1, 0, 0, 0, 1, 0, 1);
+				ApplyAnimation(playerid, "ped", "KO_skid_front", 4.1, 0, 0, 0, 1, 0, 1);
 				format(gpbMensagem, 500, "Você atingiu %s com um taser. Para o jogador voltar ao controle, levante-o utilizando o /levantar.", GetName(playerid));
 				SendClientMessage(playerid, grey, "Você foi atingido por um taser. Espere algum policial te levantar para voltar ao controle do personagem.");
 				SendClientMessage(issuerid, grey, gpbMensagem);
@@ -587,7 +587,7 @@ public OnPlayerDeath(playerid, killerid, reason) {
 		player[playerid][pFerido] = 1;
 		SetPlayerHealth(playerid, 98303);
 		SetPlayerColor(playerid, red);
-		ApplyAnimation(playerid, "ped", "KO_shot_front", 4.1, 0, 0, 0, 1, 0, 1);
+		ApplyAnimation(playerid, "ped", "KO_skid_front", 4.1, 0, 0, 0, 1, 0, 1);
 		SendClientMessage(playerid, grey, "Você está ferido. Para voltar ao controle do personagem use o /reviver.");
 		return 1;
 	}
@@ -2109,6 +2109,14 @@ public DestroyStinger(stingerid){
     iPickups[stingerid][4] = -1;
 }
 
+forward Reanima(userid);
+public Reanima(userid) {
+	ApplyAnimation(userid, "ped", "getup", 4.1, 0, 0, 0, 0, 0, 1);
+	SetPlayerColor(userid, white);
+	SetPlayerHealth(userid, 100);
+	player[userid][pFerido] = 0;
+}
+
 //Funções CMD:
 CMD:comandos(playerid, params[]) {
 	SendClientMessage(playerid, grey, "[Servidor]: /comandos, /equipe, /hora, /clima, /tp, /ir, /tc, /tr, /ob, /remover;");
@@ -3151,7 +3159,7 @@ CMD:morrer(playerid) {
 	    player[playerid][pFerido] = 1;
 	    SetPlayerHealth(playerid, 98303);
 	    SetPlayerColor(playerid, red);
-	    ApplyAnimation(playerid, "ped", "ko_shot_front", 4.1, 0, 0, 0, 1, 0, 1);
+	    ApplyAnimation(playerid, "ped", "KO_skid_front", 4.1, 0, 0, 0, 1, 0, 1);
 	    SendClientMessage(playerid, grey, "Você está ferido. Para voltar ao controle do personagem use o /levantar.");
 	}
 	return 1;
@@ -3172,7 +3180,7 @@ CMD:reviver(playerid) {
 	    player[playerid][pFerido] = 0;
 	}
 	else {
-	    ApplyAnimation(playerid, "ped", "getup_front", 1.1, 0, 0, 0, 0, 0, 1);
+	    ApplyAnimation(playerid, "ped", "getup", 1.1, 0, 0, 0, 0, 0, 1);
 	    SetPlayerHealth(playerid, 100.0);
 	    SetPlayerColor(playerid, white);
 	    player[playerid][pFerido] = 0;
@@ -3406,7 +3414,7 @@ CMD:derrubar(playerid, params[]) {
 		format(gpbMensagem, sizeof(gpbMensagem), "%s coloca %s ao chão.", GetName(playerid), GetName(userid));
     	SendRangedMessage(playerid, purple, gpbMensagem, 15);
 		ApplyAnimation(playerid, "BASEBALL", "Bat_4", 1.1, 0, 0, 0, 0, 0, 1);
-		ApplyAnimation(userid, "ped", "KO_shot_front", 4.1, 0, 0, 0, 1, 0, 1);
+		ApplyAnimation(userid, "ped", "KO_skid_front", 4.1, 0, 0, 0, 1, 0, 1);
 		player[userid][pDerrubado] = 1;
 	}
 	return 1;
@@ -3414,10 +3422,7 @@ CMD:derrubar(playerid, params[]) {
 
 CMD:levantar(playerid, params[]) {
     new userid;
-	if (player[playerid][pEquipe] != 1) {
-		SendClientMessage(playerid, grey, "Você não pode derrubar ninguém.");
-	}
-    else if(player[playerid][pFerido] == 1){
+    if(player[playerid][pFerido] == 1){
 	    SendClientMessage(playerid, grey, "Você está ferido. Primeiro utilize o /reviver.");
 	}
 	else if(IsPlayerInAnyVehicle(playerid)) {
@@ -3442,10 +3447,45 @@ CMD:levantar(playerid, params[]) {
 		format(gpbMensagem, sizeof(gpbMensagem), "%s pega %s pelo braço e levanta-o.", GetName(playerid), GetName(userid));
     	SendRangedMessage(playerid, purple, gpbMensagem, 15);
 		ApplyAnimation(playerid, "CARRY", "liftup05", 4.1, 0, 0, 0, 0, 0, 1);
-		ApplyAnimation(userid, "ped", "getup_front", 1.1, 0, 0, 0, 0, 0, 1);
+		ApplyAnimation(userid, "ped", "getup", 1.1, 0, 0, 0, 0, 0, 1);
 		SetPlayerColor(userid, white);
 		SetPlayerHealth(userid, 100);
 		player[userid][pDerrubado] = 0;
+	}
+	return 1;
+}
+
+CMD:reanimar(playerid, params[]) {
+    new userid;
+	if(player[playerid][pFerido] == 1){
+	    SendClientMessage(playerid, grey, "Você está ferido. Primeiro utilize o /reviver.");
+	}
+	else if(player[playerid][pEquipe] != 3) {
+		SendClientMessage(playerid, grey, "Você precisa ser um paramédico para reanimar um jogador.");
+	}
+	else if(IsPlayerInAnyVehicle(playerid)) {
+		SendClientMessage(playerid, grey, "Você não pode reanimar alguém de dentro de um veículo.");
+	}
+	else if (sscanf(params, "u", userid)) {
+		SendClientMessage(playerid, grey, "/reanimar [id]");
+	}
+	else if (userid == INVALID_PLAYER_ID) {
+		SendClientMessage(playerid, grey, "Jogador não conectado.");
+	}
+	else if (userid == playerid) {
+		SendClientMessage(playerid, grey, "Você não pode usar esse comando em si mesmo.");
+	}
+	else if (!IsPlayerNearPlayer(playerid, userid, 2.0)) {
+		SendClientMessage(playerid, grey, "Você deve estar bem próximo ao jogador.");
+	}
+	else if (player[userid][pFerido] == 0) {
+		SendClientMessage(playerid, grey, "O jogador não está ferido.");
+	}
+	else {
+		format(gpbMensagem, sizeof(gpbMensagem), "%s ajoelha-se e tenta reanimar %s.", GetName(playerid), GetName(userid));
+    	SendRangedMessage(playerid, purple, gpbMensagem, 15);
+		ApplyAnimation(playerid, "MEDIC", "CPR", 4.1, 0, 0, 0, 0, 0, 1);
+		SetTimerEx("Reanima", 5000, false, "d", userid);
 	}
 	return 1;
 }
