@@ -1313,7 +1313,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 					Agachar\t\n\
 					Encostar\t\n\
 					Mãos na cintura\t[1-2]\n\
-					Sinalizar\t[1-15]\n\
+					Sinalizar\t[1-10]\n\
 					Voltar página\t<\n",
 					"Confirmar", "");
 				}
@@ -1661,7 +1661,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 					ShowPlayerDialog(playerid, textbox_cintura, DIALOG_STYLE_INPUT, "Mãos na cintura", "Digite um número entre 1 e 2:", "Confirmar", "");
 				}
 				case 3: { // Sinalizar
-					ShowPlayerDialog(playerid, textbox_sinalizar, DIALOG_STYLE_INPUT, "Sinalizar", "Digite um número entre 1 e 15:", "Confirmar", "");
+					ShowPlayerDialog(playerid, textbox_sinalizar, DIALOG_STYLE_INPUT, "Sinalizar", "Digite um número entre 1 e 10:", "Confirmar", "");
 				}
 				case 4: { // Voltar página
 					ShowPlayerDialog(playerid, textbox_animes1, DIALOG_STYLE_TABLIST_HEADERS, "Animações",
@@ -1730,27 +1730,22 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			if (sscanf(inputtext, "d", type)) {
 				return 1;
 			}
-			else if (type < 1 || type > 15) {
+			else if (type < 1 || type > 10) {
 				return 1;
 			}
 			else {
 				player[playerid][pAnim] = 0;
 				switch(type) {
-					case 1: ApplyAnimation(playerid, "GHANDS", "gsign1", 4.1, 0, 0, 0, 0, 0, 1);
-					case 2: ApplyAnimation(playerid, "GHANDS", "gsign1LH", 4.1, 0, 0, 0, 0, 0, 1);
-					case 3: ApplyAnimation(playerid, "GHANDS", "gsign2", 4.1, 0, 0, 0, 0, 0, 1);
-					case 4: ApplyAnimation(playerid, "GHANDS", "gsign2LH", 4.1, 0, 0, 0, 0, 0, 1);
-					case 5: ApplyAnimation(playerid, "GHANDS", "gsign3", 4.1, 0, 0, 0, 0, 0, 1);
-					case 6: ApplyAnimation(playerid, "GHANDS", "gsign3LH", 4.1, 0, 0, 0, 0, 0, 1);
-					case 7: ApplyAnimation(playerid, "GHANDS", "gsign4", 4.1, 0, 0, 0, 0, 0, 1);
-					case 8: ApplyAnimation(playerid, "GHANDS", "gsign4LH", 4.1, 0, 0, 0, 0, 0, 1);
-					case 9: ApplyAnimation(playerid, "GHANDS", "gsign5", 4.1, 0, 0, 0, 0, 0, 1);
-					case 10: ApplyAnimation(playerid, "GHANDS", "gsign5", 4.1, 0, 0, 0, 0, 0, 1);
-					case 11: ApplyAnimation(playerid, "GHANDS", "gsign5LH", 4.1, 0, 0, 0, 0, 0, 1);
-					case 12: ApplyAnimation(playerid, "GANGS", "Invite_No", 4.1, 0, 0, 0, 0, 0, 1);
-					case 13: ApplyAnimation(playerid, "GANGS", "Invite_Yes", 4.1, 0, 0, 0, 0, 0, 1);
-					case 14: ApplyAnimation(playerid, "GANGS", "prtial_gngtlkD", 4.1, 0, 0, 0, 0, 0, 1);
-					case 15: ApplyAnimation(playerid, "GANGS", "smkcig_prtl", 4.1, 0, 0, 0, 0, 0, 1);
+					case 1: ApplyAnimation(playerid, "CAMERA", "camcrch_cmon", 4.1, 0, 0, 0, 0, 0, 1);
+					case 2: ApplyAnimation(playerid, "CAMERA", "camstnd_cmon", 4.1, 0, 0, 0, 0, 0, 1);
+					case 3: ApplyAnimation(playerid, "MISC", "BMX_comeon", 4.1, 0, 0, 0, 0, 0, 1);
+					case 4: ApplyAnimation(playerid, "POLICE", "CopTraf_Away", 4.1, 0, 0, 0, 0, 0, 1);
+					case 5: ApplyAnimation(playerid, "POLICE", "CopTraf_Come", 4.1, 0, 0, 0, 0, 0, 1);
+					case 6: ApplyAnimation(playerid, "POLICE", "CopTraf_Left", 4.1, 0, 0, 0, 0, 0, 1);
+					case 7: ApplyAnimation(playerid, "POLICE", "CopTraf_Stop", 4.1, 0, 0, 0, 0, 0, 1);
+					case 8: ApplyAnimation(playerid, "RYDER", "RYD_Beckon_01", 4.1, 0, 0, 0, 0, 0, 1);
+					case 9: ApplyAnimation(playerid, "RYDER", "RYD_Beckon_02", 4.1, 0, 0, 0, 0, 0, 1);
+					case 10: ApplyAnimation(playerid, "RYDER", "RYD_Beckon_03", 4.1, 0, 0, 0, 0, 0, 1);
 				}
 			}
 		}
