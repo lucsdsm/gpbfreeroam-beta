@@ -569,6 +569,43 @@ public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart)
 			}
 		}
 	}
+	if (player[playerid][pFerido] == 0) { /* Sistema de ferimento */
+		if (bodypart == 3) {
+			ferimento[playerid][ftronco] = ferimento[playerid][ftronco] + amount;
+			format(gpbMensagem, sizeof(gpbMensagem), "Tronco = %.1f", ferimento[playerid][ftronco]);
+			SendClientMessage(issuerid, grey, gpbMensagem);
+		}
+		else if (bodypart == 4) {
+			ferimento[playerid][fvirilha] = ferimento[playerid][fvirilha] + amount;
+			format(gpbMensagem, sizeof(gpbMensagem), "Virilha = %.1f", ferimento[playerid][fvirilha]);
+			SendClientMessage(issuerid, grey, gpbMensagem);
+		}
+		else if (bodypart == 5) {
+			ferimento[playerid][fbracoesq] = ferimento[playerid][fbracoesq] + amount;
+			format(gpbMensagem, sizeof(gpbMensagem), "Braço esquerdo = %.1f", ferimento[playerid][fbracoesq]);
+			SendClientMessage(issuerid, grey, gpbMensagem);
+		}
+		else if (bodypart == 6) {
+			ferimento[playerid][fbracodir] = ferimento[playerid][fbracodir] + amount;
+			format(gpbMensagem, sizeof(gpbMensagem), "Braço direito = %.1f", ferimento[playerid][fbracodir]);
+			SendClientMessage(issuerid, grey, gpbMensagem);
+		}
+		else if (bodypart == 7) {
+			ferimento[playerid][fpernaesq] = ferimento[playerid][fpernaesq] + amount;
+			format(gpbMensagem, sizeof(gpbMensagem), "Perna esquerda = %.1f", ferimento[playerid][fpernaesq]);
+			SendClientMessage(issuerid, grey, gpbMensagem);
+		}
+		else if (bodypart == 8) {
+			ferimento[playerid][fpernadir] = ferimento[playerid][fpernadir] + amount;
+			format(gpbMensagem, sizeof(gpbMensagem), "Perna direita = %.1f", ferimento[playerid][fpernadir]);
+			SendClientMessage(issuerid, grey, gpbMensagem);
+		}
+		else if (bodypart == 9) {
+			ferimento[playerid][fcabeca] = ferimento[playerid][fcabeca] + amount;
+			format(gpbMensagem, sizeof(gpbMensagem), "Cabeça = %.1f", ferimento[playerid][fcabeca]);
+			SendClientMessage(issuerid, grey, gpbMensagem);
+		}
+	}
 	return 1;
 }
 
