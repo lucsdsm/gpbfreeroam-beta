@@ -62,7 +62,7 @@ main() {
 
 //Enumerates:
 enum jogadorData {
-   pSpawnVehicle,
+   pVeiculo,
    pEquipe,
    pFerido,
    pAlgemado,
@@ -89,6 +89,16 @@ enum objetoData {
     Float:sZ,
     sObject,
 };
+
+enum ferimentoData {
+	Float:ftronco,
+	Float:fvirilha,
+	Float:fbracoesq,
+	Float:fbracodir,
+	Float:fpernaesq,
+	Float:fpernadir,
+	Float:fcabeca,
+}
 
 //Variáveis globais:
 new veiculosNomes[212][] =  {
@@ -161,6 +171,7 @@ new veiculoTrancado[MAX_VEHICLES];
 new player[MAX_PLAYERS][jogadorData];
 new playerSkin[MAX_PLAYERS];
 new PlayerInfo[MAX_PLAYERS][jogadorData];
+new ferimento[MAX_PLAYERS][ferimentoData];
 new morto[MAX_PLAYERS][mortoData];
 new objeto[MAX_OBJETOS][objetoData];
 
@@ -397,6 +408,13 @@ public OnPlayerRequestClass(playerid, classid) {
 	player[playerid][pDerrubado] = 0;
 	player[playerid][pElastomero] = 0;
 	player[playerid][pRadioPD] = 0;
+	ferimento[playerid][ftronco] = 0;
+	ferimento[playerid][fvirilha] = 0;
+	ferimento[playerid][fbracoesq] = 0;
+	ferimento[playerid][fbracodir] = 0;
+	ferimento[playerid][fpernaesq] = 0;
+	ferimento[playerid][fpernadir] = 0;
+	ferimento[playerid][fcabeca] = 0;
 	SetPlayerColor(playerid, white);
  	TogglePlayerSpectating(playerid, true);
 	SpawnPlayer(playerid);
@@ -413,6 +431,13 @@ public OnPlayerConnect(playerid) {
 	player[playerid][pDerrubado] = 0;
 	player[playerid][pElastomero] = 0;
 	player[playerid][pRadioPD] = 0;
+	ferimento[playerid][ftronco] = 0;
+	ferimento[playerid][fvirilha] = 0;
+	ferimento[playerid][fbracoesq] = 0;
+	ferimento[playerid][fbracodir] = 0;
+	ferimento[playerid][fpernaesq] = 0;
+	ferimento[playerid][fpernadir] = 0;
+	ferimento[playerid][fcabeca] = 0;
  	JogadorConecta(playerid);
 	SetPlayerVirtualWorld(playerid, 0);
 	ShowPlayerMarkers(0);
@@ -448,14 +473,13 @@ public OnPlayerSpawn(playerid) {
 
 public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart) {
 	new Float:health;
-	// new Float:headshot = random(3);
 	GetPlayerHealth(playerid,health);
 	if (player[playerid][pAnim] == 1) { // Remove as animações ao atirar
 		player[playerid][pAnim] = 0;
 		ClearAnimations(playerid, 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 	}
-	if ((health < 65 /*|| bodypart == 9*/) && !IsPlayerInAnyVehicle(playerid) && weaponid != 23 && weaponid != 25 && player[playerid][pFerido] == 0) { // Geral
+	if ((health < 65) && !IsPlayerInAnyVehicle(playerid) && weaponid != 23 && weaponid != 25 && player[playerid][pFerido] == 0) { // Geral
 		player[playerid][pFerido] = 1;
 		SetPlayerHealth(playerid, 98303);
 		SetPlayerColor(playerid, red);
@@ -463,7 +487,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart)
 		SendClientMessage(playerid, grey, "Você está ferido. Para voltar ao controle do personagem use o /reviver.");
 
 	}
-	if ((health < 65 /*|| bodypart == 9*/) && IsPlayerInAnyVehicle(playerid) && weaponid != 23 && weaponid != 25 && player[playerid][pFerido] == 0) { // Vítima em algum veículo
+	if ((health < 65) && IsPlayerInAnyVehicle(playerid) && weaponid != 23 && weaponid != 25 && player[playerid][pFerido] == 0) { // Vítima em algum veículo
 		player[playerid][pFerido] = 1;
 		SetPlayerHealth(playerid, 98303);
 		SetPlayerColor(playerid, red);
@@ -471,19 +495,6 @@ public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart)
 		SendClientMessage(playerid, grey, "Você está ferido. Para voltar ao controle do personagem use o /reviver.");
 
 	}
-	/* if (bodypart == 9 && IsPlayerInAnyVehicle(playerid)) { // Cria uma chance para headshot dentro de veículos
-		if (headshot == 1) {
-			player[playerid][pFerido] = 1;
-			SetPlayerHealth(playerid, 98303);
-			SetPlayerColor(playerid, red);
-			TogglePlayerControllable(playerid, false);
-			ApplyAnimation(playerid, "ped", "car_dead_lhs", 4.1, 0, 1, 0, 1, 0, 1);
-			SendClientMessage(playerid, grey, "Você está ferido. Para voltar ao controle do personagem use o /reviver.");
-		}
-		else {
-			SetPlayerHealth(playerid, health+amount);
-		}	
-	} */
 	if ((health < 65)) { // Impedir mensagens duplicadas
 		if (weaponid == 37 || weaponid == 9) {
 			return 1;
@@ -527,7 +538,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart)
 			GetPlayerHealth(playerid, health);
 			SetPlayerHealth(playerid, health-dano);
 			
-			if (/*bodypart == 9 &&*/ player[playerid][pFerido] == 0 && !IsPlayerInAnyVehicle(playerid)) {
+			if (player[playerid][pFerido] == 0 && !IsPlayerInAnyVehicle(playerid)) {
 				player[playerid][pFerido] = 1;
 				SetPlayerHealth(playerid, 98303);
 				SetPlayerColor(playerid, red);
@@ -1769,7 +1780,7 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success) {
 public OnVehicleDamageStatusUpdate(vehicleid, playerid) {
 	new Float:health;
 	GetVehicleHealth(GetPlayerVehicleID(playerid), health);
-	if(health < 550){
+	if(health < 550 && GetPlayerSpecialAction(playerid) != SPECIAL_ACTION_ENTER_VEHICLE){
 		SetVehicleHealth(vehicleid, 400);
 		new enginem, lights, alarm, doors, bonnet, boot, objective;
 		GetVehicleParamsEx(GetPlayerVehicleID(playerid),enginem, lights, alarm, doors, bonnet, boot, objective);
@@ -2672,16 +2683,16 @@ CMD:vc(playerid, params[]) {
 			 	DestroyVehicle(vehicleid);
 				GetPlayerPos(playerid, pos[0], pos[1], pos[2]);
 				GetPlayerFacingAngle(playerid, pos[3]);
-	   			PlayerInfo[playerid][pSpawnVehicle] = CreateVehicle(id, pos[0], pos[1], pos[2], pos[3], -1, -1, -1, 0);
-				LinkVehicleToInterior(PlayerInfo[playerid][pSpawnVehicle], GetPlayerInterior(playerid));
-				PutPlayerInVehicle(playerid, PlayerInfo[playerid][pSpawnVehicle], 0);
+	   			PlayerInfo[playerid][pVeiculo] = CreateVehicle(id, pos[0], pos[1], pos[2], pos[3], -1, -1, -1, 0);
+				LinkVehicleToInterior(PlayerInfo[playerid][pVeiculo], GetPlayerInterior(playerid));
+				PutPlayerInVehicle(playerid, PlayerInfo[playerid][pVeiculo], 0);
 				player[playerid][pAnim] = 0;
-				veiculoTrancado[pSpawnVehicle] = 0;
-				if (HasNoEngine(PlayerInfo[playerid][pSpawnVehicle]) == 1) {
+				veiculoTrancado[pVeiculo] = 0;
+				if (HasNoEngine(PlayerInfo[playerid][pVeiculo]) == 1) {
 					new enginem, lights, alarm, doors, bonnet, boot, objective;
-					GetVehicleParamsEx(PlayerInfo[playerid][pSpawnVehicle], enginem, lights, alarm, doors, bonnet, boot, objective);
-					SetVehicleParamsEx(PlayerInfo[playerid][pSpawnVehicle], VEHICLE_PARAMS_ON, lights, alarm, doors, bonnet, boot, objective);
-					veiculoMotor[PlayerInfo[playerid][pSpawnVehicle]] = 1;
+					GetVehicleParamsEx(PlayerInfo[playerid][pVeiculo], enginem, lights, alarm, doors, bonnet, boot, objective);
+					SetVehicleParamsEx(PlayerInfo[playerid][pVeiculo], VEHICLE_PARAMS_ON, lights, alarm, doors, bonnet, boot, objective);
+					veiculoMotor[PlayerInfo[playerid][pVeiculo]] = 1;
 				}
 				else {
 					veiculoMotor[vehicleid] = 0;
@@ -2760,16 +2771,16 @@ CMD:vcs(playerid, params[]) {
 			 	DestroyVehicle(vehicleid);
 				GetPlayerPos(playerid, pos[0], pos[1], pos[2]);
 				GetPlayerFacingAngle(playerid, pos[3]);
-	   			PlayerInfo[playerid][pSpawnVehicle] = CreateVehicle(id, pos[0], pos[1], pos[2], pos[3], -1, -1, -1, 1);
-				LinkVehicleToInterior(PlayerInfo[playerid][pSpawnVehicle], GetPlayerInterior(playerid));
-				PutPlayerInVehicle(playerid, PlayerInfo[playerid][pSpawnVehicle], 0);
+	   			PlayerInfo[playerid][pVeiculo] = CreateVehicle(id, pos[0], pos[1], pos[2], pos[3], -1, -1, -1, 1);
+				LinkVehicleToInterior(PlayerInfo[playerid][pVeiculo], GetPlayerInterior(playerid));
+				PutPlayerInVehicle(playerid, PlayerInfo[playerid][pVeiculo], 0);
 				player[playerid][pAnim] = 0;
-				veiculoTrancado[pSpawnVehicle] = 0;
-				if (HasNoEngine(PlayerInfo[playerid][pSpawnVehicle]) == 1) {
+				veiculoTrancado[pVeiculo] = 0;
+				if (HasNoEngine(PlayerInfo[playerid][pVeiculo]) == 1) {
 					new enginem, lights, alarm, doors, bonnet, boot, objective;
-					GetVehicleParamsEx(PlayerInfo[playerid][pSpawnVehicle], enginem, lights, alarm, doors, bonnet, boot, objective);
-					SetVehicleParamsEx(PlayerInfo[playerid][pSpawnVehicle], VEHICLE_PARAMS_ON, lights, alarm, doors, bonnet, boot, objective);
-					veiculoMotor[PlayerInfo[playerid][pSpawnVehicle]] = 1;
+					GetVehicleParamsEx(PlayerInfo[playerid][pVeiculo], enginem, lights, alarm, doors, bonnet, boot, objective);
+					SetVehicleParamsEx(PlayerInfo[playerid][pVeiculo], VEHICLE_PARAMS_ON, lights, alarm, doors, bonnet, boot, objective);
+					veiculoMotor[PlayerInfo[playerid][pVeiculo]] = 1;
 				}
 				else {
 					veiculoMotor[vehicleid] = 0;
@@ -3173,12 +3184,26 @@ CMD:reviver(playerid) {
         SetPlayerHealth(playerid, 100.0);
 	    SetPlayerColor(playerid, white);
 	    player[playerid][pFerido] = 0;
+		ferimento[playerid][ftronco] = 0;
+		ferimento[playerid][fvirilha] = 0;
+		ferimento[playerid][fbracoesq] = 0;
+		ferimento[playerid][fbracodir] = 0;
+		ferimento[playerid][fpernaesq] = 0;
+		ferimento[playerid][fpernadir] = 0;
+		ferimento[playerid][fcabeca] = 0;
 	}
 	else {
 	    ApplyAnimation(playerid, "ped", "getup", 1.1, 0, 0, 0, 0, 0, 1);
 	    SetPlayerHealth(playerid, 100.0);
 	    SetPlayerColor(playerid, white);
 	    player[playerid][pFerido] = 0;
+		ferimento[playerid][ftronco] = 0;
+		ferimento[playerid][fvirilha] = 0;
+		ferimento[playerid][fbracoesq] = 0;
+		ferimento[playerid][fbracodir] = 0;
+		ferimento[playerid][fpernaesq] = 0;
+		ferimento[playerid][fpernadir] = 0;
+		ferimento[playerid][fcabeca] = 0;
 	}
     return 1;
 }
@@ -3485,7 +3510,6 @@ CMD:reanimar(playerid, params[]) {
 	return 1;
 }
 
-//anim
 CMD:anim(playerid, params[]) {
 	if (player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
 		SendClientMessage(playerid, grey, "Você não pode realizar animações no momento.");
