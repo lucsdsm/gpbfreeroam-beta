@@ -698,7 +698,7 @@ public OnPlayerText(playerid, text[]) {
 		text[0] = toupper(text[0]);
 		new gpbMensagem2[128];
 		format(gpbMensagem, sizeof(gpbMensagem), "%s — %.64s [...]", GetName(playerid), text);
-		format(gpbMensagem2, sizeof(gpbMensagem2), "[...]%s", text[64]);
+		format(gpbMensagem2, sizeof(gpbMensagem2), "[...] %s", text[64]);
 		SendRangedMessage(playerid, white, gpbMensagem, 20);
 		SendRangedMessage(playerid, white, gpbMensagem2, 20);
 		SetPlayerChatBubble(playerid, gpbMensagem, white, 20, 10000);
@@ -2175,7 +2175,7 @@ CMD:c(playerid, text[]) {
 		text[0] = toupper(text[0]);
 		new gpbMensagem2[128];
 		format(gpbMensagem, sizeof(gpbMensagem), "%s — %.64s [...]", GetName(playerid), text);
-		format(gpbMensagem2, sizeof(gpbMensagem2), "[...]%s", text[64]);
+		format(gpbMensagem2, sizeof(gpbMensagem2), "[...] %s", text[64]);
 		SendRangedMessage(playerid, white, gpbMensagem, 20);
 		SendRangedMessage(playerid, white, gpbMensagem2, 20);
 		SetPlayerChatBubble(playerid, gpbMensagem, white, 20, 10000);
@@ -2413,7 +2413,7 @@ CMD:r(playerid, text[]) {
 			text[0] = toupper(text[0]);
 			new gpbMensagem2[67];
 			format(gpbMensagem, sizeof(gpbMensagem), "[ID: %i - F:%i]: %.64s [...]", playerid, player[playerid][pEquipe], text[0]);
-			format(gpbMensagem2, sizeof(gpbMensagem2), "[...]%s", text[64]);
+			format(gpbMensagem2, sizeof(gpbMensagem2), "[...] %s", text[64]);
 			if (player[playerid][pEquipe] == 1) {
 				RadioPolicia(gpbMensagem);
 				RadioPoliciaLongo(gpbMensagem2);
