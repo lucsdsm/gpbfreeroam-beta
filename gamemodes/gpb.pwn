@@ -46,6 +46,7 @@
 #define textbox_sinalizar 18
 #define textbox_animes2 19
 #define textbox_cintura 20
+#define textbox_feridas 21
 
 #define PreloadAnimLib(%1,%2)	ApplyAnimation(%1,%2,"null",0.0,0,0,0,0,0)
 
@@ -92,7 +93,7 @@ enum objetoData {
 
 enum ferimentoData {
 	Float:ftronco,
-	Float:fvirilha,
+	Float:fpelvis,
 	Float:fbracoesq,
 	Float:fbracodir,
 	Float:fpernaesq,
@@ -162,7 +163,7 @@ new const AnimLibs[][] = {
   "WAYFARER",     "WEAPONS",      "WOP",          "WUZI"
 };
 
-new gpbMensagem[128];
+new gpbMensagem[512];
 new veiculoMotor[MAX_VEHICLES];
 new veiculoAvariado[MAX_VEHICLES];
 new veiculoPrefixo[MAX_VEHICLES];
@@ -409,7 +410,7 @@ public OnPlayerRequestClass(playerid, classid) {
 	player[playerid][pElastomero] = 0;
 	player[playerid][pRadioPD] = 0;
 	ferimento[playerid][ftronco] = 0;
-	ferimento[playerid][fvirilha] = 0;
+	ferimento[playerid][fpelvis] = 0;
 	ferimento[playerid][fbracoesq] = 0;
 	ferimento[playerid][fbracodir] = 0;
 	ferimento[playerid][fpernaesq] = 0;
@@ -418,7 +419,7 @@ public OnPlayerRequestClass(playerid, classid) {
 	SetPlayerColor(playerid, white);
  	TogglePlayerSpectating(playerid, true);
 	SpawnPlayer(playerid);
- 	SetSpawnInfo(playerid, -1, random(311), 1826, -1372, 14,269.2782,0,0,0,0,0,0);
+ 	SetSpawnInfo(playerid, -1, random(311), 1836, -1413, 29,269.2782,0,0,0,0,0,0); // SetSpawnInfo(playerid, -1, random(311), 1826, -1372, 14,269.2782,0,0,0,0,0,0);
  	TogglePlayerSpectating(playerid, false);
     return 1;
 }
@@ -432,7 +433,7 @@ public OnPlayerConnect(playerid) {
 	player[playerid][pElastomero] = 0;
 	player[playerid][pRadioPD] = 0;
 	ferimento[playerid][ftronco] = 0;
-	ferimento[playerid][fvirilha] = 0;
+	ferimento[playerid][fpelvis] = 0;
 	ferimento[playerid][fbracoesq] = 0;
 	ferimento[playerid][fbracodir] = 0;
 	ferimento[playerid][fpernaesq] = 0;
@@ -570,40 +571,35 @@ public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart)
 		}
 	}
 	if (player[playerid][pFerido] == 0) { /* Sistema de ferimento */
-		if (bodypart == 3) {
+		if (weaponid == 54) {
+			ferimento[playerid][ftronco] = ferimento[playerid][ftronco] + random(floatround(Float:amount, floatround_round));
+			ferimento[playerid][fpelvis] = ferimento[playerid][fpelvis] + random(floatround(Float:amount, floatround_round));
+			ferimento[playerid][fbracoesq] = ferimento[playerid][fbracoesq] + random(floatround(Float:amount, floatround_round));
+			ferimento[playerid][fbracodir] = ferimento[playerid][fbracodir] + random(floatround(Float:amount, floatround_round));
+			ferimento[playerid][fpernaesq] = ferimento[playerid][fpernaesq] + random(floatround(Float:amount, floatround_round));
+			ferimento[playerid][fpernadir] = ferimento[playerid][fpernadir] + random(floatround(Float:amount, floatround_round));
+			ferimento[playerid][fcabeca] = ferimento[playerid][fcabeca] + random(floatround(Float:amount, floatround_round));
+		}
+		if (bodypart == 3 && weaponid != 54) {
 			ferimento[playerid][ftronco] = ferimento[playerid][ftronco] + amount;
-			format(gpbMensagem, sizeof(gpbMensagem), "Tronco = %.1f", ferimento[playerid][ftronco]);
-			SendClientMessage(issuerid, grey, gpbMensagem);
 		}
 		else if (bodypart == 4) {
-			ferimento[playerid][fvirilha] = ferimento[playerid][fvirilha] + amount;
-			format(gpbMensagem, sizeof(gpbMensagem), "Virilha = %.1f", ferimento[playerid][fvirilha]);
-			SendClientMessage(issuerid, grey, gpbMensagem);
+			ferimento[playerid][fpelvis] = ferimento[playerid][fpelvis] + amount;
 		}
 		else if (bodypart == 5) {
 			ferimento[playerid][fbracoesq] = ferimento[playerid][fbracoesq] + amount;
-			format(gpbMensagem, sizeof(gpbMensagem), "Braço esquerdo = %.1f", ferimento[playerid][fbracoesq]);
-			SendClientMessage(issuerid, grey, gpbMensagem);
 		}
 		else if (bodypart == 6) {
 			ferimento[playerid][fbracodir] = ferimento[playerid][fbracodir] + amount;
-			format(gpbMensagem, sizeof(gpbMensagem), "Braço direito = %.1f", ferimento[playerid][fbracodir]);
-			SendClientMessage(issuerid, grey, gpbMensagem);
 		}
 		else if (bodypart == 7) {
 			ferimento[playerid][fpernaesq] = ferimento[playerid][fpernaesq] + amount;
-			format(gpbMensagem, sizeof(gpbMensagem), "Perna esquerda = %.1f", ferimento[playerid][fpernaesq]);
-			SendClientMessage(issuerid, grey, gpbMensagem);
 		}
 		else if (bodypart == 8) {
 			ferimento[playerid][fpernadir] = ferimento[playerid][fpernadir] + amount;
-			format(gpbMensagem, sizeof(gpbMensagem), "Perna direita = %.1f", ferimento[playerid][fpernadir]);
-			SendClientMessage(issuerid, grey, gpbMensagem);
 		}
 		else if (bodypart == 9) {
 			ferimento[playerid][fcabeca] = ferimento[playerid][fcabeca] + amount;
-			format(gpbMensagem, sizeof(gpbMensagem), "Cabeça = %.1f", ferimento[playerid][fcabeca]);
-			SendClientMessage(issuerid, grey, gpbMensagem);
 		}
 	}
 	return 1;
@@ -3222,7 +3218,7 @@ CMD:reviver(playerid) {
 	    SetPlayerColor(playerid, white);
 	    player[playerid][pFerido] = 0;
 		ferimento[playerid][ftronco] = 0;
-		ferimento[playerid][fvirilha] = 0;
+		ferimento[playerid][fpelvis] = 0;
 		ferimento[playerid][fbracoesq] = 0;
 		ferimento[playerid][fbracodir] = 0;
 		ferimento[playerid][fpernaesq] = 0;
@@ -3235,7 +3231,7 @@ CMD:reviver(playerid) {
 	    SetPlayerColor(playerid, white);
 	    player[playerid][pFerido] = 0;
 		ferimento[playerid][ftronco] = 0;
-		ferimento[playerid][fvirilha] = 0;
+		ferimento[playerid][fpelvis] = 0;
 		ferimento[playerid][fbracoesq] = 0;
 		ferimento[playerid][fbracodir] = 0;
 		ferimento[playerid][fpernaesq] = 0;
@@ -3547,6 +3543,147 @@ CMD:reanimar(playerid, params[]) {
 	return 1;
 }
 
+CMD:feridas(playerid, params[]) {
+	new scabeca[32], stronco[32], sbracoesq[32], sbracodir[32], spelvis[32], spernaesq[32], spernadir[32];
+	//
+	if (ferimento[playerid][fcabeca] == 0) {
+		scabeca = "{FFFFFF}Sem lesões";
+	}
+	else if (20 >= ferimento[playerid][fcabeca] > 0) {
+		scabeca = "{00adef}Não urgente";
+	}
+	else if (40 >= ferimento[playerid][fcabeca] > 20) {
+		scabeca = "{027e3f}Pouco urgente";
+	}
+	else if (60 >= ferimento[playerid][fcabeca] > 40) {
+		scabeca = "{f4c900}Urgente";
+	}
+	else if (80 >= ferimento[playerid][fcabeca] > 60) {
+		scabeca = "{f58122}Muito urgente";
+	}
+	else if (ferimento[playerid][fcabeca] > 80) {
+		scabeca = "{c5161d}Emergência";
+	}
+	//
+	if (ferimento[playerid][ftronco] == 0) {
+		stronco = "{FFFFFF}Sem lesões";
+	}
+	else if (20 >= ferimento[playerid][ftronco] > 0) {
+		stronco = "{00adef}Não urgente";
+	}
+	else if (40 >= ferimento[playerid][ftronco] > 20) {
+		stronco = "{027e3f}Pouco urgente";
+	}
+	else if (60 >= ferimento[playerid][ftronco] > 40) {
+		stronco = "{f4c900}Urgente";
+	}
+	else if (80 >= ferimento[playerid][ftronco] > 60) {
+		stronco = "{f58122}Muito urgente";
+	}
+	else if (ferimento[playerid][ftronco] > 80) {
+		stronco = "{c5161d}Emergência";
+	}
+	//
+	if (ferimento[playerid][fbracoesq] == 0) {
+		sbracoesq = "{FFFFFF}Sem lesões";
+	}
+	else if (20 >= ferimento[playerid][fbracoesq] > 0) {
+		sbracoesq = "{00adef}Não urgente";
+	}
+	else if (40 >= ferimento[playerid][fbracoesq] > 20) {
+		sbracoesq = "{027e3f}Pouco urgente";
+	}
+	else if (60 >= ferimento[playerid][fbracoesq] > 40) {
+		sbracoesq = "{f4c900}Urgente";
+	}
+	else if (80 >= ferimento[playerid][fbracoesq] > 60) {
+		sbracoesq = "{f58122}Muito urgente";
+	}
+	else if (ferimento[playerid][fbracoesq] > 80) {
+		sbracoesq = "{c5161d}Emergência";
+	}
+	//
+	if (ferimento[playerid][fbracodir] == 0) {
+		sbracodir = "{FFFFFF}Sem lesões";
+	}
+	else if (20 >= ferimento[playerid][fbracodir] > 0) {
+		sbracodir = "{00adef}Não urgente";
+	}
+	else if (40 >= ferimento[playerid][fbracodir] > 20) {
+		sbracodir = "{027e3f}Pouco urgente";
+	}
+	else if (60 >= ferimento[playerid][fbracodir] > 40) {
+		sbracodir = "{f4c900}Urgente";
+	}
+	else if (80 >= ferimento[playerid][fbracodir] > 60) {
+		sbracodir = "{f58122}Muito urgente";
+	}
+	else if (ferimento[playerid][fbracodir] > 80) {
+		sbracodir = "{c5161d}Emergência";
+	}
+	//
+	if (ferimento[playerid][fpelvis] == 0) {
+		spelvis = "{FFFFFF}Sem lesões";
+	}
+	else if (20 >= ferimento[playerid][fpelvis] > 0) {
+		spelvis = "{00adef}Não urgente";
+	}
+	else if (40 >= ferimento[playerid][fpelvis] > 20) {
+		spelvis = "{027e3f}Pouco urgente";
+	}
+	else if (60 >= ferimento[playerid][fpelvis] > 40) {
+		spelvis = "{f4c900}Urgente";
+	}
+	else if (80 >= ferimento[playerid][fpelvis] > 60) {
+		spelvis = "{f58122}Muito urgente";
+	}
+	else if (ferimento[playerid][fpelvis] > 80) {
+		spelvis = "{c5161d}Emergência";
+	}
+	//
+	if (ferimento[playerid][fpernaesq] == 0) {
+		spernaesq = "{FFFFFF}Sem lesões";
+	}
+	else if (20 >= ferimento[playerid][fpernaesq] > 0) {
+		spernaesq = "{00adef}Não urgente";
+	}
+	else if (40 >= ferimento[playerid][fpernaesq] > 20) {
+		spernaesq = "{027e3f}Pouco urgente";
+	}
+	else if (60 >= ferimento[playerid][fpernaesq] > 40) {
+		spernaesq = "{f4c900}Urgente";
+	}
+	else if (80 >= ferimento[playerid][fpernaesq] > 60) {
+		spernaesq = "{f58122}Muito urgente";
+	}
+	else if (ferimento[playerid][fpernaesq] > 80) {
+		spernaesq = "{c5161d}Emergência";
+	}
+	//
+	if (ferimento[playerid][fpernadir] == 0) {
+		spernadir = "{FFFFFF}Sem lesões";
+	}
+	else if (20 >= ferimento[playerid][fpernadir] > 0) {
+		spernadir = "{00adef}Não urgente";
+	}
+	else if (40 >= ferimento[playerid][fpernadir] > 20) {
+		spernadir = "{027e3f}Pouco urgente";
+	}
+	else if (60 >= ferimento[playerid][fpernadir] > 40) {
+		spernadir = "{f4c900}Urgente";
+	}
+	else if (80 >= ferimento[playerid][fpernadir] > 60) {
+		spernadir = "{f58122}Muito urgente";
+	}
+	else if (ferimento[playerid][fpernadir] > 80) {
+		spernadir = "{c5161d}Emergência";
+	}
+	//
+	format(gpbMensagem, sizeof(gpbMensagem), "{FFFFFF}Segmento corpóreo\tGrau de lesão\nCabeça\t\t\t%s\n{FFFFFF}Tronco\t\t\t%s\n{FFFFFF}Braço esquerdo\t\t%s\n{FFFFFF}Braço direito\t\t%s\n{FFFFFF}Pélvis\t\t\t%s\n{FFFFFF}Perna esquerda\t\t%s\n{FFFFFF}Perna direita\t\t%s", scabeca, stronco, sbracoesq, sbracodir, spelvis, spernaesq, spernadir);
+	ShowPlayerDialog(playerid, textbox_feridas, DIALOG_STYLE_MSGBOX, "Feridas", gpbMensagem, "Voltar", "");
+	return 1;
+}
+
 CMD:anim(playerid, params[]) {
 	if (player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
 		SendClientMessage(playerid, grey, "Você não pode realizar animações no momento.");
@@ -3830,6 +3967,6 @@ CMD:remover(playerid, params[]) {
             }
 		}
 	}
-}	
+}
     return 1;
 }
