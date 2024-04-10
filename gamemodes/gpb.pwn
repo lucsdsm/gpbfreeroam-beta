@@ -46,7 +46,7 @@
 #define textbox_sinalizar 18
 #define textbox_animes2 19
 #define textbox_cintura 20
-#define textbox_feridas 21
+#define textbox_fermimento 21
 
 #define PreloadAnimLib(%1,%2)	ApplyAnimation(%1,%2,"null",0.0,0,0,0,0,0)
 
@@ -99,6 +99,7 @@ enum ferimentoData {
 	Float:fpernaesq,
 	Float:fpernadir,
 	Float:fcabeca,
+	fcausa[64],
 }
 
 //Variáveis globais:
@@ -416,6 +417,7 @@ public OnPlayerRequestClass(playerid, classid) {
 	ferimento[playerid][fpernaesq] = 0;
 	ferimento[playerid][fpernadir] = 0;
 	ferimento[playerid][fcabeca] = 0;
+	format(ferimento[playerid][fcausa], 128, "-"); 
 	SetPlayerColor(playerid, white);
  	TogglePlayerSpectating(playerid, true);
 	SpawnPlayer(playerid);
@@ -439,6 +441,7 @@ public OnPlayerConnect(playerid) {
 	ferimento[playerid][fpernaesq] = 0;
 	ferimento[playerid][fpernadir] = 0;
 	ferimento[playerid][fcabeca] = 0;
+	format(ferimento[playerid][fcausa], 128, "-");
  	JogadorConecta(playerid);
 	SetPlayerVirtualWorld(playerid, 0);
 	ShowPlayerMarkers(0);
@@ -600,6 +603,9 @@ public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart)
 		}
 		else if (bodypart == 9) {
 			ferimento[playerid][fcabeca] = ferimento[playerid][fcabeca] + amount;
+		}
+		if(weaponid == 54) {
+			format(ferimento[playerid][fcausa], 128, "queda"); 
 		}
 	}
 	return 1;
@@ -3543,9 +3549,9 @@ CMD:reanimar(playerid, params[]) {
 	return 1;
 }
 
-CMD:feridas(playerid, params[]) {
+CMD:ferimento(playerid, params[]) {
 	new scabeca[32], stronco[32], sbracoesq[32], sbracodir[32], spelvis[32], spernaesq[32], spernadir[32];
-	//
+	// Categoriza o ferimento
 	if (ferimento[playerid][fcabeca] == 0) {
 		scabeca = "{FFFFFF}Sem lesões";
 	}
@@ -3679,8 +3685,8 @@ CMD:feridas(playerid, params[]) {
 		spernadir = "{c5161d}Emergência";
 	}
 	//
-	format(gpbMensagem, sizeof(gpbMensagem), "{FFFFFF}Segmento corpóreo\tGrau de lesão\nCabeça\t\t\t%s\n{FFFFFF}Tronco\t\t\t%s\n{FFFFFF}Braço esquerdo\t\t%s\n{FFFFFF}Braço direito\t\t%s\n{FFFFFF}Pélvis\t\t\t%s\n{FFFFFF}Perna esquerda\t\t%s\n{FFFFFF}Perna direita\t\t%s", scabeca, stronco, sbracoesq, sbracodir, spelvis, spernaesq, spernadir);
-	ShowPlayerDialog(playerid, textbox_feridas, DIALOG_STYLE_MSGBOX, "Feridas", gpbMensagem, "Voltar", "");
+	format(gpbMensagem, sizeof(gpbMensagem), "{FFFFFF}Segmento corpóreo\tGrau de lesão\nCabeça\t\t\t%s\n{FFFFFF}Tronco\t\t\t%s\n{FFFFFF}Braço esquerdo\t\t%s\n{FFFFFF}Braço direito\t\t%s\n{FFFFFF}Pélvis\t\t\t%s\n{FFFFFF}Perna esquerda\t\t%s\n{FFFFFF}Perna direita\t\t%s\n\n{FFFFFF}Ferimentos causados possivelmente por %s.", scabeca, stronco, sbracoesq, sbracodir, spelvis, spernaesq, spernadir, ferimento[playerid][fcausa]);
+	ShowPlayerDialog(playerid, textbox_fermimento, DIALOG_STYLE_MSGBOX, "Fermimentos", gpbMensagem, "Voltar", "");
 	return 1;
 }
 
