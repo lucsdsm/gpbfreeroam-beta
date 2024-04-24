@@ -375,7 +375,7 @@ public OnGameModeInit() {
     ManualVehicleEngineAndLights();
 	SetNameTagDrawDistance(20.0);
 	EnableStuntBonusForAll(0);
-	SetWorldTime(20);
+	SetWorldTime(19);
 	for(new i = 0; i < sizeof(iPickups); i++){
         iPickups[i][0] = -1;
         iPickups[i][1] = -1;
