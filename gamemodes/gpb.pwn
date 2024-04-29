@@ -636,7 +636,7 @@ public OnPlayerText(playerid, text[]) {
 	if(strlen(text) > 65) {
 		text[0] = toupper(text[0]);
 		new gpbMensagem2[128];
-		format(gpbMensagem, sizeof(gpbMensagem), "%s — %.64s [...]", GetName(playerid), text);
+		format(gpbMensagem, sizeof(gpbMensagem), "%s ? %.64s [...]", GetName(playerid), text);
 		format(gpbMensagem2, sizeof(gpbMensagem2), "[...] %s", text[64]);
 		SendRangedMessage(playerid, white, gpbMensagem, 20);
 		SendRangedMessage(playerid, white, gpbMensagem2, 20);
@@ -644,7 +644,7 @@ public OnPlayerText(playerid, text[]) {
 	}
 	else {
 		text[0] = toupper(text[0]);
-		format(gpbMensagem, 500, "%s — %s", GetName(playerid), text);
+		format(gpbMensagem, 500, "%s ? %s", GetName(playerid), text);
 		SendRangedMessage(playerid, white, gpbMensagem, 20);
 		SetPlayerChatBubble(playerid, gpbMensagem, white, 20, 10000);
 	}
@@ -2113,7 +2113,7 @@ CMD:c(playerid, text[]) {
 	if(strlen(text) > 65) {
 		text[0] = toupper(text[0]);
 		new gpbMensagem2[128];
-		format(gpbMensagem, sizeof(gpbMensagem), "%s — %.64s [...]", GetName(playerid), text);
+		format(gpbMensagem, sizeof(gpbMensagem), "%s ? %.64s [...]", GetName(playerid), text);
 		format(gpbMensagem2, sizeof(gpbMensagem2), "[...] %s", text[64]);
 		SendRangedMessage(playerid, white, gpbMensagem, 20);
 		SendRangedMessage(playerid, white, gpbMensagem2, 20);
@@ -2121,7 +2121,7 @@ CMD:c(playerid, text[]) {
 	}
 	else {
 		text[0] = toupper(text[0]);
-		format(gpbMensagem, 500, "%s — %s", GetName(playerid), text);
+		format(gpbMensagem, 500, "%s ? %s", GetName(playerid), text);
 		SendRangedMessage(playerid, white, gpbMensagem, 20);
 		SetPlayerChatBubble(playerid, gpbMensagem, white, 20, 10000);
 	}
@@ -2243,12 +2243,12 @@ CMD:ooc(playerid, text[]) {
 		new gpbMensagem2[128];
 		format(gpbMensagem2, 500, "[...] %s", text[75]);
 		strdel(text, 75, 149);
-		format(gpbMensagem, 500, "%s [ooc] — %s",  GetName(playerid), text);
+		format(gpbMensagem, 500, "%s [ooc] ? %s",  GetName(playerid), text);
 		SendClientMessageToAll(indigo, gpbMensagem);
 		SendClientMessageToAll(indigo, gpbMensagem2);
 	}
 	else {
-		format(gpbMensagem, 500, "%s [ooc] — %s", GetName(playerid), text);
+		format(gpbMensagem, 500, "%s [ooc] ? %s", GetName(playerid), text);
     	SendRangedMessage(playerid, indigo, gpbMensagem, 20);
 	}
     return 1;
@@ -2267,12 +2267,12 @@ CMD:gr(playerid, text[]) {
 			new gpbMensagem2[128];
 			format(gpbMensagem2, 500, "[...] %s!", text[75]);
 			strdel(text, 75, 149);
-			format(gpbMensagem, 500, "%s gritou — %s [...]", GetName(playerid), text);
+			format(gpbMensagem, 500, "%s gritou ? %s [...]", GetName(playerid), text);
 			SendClientMessageToAll(white, gpbMensagem);
 			SendClientMessageToAll(white, gpbMensagem2);
 		}
 		 else {
-			format(gpbMensagem, 500, "%s gritou — %s!", GetName(playerid), text);
+			format(gpbMensagem, 500, "%s gritou ? %s!", GetName(playerid), text);
 			SendRangedMessage(playerid, white, gpbMensagem, 50);
 			SetPlayerChatBubble(playerid, gpbMensagem, white, 50, 10000);
 		}
@@ -2289,13 +2289,13 @@ CMD:sus(playerid, text[]) {
 		new gpbMensagem2[128];
 		format(gpbMensagem2, 500, "[...] %s", text[75]);
 		strdel(text, 75, 149);
-		format(gpbMensagem, 500, "%s susurra — %s [...]", GetName(playerid), text);
+		format(gpbMensagem, 500, "%s susurra ? %s [...]", GetName(playerid), text);
 		SendRangedMessage(playerid, grey, gpbMensagem, 3);
 		SendRangedMessage(playerid, grey, gpbMensagem2, 3);
 	}
 	else {
 		text[0] = toupper(text[0]);
-		format(gpbMensagem, 500, "%s susurra — %s", GetName(playerid), text);
+		format(gpbMensagem, 500, "%s susurra ? %s", GetName(playerid), text);
     	SendRangedMessage(playerid, grey, gpbMensagem, 3);
 	}
     return 1;
@@ -2410,12 +2410,12 @@ CMD:mf(playerid, text[]) {
 			new gpbMensagem2[128];
 			format(gpbMensagem2, 500, "[...] %s", text[75]);
 			strdel(text, 75, 149);
-			format(gpbMensagem, 500, "[ID: %i] pelo megafone — %s [...]", playerid, text);
+			format(gpbMensagem, 500, "[ID: %i] pelo megafone ? %s [...]", playerid, text);
 			SendRangedMessage(playerid, yellow, gpbMensagem, 75);
     		SendRangedMessage(playerid, yellow, gpbMensagem2, 75);
 		}
 		else {
-			format(gpbMensagem, 500, "[ID: %i] pelo megafone — %s", playerid, text);
+			format(gpbMensagem, 500, "[ID: %i] pelo megafone ? %s", playerid, text);
     		SendRangedMessage(playerid, yellow, gpbMensagem, 75);
 		}
 	}
