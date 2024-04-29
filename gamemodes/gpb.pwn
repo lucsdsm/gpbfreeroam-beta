@@ -1,5 +1,5 @@
 //by Lucas
-// Teste de inicialização em outra máquina
+// Teste de compilação em outra máquina
 
 //Includes:
 #include <a_samp>
