@@ -1,4 +1,5 @@
 //by Lucas
+// Teste de inicialização em outra máquina
 
 //Includes:
 #include <a_samp>
