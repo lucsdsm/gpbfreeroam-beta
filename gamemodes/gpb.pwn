@@ -1,5 +1,4 @@
 //by Lucas
-// Teste de compilação em outra máquina
 
 //Includes:
 #include <a_samp>
@@ -402,8 +401,9 @@ public OnPlayerRequestClass(playerid, classid) {
 	SetPlayerColor(playerid, white);
  	TogglePlayerSpectating(playerid, true);
 	SpawnPlayer(playerid);
- 	SetSpawnInfo(playerid, -1, random(311), 1836, -1413, 29,269.2782,0,0,0,0,0,0); // SetSpawnInfo(playerid, -1, random(311), 1826, -1372, 14,269.2782,0,0,0,0,0,0);
+ 	SetSpawnInfo(playerid, -1, random(311), 1826, -1372, 14,269.2782,0,0,0,0,0,0); //SetSpawnInfo(playerid, -1, random(311), 1836, -1413, 29,269.2782,0,0,0,0,0,0);
  	TogglePlayerSpectating(playerid, false);
+	PreloadAnimLibs(playerid);
     return 1;
 }
 
@@ -466,6 +466,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart)
 	}
 	if ((health < 65) && IsPlayerInAnyVehicle(playerid) && weaponid != 23 && weaponid != 25 && player[playerid][pFerido] == 0) { // Vítima em algum veículo
 		player[playerid][pFerido] = 1;
+		TogglePlayerControllable(playerid, 0);
 		SetPlayerHealth(playerid, 98303);
 		SetPlayerColor(playerid, red);
 		ApplyAnimation(playerid, "ped", "car_dead_lhs", 4.1, 0, 1, 0, 1, 0, 1);
@@ -522,6 +523,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart)
 				SendClientMessage(playerid, grey, "Você foi atingido por uma escopeta com elastômero. Para voltar ao controle do personagem use o /reviver.");
 				if (IsPlayerInAnyVehicle(playerid)) {
 					ApplyAnimation(playerid, "ped", "car_dead_lhs", 4.1, 0, 1, 0, 1, 0, 1);
+					TogglePlayerControllable(playerid, 0);
 				}
 				else {
 					ApplyAnimation(playerid, "sweet", "Sweet_injuredloop", 4.1, 0, 0, 0, 1, 0, 1);
@@ -3136,14 +3138,15 @@ CMD:morrer(playerid) {
 	    SetPlayerHealth(playerid, 98303);
 	    SetPlayerColor(playerid, red);
 	    ApplyAnimation(playerid, "ped", "car_dead_lhs", 4.1, 0, 1, 0, 1, 0, 1);
-	    SendClientMessage(playerid, grey, "Você está ferido. Para voltar ao controle do personagem use o /levantar.");
+	    SendClientMessage(playerid, grey, "Você está ferido. Para voltar ao controle do personagem use o /reviver.");
 	}
 	else {
 	    player[playerid][pFerido] = 1;
 	    SetPlayerHealth(playerid, 98303);
+		player[playerid][pFerido] = 1;
 	    SetPlayerColor(playerid, red);
 	    ApplyAnimation(playerid, "ped", "KO_skid_front", 4.1, 0, 0, 0, 1, 0, 1);
-	    SendClientMessage(playerid, grey, "Você está ferido. Para voltar ao controle do personagem use o /levantar.");
+	    SendClientMessage(playerid, grey, "Você está ferido. Para voltar ao controle do personagem use o /reviver.");
 	}
 	return 1;
 }
@@ -3157,6 +3160,7 @@ CMD:reviver(playerid) {
 	else {
 		SetPlayerHealth(playerid, 100.0);
 	    SetPlayerColor(playerid, white);
+		player[playerid][pFerido] = 0;
 		if (IsPlayerInAnyVehicle(playerid)) {
 			TogglePlayerControllable(playerid, 1);
         	ApplyAnimation(playerid, "ped", "car_sit", 4.1, 0, 0, 0, 0, 0, 1);
