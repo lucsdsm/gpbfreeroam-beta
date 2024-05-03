@@ -92,36 +92,25 @@ enum objetoData {
 };
 
 //Variáveis globais:
-new veiculosNomes[212][] =  {
-{"Landstalker"},{"Bravura"},{"Buffalo"},{"Linerunner"},{"Perrenial"},{"Sentinel"},{"Dumper"},
-{"Firetruck"},{"Trashmaster"},{"Stretch"},{"Manana"},{"Infernus"},{"Voodoo"},{"Pony"},{"Mule"},
-{"Cheetah"},{"Ambulance"},{"Leviathan"},{"Moonbeam"},{"Esperanto"},{"Taxi"},{"Washington"},
-{"Bobcat"},{"Mr Whoopee"},{"BF Injection"},{"Hunter"},{"Premier"},{"Enforcer"},{"Securicar"},
-{"Banshee"},{"Predator"},{"Bus"},{"Rhino"},{"Barracks"},{"Hotknife"},{"Trailer 1"},{"Previon"},
-{"Coach"},{"Cabbie"},{"Stallion"},{"Rumpo"},{"RC Bandit"},{"Romero"},{"Packer"},{"Monster"},
-{"Admiral"},{"Squalo"},{"Seasparrow"},{"Pizzaboy"},{"Tram"},{"Trailer 2"},{"Turismo"},
-{"Speeder"},{"Reefer"},{"Tropic"},{"Flatbed"},{"Yankee"},{"Caddy"},{"Solair"},{"Berkley's RC Van"},
-{"Skimmer"},{"PCJ-600"},{"Faggio"},{"Freeway"},{"RC Baron"},{"RC Raider"},{"Glendale"},{"Oceanic"},
-{"Sanchez"},{"Sparrow"},{"Patriot"},{"Quad"},{"Coastguard"},{"Dinghy"},{"Hermes"},{"Sabre"},
-{"Rustler"},{"ZR-350"},{"Walton"},{"Regina"},{"Comet"},{"BMX"},{"Burrito"},{"Camper"},{"Marquis"},
-{"Baggage"},{"Dozer"},{"Maverick"},{"News Chopper"},{"Rancher"},{"FBI Rancher"},{"Virgo"},{"Greenwood"},
-{"Jetmax"},{"Hotring"},{"Sandking"},{"Blista Compact"},{"Police Maverick"},{"Boxville"},{"Benson"},
-{"Mesa"},{"RC Goblin"},{"Hotring Racer A"},{"Hotring Racer B"},{"Bloodring Banger"},{"Rancher"},
-{"Super GT"},{"Elegant"},{"Journey"},{"Bike"},{"Mountain Bike"},{"Beagle"},{"Cropdust"},{"Stunt"},
-{"Tanker"}, {"Roadtrain"},{"Nebula"},{"Majestic"},{"Buccaneer"},{"Shamal"},{"Hydra"},{"FCR-900"},
-{"NRG-500"},{"HPV1000"},{"Cement Truck"},{"Tow Truck"},{"Fortune"},{"Cadrona"},{"FBI Truck"},
-{"Willard"},{"Forklift"},{"Tractor"},{"Combine"},{"Feltzer"},{"Remington"},{"Slamvan"},
-{"Blade"},{"Freight"},{"Streak"},{"Vortex"},{"Vincent"},{"Bullet"},{"Clover"},{"Sadler"},
-{"Firetruck LA"},{"Hustler"},{"Intruder"},{"Primo"},{"Cargobob"},{"Tampa"},{"Sunrise"},{"Merit"},
-{"Utility"},{"Nevada"},{"Yosemite"},{"Windsor"},{"Monster A"},{"Monster B"},{"Uranus"},{"Jester"},
-{"Sultan"},{"Stratum"},{"Elegy"},{"Raindance"},{"RC Tiger"},{"Flash"},{"Tahoma"},{"Savanna"},
-{"Bandito"},{"Freight Flat"},{"Streak Carriage"},{"Kart"},{"Mower"},{"Duneride"},{"Sweeper"},
-{"Broadway"},{"Tornado"},{"AT-400"},{"DFT-30"},{"Huntley"},{"Stafford"},{"BF-400"},{"Newsvan"},
-{"Tug"},{"Trailer 3"},{"Andromada"},{"Emperor"},{"Wayfarer"},{"Euros"},{"Hotdog"},{"Club"},{"Freight Carriage"},
-{"Trailer 3"},{"Dodo"},{"RC Cam"},{"Launch"},{"Police Car (LSPD)"},{"Police Car (SFPD)"},
-{"Police Car (LVPD)"},{"Police Ranger"},{"Picador"},{"S.W.A.T. Van"},{"Alpha"},{"Phoenix"},{"Glendale"},
-{"Sadler"},{"Luggage Trailer A"},{"Luggage Trailer B"},{"Stair Trailer"},{"Boxville"},{"Farm Plow"},
-{"Utility Trailer"}};
+new veiculosNomes[212][] =  {"Landstalker", "Bravura", "Buffalo", "Linerunner", "Perennial", "Sentinel", "Dumper", "Fire Truck", "Trashmaster", "Stretch", "Manana", 
+	"Infernus", "Voodoo", "Pony", "Mule", "Cheetah", "Ambulance", "Leviathan", "Moonbeam", "Esperanto", "Taxi", "Washington", "Bobcat", 
+	"Mr. Whoopee", "BF Injection", "Hunter", "Premier", "Enforcer", "Securicar", "Banshee", "Predator", "Bus", "Rhino", "Barracks", "Hotknife", 
+	"Trailer 1", "Previon", "Coach", "Cabbie", "Stallion", "Rumpo", "RC Bandit", "Romero", "Packer", "Monster", "Admiral", "Squalo", 
+	"Seasparrow", "Pizzaboy", "Tram", "Trailer 2", "Turismo", "Speeder", "Reefer", "Tropic", "Flatbed", "Yankee", "Caddy", "Solair", 
+	"Topfun", "Skimmer", "PCJ-600", "Faggio", "Freeway", "RC Baron", "RC Raider", "Glendale", "Oceanic", "Sanchez", "Sparrow", "Patriot", 
+	"Quadbike", "Coastguard", "Dinghy", "Hermes", "Sabre", "Rustler", "ZR-350", "Walton", "Regina", "Comet", "BMX", "Burrito", "Camper", "Marquis", 
+	"Baggage", "Dozer", "Maverick", "Vcnmav", "Rancher", "Fbirancher", "Virgo", "Greenwood", "Jetmax", "Hotrina", "Sandking", 
+	"Blista Compact", "Polmav", "Boxville", "Benson", "Mesa", "RC Goblin", "Hotrinb", "Hotring", "Bloodring Banger", 
+	"Lure", "Super GT", "Elegant", "Journey", "Bike", "Mountain Bike", "Beagle", "Cropduster", "Stuntplane", "Tanker", "Roadtrain", "Nebula", 
+	"Majestic", "Buccaneer", "Shamal", "Hydra", "FCR-900", "NRG-500", "HPV1000", "Cement Truck", "Towtruck", "Fortune", "Cadrona", "Fbitruck", 
+	"Willard", "Forklift", "Tractor", "Combine Harvester", "Feltzer", "Remington", "Slamvan", "Blade", "Freight", "Brown Streak", "Vortex", "Vincent", 
+	"Bullet", "Clover", "Sadler", "Firela", "Hustler", "Intruder", "Primo", "Cargobob", "Tampa", "Sunrise", "Merit", "Utility Van", 
+	"Nevada", "Yosemite", "Windsor", "Monster 2", "Monster 3", "Uranus", "Jester", "Sultan", "Stratum", "Elegy", "Raindance", "RC Tiger", "Flash", 
+	"Tahoma", "Savanna", "Bandito", "Freight Train Flatbed", "Streak Train Trailer", "Kart", "Mower", "Dune", "Sweeper", "Broadway", "Tornado", 
+	"AT400", "DFT-30", "Huntley", "Stafford", "BF400", "Newsvan", "Tug", "Trailer (Tanker Commando)", "Emperor", "Wayfarer", "Euros", "Hotdog", 
+	"Club", "Box Freight", "Trailer 3", "Andromada", "Dodo", "RC Cam", "Launch", "Police LS", "Police SF", "Police LV", "Police Ranger", 
+	"Picador", "Swat", "Alpha", "Phoenix", "Glenshit", "Sadlshit", "Baggage Trailer (covered)", 
+	"Baggage Trailer (Uncovered)", "Trailer (Stairs)", "Boxburg", "Farm Trailer", "Street Clean Trailer"};
 
 new const AnimLibs[][] = {
   "AIRPORT",      "ATTRACTORS",   "BAR",          "BASEBALL",     "BD_FIRE",
@@ -2620,41 +2609,35 @@ CMD:vc(playerid, params[]) {
 		id = ReturnVehicleId(modelo);
 		
 	 	if(modeloid >= 400 && modeloid <= 611) { // Cria veículos pelo nome.
-	 	    if (modeloid == 441 || modeloid == 464 || modeloid == 594 || modeloid == 501 || modeloid == 465 || modeloid == 564 || modeloid == 590 || modeloid == 538 || modeloid == 570 || modeloid == 569 || modeloid == 537 || modeloid == 449 || modeloid == 539 || modeloid == 592 || modeloid == 577) {
-	 	        SendClientMessage(playerid, grey, "Você não pode utilizar esse veículo no servidor.");
-	 	    }
-	 	    else {
-				new Float:pos[4];
-				new vehicleid = GetPlayerVehicleID(playerid);
-			    DestroyVehicle(vehicleid);
-				GetPlayerPos(playerid, pos[0], pos[1], pos[2]);
-				GetPlayerFacingAngle(playerid, pos[3]);
-				new modeloId = CreateVehicle(modeloid, pos[0], pos[1], pos[2], pos[3], -1, -1, -1, 0);
-				SetVehicleVirtualWorld(modeloId,GetPlayerVirtualWorld(playerid));
-				LinkVehicleToInterior(modeloId,GetPlayerInterior(playerid));
-				PutPlayerInVehicle(playerid, modeloId, 0);
-				player[playerid][pAnim] = 0;
-				veiculoTrancado[modeloId] = 0;
-				if (HasNoEngine(modeloId) == 1) {
-					new enginem, lights, alarm, doors, bonnet, boot, objective;
-					GetVehicleParamsEx(modeloId, enginem, lights, alarm, doors, bonnet, boot, objective);
-					SetVehicleParamsEx(modeloId, VEHICLE_PARAMS_ON, lights, alarm, doors, bonnet, boot, objective);
-					veiculoMotor[modeloId] = 1;
-				}
-				else {
-					veiculoMotor[modeloId] = 0;
-				}
-				return 1;
+			new Float:pos[4];
+			new vehicleid = GetPlayerVehicleID(playerid);
+			DestroyVehicle(vehicleid);
+			GetPlayerPos(playerid, pos[0], pos[1], pos[2]);
+			GetPlayerFacingAngle(playerid, pos[3]);
+			new modeloId = CreateVehicle(modeloid, pos[0], pos[1], pos[2], pos[3], -1, -1, -1, 0);
+			SetVehicleVirtualWorld(modeloId,GetPlayerVirtualWorld(playerid));
+			LinkVehicleToInterior(modeloId,GetPlayerInterior(playerid));
+			PutPlayerInVehicle(playerid, modeloId, 0);
+			player[playerid][pAnim] = 0;
+			veiculoTrancado[modeloId] = 0;
+			format(gpbMensagem, 500, "%i", modeloid);
+			SendClientMessage(playerid, grey, gpbMensagem);
+			if (HasNoEngine(modeloId) == 1) {
+				new enginem, lights, alarm, doors, bonnet, boot, objective;
+				GetVehicleParamsEx(modeloId, enginem, lights, alarm, doors, bonnet, boot, objective);
+				SetVehicleParamsEx(modeloId, VEHICLE_PARAMS_ON, lights, alarm, doors, bonnet, boot, objective);
+				veiculoMotor[modeloId] = 1;
 			}
+			else {
+				veiculoMotor[modeloId] = 0;
+			}
+			return 1;
 		}
 
 	 	else if(id >= 400 || id <= 611) { // Cria veículos pelo id.
 			id = strval(modelo);
 			if (id < 400 || id > 611 ) {
 				SendClientMessage(playerid, grey, "Modelo inválido.");
-			}
-			else if (id == 441 || id == 464 || id == 594 || id == 501 || id == 465 || id == 564 || id == 590 || id == 538 || id == 570 || id == 569 || id == 537 || id == 449 || id == 539 || id == 592 || id == 577) {
-			    SendClientMessage(playerid, grey, "Você não pode utilizar esse veículo no servidor.");
 			}
    			else {
 			 	new Float:pos[4];
@@ -3227,8 +3210,7 @@ CMD:clima(playerid, params[]) {
 	if(isnull(params)) {
 		SendClientMessage(playerid, grey, "/clima [0-45]");
 	}
-	if(clima >= 0 && clima <= 45) {
-
+	else if(clima >= 0 && clima <= 45) {
 		SetPlayerWeather(playerid, clima);
 	}
 	else {
