@@ -100,7 +100,7 @@ new veiculosNomes[212][] =  {"Landstalker", "Bravura", "Buffalo", "Linerunner", 
 	"Topfun", "Skimmer", "PCJ-600", "Faggio", "Freeway", "RC Baron", "RC Raider", "Glendale", "Oceanic", "Sanchez", "Sparrow", "Patriot", 
 	"Quadbike", "Coastguard", "Dinghy", "Hermes", "Sabre", "Rustler", "ZR-350", "Walton", "Regina", "Comet", "BMX", "Burrito", "Camper", "Marquis", 
 	"Baggage", "Dozer", "Maverick", "Vcnmav", "Rancher", "Fbirancher", "Virgo", "Greenwood", "Jetmax", "Hotrina", "Sandking", 
-	"Blista Compact", "Polmav", "Boxville", "Benson", "Mesa", "RC Goblin", "Hotrinb", "Hotring", "Bloodring Banger", 
+	"Blista Compact", "Polmav", "Boxville", "Benson", "Mesa", "RC Goblin", "Hotrinb", "Hotring", "Bloodra", 
 	"Lure", "Super GT", "Elegant", "Journey", "Bike", "Mountain Bike", "Beagle", "Cropduster", "Stuntplane", "Tanker", "Roadtrain", "Nebula", 
 	"Majestic", "Buccaneer", "Shamal", "Hydra", "FCR-900", "NRG-500", "HPV1000", "Cement Truck", "Towtruck", "Fortune", "Cadrona", "Fbitruck", 
 	"Willard", "Forklift", "Tractor", "Combine Harvester", "Feltzer", "Remington", "Slamvan", "Blade", "Freight", "Brown Streak", "Vortex", "Vincent", 
@@ -389,10 +389,10 @@ public OnPlayerRequestClass(playerid, classid) {
 	player[playerid][pRadioPD] = 0;
 	SetPlayerColor(playerid, white);
  	TogglePlayerSpectating(playerid, true);
-	SpawnPlayer(playerid);
- 	SetSpawnInfo(playerid, -1, random(311), 1826, -1372, 14,269.2782,0,0,0,0,0,0); //SetSpawnInfo(playerid, -1, random(311), 1836, -1413, 29,269.2782,0,0,0,0,0,0);
- 	TogglePlayerSpectating(playerid, false);
 	PreloadAnimLibs(playerid);
+	SetSpawnInfo(playerid, -1, random(311), 1826, -1372, 14,269.2782,0,0,0,0,0,0); //SetSpawnInfo(playerid, -1, random(311), 1836, -1413, 29,269.2782,0,0,0,0,0,0);
+	SpawnPlayer(playerid);
+	TogglePlayerSpectating(playerid, false);
     return 1;
 }
 
@@ -440,7 +440,7 @@ public OnPlayerSpawn(playerid) {
 public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart) {
 	new Float:health;
 	GetPlayerHealth(playerid,health);
-	if (player[playerid][pAnim] == 1) { // Remove as animações ao atirar
+	if (player[playerid][pAnim] == 1) { // Remove as animações de um jogador ao sofrer dano
 		player[playerid][pAnim] = 0;
 		ClearAnimations(playerid, 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
@@ -628,7 +628,7 @@ public OnPlayerText(playerid, text[]) {
 	if(strlen(text) > 65) {
 		text[0] = toupper(text[0]);
 		new gpbMensagem2[128];
-		format(gpbMensagem, sizeof(gpbMensagem), "%s ? %.64s [...]", GetName(playerid), text);
+		format(gpbMensagem, sizeof(gpbMensagem), "%s — %.64s [...]", GetName(playerid), text);
 		format(gpbMensagem2, sizeof(gpbMensagem2), "[...] %s", text[64]);
 		SendRangedMessage(playerid, white, gpbMensagem, 20);
 		SendRangedMessage(playerid, white, gpbMensagem2, 20);
@@ -636,7 +636,7 @@ public OnPlayerText(playerid, text[]) {
 	}
 	else {
 		text[0] = toupper(text[0]);
-		format(gpbMensagem, 500, "%s ? %s", GetName(playerid), text);
+		format(gpbMensagem, 500, "%s — %s", GetName(playerid), text);
 		SendRangedMessage(playerid, white, gpbMensagem, 20);
 		SetPlayerChatBubble(playerid, gpbMensagem, white, 20, 10000);
 	}
@@ -2097,7 +2097,7 @@ CMD:comandos(playerid, params[]) {
 	SendClientMessage(playerid, grey, "[Chat]: /c, /me, /ame, /do, /sus, /gl, /d, /ooc, /gr, /r, /911, /190, /mp;");
 	SendClientMessage(playerid, grey, "[Personagem]: /reviver, /skin, /anim, /equipar, /derrubar, /levantar, /limpar, /morrer;");
 	SendClientMessage(playerid, grey, "[Veículo]: /vc, /vd, /chave, /luzes, /pintar, /fix, /travas, /capo, /mala;");
-	SendClientMessage(playerid, grey, "[Polícia]: /vcs, /vp, /rp, /mf, /ref, /algemar, /desalgemar.");
+	SendClientMessage(playerid, grey, "[Polícia]: /vcs, /vp, /rp, /mf, /ref, /algemar, /desalgemar,");
    	return 1;
 }
 
@@ -2105,7 +2105,7 @@ CMD:c(playerid, text[]) {
 	if(strlen(text) > 65) {
 		text[0] = toupper(text[0]);
 		new gpbMensagem2[128];
-		format(gpbMensagem, sizeof(gpbMensagem), "%s ? %.64s [...]", GetName(playerid), text);
+		format(gpbMensagem, sizeof(gpbMensagem), "%s — %.64s [...]", GetName(playerid), text);
 		format(gpbMensagem2, sizeof(gpbMensagem2), "[...] %s", text[64]);
 		SendRangedMessage(playerid, white, gpbMensagem, 20);
 		SendRangedMessage(playerid, white, gpbMensagem2, 20);
@@ -2113,7 +2113,7 @@ CMD:c(playerid, text[]) {
 	}
 	else {
 		text[0] = toupper(text[0]);
-		format(gpbMensagem, 500, "%s ? %s", GetName(playerid), text);
+		format(gpbMensagem, 500, "%s — %s", GetName(playerid), text);
 		SendRangedMessage(playerid, white, gpbMensagem, 20);
 		SetPlayerChatBubble(playerid, gpbMensagem, white, 20, 10000);
 	}
@@ -2235,12 +2235,12 @@ CMD:ooc(playerid, text[]) {
 		new gpbMensagem2[128];
 		format(gpbMensagem2, 500, "[...] %s", text[75]);
 		strdel(text, 75, 149);
-		format(gpbMensagem, 500, "%s [ooc] ? %s",  GetName(playerid), text);
+		format(gpbMensagem, 500, "%s [ooc] — %s",  GetName(playerid), text);
 		SendClientMessageToAll(indigo, gpbMensagem);
 		SendClientMessageToAll(indigo, gpbMensagem2);
 	}
 	else {
-		format(gpbMensagem, 500, "%s [ooc] ? %s", GetName(playerid), text);
+		format(gpbMensagem, 500, "%s [ooc] — %s", GetName(playerid), text);
     	SendRangedMessage(playerid, indigo, gpbMensagem, 20);
 	}
     return 1;
@@ -2259,12 +2259,12 @@ CMD:gr(playerid, text[]) {
 			new gpbMensagem2[128];
 			format(gpbMensagem2, 500, "[...] %s!", text[75]);
 			strdel(text, 75, 149);
-			format(gpbMensagem, 500, "%s gritou ? %s [...]", GetName(playerid), text);
+			format(gpbMensagem, 500, "%s gritou — %s [...]", GetName(playerid), text);
 			SendClientMessageToAll(white, gpbMensagem);
 			SendClientMessageToAll(white, gpbMensagem2);
 		}
 		 else {
-			format(gpbMensagem, 500, "%s gritou ? %s!", GetName(playerid), text);
+			format(gpbMensagem, 500, "%s gritou — %s!", GetName(playerid), text);
 			SendRangedMessage(playerid, white, gpbMensagem, 50);
 			SetPlayerChatBubble(playerid, gpbMensagem, white, 50, 10000);
 		}
@@ -2281,13 +2281,13 @@ CMD:sus(playerid, text[]) {
 		new gpbMensagem2[128];
 		format(gpbMensagem2, 500, "[...] %s", text[75]);
 		strdel(text, 75, 149);
-		format(gpbMensagem, 500, "%s susurra ? %s [...]", GetName(playerid), text);
+		format(gpbMensagem, 500, "%s susurra — %s [...]", GetName(playerid), text);
 		SendRangedMessage(playerid, grey, gpbMensagem, 3);
 		SendRangedMessage(playerid, grey, gpbMensagem2, 3);
 	}
 	else {
 		text[0] = toupper(text[0]);
-		format(gpbMensagem, 500, "%s susurra ? %s", GetName(playerid), text);
+		format(gpbMensagem, 500, "%s susurra — %s", GetName(playerid), text);
     	SendRangedMessage(playerid, grey, gpbMensagem, 3);
 	}
     return 1;
@@ -2402,12 +2402,12 @@ CMD:mf(playerid, text[]) {
 			new gpbMensagem2[128];
 			format(gpbMensagem2, 500, "[...] %s", text[75]);
 			strdel(text, 75, 149);
-			format(gpbMensagem, 500, "[ID: %i] pelo megafone ? %s [...]", playerid, text);
+			format(gpbMensagem, 500, "[ID: %i] pelo megafone — %s [...]", playerid, text);
 			SendRangedMessage(playerid, yellow, gpbMensagem, 75);
     		SendRangedMessage(playerid, yellow, gpbMensagem2, 75);
 		}
 		else {
-			format(gpbMensagem, 500, "[ID: %i] pelo megafone ? %s", playerid, text);
+			format(gpbMensagem, 500, "[ID: %i] pelo megafone — %s", playerid, text);
     		SendRangedMessage(playerid, yellow, gpbMensagem, 75);
 		}
 	}
@@ -2620,8 +2620,6 @@ CMD:vc(playerid, params[]) {
 			PutPlayerInVehicle(playerid, modeloId, 0);
 			player[playerid][pAnim] = 0;
 			veiculoTrancado[modeloId] = 0;
-			format(gpbMensagem, 500, "%i", modeloid);
-			SendClientMessage(playerid, grey, gpbMensagem);
 			if (HasNoEngine(modeloId) == 1) {
 				new enginem, lights, alarm, doors, bonnet, boot, objective;
 				GetVehicleParamsEx(modeloId, enginem, lights, alarm, doors, bonnet, boot, objective);
@@ -2847,6 +2845,7 @@ CMD:travas(playerid) {
 		if (veiculoTrancado[vehicleid] == 0) {
 			veiculoTrancado[vehicleid] = 1;
 			SendClientMessage(playerid, grey, "Veículo trancado.");
+			PlayerPlaySound(playerid, 24600, 0.0, 0.0, 0.0);
 			for(new i=0; i < MAX_PLAYERS; i++) {
 				if(i == playerid) {
 					SetVehicleParamsForPlayer(GetPlayerVehicleID(playerid), i, 0, 1);
@@ -2856,6 +2855,7 @@ CMD:travas(playerid) {
 		else if (veiculoTrancado[vehicleid] == 1) {
 			veiculoTrancado[vehicleid] = 0;
 			SendClientMessage(playerid, grey, "Veículo destrancado.");
+			PlayerPlaySound(playerid, 24600, 0.0, 0.0, 0.0);
 			for(new i=0; i < MAX_PLAYERS; i++) {
 				if(i == playerid) {
 					SetVehicleParamsForPlayer(GetPlayerVehicleID(playerid), i, 0, 0);
