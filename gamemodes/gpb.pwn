@@ -2711,6 +2711,7 @@ CMD:vd(playerid, params[]) {
 				}
 				else {
 					DestroyVehicle(result);
+					SendClientMessage(playerid, grey, "Veículo excluído.");
 				}
 			}
 			default: {
@@ -2719,6 +2720,7 @@ CMD:vd(playerid, params[]) {
 				}
 				else {
 					DestroyVehicle(result);
+					SendClientMessage(playerid, grey, "Veículo excluído.");
 				}
 			}
 		}
@@ -2976,6 +2978,42 @@ CMD:fix(playerid) {
     	SendRangedMessage(playerid, green, gpbMensagem, 50);
 	}
  	return 1;
+}
+
+CMD:placa(playerid, params[]) {
+	new Float: X, Float: Y, Float: Z, Float: angle;
+	new vehicleid = GetPlayerVehicleID(playerid);
+
+	if(!IsValidVehicle(vehicleid)) {
+		SendClientMessage(playerid, grey, "Você não está em um veículo.");
+	}
+
+	else if (player[playerid][pFerido] == 1) {
+        SendClientMessage(playerid, grey, "Você está ferido. Primeiro use o /reviver.");
+
+    }
+
+	else if (strlen(params) > 8 || strlen(params) < 1) {
+		SendClientMessage(playerid, grey, "A placa do veículo deve ter entre 1 e 8 caracteres.");
+	}
+
+	else {
+		GetPlayerPos(playerid, X, Y, Z);
+		GetPlayerFacingAngle(playerid, angle);
+
+		SetVehicleNumberPlate(vehicleid, params);
+
+		SetVehicleToRespawn(vehicleid);
+
+		SetVehiclePos(GetPlayerVehicleID(playerid), X, Y, Z);
+		SetVehicleZAngle(GetPlayerVehicleID(playerid), angle);
+		PutPlayerInVehicle(playerid, GetPlayerVehicleID(playerid), 0);
+		SetVehiclePos(GetPlayerVehicleID(playerid), X, Y, Z+1);
+
+		SendClientMessage(playerid, grey, "Placa do veículo alterada.");
+	}
+
+	return 1;
 }
 
 CMD:vp(playerid, params[]) {
