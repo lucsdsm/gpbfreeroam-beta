@@ -846,192 +846,93 @@ public OnVehicleStreamOut(vehicleid, forplayerid) {
 public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
     switch(dialogid) {
 		case textbox_equipamentos: {
-			switch(listitem) {
-				case 0: SetPlayerHealth(playerid, 100); // Vida
-				case 1: SetPlayerArmour(playerid, 100); // Colete
-				case 2: GivePlayerWeapon(playerid, 41 , 0x7FFFFFFF); // Spray
-				case 3: GivePlayerWeapon(playerid, 3, 1); // Cacetete
-				case 4: GivePlayerWeapon(playerid, 4, 1); //  Faca
-				case 5: GivePlayerWeapon(playerid, 22, 100); // 9mm
-				case 6: {
+			if (response == 0) return 1; // Se o jogador apertar ESC ou "Cancelar", sai sem fazer nada.
+			switch (listitem) {
+				case 0: ResetPlayerWeapons(playerid); // Remover todas as armas
+				case 1: SetPlayerHealth(playerid, 100); // Vida
+				case 2: SetPlayerArmour(playerid, 100); // Colete
+				case 3: GivePlayerWeapon(playerid, 41 , 0x7FFFFFFF); // Spray
+				case 4: GivePlayerWeapon(playerid, 3, 1); // Cacetete
+				case 5: GivePlayerWeapon(playerid, 4, 1); // Faca
+				case 6: GivePlayerWeapon(playerid, 22, 100); // 9mm
+				case 7: {
 					if (player[playerid][pEquipe] != 1) {
 						SendClientMessage(playerid, grey, "Apenas policiais podem portar o taser.");
-					}
-					else {
+					} else {
 						GivePlayerWeapon(playerid, 23, 500); // Pistola Silenciada (Taser)
 					}
 				}
-				case 7: GivePlayerWeapon(playerid, 24, 500); // Desert Eagle
-				case 8: {
+				case 8: GivePlayerWeapon(playerid, 24, 500); // Desert Eagle
+				case 9: {
 					GivePlayerWeapon(playerid, 25, 100); // Escopeta
 					player[playerid][pElastomero] = 0;
 				}
-				case 9: {
+				case 10: {
 					if (player[playerid][pEquipe] != 1) {
-							SendClientMessage(playerid, grey, "Apenas policiais podem portar a escopeta com munição elastômero.");
-						}
-					else {
+						SendClientMessage(playerid, grey, "Apenas policiais podem portar a escopeta com munição elastômero.");
+					} else {
 						GivePlayerWeapon(playerid, 25, 100); // Escopeta (Elastômero)
 						player[playerid][pElastomero] = 1;
 					}
 				}
-				case 10: GivePlayerWeapon(playerid, 27, 100); // Escopeta de combate
-				case 11: GivePlayerWeapon(playerid, 26, 100); // Escopeta de cano serrado
-				case 12: GivePlayerWeapon(playerid, 28, 500); // UZI
-				case 13: GivePlayerWeapon(playerid, 32, 500); // TEC9
-				case 14: GivePlayerWeapon(playerid, 29, 500); // MP5
-				case 15: GivePlayerWeapon(playerid, 31, 500); // M4
-				case 16: GivePlayerWeapon(playerid, 30, 500); // AK47
-				case 17: GivePlayerWeapon(playerid, 34,  50); // Sniper
-				case 18: GivePlayerWeapon(playerid, 33, 50); // Rifle de caça
-				case 19: GivePlayerWeapon(playerid, 17, 10); // Granada de fumaça
-				case 20: GivePlayerWeapon(playerid, 18, 5); // Molotov
-				case 21: GivePlayerWeapon(playerid, 40, 1); // Detonador
-				case 22: GivePlayerWeapon(playerid, 43, 0x7FFFFFFF); // Câmera
-				case 23: GivePlayerWeapon(playerid, 46, 1); // Paraquedas
-				case 24: GivePlayerWeapon(playerid, 2, 1); //  Golf
-				case 25: GivePlayerWeapon(playerid, 5, 1); //  Baseball
-				case 26: GivePlayerWeapon(playerid, 7, 1); // Sinuca
-				case 27: GivePlayerWeapon(playerid, 8, 1); //  Katana
-				case 28: GivePlayerWeapon(playerid, 6, 1); //  Pá
-				case 29: GivePlayerWeapon(playerid, 9, 1); //  Serra
-				case 30: GivePlayerWeapon(playerid, 42, 0x7FFFFFFF); // Mangueira
-				case 31: GivePlayerWeapon(playerid, 39, 1) && GivePlayerWeapon(playerid, 40, 1) ; // Bomba remota
-				case 32: GivePlayerWeapon(playerid, 10, 1); // Dildo
-				case 33: GivePlayerWeapon(playerid, 12, 1); // Vibrador
-				case 34: GivePlayerWeapon(playerid, 14, 1); // Buquê
-				case 35: GivePlayerWeapon(playerid, 15, 1); // Bengala
+				case 11: GivePlayerWeapon(playerid, 27, 100); // Escopeta de combate
+				case 12: GivePlayerWeapon(playerid, 26, 100); // Escopeta de cano serrado
+				case 13: GivePlayerWeapon(playerid, 28, 500); // UZI
+				case 14: GivePlayerWeapon(playerid, 32, 500); // TEC9
+				case 15: GivePlayerWeapon(playerid, 29, 500); // MP5
+				case 16: GivePlayerWeapon(playerid, 31, 500); // M4
+				case 17: GivePlayerWeapon(playerid, 30, 500); // AK47
+				case 18: GivePlayerWeapon(playerid, 34, 50); // Sniper
+				case 19: GivePlayerWeapon(playerid, 33, 50); // Rifle de caça
+				case 20: GivePlayerWeapon(playerid, 17, 10); // Granada de fumaça
+				case 21: GivePlayerWeapon(playerid, 18, 5); // Molotov
+				case 22: GivePlayerWeapon(playerid, 40, 1); // Detonador
+				case 23: GivePlayerWeapon(playerid, 43, 0x7FFFFFFF); // Câmera
+				case 24: GivePlayerWeapon(playerid, 46, 1); // Paraquedas
+				case 25: GivePlayerWeapon(playerid, 2, 1); // Golf
+				case 26: GivePlayerWeapon(playerid, 5, 1); // Baseball
+				case 27: GivePlayerWeapon(playerid, 7, 1); // Sinuca
+				case 28: GivePlayerWeapon(playerid, 8, 1); // Katana
+				case 29: GivePlayerWeapon(playerid, 6, 1); // Pá
+				case 30: GivePlayerWeapon(playerid, 9, 1); // Serra
+				case 31: GivePlayerWeapon(playerid, 42, 0x7FFFFFFF); // Mangueira
+				case 32: {
+					GivePlayerWeapon(playerid, 39, 1);
+					GivePlayerWeapon(playerid, 40, 1); // Bomba remota
+				}
+				case 33: GivePlayerWeapon(playerid, 10, 1); // Dildo
+				case 34: GivePlayerWeapon(playerid, 12, 1); // Vibrador
+				case 35: GivePlayerWeapon(playerid, 14, 1); // Buquê
+				case 36: GivePlayerWeapon(playerid, 15, 1); // Bengala
 			}
   		}
 	}
-    switch(dialogid) {
-  		case textbox_teletransportes: {
-			switch(listitem) {
-				case 0: {
-					if(IsPlayerInAnyVehicle(playerid)) {
-						SetVehiclePos(GetPlayerVehicleID(playerid), 1826, -1372, 14);
-					}
-					else {
-						SetPlayerPos(playerid, 1826, -1372, 14); // Los Santos
-					}
-				}
-				case 1: {
-					if(IsPlayerInAnyVehicle(playerid)) {
-						SetVehiclePos(GetPlayerVehicleID(playerid), 1521, -1676, 13);
-					}
-					else {
-						SetPlayerPos(playerid, 1521, -1676, 13); // Los Santos Police Department
-					}
-				}
-				case 2: {
-					if(IsPlayerInAnyVehicle(playerid)) {
-						SetVehiclePos(GetPlayerVehicleID(playerid), 326, -1795, 4);
-					}
-					else {
-						SetPlayerPos(playerid, 326, -1795, 4); // Santa Maria Beach
-					}
-				}
-				case 3: {
-					if(IsPlayerInAnyVehicle(playerid)) {
-						SetVehiclePos(GetPlayerVehicleID(playerid), 2489, -1682, 13);
-					}
-					else {
-						SetPlayerPos(playerid, 2489, -1682, 13); // Groove Street
-					}
-				}
-				case 4: {
-					if(IsPlayerInAnyVehicle(playerid)) {
-						SetVehiclePos(GetPlayerVehicleID(playerid), -1638, 1179, 8);
-					}
-					else {
-						SetPlayerPos(playerid, -1638, 1179, 8); // San Fierro
-					}
-				}
-				case 5: {
-					if(IsPlayerInAnyVehicle(playerid)) {
-						SetVehiclePos(GetPlayerVehicleID(playerid), -1609, 725, 12);
-					}
-					else {
-						SetPlayerPos(playerid, -1609, 725, 12); // San Fierro Police Department
-					}
-				}
-				case 6: {
-					if(IsPlayerInAnyVehicle(playerid)) {
-						SetVehiclePos(GetPlayerVehicleID(playerid), 2004, 1709, 10);
-					}
-					else {
-						SetPlayerPos(playerid, 2004, 1709, 10); // Las Venturas
-					}
-				}
-				case 7: {
-					if(IsPlayerInAnyVehicle(playerid)) {
-						SetVehiclePos(GetPlayerVehicleID(playerid), 2298, 2409, 10);
-					}
-					else {
-						SetPlayerPos(playerid, 2298, 2409, 10); // Las Venturas Police Department
-					}
-				}
-				case 8: {
-					if(IsPlayerInAnyVehicle(playerid)) {
-						SetVehiclePos(GetPlayerVehicleID(playerid), 2337, -32, 26);
-					}
-					else {
-						SetPlayerPos(playerid, 2321, -32, 26); // Palomino Creek
-					}
-				}
-				case 9: {
-					if(IsPlayerInAnyVehicle(playerid)) {
-						SetVehiclePos(GetPlayerVehicleID(playerid), 1274, 177, 19);
-					}
-					else {
-						SetPlayerPos(playerid, 1274, 177, 19); // Montgomery
-					}
-				}
-				case 10: {
-					if(IsPlayerInAnyVehicle(playerid)) {
-						SetVehiclePos(GetPlayerVehicleID(playerid), 624, -596, 17);
-					}
-					else {
-						SetPlayerPos(playerid, 624, -596, 17); // Dillimore
-					}
-				}
-				case 11: {
-					if(IsPlayerInAnyVehicle(playerid)) {
-						SetVehiclePos(GetPlayerVehicleID(playerid), 213, -147, 1);
-					}
-					else {
-						SetPlayerPos(playerid, 213, -147, 1); // Blueberry
-					}
-				}
-				case 12: {
-					if(IsPlayerInAnyVehicle(playerid)) {
-						SetVehiclePos(GetPlayerVehicleID(playerid), -2209, -2378, 32);
-					}
-					else {
-						SetPlayerPos(playerid, -2209, -2378, 32); // Angel Pine
-					}
-				}
-    			case 13: {
-					if(IsPlayerInAnyVehicle(playerid)) {
-						SetVehiclePos(GetPlayerVehicleID(playerid), -1408, 2645, 55);
-					}
-					else {
-						SetPlayerPos(playerid, -1408, 2645, 55); // El Quebrados
-					}
-				}
-				case 14: {
-					if(IsPlayerInAnyVehicle(playerid)) {
-						SetVehiclePos(GetPlayerVehicleID(playerid), -220, 995, 19);
-					}
-					else {
-						SetPlayerPos(playerid, -220, 995, 19); // Fort Carson
-					}
-				}
-			}
-		}
-	}
+    switch (dialogid) {
+        case textbox_teletransportes: {
+            if (response == 1) { // Verifica se o jogador clicou em "Aceitar"
+                switch (listitem) {
+                    case 0: TeleportPlayer(playerid, 1826, -1372, 14); // Los Santos
+                    case 1: TeleportPlayer(playerid, 1521, -1676, 13); // Los Santos Police Department
+                    case 2: TeleportPlayer(playerid, 326, -1795, 4); // Santa Maria Beach
+                    case 3: TeleportPlayer(playerid, 2489, -1682, 13); // Groove Street
+                    case 4: TeleportPlayer(playerid, -1638, 1179, 8); // San Fierro
+                    case 5: TeleportPlayer(playerid, -1609, 725, 12); // San Fierro Police Department
+                    case 6: TeleportPlayer(playerid, 2004, 1709, 10); // Las Venturas
+                    case 7: TeleportPlayer(playerid, 2298, 2409, 10); // Las Venturas Police Department
+                    case 8: TeleportPlayer(playerid, 2321, -32, 26); // Palomino Creek
+                    case 9: TeleportPlayer(playerid, 1274, 177, 19); // Montgomery
+                    case 10: TeleportPlayer(playerid, 624, -596, 17); // Dillimore
+                    case 11: TeleportPlayer(playerid, 213, -147, 1); // Blueberry
+                    case 12: TeleportPlayer(playerid, -2209, -2378, 32); // Angel Pine
+                    case 13: TeleportPlayer(playerid, -1408, 2645, 55); // El Quebrados
+                    case 14: TeleportPlayer(playerid, -220, 995, 19); // Fort Carson
+                }
+            }
+        }
+    }
 	switch(dialogid) {
   		case textbox_equipes: {
+			if (response == 0) return 1;
 			switch(listitem) {
 				case 0: // Civil
 					if(player[playerid][pEquipe] == 0) {
@@ -1173,6 +1074,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 	}
 	switch(dialogid) {
   		case textbox_animes1: {
+			if (response == 0) return 1;
 			switch(listitem) { 
 				case 0: { // Parar animação
 					if (IsPlayerInAnyVehicle(playerid)) {
@@ -2089,6 +1991,15 @@ public Reanima(userid) {
 	SetPlayerColor(userid, white);
 	SetPlayerHealth(userid, 100);
 	player[userid][pFerido] = 0;
+}
+
+forward TeleportPlayer(playerid, Float:x, Float:y, Float:z);
+public TeleportPlayer(playerid, Float:x, Float:y, Float:z) {
+    if (IsPlayerInAnyVehicle(playerid)) {
+        SetVehiclePos(GetPlayerVehicleID(playerid), x, y, z);
+    } else {
+        SetPlayerPos(playerid, x, y, z);
+    }
 }
 
 //Funções CMD:
@@ -3156,15 +3067,14 @@ CMD:reviver(playerid) {
 }
 
 CMD:equipar(playerid, params[]) {
-    if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
-  		SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	}
-	else {
- 		ShowPlayerDialog(playerid, textbox_equipamentos, DIALOG_STYLE_LIST, "Equipamentos",
-        "Vida\nColete\nSpray\nCacetete\nFaca\n9mm\nTaser\nDesert Eagle\nEscopeta\nEscopeta com elastômero\nEscopeta de combate\nEscopeta de cano serrado\nMicro-UZI\nTEC9\nMP5\nM4\nAK-47\nRifle de precisão\nRifle de caçador\nGranada de fumaça\nCoquetel molotov\nDetonador\nCâmera\nParaquedas\nTaco de golf\nTaco de baseball\nTaco de sinuca\nKatana\nPá\nSerra elétrica\nExtintor\nExplosivo\nDildo\nVibrador\nBuquê\nBengala",
-        "Aceitar", "Cancelar");
-	}
-	return 1;
+    if (player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
+        SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
+    } else {
+        ShowPlayerDialog(playerid, textbox_equipamentos, DIALOG_STYLE_LIST, "Equipamentos",
+            "Remover todas as armas\nVida\nColete\nSpray\nCacetete\nFaca\n9mm\nTaser\nDesert Eagle\nEscopeta\nEscopeta com elastômero\nEscopeta de combate\nEscopeta de cano serrado\nMicro-UZI\nTEC9\nMP5\nM4\nAK-47\nRifle de precisão\nRifle de caçador\nGranada de fumaça\nCoquetel molotov\nDetonador\nCâmera\nParaquedas\nTaco de golf\nTaco de baseball\nTaco de sinuca\nKatana\nPá\nSerra elétrica\nExtintor\nExplosivo\nDildo\nVibrador\nBuquê\nBengala",
+            "Aceitar", "Cancelar");
+    }
+    return 1;
 }
 
 CMD:limpar(playerid, params[]) {
