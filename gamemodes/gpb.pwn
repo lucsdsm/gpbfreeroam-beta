@@ -2690,6 +2690,7 @@ CMD:vd(playerid, params[]) {
 	else if(IsPlayerInAnyVehicle(playerid) == 1) {
 		new vehicleid = GetPlayerVehicleID(playerid);
 		DestroyVehicle(vehicleid);
+		SendClientMessage(playerid, grey, "Veículo excluído.");
 	}
 	else {
 		new counter = 0;
