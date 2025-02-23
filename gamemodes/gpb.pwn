@@ -360,7 +360,7 @@ stock CreateSmallStinger(Float:X, Float:Y, Float:Z, Float:A, virtualworld){
 
 //Funções públicas:
 public OnGameModeInit() {
-	SetGameModeText("GPB:F v0.5.1");
+	SetGameModeText("GPB:F v0.5.2");
     ManualVehicleEngineAndLights();
 	SetNameTagDrawDistance(20.0);
 	EnableStuntBonusForAll(0);
@@ -592,7 +592,7 @@ public OnPlayerText(playerid, text[]) {
 	new Float:chat = random(9);
 	if (player[playerid][pFerido] == 0 && player[playerid][pAlgemado] == 0 && player[playerid][pAnim] == 0 && !IsPlayerInAnyVehicle(playerid)) { // Variação na animação de chat.
 		if (GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_DUCK) {
-			return 1;
+
 		}
 		else if (chat == 0) {
 			ApplyAnimation(playerid, "MISC", "Idle_Chat_02", 4.1, 0, 0, 0, 0, 0, 1);
@@ -1737,7 +1737,7 @@ public JogadorDesconecta(playerid, reason) {
 
 forward HabilidadeArmas(playerid);
 public HabilidadeArmas(playerid) {
-    SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL, 999);
+    SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL, 0);
     SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL_SILENCED, 0);
     SetPlayerSkillLevel(playerid, WEAPONSKILL_DESERT_EAGLE, 999);
     SetPlayerSkillLevel(playerid, WEAPONSKILL_SHOTGUN, 999);
@@ -2295,10 +2295,10 @@ CMD:mf(playerid, text[]) {
         SendClientMessage(playerid, grey, "Você está ferido. Primeiro use o /reviver.");
 
     }
-	else if (!IsPlayerInAnyVehicle(playerid)){
-		SendClientMessage(playerid, grey, "Você não está em um veiculo.");
-		return 1;
-	}
+	// else if (!IsPlayerInAnyVehicle(playerid)){
+	// 	SendClientMessage(playerid, grey, "Você não está em um veiculo.");
+	// 	return 1;
+	// }
 	else if(isnull(text)) {
 		SendClientMessage(playerid, grey, "/mf [texto]");
 		return 1;
@@ -2531,6 +2531,10 @@ CMD:vc(playerid, params[]) {
 			PutPlayerInVehicle(playerid, modeloId, 0);
 			player[playerid][pAnim] = 0;
 			veiculoTrancado[modeloId] = 0;
+
+			veiculoPrefixo[vehicleid] = 0;
+			Delete3DTextLabel(veiculoPrefixo3D[vehicleid]);
+
 			if (HasNoEngine(modeloId) == 1) {
 				new enginem, lights, alarm, doors, bonnet, boot, objective;
 				GetVehicleParamsEx(modeloId, enginem, lights, alarm, doors, bonnet, boot, objective);
@@ -2559,6 +2563,10 @@ CMD:vc(playerid, params[]) {
 				PutPlayerInVehicle(playerid, PlayerInfo[playerid][pVeiculo], 0);
 				player[playerid][pAnim] = 0;
 				veiculoTrancado[pVeiculo] = 0;
+
+				veiculoPrefixo[vehicleid] = 0;
+				Delete3DTextLabel(veiculoPrefixo3D[vehicleid]);
+
 				if (HasNoEngine(PlayerInfo[playerid][pVeiculo]) == 1) {
 					new enginem, lights, alarm, doors, bonnet, boot, objective;
 					GetVehicleParamsEx(PlayerInfo[playerid][pVeiculo], enginem, lights, alarm, doors, bonnet, boot, objective);
@@ -2615,6 +2623,10 @@ CMD:vcs(playerid, params[]) {
 				PutPlayerInVehicle(playerid, modeloId, 0);
 				player[playerid][pAnim] = 0;
 				veiculoTrancado[modeloId] = 0;
+
+				veiculoPrefixo[vehicleid] = 0;
+				Delete3DTextLabel(veiculoPrefixo3D[vehicleid]);
+
 				if (HasNoEngine(modeloId) == 1) {
 					new enginem, lights, alarm, doors, bonnet, boot, objective;
 					GetVehicleParamsEx(modeloId, enginem, lights, alarm, doors, bonnet, boot, objective);
@@ -2647,6 +2659,10 @@ CMD:vcs(playerid, params[]) {
 				PutPlayerInVehicle(playerid, PlayerInfo[playerid][pVeiculo], 0);
 				player[playerid][pAnim] = 0;
 				veiculoTrancado[pVeiculo] = 0;
+
+				veiculoPrefixo[vehicleid] = 0;
+				Delete3DTextLabel(veiculoPrefixo3D[vehicleid]);
+
 				if (HasNoEngine(PlayerInfo[playerid][pVeiculo]) == 1) {
 					new enginem, lights, alarm, doors, bonnet, boot, objective;
 					GetVehicleParamsEx(PlayerInfo[playerid][pVeiculo], enginem, lights, alarm, doors, bonnet, boot, objective);
@@ -2970,14 +2986,18 @@ CMD:vp(playerid, params[]) {
 	else if(isnull(params)) {
  		SendClientMessage(playerid, grey, "/vp [prefixo].");
 	}
-    else if (veiculoPrefixo[vehicleid]) {
+    else if (veiculoPrefixo[vehicleid] == 1) {
         Delete3DTextLabel(veiculoPrefixo3D[vehicleid]);
-        veiculoPrefixo[vehicleid] = 0;
+        veiculoPrefixo3D[vehicleid] = Create3DTextLabel(params, -1, 0.0, 0.0, 0.0, 50.0, 0, 1);
+	    Attach3DTextLabelToVehicle(veiculoPrefixo3D[vehicleid], vehicleid, -0.8, -2.8, -0.3);
+	    veiculoPrefixo[vehicleid] = 1;
+		SendClientMessage(playerid, grey, "Prefixo definido.");
     }
     else {
         veiculoPrefixo3D[vehicleid] = Create3DTextLabel(params, -1, 0.0, 0.0, 0.0, 50.0, 0, 1);
 	    Attach3DTextLabelToVehicle(veiculoPrefixo3D[vehicleid], vehicleid, -0.8, -2.8, -0.3);
 	    veiculoPrefixo[vehicleid] = 1;
+		SendClientMessage(playerid, grey, "Prefixo definido.");
     }
 	return 1;
 }
@@ -2997,6 +3017,7 @@ CMD:rp(playerid, params[]) {
     else {
         Delete3DTextLabel(veiculoPrefixo3D[vehicleid]);
         veiculoPrefixo[vehicleid] = 0;
+		SendClientMessage(playerid, grey, "Prefixo removido.");
     }
     return 1;
 }
@@ -3071,7 +3092,7 @@ CMD:equipar(playerid, params[]) {
         SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
     } else {
         ShowPlayerDialog(playerid, textbox_equipamentos, DIALOG_STYLE_LIST, "Equipamentos",
-            "Remover todas as armas\nVida\nColete\nSpray\nCacetete\nFaca\n9mm\nTaser\nDesert Eagle\nEscopeta\nEscopeta com elastômero\nEscopeta de combate\nEscopeta de cano serrado\nMicro-UZI\nTEC9\nMP5\nM4\nAK-47\nRifle de precisão\nRifle de caçador\nGranada de fumaça\nCoquetel molotov\nDetonador\nCâmera\nParaquedas\nTaco de golf\nTaco de baseball\nTaco de sinuca\nKatana\nPá\nSerra elétrica\nExtintor\nExplosivo\nDildo\nVibrador\nBuquê\nBengala",
+            "{FF0000}Remover todas as armas\nVida\nColete\nSpray\nCacetete\nFaca\n9mm\nTaser\nDesert Eagle\nEscopeta\nEscopeta com elastômero\nEscopeta de combate\nEscopeta de cano serrado\nMicro-UZI\nTEC9\nMP5\nM4\nAK-47\nRifle de precisão\nRifle de caçador\nGranada de fumaça\nCoquetel molotov\nDetonador\nCâmera\nParaquedas\nTaco de golf\nTaco de baseball\nTaco de sinuca\nKatana\nPá\nSerra elétrica\nExtintor\nExplosivo\nDildo\nVibrador\nBuquê\nBengala",
             "Aceitar", "Cancelar");
     }
     return 1;
