@@ -358,6 +358,25 @@ stock CreateSmallStinger(Float:X, Float:Y, Float:Z, Float:A, virtualworld){
     return -1;
 }
 
+stock GerarPlaca() {
+	new placa[9] = "01ABC234"; // padrao vanilla
+	placa[0] = '0' + random(9);
+	placa[1] = '0' + random(9);
+
+	new letras[27] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	placa[2] = letras[random(26)];
+	placa[3] = letras[random(26)];
+	placa[4] = letras[random(26)];
+
+	placa[5] = '0' + random(9);
+	placa[6] = '0' + random(9);
+	placa[7] = '0' + random(9);
+	placa[8] = '\0';
+
+    return placa;
+}
+
+
 //Funções públicas:
 public OnGameModeInit() {
 	SetGameModeText("GPB:F v0.5.2");
@@ -2528,6 +2547,11 @@ CMD:vc(playerid, params[]) {
 			new modeloId = CreateVehicle(modeloid, pos[0], pos[1], pos[2], pos[3], -1, -1, -1, 0);
 			SetVehicleVirtualWorld(modeloId,GetPlayerVirtualWorld(playerid));
 			LinkVehicleToInterior(modeloId,GetPlayerInterior(playerid));
+
+			new placa[9];
+			placa = GerarPlaca();
+			SetVehicleNumberPlate(modeloId, placa);
+			
 			PutPlayerInVehicle(playerid, modeloId, 0);
 			player[playerid][pAnim] = 0;
 			veiculoTrancado[modeloId] = 0;
@@ -2560,6 +2584,11 @@ CMD:vc(playerid, params[]) {
 				GetPlayerFacingAngle(playerid, pos[3]);
 	   			PlayerInfo[playerid][pVeiculo] = CreateVehicle(id, pos[0], pos[1], pos[2], pos[3], -1, -1, -1, 0);
 				LinkVehicleToInterior(PlayerInfo[playerid][pVeiculo], GetPlayerInterior(playerid));
+
+				new placa[9];
+				placa = GerarPlaca();
+				SetVehicleNumberPlate(PlayerInfo[playerid][pVeiculo], placa);
+
 				PutPlayerInVehicle(playerid, PlayerInfo[playerid][pVeiculo], 0);
 				player[playerid][pAnim] = 0;
 				veiculoTrancado[pVeiculo] = 0;
@@ -2620,6 +2649,11 @@ CMD:vcs(playerid, params[]) {
 				new modeloId = CreateVehicle(modeloid, pos[0], pos[1], pos[2], pos[3], -1, -1, -1, 1);
 				SetVehicleVirtualWorld(modeloId,GetPlayerVirtualWorld(playerid));
 				LinkVehicleToInterior(modeloId,GetPlayerInterior(playerid));
+
+				new placa[9];
+				placa = GerarPlaca();
+				SetVehicleNumberPlate(modeloId, placa);
+
 				PutPlayerInVehicle(playerid, modeloId, 0);
 				player[playerid][pAnim] = 0;
 				veiculoTrancado[modeloId] = 0;
@@ -2656,6 +2690,11 @@ CMD:vcs(playerid, params[]) {
 				GetPlayerFacingAngle(playerid, pos[3]);
 	   			PlayerInfo[playerid][pVeiculo] = CreateVehicle(id, pos[0], pos[1], pos[2], pos[3], -1, -1, -1, 1);
 				LinkVehicleToInterior(PlayerInfo[playerid][pVeiculo], GetPlayerInterior(playerid));
+
+				new placa[9];
+				placa = GerarPlaca();
+				SetVehicleNumberPlate(PlayerInfo[playerid][pVeiculo], placa);
+
 				PutPlayerInVehicle(playerid, PlayerInfo[playerid][pVeiculo], 0);
 				player[playerid][pAnim] = 0;
 				veiculoTrancado[pVeiculo] = 0;
