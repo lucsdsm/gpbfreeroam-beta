@@ -376,7 +376,6 @@ stock GerarPlaca() {
     return placa;
 }
 
-
 //Funções públicas:
 public OnGameModeInit() {
 	SetGameModeText("GPB:F v0.5.2");
@@ -2023,11 +2022,12 @@ public TeleportPlayer(playerid, Float:x, Float:y, Float:z) {
 
 //Funções CMD:
 CMD:comandos(playerid, params[]) {
-	SendClientMessage(playerid, grey, "[Servidor]: /comandos, /equipe, /hora, /clima, /tp, /ir, /tc, /tr, /ob, /remover;");
-	SendClientMessage(playerid, grey, "[Chat]: /c, /me, /ame, /do, /sus, /gl, /d, /ooc, /gr, /r, /911, /190, /mp;");
-	SendClientMessage(playerid, grey, "[Personagem]: /reviver, /skin, /anim, /equipar, /derrubar, /levantar, /limpar, /morrer;");
+	SendClientMessage(playerid, grey, "[Servidor]: /comandos, /equipe, /hora, /clima, /tp, /ir, /tc, /tr, /objeto, /remover;");
+	SendClientMessage(playerid, grey, "[Chat]: /c, /me, /ame, /do, /d, /sus, /gl, /d, /ooc, /gr, /r, /911, /190, /mp;");
+	SendClientMessage(playerid, grey, "[Personagem]: /skin, /reviver, /anim, /equipar, /derrubar, /levantar, /limpar, /morrer;");
 	SendClientMessage(playerid, grey, "[Veículo]: /vc, /vd, /chave, /luzes, /pintar, /fix, /travas, /capo, /mala;");
-	SendClientMessage(playerid, grey, "[Polícia]: /vcs, /vp, /rp, /mf, /ref, /algemar, /desalgemar,");
+	SendClientMessage(playerid, grey, "[Polícia]: /vcs, /vp, /rp, /radiopd, /mf, /ref, /algemar, /desalgemar, /tc, /tr;");
+	SendClientMessage(playerid, grey, "[Paramédico]: /reanimar.");
    	return 1;
 }
 
@@ -3020,41 +3020,41 @@ CMD:fix(playerid) {
  	return 1;
 }
 
-CMD:placa(playerid, params[]) {
-	new Float: X, Float: Y, Float: Z, Float: angle;
-	new vehicleid = GetPlayerVehicleID(playerid);
+// CMD:placa(playerid, params[]) {
+// 	new Float: X, Float: Y, Float: Z, Float: angle;
+// 	new vehicleid = GetPlayerVehicleID(playerid);
 
-	if(!IsValidVehicle(vehicleid)) {
-		SendClientMessage(playerid, grey, "Você não está em um veículo.");
-	}
+// 	if(!IsValidVehicle(vehicleid)) {
+// 		SendClientMessage(playerid, grey, "Você não está em um veículo.");
+// 	}
 
-	else if (player[playerid][pFerido] == 1) {
-        SendClientMessage(playerid, grey, "Você está ferido. Primeiro use o /reviver.");
+// 	else if (player[playerid][pFerido] == 1) {
+//         SendClientMessage(playerid, grey, "Você está ferido. Primeiro use o /reviver.");
 
-    }
+//     }
 
-	else if (strlen(params) > 8 || strlen(params) < 1) {
-		SendClientMessage(playerid, grey, "A placa do veículo deve ter entre 1 e 8 caracteres.");
-	}
+// 	else if (strlen(params) > 8 || strlen(params) < 1) {
+// 		SendClientMessage(playerid, grey, "A placa do veículo deve ter entre 1 e 8 caracteres.");
+// 	}
 
-	else {
-		GetPlayerPos(playerid, X, Y, Z);
-		GetPlayerFacingAngle(playerid, angle);
+// 	else {
+// 		GetPlayerPos(playerid, X, Y, Z);
+// 		GetPlayerFacingAngle(playerid, angle);
 
-		SetVehicleNumberPlate(vehicleid, params);
+// 		SetVehicleNumberPlate(vehicleid, params);
 
-		SetVehicleToRespawn(vehicleid);
+// 		SetVehicleToRespawn(vehicleid);
 
-		SetVehiclePos(GetPlayerVehicleID(playerid), X, Y, Z);
-		SetVehicleZAngle(GetPlayerVehicleID(playerid), angle);
-		PutPlayerInVehicle(playerid, GetPlayerVehicleID(playerid), 0);
-		SetVehiclePos(GetPlayerVehicleID(playerid), X, Y, Z+1);
+// 		SetVehiclePos(GetPlayerVehicleID(playerid), X, Y, Z);
+// 		SetVehicleZAngle(GetPlayerVehicleID(playerid), angle);
+// 		PutPlayerInVehicle(playerid, GetPlayerVehicleID(playerid), 0);
+// 		SetVehiclePos(GetPlayerVehicleID(playerid), X, Y, Z+1);
 
-		SendClientMessage(playerid, grey, "Placa do veículo alterada.");
-	}
+// 		SendClientMessage(playerid, grey, "Placa do veículo alterada.");
+// 	}
 
-	return 1;
-}
+// 	return 1;
+// }
 
 CMD:vp(playerid, params[]) {
     new vehicleid = GetPlayerVehicleID(playerid);
@@ -3174,11 +3174,6 @@ CMD:equipar(playerid, params[]) {
             "Aceitar", "Cancelar");
     }
     return 1;
-}
-
-CMD:limpar(playerid, params[]) {
-	ResetPlayerWeapons(playerid);
-	return 1;
 }
 
 CMD:hora(playerid, params[]) {
@@ -3508,7 +3503,7 @@ CMD:anim(playerid, params[]) {
 }
 
 //Objetos
-CMD:ob(playerid, params[]) {
+CMD:objeto(playerid, params[]) {
 	new obj = strval(params);
 	new Float:objx, Float:objy, Float:objz, Float:obja;
 	GetPlayerPos(playerid, objx, objy, objz);
