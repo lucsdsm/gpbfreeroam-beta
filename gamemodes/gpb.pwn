@@ -47,6 +47,7 @@
 #define textbox_animes2 19
 #define textbox_cintura 20
 #define textbox_fermimento 21
+#define textbox_veiculo 22
 
 #define PreloadAnimLib(%1,%2)	ApplyAnimation(%1,%2,"null",0.0,0,0,0,0,0)
 
@@ -61,7 +62,7 @@
 main() {
 }
 
-//Enumerates:
+//Enumeradores:
 enum jogadorData {
    pVeiculo,
    pEquipe,
@@ -89,6 +90,15 @@ enum objetoData {
     Float:sY,
     Float:sZ,
     sObject,
+};
+
+enum veiculoData { // no futuro transferir pra ca: veiculoMotor, veiculoAvariado, veiculoPrefixo, Text3D:veiculoPrefixo3D, veiculoTrancado
+	vId, // ID do carro no mapa
+	emplacamento[9],
+	bool:roubado,
+	bool:segurado,
+	bool:licenciado,
+	BOLO[200] // be on lookout
 };
 
 //Variáveis globais:
@@ -143,6 +153,7 @@ new const AnimLibs[][] = {
 };
 
 new gpbMensagem[512];
+new veiculoInfo[MAX_VEHICLES][veiculoData];
 new veiculoMotor[MAX_VEHICLES];
 new veiculoAvariado[MAX_VEHICLES];
 new veiculoPrefixo[MAX_VEHICLES];
@@ -861,7 +872,7 @@ public OnVehicleStreamOut(vehicleid, forplayerid) {
 	return 1;
 }
 
-public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
+public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) { // necessario mergir os swtichs dos dialogs, ta uma bagunca do krl
     switch(dialogid) {
 		case textbox_equipamentos: {
 			if (response == 0) return 1; // Se o jogador apertar ESC ou "Cancelar", sai sem fazer nada.
@@ -1649,6 +1660,26 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			}
 		}
 	}
+  	switch(dialogid) {
+		case textbox_veiculo: {
+			if (response == 0) return 1; // fecha dialog
+			switch (listitem) {
+				case 0: SendClientMessage(playerid, grey, "Não é permitido alterar a placa do veículo.");
+				case 1: {	
+					SendClientMessage(playerid, grey, "Roubo do veículo alterado.");
+					veiculoInfo[GetPlayerVehicleID(playerid)][roubado] = !veiculoInfo[GetPlayerVehicleID(playerid)][roubado];
+				} 
+				case 2: {
+					veiculoInfo[GetPlayerVehicleID(playerid)][segurado] = !veiculoInfo[GetPlayerVehicleID(playerid)][segurado];
+					SendClientMessage(playerid, grey, "Seguro do veículo alterado.");
+				}
+				case 3: {
+					veiculoInfo[GetPlayerVehicleID(playerid)][licenciado] = !veiculoInfo[GetPlayerVehicleID(playerid)][licenciado];
+					SendClientMessage(playerid, grey, "Licenciamento do veículo alterado.");
+				}
+			}
+		}
+	}
 	return 1;
 }
 
@@ -2025,7 +2056,7 @@ CMD:comandos(playerid, params[]) {
 	SendClientMessage(playerid, grey, "[Servidor]: /comandos, /equipe, /hora, /clima, /tp, /ir, /tc, /tr, /objeto, /remover;");
 	SendClientMessage(playerid, grey, "[Chat]: /c, /me, /ame, /do, /d, /sus, /gl, /d, /ooc, /gr, /r, /911, /190, /mp;");
 	SendClientMessage(playerid, grey, "[Personagem]: /skin, /reviver, /anim, /equipar, /derrubar, /levantar, /limpar, /morrer;");
-	SendClientMessage(playerid, grey, "[Veículo]: /vc, /vd, /chave, /luzes, /pintar, /fix, /travas, /capo, /mala;");
+	SendClientMessage(playerid, grey, "[Veículo]: /vc, /vd, /veiculo, /chave, /luzes, /pintar, /fix, /travas, /capo, /mala;");
 	SendClientMessage(playerid, grey, "[Polícia]: /vcs, /vp, /rp, /radiopd, /mf, /ref, /algemar, /desalgemar, /tc, /tr;");
 	SendClientMessage(playerid, grey, "[Paramédico]: /reanimar.");
    	return 1;
@@ -2518,7 +2549,41 @@ CMD:radiopd(playerid, params[]) {
     return 1;
 }
 
-CMD:vc(playerid, params[]) { 
+CMD:veiculo(playerid) {
+	if (player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || !IsPlayerInAnyVehicle(playerid)) {
+        SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
+    } else {
+		new stringVeiculo[200] = "Placa: ";
+		strcat(stringVeiculo, veiculoInfo[GetPlayerVehicleID(playerid)][emplacamento]);
+
+		new bool:veiculoRoubado = veiculoInfo[GetPlayerVehicleID(playerid)][roubado];
+		if(veiculoRoubado) {
+			strcat(stringVeiculo, "\nRoubado: {FF0000}Sim");
+		} else {
+			strcat(stringVeiculo, "\nRoubado: {00c206}Não");
+		}
+
+		new bool:veiculoSegurado = veiculoInfo[GetPlayerVehicleID(playerid)][segurado];
+		if(veiculoSegurado) {
+			strcat(stringVeiculo, "\nSeguro: {00c206}Regular");
+		} else {
+			strcat(stringVeiculo, "\nSeguro: {FF0000}Irregular");
+		}
+
+		new bool:veiculoLicenciado = veiculoInfo[GetPlayerVehicleID(playerid)][licenciado];
+		if(veiculoLicenciado) {
+			strcat(stringVeiculo, "\nLicenciamento: {00c206}Regular");
+		} else {
+			strcat(stringVeiculo, "\nLicenciamento: {FF0000}Irregular");
+		}
+
+        ShowPlayerDialog(playerid, textbox_veiculo, DIALOG_STYLE_LIST, "Meu veículo", stringVeiculo,
+            "Alterar", "Fechar");
+    }
+    return 1;
+}
+
+CMD:vc(playerid, params[]) { // NECESSARIO REFAZER E MERGIR COM O /VCS
 	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
   		SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
 		return 1;
@@ -2551,6 +2616,10 @@ CMD:vc(playerid, params[]) {
 			new placa[9];
 			placa = GerarPlaca();
 			SetVehicleNumberPlate(modeloId, placa);
+			veiculoInfo[modeloId][emplacamento] = placa;
+			veiculoInfo[modeloId][roubado] = false;
+			veiculoInfo[modeloId][segurado] = true;
+			veiculoInfo[modeloId][licenciado] = true;
 			
 			PutPlayerInVehicle(playerid, modeloId, 0);
 			player[playerid][pAnim] = 0;
@@ -2588,6 +2657,10 @@ CMD:vc(playerid, params[]) {
 				new placa[9];
 				placa = GerarPlaca();
 				SetVehicleNumberPlate(PlayerInfo[playerid][pVeiculo], placa);
+				veiculoInfo[PlayerInfo[playerid][pVeiculo]][emplacamento] = placa;
+				veiculoInfo[PlayerInfo[playerid][pVeiculo]][roubado] = false;
+				veiculoInfo[PlayerInfo[playerid][pVeiculo]][segurado] = true;
+				veiculoInfo[PlayerInfo[playerid][pVeiculo]][licenciado] = true;
 
 				PutPlayerInVehicle(playerid, PlayerInfo[playerid][pVeiculo], 0);
 				player[playerid][pAnim] = 0;
@@ -2616,7 +2689,7 @@ CMD:vc(playerid, params[]) {
 	return 1;
 }
 
-CMD:vcs(playerid, params[]) { 
+CMD:vcs(playerid, params[]) { // NECESSARIO REFAZER E MERGIR COM O /VC
 	if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
   		SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
 		return 1;
@@ -2653,6 +2726,10 @@ CMD:vcs(playerid, params[]) {
 				new placa[9];
 				placa = GerarPlaca();
 				SetVehicleNumberPlate(modeloId, placa);
+				veiculoInfo[modeloId][emplacamento] = placa;
+				veiculoInfo[modeloId][roubado] = false;
+				veiculoInfo[modeloId][segurado] = true;
+				veiculoInfo[modeloId][licenciado] = true;
 
 				PutPlayerInVehicle(playerid, modeloId, 0);
 				player[playerid][pAnim] = 0;
@@ -2694,6 +2771,10 @@ CMD:vcs(playerid, params[]) {
 				new placa[9];
 				placa = GerarPlaca();
 				SetVehicleNumberPlate(PlayerInfo[playerid][pVeiculo], placa);
+				veiculoInfo[PlayerInfo[playerid][pVeiculo]][emplacamento] = placa;
+				veiculoInfo[PlayerInfo[playerid][pVeiculo]][roubado] = false;
+				veiculoInfo[PlayerInfo[playerid][pVeiculo]][segurado] = true;
+				veiculoInfo[PlayerInfo[playerid][pVeiculo]][licenciado] = true;
 
 				PutPlayerInVehicle(playerid, PlayerInfo[playerid][pVeiculo], 0);
 				player[playerid][pAnim] = 0;
