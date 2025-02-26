@@ -96,7 +96,6 @@ enum objetoData {
 };
 
 enum veiculoData { // no futuro transferir pra ca: veiculoMotor, veiculoAvariado, veiculoPrefixo, Text3D:veiculoPrefixo3D, veiculoTrancado
-	vId, // ID do carro no mapa
 	emplacamento[9],
 	bool:roubado,
 	bool:segurado,
@@ -398,29 +397,33 @@ stock GerarPlaca() {
 }
 
 stock GetPlaca(vehicleid) {
-	return veiculoInfo[vehicleid][emplacamento];
+	new placa[9] = "";
+	strcat(placa, veiculoInfo[vehicleid][emplacamento]);
+	return placa;
 }
 
 stock GetVId(placa[]) {
-	for(new i = 0; i < MAX_VEHICLES; i++) {
-		if(veiculoInfo[i][emplacamento] == placa) {
+	for(new i = 2; i < MAX_VEHICLES; i++) {
+		if(!strcmp(veiculoInfo[i][emplacamento], placa, true)) {
 			return i;
 		}
 	}
 	return -1;
 }
 
-stock ConsultarPlaca(placa, bool:policial) {
+stock ConsultarPlaca(placa[], bool:policial) {
 	new vehicleid = GetVId(placa);
+	new consulta[200] = "";
 
-	if(vehicleid == -1) {
-		return "Veículo não existe.";
+	if(!strcmp(ReturnVehicleModelName(GetVehicleModel(vehicleid)), "None")){
+		strcat(consulta, "\nVeículo não existe.");
+		return consulta;
 	}
-	new consulta[200] = "Placa: ";
+	strcat(consulta, "Placa: ");
 	strcat(consulta, placa);
 
 	strcat(consulta, "\nModelo: ");
-	strcat(consulta, ReturnVehicleModelName(vehicleid));
+	strcat(consulta, ReturnVehicleModelName(GetVehicleModel(vehicleid)));
 
 	new bool:veiculoRoubado = veiculoInfo[vehicleid][roubado];
 	if(veiculoRoubado) {
@@ -444,7 +447,7 @@ stock ConsultarPlaca(placa, bool:policial) {
 	}
 
 	if(policial) {	// mostrar BOLO futuramente
-		// strcat(consulta, "\nBOLO: Nada consta");
+		strcat(consulta, "\nBOLO: Nada consta");
 	}
 
 	return consulta;
@@ -1728,15 +1731,15 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) { /
 			if (response == 0) return 1; // fecha dialog
 			switch (listitem) {
 				case 0: SendClientMessage(playerid, grey, "Não é permitido alterar a placa do veículo.");
-				case 1: {	
+				case 2: {	
 					SendClientMessage(playerid, grey, "Roubo do veículo alterado.");
 					veiculoInfo[GetPlayerVehicleID(playerid)][roubado] = !veiculoInfo[GetPlayerVehicleID(playerid)][roubado];
 				} 
-				case 2: {
+				case 3: {
 					veiculoInfo[GetPlayerVehicleID(playerid)][segurado] = !veiculoInfo[GetPlayerVehicleID(playerid)][segurado];
 					SendClientMessage(playerid, grey, "Seguro do veículo alterado.");
 				}
-				case 3: {
+				case 4: {
 					veiculoInfo[GetPlayerVehicleID(playerid)][licenciado] = !veiculoInfo[GetPlayerVehicleID(playerid)][licenciado];
 					SendClientMessage(playerid, grey, "Licenciamento do veículo alterado.");
 				}
@@ -1754,6 +1757,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) { /
 			if (strlen(inputtext) != 8) {
 				SendClientMessage(playerid, red, "Placa inválida.");
 			} else {
+				for (new i =2; i < 6; i++) { // uppercase so p confirmar
+					inputtext[i] = toupper(inputtext[i]);
+				}
 				new consulta[200] = "";
 				consulta = ConsultarPlaca(inputtext, true);
 				ShowPlayerDialog(playerid, textbox_MDT_placa_resultado, DIALOG_STYLE_LIST, "Resultado da consulta:", consulta, "Ok", "Add BOLO");
@@ -2140,7 +2146,7 @@ CMD:comandos(playerid, params[]) {
 	SendClientMessage(playerid, grey, "[Chat]: /c, /me, /ame, /do, /d, /sus, /gl, /d, /ooc, /gr, /r, /911, /190, /mp;");
 	SendClientMessage(playerid, grey, "[Personagem]: /skin, /reviver, /anim, /equipar, /derrubar, /levantar, /limpar, /morrer;");
 	SendClientMessage(playerid, grey, "[Veículo]: /vc, /vd, /veiculo, /chave, /luzes, /pintar, /fix, /travas, /capo, /mala;");
-	SendClientMessage(playerid, grey, "[Polícia]: /vcs, /vp, /rp, /radiopd, /mf, /ref, /algemar, /desalgemar, /tc, /tr;");
+	SendClientMessage(playerid, grey, "[Polícia]: /vcs, /vp, /rp, /radiopd, /mf, /ref, /mdt, /algemar, /desalgemar, /tc, /tr;");
 	SendClientMessage(playerid, grey, "[Paramédico]: /reanimar.");
    	return 1;
 }
@@ -2635,8 +2641,8 @@ CMD:radiopd(playerid, params[]) {
 CMD:mdt(playerid) {
 	if (player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || !IsPlayerInAnyVehicle(playerid)) {
    	SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
-	// } else if (player[playerid][pEquipe] != 1) {
-	// 	SendClientMessage(playerid, grey, "Somente policiais podem acessar o Main Data Terminal.");
+	} else if (player[playerid][pEquipe] != 1) {
+		SendClientMessage(playerid, grey, "Somente policiais podem acessar o Main Data Terminal.");
 	} else {
 		ShowPlayerDialog(playerid, textbox_MDT, DIALOG_STYLE_LIST, "Main Data Terminal", "Consultar placa",
        "Ok", "Fechar");
@@ -2650,7 +2656,9 @@ CMD:veiculo(playerid) {
         SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
     } else {
 		new stringVeiculo[200] = "";
-		stringVeiculo = ConsultarPlaca(GetPlaca(GetPlayerVehicleID(playerid), false));
+		new placa[9] = "";
+		strcat(placa, GetPlaca(GetPlayerVehicleID(playerid)));
+		stringVeiculo = ConsultarPlaca(placa, false);
         ShowPlayerDialog(playerid, textbox_veiculo, DIALOG_STYLE_LIST, "Meu veículo", stringVeiculo,
             "Alterar", "Fechar");
     }
