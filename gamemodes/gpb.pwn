@@ -48,6 +48,9 @@
 #define textbox_cintura 20
 #define textbox_fermimento 21
 #define textbox_veiculo 22
+#define textbox_MDT 23
+#define textbox_MDT_placa 24
+#define textbox_MDT_placa_resultado 25
 
 #define PreloadAnimLib(%1,%2)	ApplyAnimation(%1,%2,"null",0.0,0,0,0,0,0)
 
@@ -93,7 +96,6 @@ enum objetoData {
 };
 
 enum veiculoData { // no futuro transferir pra ca: veiculoMotor, veiculoAvariado, veiculoPrefixo, Text3D:veiculoPrefixo3D, veiculoTrancado
-	vId, // ID do carro no mapa
 	emplacamento[9],
 	bool:roubado,
 	bool:segurado,
@@ -174,6 +176,13 @@ ReturnVehicleId(vName[]) {
 	}
 	return -1;
 }
+
+ReturnVehicleModelName(model) {
+    new name[32] = "None";
+    if (model < 400 || model > 611) return name;
+    format(name, sizeof(name), veiculosNomes[model - 400]);
+    return name;
+} 
 
 //Funções nativas:
 native IsValidVehicle(vehicleid);
@@ -385,6 +394,63 @@ stock GerarPlaca() {
 	placa[8] = '\0';
 
     return placa;
+}
+
+stock GetPlaca(vehicleid) {
+	new placa[9] = "";
+	strcat(placa, veiculoInfo[vehicleid][emplacamento]);
+	return placa;
+}
+
+stock GetVId(placa[]) {
+	for(new i = 2; i < MAX_VEHICLES; i++) {
+		if(!strcmp(veiculoInfo[i][emplacamento], placa, true)) {
+			return i;
+		}
+	}
+	return -1;
+}
+
+stock ConsultarPlaca(placa[], bool:policial) {
+	new vehicleid = GetVId(placa);
+	new consulta[200] = "";
+
+	if(!strcmp(ReturnVehicleModelName(GetVehicleModel(vehicleid)), "None")){
+		strcat(consulta, "\nVeículo não existe.");
+		return consulta;
+	}
+	strcat(consulta, "Placa: ");
+	strcat(consulta, placa);
+
+	strcat(consulta, "\nModelo: ");
+	strcat(consulta, ReturnVehicleModelName(GetVehicleModel(vehicleid)));
+
+	new bool:veiculoRoubado = veiculoInfo[vehicleid][roubado];
+	if(veiculoRoubado) {
+		strcat(consulta, "\nRoubado: {FF0000}Sim");
+	} else {
+		strcat(consulta, "\nRoubado: {00c206}Não");
+	}
+
+	new bool:veiculoSegurado = veiculoInfo[vehicleid][segurado];
+	if(veiculoSegurado) {
+		strcat(consulta, "\nSeguro: {00c206}Regular");
+	} else {
+		strcat(consulta, "\nSeguro: {FF0000}Irregular");
+	}
+
+	new bool:veiculoLicenciado = veiculoInfo[vehicleid][licenciado];
+	if(veiculoLicenciado) {
+		strcat(consulta, "\nLicenciamento: {00c206}Regular");
+	} else {
+		strcat(consulta, "\nLicenciamento: {FF0000}Irregular");
+	}
+
+	if(policial) {	// mostrar BOLO futuramente
+		strcat(consulta, "\nBOLO: Nada consta");
+	}
+
+	return consulta;
 }
 
 //Funções públicas:
@@ -1665,20 +1731,43 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) { /
 			if (response == 0) return 1; // fecha dialog
 			switch (listitem) {
 				case 0: SendClientMessage(playerid, grey, "Não é permitido alterar a placa do veículo.");
-				case 1: {	
+				case 2: {	
 					SendClientMessage(playerid, grey, "Roubo do veículo alterado.");
 					veiculoInfo[GetPlayerVehicleID(playerid)][roubado] = !veiculoInfo[GetPlayerVehicleID(playerid)][roubado];
 				} 
-				case 2: {
+				case 3: {
 					veiculoInfo[GetPlayerVehicleID(playerid)][segurado] = !veiculoInfo[GetPlayerVehicleID(playerid)][segurado];
 					SendClientMessage(playerid, grey, "Seguro do veículo alterado.");
 				}
-				case 3: {
+				case 4: {
 					veiculoInfo[GetPlayerVehicleID(playerid)][licenciado] = !veiculoInfo[GetPlayerVehicleID(playerid)][licenciado];
 					SendClientMessage(playerid, grey, "Licenciamento do veículo alterado.");
 				}
 			}
 		}
+		case textbox_MDT: {
+			if (response == 0) return 1; // fecha dialog
+			switch (listitem) {
+				case 0: {
+					ShowPlayerDialog(playerid, textbox_MDT_placa, DIALOG_STYLE_INPUT, "Consulta de placa", "Digite a placa:", "Consultar", "");
+				}
+			}
+		}
+		case textbox_MDT_placa: {
+			if (strlen(inputtext) != 8) {
+				SendClientMessage(playerid, red, "Placa inválida.");
+			} else {
+				for (new i =2; i < 6; i++) { // uppercase so p confirmar
+					inputtext[i] = toupper(inputtext[i]);
+				}
+				new consulta[200] = "";
+				consulta = ConsultarPlaca(inputtext, true);
+				ShowPlayerDialog(playerid, textbox_MDT_placa_resultado, DIALOG_STYLE_LIST, "Resultado da consulta:", consulta, "Ok", "Add BOLO");
+			}
+		}
+		// case textbox_MDT_placa_resultado: {
+		// 	// Handle the result dialog response if needed
+		// }
 	}
 	return 1;
 }
@@ -2057,7 +2146,7 @@ CMD:comandos(playerid, params[]) {
 	SendClientMessage(playerid, grey, "[Chat]: /c, /me, /ame, /do, /d, /sus, /gl, /d, /ooc, /gr, /r, /911, /190, /mp;");
 	SendClientMessage(playerid, grey, "[Personagem]: /skin, /reviver, /anim, /equipar, /derrubar, /levantar, /limpar, /morrer;");
 	SendClientMessage(playerid, grey, "[Veículo]: /vc, /vd, /veiculo, /chave, /luzes, /pintar, /fix, /travas, /capo, /mala;");
-	SendClientMessage(playerid, grey, "[Polícia]: /vcs, /vp, /rp, /radiopd, /mf, /ref, /algemar, /desalgemar, /tc, /tr;");
+	SendClientMessage(playerid, grey, "[Polícia]: /vcs, /vp, /rp, /radiopd, /mf, /ref, /mdt, /algemar, /desalgemar, /tc, /tr;");
 	SendClientMessage(playerid, grey, "[Paramédico]: /reanimar.");
    	return 1;
 }
@@ -2549,34 +2638,27 @@ CMD:radiopd(playerid, params[]) {
     return 1;
 }
 
+CMD:mdt(playerid) {
+	if (player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || !IsPlayerInAnyVehicle(playerid)) {
+   	SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
+	} else if (player[playerid][pEquipe] != 1) {
+		SendClientMessage(playerid, grey, "Somente policiais podem acessar o Main Data Terminal.");
+	} else {
+		ShowPlayerDialog(playerid, textbox_MDT, DIALOG_STYLE_LIST, "Main Data Terminal", "Consultar placa",
+       "Ok", "Fechar");
+	}
+
+	return 1;
+}
+
 CMD:veiculo(playerid) {
 	if (player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1 || !IsPlayerInAnyVehicle(playerid)) {
         SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
     } else {
-		new stringVeiculo[200] = "Placa: ";
-		strcat(stringVeiculo, veiculoInfo[GetPlayerVehicleID(playerid)][emplacamento]);
-
-		new bool:veiculoRoubado = veiculoInfo[GetPlayerVehicleID(playerid)][roubado];
-		if(veiculoRoubado) {
-			strcat(stringVeiculo, "\nRoubado: {FF0000}Sim");
-		} else {
-			strcat(stringVeiculo, "\nRoubado: {00c206}Não");
-		}
-
-		new bool:veiculoSegurado = veiculoInfo[GetPlayerVehicleID(playerid)][segurado];
-		if(veiculoSegurado) {
-			strcat(stringVeiculo, "\nSeguro: {00c206}Regular");
-		} else {
-			strcat(stringVeiculo, "\nSeguro: {FF0000}Irregular");
-		}
-
-		new bool:veiculoLicenciado = veiculoInfo[GetPlayerVehicleID(playerid)][licenciado];
-		if(veiculoLicenciado) {
-			strcat(stringVeiculo, "\nLicenciamento: {00c206}Regular");
-		} else {
-			strcat(stringVeiculo, "\nLicenciamento: {FF0000}Irregular");
-		}
-
+		new stringVeiculo[200] = "";
+		new placa[9] = "";
+		strcat(placa, GetPlaca(GetPlayerVehicleID(playerid)));
+		stringVeiculo = ConsultarPlaca(placa, false);
         ShowPlayerDialog(playerid, textbox_veiculo, DIALOG_STYLE_LIST, "Meu veículo", stringVeiculo,
             "Alterar", "Fechar");
     }
