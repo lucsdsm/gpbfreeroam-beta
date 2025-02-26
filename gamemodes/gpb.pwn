@@ -317,14 +317,18 @@ stock VeiculoComJogador(vehicleid) {
 }
 
 stock IsPlayerNearPlayer(playerid, targetid, Float:radius) {
-    static
-        Float:fX,
-        Float:fY,
-        Float:fZ;
+	static
+		Float:fX,
+		Float:fY,
+		Float:fZ;
 
-    GetPlayerPos(targetid, fX, fY, fZ);
+	GetPlayerPos(targetid, fX, fY, fZ);
 
-    return (GetPlayerInterior(playerid) == GetPlayerInterior(targetid) && GetPlayerVirtualWorld(playerid) == GetPlayerVirtualWorld(targetid)) && IsPlayerInRangeOfPoint(playerid, radius, fX, fY, fZ);
+	return (GetPlayerInterior(playerid) == GetPlayerInterior(targetid) && GetPlayerVirtualWorld(playerid) == GetPlayerVirtualWorld(targetid)) && IsPlayerInRangeOfPoint(playerid, radius, fX, fY, fZ);
+}
+
+stock IsPointInRangeOfPoint(Float:x1, Float:y1, Float:x2, Float:y2, Float:range) {
+	return ((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) <= (range * range);
 }
 
 stock CriaObjeto(Object, Float:x, Float:y, Float:z, Float:Angle) {
@@ -1751,13 +1755,40 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) { /
 				case 0: {
 					ShowPlayerDialog(playerid, textbox_MDT_placa, DIALOG_STYLE_INPUT, "Consulta de placa", "Digite a placa:", "Consultar", "");
 				}
+				case 1: {
+					new vehicleid = GetPlayerVehicleID(playerid);
+					if (vehicleid == INVALID_VEHICLE_ID) {
+						SendClientMessage(playerid, red, "Você não está em um veículo.");
+						return 1;
+					}
+					new Float:pos[3], Float:angle;
+					GetVehiclePos(vehicleid, pos[0], pos[1], pos[2]);
+					GetVehicleZAngle(vehicleid, angle);
+					new Float:checkX = pos[0] + 5 * floatsin(-angle, degrees);
+					new Float:checkY = pos[1] + 5 * floatcos(-angle, degrees);
+					for (new i = 1; i < MAX_VEHICLES; i++) {
+						if (IsValidVehicle(i) && i != vehicleid) {
+							new Float:vPos[3];
+							GetVehiclePos(i, vPos[0], vPos[1], vPos[2]);
+							if (IsPointInRangeOfPoint(vPos[0], vPos[1], checkX, checkY, 10.0)) {
+								new placa[9];
+								placa = GetPlaca(i);
+								new consulta[200] = "";
+								consulta = ConsultarPlaca(placa, true);
+								ShowPlayerDialog(playerid, textbox_MDT_placa_resultado, DIALOG_STYLE_LIST, "Resultado da consulta:", consulta, "Ok", "Add BOLO");
+								return 1;
+							}
+						}
+					}
+					SendClientMessage(playerid, red, "Nenhum veículo encontrado à 5 metros na frente.");
+				}
 			}
 		}
 		case textbox_MDT_placa: {
 			if (strlen(inputtext) != 8) {
 				SendClientMessage(playerid, red, "Placa inválida.");
 			} else {
-				for (new i =2; i < 6; i++) { // uppercase so p confirmar
+				for (new i = 2; i < 6; i++) { // uppercase so p confirmar
 					inputtext[i] = toupper(inputtext[i]);
 				}
 				new consulta[200] = "";
@@ -2644,7 +2675,7 @@ CMD:mdt(playerid) {
 	} else if (player[playerid][pEquipe] != 1) {
 		SendClientMessage(playerid, grey, "Somente policiais podem acessar o Main Data Terminal.");
 	} else {
-		ShowPlayerDialog(playerid, textbox_MDT, DIALOG_STYLE_LIST, "Main Data Terminal", "Consultar placa",
+		ShowPlayerDialog(playerid, textbox_MDT, DIALOG_STYLE_LIST, "Main Data Terminal", "Consultar placa\nConsultar veículo à frente\nAlertas ALPR: Não",
        "Ok", "Fechar");
 	}
 
