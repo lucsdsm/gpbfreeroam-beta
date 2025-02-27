@@ -100,7 +100,8 @@ enum veiculoData { // no futuro transferir pra ca: veiculoMotor, veiculoAvariado
 	bool:roubado,
 	bool:segurado,
 	bool:licenciado,
-	BOLO[200] // be on lookout
+	BOLO[200], // be on lookout
+	bool: alertado
 };
 
 //Variáveis globais:
@@ -923,6 +924,39 @@ public OnRconLoginAttempt(ip[], password[], success) {
 }
 
 public OnPlayerUpdate(playerid) {
+	new Float:playerX, Float:playerY, Float:playerZ;
+	GetPlayerPos(playerid, playerX, playerY, playerZ);
+
+	for (new i = 1; i < MAX_VEHICLES; i++) { // Sistema ALPR
+		if (IsValidVehicle(i) && veiculoInfo[i][roubado]) {
+			new Float:vehicleX, Float:vehicleY, Float:vehicleZ;
+			GetVehiclePos(i, vehicleX, vehicleY, vehicleZ);
+
+			if (IsPointInRangeOfPoint(vehicleX, vehicleY, 2057.4727, 1553.2212, 50.0)) {
+				if (!veiculoInfo[i][alertado]) {
+					new string[40] = "";
+					for (new j = 0; j < MAX_PLAYERS; j++) {
+						if (IsPlayerConnected(j) && player[j][pEquipe] == 1) {
+							SendClientMessage(j, red, "-----ALERTA ALPR - Veículo ROUBADO-----");
+							string = "Placa: ";
+							strcat(string, GetPlaca(i));
+							SendClientMessage(j, red, string);
+
+							string = "Modelo: ";
+							strcat(string, ReturnVehicleModelName(GetVehicleModel(i)));
+							SendClientMessage(j, red, string);
+
+							SendClientMessage(j, red, "Localização: em frente ao barco pirata");
+							PlayerPlaySound(playerid, 41603, 0.0, 0.0, 0.0);
+						}
+					}
+					veiculoInfo[i][alertado] = true;
+				}
+			} else {
+				veiculoInfo[i][alertado] = false;
+			}
+		}
+	}
 	return 1;
 }
 
@@ -3949,7 +3983,7 @@ CMD:limparveiculos(playerid) {
 			}
 		}
 		SendClientMessage(playerid, grey, "Todos os veículos foram removidos.");
-		SendClientMessageToAll(white, "O administrador removeu todos os veículos.");
+		SendClientMessageToAll(red, "O administrador removeu todos os veículos.");
 	} else {
 		SendClientMessage(playerid, red, "Você não tem permissão para isso.");
 	}
