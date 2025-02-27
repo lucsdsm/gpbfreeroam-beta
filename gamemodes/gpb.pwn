@@ -3917,26 +3917,41 @@ CMD:objeto(playerid, params[]) {
 }
 
 CMD:remover(playerid, params[]) {
-    if (player[playerid][pFerido] == 1) {
+	if (player[playerid][pFerido] == 1) {
 		SendClientMessage(playerid, grey, "Você está ferido. Primeiro use o /reviver.");
 	}
-    else if (player[playerid][pAlgemado] == 1) {
+	else if (player[playerid][pAlgemado] == 1) {
 		SendClientMessage(playerid, grey, "Você está algemado.");
 	}
-    else {
-        for(new i = 0; i < sizeof(objeto); i++) {
-    	if(IsPlayerInRangeOfPoint(playerid, 2.0, objeto[i][sX], objeto[i][sY], objeto[i][sZ])) {
-        	if(objeto[i][objetoCriado] == 1) {
-                objeto[i][objetoCriado] = 0;
-                objeto[i][sX] = 0.0;
-                objeto[i][sY] = 0.0;
-                objeto[i][sZ] = 0.0;
-                DestroyDynamicObject(objeto[i][sObject]);
-				SendClientMessage(playerid, grey, "Objeto removido.");
-                return 1;
-            }
+	else {
+		for(new i = 0; i < sizeof(objeto); i++) {
+			if(IsPlayerInRangeOfPoint(playerid, 2.0, objeto[i][sX], objeto[i][sY], objeto[i][sZ])) {
+				if(objeto[i][objetoCriado] == 1) {
+					objeto[i][objetoCriado] = 0;
+					objeto[i][sX] = 0.0;
+					objeto[i][sY] = 0.0;
+					objeto[i][sZ] = 0.0;
+					DestroyDynamicObject(objeto[i][sObject]);
+					SendClientMessage(playerid, grey, "Objeto removido.");
+					return 1;
+				}
+			}
 		}
 	}
+	return 1;
 }
-    return 1;
+
+CMD:limparveiculos(playerid) {
+	if(IsPlayerAdmin(playerid)) {
+		for(new i = 2; i < MAX_VEHICLES; i++) {
+			if(IsValidVehicle(i) && !VeiculoComJogador(i)) {
+				DestroyVehicle(i);
+			}
+		}
+		SendClientMessage(playerid, grey, "Todos os veículos foram removidos.");
+		SendClientMessageToAll(white, "O administrador removeu todos os veículos.");
+	} else {
+		SendClientMessage(playerid, red, "Você não tem permissão para isso.");
+	}
+	return 1;
 }
