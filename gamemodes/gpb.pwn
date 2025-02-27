@@ -51,6 +51,7 @@
 #define textbox_MDT 23
 #define textbox_MDT_placa 24
 #define textbox_MDT_placa_resultado 25
+#define textbox_MDT_placa_BOLO 26
 
 #define PreloadAnimLib(%1,%2)	ApplyAnimation(%1,%2,"null",0.0,0,0,0,0,0)
 
@@ -100,7 +101,7 @@ enum veiculoData { // no futuro transferir pra ca: veiculoMotor, veiculoAvariado
 	bool:roubado,
 	bool:segurado,
 	bool:licenciado,
-	BOLO[200], // be on lookout
+	BOLO[85], // be on lookout
 	bool: alertado
 };
 
@@ -451,8 +452,15 @@ stock ConsultarPlaca(placa[], bool:policial) {
 		strcat(consulta, "\nLicenciamento: {FF0000}Irregular");
 	}
 
-	if(policial) {	// mostrar BOLO futuramente
-		strcat(consulta, "\nBOLO: Nada consta");
+	if(policial) {
+		strcat(consulta, "\nBOLO: ");
+		if(!strcmp(veiculoInfo[vehicleid][BOLO], "")) {
+			strcat(consulta, "Nada consta");
+		} else {
+			strcat(consulta, veiculoInfo[vehicleid][BOLO]);
+		}
+		strcat(consulta, "\nAdicionar/Alterar BOLO");
+		strcat(consulta, "\nDeletar BOLO");
 	}
 
 	return consulta;
@@ -1764,7 +1772,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) { /
 			}
 		}
 	}
-  	switch(dialogid) {
+	switch(dialogid) {
 		case textbox_veiculo: {
 			if (response == 0) return 1; // fecha dialog
 			switch (listitem) {
@@ -1809,7 +1817,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) { /
 								placa = GetPlaca(i);
 								new consulta[200] = "";
 								consulta = ConsultarPlaca(placa, true);
-								ShowPlayerDialog(playerid, textbox_MDT_placa_resultado, DIALOG_STYLE_LIST, "Resultado da consulta:", consulta, "Ok", "Add BOLO");
+								ShowPlayerDialog(playerid, textbox_MDT_placa_resultado, DIALOG_STYLE_LIST, "Resultado da consulta:", consulta, "OK", "Fechar");
 								return 1;
 							}
 						}
@@ -1827,12 +1835,54 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) { /
 				}
 				new consulta[200] = "";
 				consulta = ConsultarPlaca(inputtext, true);
-				ShowPlayerDialog(playerid, textbox_MDT_placa_resultado, DIALOG_STYLE_LIST, "Resultado da consulta:", consulta, "Ok", "Add BOLO");
+				ShowPlayerDialog(playerid, textbox_MDT_placa_resultado, DIALOG_STYLE_LIST, "Resultado da consulta:", consulta, "OK", "Fechar");
 			}
 		}
-		// case textbox_MDT_placa_resultado: {
-		// 	// Handle the result dialog response if needed
-		// }
+		case textbox_MDT_placa_resultado: {
+			if (response == 0) return 1; // fecha dialog
+			switch (listitem) {
+				case 6: {
+					ShowPlayerDialog(playerid, textbox_MDT_placa_BOLO, DIALOG_STYLE_INPUT, "Insira o BOLO:", "Limite de 84 caracteres", "Ok", "Cancelar");
+				}
+				case 7: {
+					new placa[9];
+					sscanf(inputtext, "s[8]", placa);
+					new vehicleid = GetVId(placa);
+					if (vehicleid == -1) {
+						SendClientMessage(playerid, red, "Veículo não encontrado.");
+						return 1;
+					}
+					if (strlen(veiculoInfo[vehicleid][BOLO]) == 0) {
+						SendClientMessage(playerid, red, "Este veículo não possui um BOLO.");
+						return 1;
+					}
+					veiculoInfo[vehicleid][BOLO][0] = '\0';
+					SendClientMessage(playerid, green, "BOLO removido com sucesso.");
+				}
+			}
+		}
+		case textbox_MDT_placa_BOLO: {
+			if (response) {
+				if (strlen(inputtext) > 84) {
+					SendClientMessage(playerid, red, "BOLO muito grande.");
+					return 1;
+				}
+				new placa[9];
+				sscanf(inputtext, "s[8]", placa);
+				new vehicleid = GetVId(placa);
+				if (vehicleid == -1) {
+					SendClientMessage(playerid, red, "Veículo não encontrado.");
+					return 1;
+				}
+				if (strlen(veiculoInfo[vehicleid][BOLO]) > 0) {
+					SendClientMessage(playerid, grey, "BOLO atualizado.");
+					strmid(veiculoInfo[vehicleid][BOLO], inputtext, 0, 84, 255);
+					return 1;
+				}
+				strmid(veiculoInfo[vehicleid][BOLO], inputtext, 0, 84, 255);
+				SendClientMessage(playerid, grey, "BOLO adicionado com sucesso.");
+			}
+		}
 	}
 	return 1;
 }
