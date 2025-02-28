@@ -1917,7 +1917,9 @@ public OnFilterScriptInit() {
     tmpobjid = CreateDynamicObjectEx(738, 2539.144042, -1540.026123, 22.562040, 0.000000, 0.000000, 0.000000, 300.00, 300.00); 
     tmpobjid = CreateDynamicObjectEx(738, 2539.144042, -1545.736206, 22.472038, 0.000000, 0.000000, 0.000000, 300.00, 300.00); 
     tmpobjid = CreateDynamicObjectEx(738, 2537.133789, -1549.356445, 22.162036, 0.000000, 0.000000, 0.000000, 300.00, 300.00); 
-    tmpobjid = CreateDynamicObjectEx(18880, 2057.4727, 1553.2212, 11.0, 0.000000, 0.000000, 0.000000, 300.00, 300.00); 
+    tmpobjid = CreateDynamicObjectEx(18880, 2057.4727, 1553.2212, 11.0, 0.000000, 0.000000, 0.000000, 300.00, 300.00); // radar lv barco pirata
+    tmpobjid = CreateDynamicObjectEx(18880, 1386.8900, 2060.5344, 9, 0.000000, 0.000000, 0.000000, 300.00, 300.00); // radar lv estadio baseball 
+    tmpobjid = CreateDynamicObjectEx(18880, 2513.5486, 2142.9866, 10, 0.000000, 0.000000, 90.000000, 300.00, 300.00); // radar lv old venturas strip
 
     return 1;
 

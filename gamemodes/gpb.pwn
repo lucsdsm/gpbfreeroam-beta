@@ -101,7 +101,8 @@ enum veiculoData { // no futuro transferir pra ca: veiculoMotor, veiculoAvariado
 	bool:segurado,
 	bool:licenciado,
 	BOLO[200], // be on lookout
-	bool: alertado
+	bool: alertado,
+	ultimoAlerta
 };
 
 //Variáveis globais:
@@ -923,41 +924,66 @@ public OnRconLoginAttempt(ip[], password[], success) {
 	return 1;
 }
 
+
 public OnPlayerUpdate(playerid) {
-	new Float:playerX, Float:playerY, Float:playerZ;
-	GetPlayerPos(playerid, playerX, playerY, playerZ);
+    new Float:playerX, Float:playerY, Float:playerZ;
+    GetPlayerPos(playerid, playerX, playerY, playerZ);
 
-	for (new i = 1; i < MAX_VEHICLES; i++) { // Sistema ALPR
-		if (IsValidVehicle(i) && veiculoInfo[i][roubado]) {
-			new Float:vehicleX, Float:vehicleY, Float:vehicleZ;
-			GetVehiclePos(i, vehicleX, vehicleY, vehicleZ);
+    for (new i = 1; i < MAX_VEHICLES; i++) { // Sistema ALPR
+        if (IsValidVehicle(i) && veiculoInfo[i][roubado]) {
+            new Float:vehicleX, Float:vehicleY, Float:vehicleZ;
+            GetVehiclePos(i, vehicleX, vehicleY, vehicleZ);
 
-			if (IsPointInRangeOfPoint(vehicleX, vehicleY, 2057.4727, 1553.2212, 50.0)) {
-				if (!veiculoInfo[i][alertado]) {
-					new string[40] = "";
-					for (new j = 0; j < MAX_PLAYERS; j++) {
-						if (IsPlayerConnected(j) && player[j][pEquipe] == 1) {
-							SendClientMessage(j, red, "-----ALERTA ALPR - Veículo ROUBADO-----");
-							string = "Placa: ";
-							strcat(string, GetPlaca(i));
-							SendClientMessage(j, red, string);
+            new Float:radarCoords[3][3] = {
+                {2057.4727, 1553.2212, 50.0}, // LV barco pirata
+                {1386.8900, 2060.5344, 50.0},  // LV estádio de baseball
+                {2513.5486, 2142.9866, 50.0}  // LV old venturas strip
+            };
 
-							string = "Modelo: ";
-							strcat(string, ReturnVehicleModelName(GetVehicleModel(i)));
-							SendClientMessage(j, red, string);
+            new const radarNames[][] = {
+                "LV - Barco pirata",
+                "LV - Estádio de baseball",
+                "LV - Old Venturas Strip"
+            };
 
-							SendClientMessage(j, red, "Localização: em frente ao barco pirata");
-							PlayerPlaySound(playerid, 41603, 0.0, 0.0, 0.0);
-						}
-					}
-					veiculoInfo[i][alertado] = true;
-				}
-			} else {
-				veiculoInfo[i][alertado] = false;
-			}
-		}
-	}
-	return 1;
+            new estaNoRadar = 0; // 0 = falso, 1 = verdadeiro
+
+            for (new k = 0; k < sizeof(radarCoords); k++) {
+                if (IsPointInRangeOfPoint(vehicleX, vehicleY, radarCoords[k][0], radarCoords[k][1], radarCoords[k][2])) {
+                    estaNoRadar = 1; // Veículo está dentro do radar
+
+                    // Se o veículo ainda não foi alertado, envia alerta e marca como alertado
+                    if (!veiculoInfo[i][alertado]) {
+                        veiculoInfo[i][alertado] = true;
+
+                        new string[128];
+                        for (new j = 0; j < MAX_PLAYERS; j++) {
+                            if (IsPlayerConnected(j) && player[j][pEquipe] == 1) {
+                                SendClientMessage(j, red, "-----ALERTA ALPR - Veículo ROUBADO-----");
+
+                                format(string, sizeof(string), "Placa: %s", GetPlaca(i));
+                                SendClientMessage(j, red, string);
+
+                                format(string, sizeof(string), "Modelo: %s", ReturnVehicleModelName(GetVehicleModel(i)));
+                                SendClientMessage(j, red, string);
+
+                                format(string, sizeof(string), "QTH: %s", radarNames[k]);
+                                SendClientMessage(j, red, string);
+
+                                PlayerPlaySound(j, 41603, 0.0, 0.0, 0.0);
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Se o veículo não estiver em nenhum radar, redefinir alertado
+            if (!estaNoRadar) {
+                veiculoInfo[i][alertado] = false;
+            }
+        }
+    }
+    return 1;
 }
 
 public OnPlayerStreamIn(playerid, forplayerid) {
