@@ -154,6 +154,10 @@ new PlayerInfo[MAX_PLAYERS][jogadorData];
 new morto[MAX_PLAYERS][mortoData];
 new objeto[MAX_OBJETOS][objetoData];
 
+// new Text:Servt;                                //Server Time Text draw Variable
+new Tsec;                                         //stores the mins  of time
+new THrs;                                         //stores hours of time
+
 //Returns:
 ReturnVehicleId(vName[]) {
 	for(new x; x < 211; x++) {
@@ -382,7 +386,14 @@ public OnGameModeInit() {
     ManualVehicleEngineAndLights();
 	SetNameTagDrawDistance(20.0);
 	EnableStuntBonusForAll(0);
-	SetWorldTime(19);
+	SetWorldTime(5);
+	
+	// Servt=TextDrawCreate(545, 31, "05:00");
+    // TextDrawColor(Servt, white);
+    Tsec= 0;
+    THrs= 5;
+    SetTimer("TimerU",2000,true);
+
 	for(new i = 0; i < sizeof(iPickups); i++){
         iPickups[i][0] = -1;
         iPickups[i][1] = -1;
@@ -452,6 +463,8 @@ public OnPlayerSpawn(playerid) {
 		morto[playerid][morto_dead] = true;
  	}
     HabilidadeArmas(playerid);
+
+	// TextDrawShowForPlayer(playerid,Servt);
 	return 1;
 }
 
@@ -2020,6 +2033,45 @@ public TeleportPlayer(playerid, Float:x, Float:y, Float:z) {
     }
 }
 
+forward TimerU();
+public TimerU() {
+    // new string[7];                             // it makes a variable for a string with size 128
+    Tsec+=1;                                      //this adds 1 to the existing time variable
+    if(Tsec==60) {                                //this resets the mins to 00 one it reaches 60
+        Tsec=00;
+        THrs+=1;                                  //this adds 1 to the hours every 60 seconds
+    }
+    if(THrs==24) {                                //This Checks if time is 24:00
+        Tsec=00;                                  //This Sets resets Mins
+        THrs=0;                                   //this Resets Hours
+    }
+
+	for(new i; i<MAX_PLAYERS; i++) {              //loops through all players
+        if(IsPlayerConnected(i)) {                //checks if the player is connected
+            SetPlayerTime(i,THrs,Tsec);           //sets All players time
+        }
+    }
+
+    // if(Tsec<10) {                                 // This Adds a 0 Before The Mins Display For it To look like an actual clock
+    //                                               //formats string
+    //     format(string,sizeof(string),"%d:%d0",THrs,Tsec);
+
+    // }
+    // if(Tsec>10) {                                 // This Removes a 0 Before The Mins Display after it has reached 10
+    //                                               //formats string
+    //     format(string,sizeof(string),"%d:%d",THrs,Tsec);
+
+    // }
+    // if(THrs<10) {
+    //                                               //formats string
+    //     format(string,sizeof(string),"0%d:%d",THrs,Tsec);
+
+    // }
+
+    // TextDrawSetString(Servt,string);              //updates the textdraw
+
+}
+
 //Funções CMD:
 CMD:comandos(playerid, params[]) {
 	SendClientMessage(playerid, grey, "[Servidor]: /comandos, /equipe, /hora, /clima, /tp, /ir, /tc, /tr, /objeto, /remover;");
@@ -3175,39 +3227,42 @@ CMD:equipar(playerid, params[]) {
     }
     return 1;
 }
-
 CMD:hora(playerid, params[]) {
-    new hora = strval(params);
-    if(isnull(params)) {
-		return SendClientMessage(playerid, grey, "/hora [0-24]");
- 	}
-	if(hora >= 0 && hora <= 24) {
-		SetPlayerTime(playerid, hora, 0);
-	}
-	else return SendClientMessage(playerid, grey, "/hora [0-24]");
+// CMD:hora(playerid, params[]) {
+    // new hora = strval(params);
+    // if(isnull(params)) {
+	// 	return SendClientMessage(playerid, grey, "/hora [0-24]");
+ 	// }
+	// if(hora >= 0 && hora <= 24) {
+	// 	SetPlayerTime(playerid, hora, 0);
+	// }
+	// else return SendClientMessage(playerid, grey, "/hora [0-24]");
+
+	format(gpbMensagem, sizeof(gpbMensagem), "Hora atual no servidor: %d:%d.", THrs, Tsec);
+	SendClientMessage(playerid, grey, gpbMensagem);
 	return 1;
 }
 
-CMD:hour(playerid, params[]) { // Hora global (admin)
-	if (IsPlayerAdmin(playerid)) {
-		new hora = strval(params);
-		if(isnull(params)) {
-			return SendClientMessage(playerid, grey, "/hora [0-24]");
-		}
-		if(hora >= 0 && hora <= 24) {
-			SetWorldTime(hora);
-			format(gpbMensagem, sizeof(gpbMensagem), "Horário local definido para às %d:00 em Los Santos.", hora);
-			SendClientMessageToAll(red, gpbMensagem);
-		}
-		else { 
-			SendClientMessage(playerid, grey, "/hora [0-24]");
-		}
-	}
-	else {
-		SendClientMessage(playerid, grey, "Você não tem permissão.");
-	}
-	return 1;
-}
+// CMD:hour(playerid, params[]) { // Hora global (admin)
+// 	if (IsPlayerAdmin(playerid)) {
+// 		new hora = strval(params);
+// 		if(isnull(params)) {
+// 			return SendClientMessage(playerid, grey, "/hora [0-24]");
+// 		}
+// 		if(hora >= 0 && hora <= 24) {
+// 			SetWorldTime(hora);
+// 			format(gpbMensagem, sizeof(gpbMensagem), "Horário local definido para às %d:00 em Los Santos.", hora);
+// 			SendClientMessageToAll(red, gpbMensagem);
+// 		}
+// 		else { 
+// 			SendClientMessage(playerid, grey, "/hora [0-24]");
+// 		}
+// 	}
+// 	else {
+// 		SendClientMessage(playerid, grey, "Você não tem permissão.");
+// 	}
+// 	return 1;
+// }
 
 CMD:clima(playerid, params[]) {
 	new clima = strval(params);
