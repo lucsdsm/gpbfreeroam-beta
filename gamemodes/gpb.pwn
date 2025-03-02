@@ -993,7 +993,7 @@ public OnPlayerUpdate(playerid) {
                         for (new j = 0; j < MAX_PLAYERS; j++) {
                             if (IsPlayerConnected(j) && player[j][pEquipe] == 1) {
 								format(string, sizeof(string), "ALPR - Veículo com placa %s, de modelo %s próximo a(o) %s.", GetPlaca(i), ReturnVehicleModelName(GetVehicleModel(i)), radarNames[k]);
-								SendClientMessage(j, purple, string);
+								SendClientMessage(j, red, string);
 
                                 PlayerPlaySound(j, 41603, 0.0, 0.0, 0.0);
                             }
