@@ -487,7 +487,7 @@ stock ConsultarPlaca(placa[], bool:policial) {
 
 //Funções públicas:
 public OnGameModeInit() {
-	SetGameModeText("GPB:F v0.5.5");
+	SetGameModeText("GPB:F v0.5.6");
     ManualVehicleEngineAndLights();
 	SetNameTagDrawDistance(20.0);
 	EnableStuntBonusForAll(0);
