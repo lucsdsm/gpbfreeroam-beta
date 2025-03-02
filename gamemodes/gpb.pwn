@@ -495,7 +495,7 @@ public OnGameModeInit() {
     THrs= 5;
     SetTimer("TimerU",2000,true);
 
-	SetTimer("MudarClima", 5000, true); // Chama a função a cada 24 minutos
+	SetTimer("MudarClima", 1440000, true); // Chama a função a cada 24 minutos
 
 	for(new i = 0; i < sizeof(iPickups); i++){
         iPickups[i][0] = -1;
