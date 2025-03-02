@@ -169,9 +169,29 @@ new PlayerInfo[MAX_PLAYERS][jogadorData];
 new morto[MAX_PLAYERS][mortoData];
 new objeto[MAX_OBJETOS][objetoData];
 
-// new Text:Servt;                                //Server Time Text draw Variable
 new Tsec;                                         //stores the mins  of time
 new THrs;                                         //stores hours of time
+
+new const climas[][128] = {
+    {1, "Céu limpo e ensolarado em toda San Andreas."},
+    {2, "Clima alaranjado e calor por agora."},
+    {3, "Tempo ameno, com poucas nuvens no céu."},
+    {4, "Nublado, mas sem previsão de chuva."},
+    {5, "Faz calor com algumas nuvens em toda San Andreas nas próximas horas."},
+    {6, "Céu alaranjado, clima tranquilo."},
+    {7, "Ventos fortes podem ser sentidos em algumas regiões."},
+    {8, "Tempestade se formando, relâmpagos à vista."},
+    {9, "Neblina densa cobrindo as colinas."},
+    {10, "Tempo limpo e agradável, com poucas nuvens no céu."},
+    {11, "Ar frio vindo do norte, temperatura mais baixa."},
+    {12, "Nublado, mas sem previsão de chuva por enquanto em San Andreas."},
+	{13, "Tempo ameno e agradável. Máxima de 22° para essa parte de hoje."},
+    {14, "Tempo ameno em San Andreas. Poucas nuvens no céu."},
+    {15, "Ventos leves e céu nublado em San Andreas."},
+    {16, "Tempestade se formando, relâmpagos à vista."},
+	{17, "Previsão de clima seco, sem muitas nuvens no céu."},
+	{18, "Possível onda de calor em San Andreas. Cuidado com a baixa umidade do ar."}
+};
 
 //Returns:
 ReturnVehicleId(vName[]) {
@@ -471,11 +491,11 @@ public OnGameModeInit() {
 	EnableStuntBonusForAll(0);
 	SetWorldTime(5);
 	
-	// Servt=TextDrawCreate(545, 31, "05:00");
-    // TextDrawColor(Servt, white);
     Tsec= 0;
     THrs= 5;
     SetTimer("TimerU",2000,true);
+
+	SetTimer("MudarClima", 5000, true); // Chama a função a cada 24 minutos
 
 	for(new i = 0; i < sizeof(iPickups); i++){
         iPickups[i][0] = -1;
@@ -954,9 +974,9 @@ public OnPlayerUpdate(playerid) {
             };
 
             new const radarNames[][] = {
-                "LV - Barco pirata",
-                "LV - Estádio de baseball",
-                "LV - Old Venturas Strip"
+                "Barco Pirata de Las Venturas",
+                "Estádio de Baseball de Las Venturas",
+                "Old Venturas Strip em Las Venturas"
             };
 
             new estaNoRadar = 0; // 0 = falso, 1 = verdadeiro
@@ -972,16 +992,8 @@ public OnPlayerUpdate(playerid) {
                         new string[128];
                         for (new j = 0; j < MAX_PLAYERS; j++) {
                             if (IsPlayerConnected(j) && player[j][pEquipe] == 1) {
-                                SendClientMessage(j, red, "-----ALERTA ALPR - Veículo ROUBADO-----");
-
-                                format(string, sizeof(string), "Placa: %s", GetPlaca(i));
-                                SendClientMessage(j, red, string);
-
-                                format(string, sizeof(string), "Modelo: %s", ReturnVehicleModelName(GetVehicleModel(i)));
-                                SendClientMessage(j, red, string);
-
-                                format(string, sizeof(string), "QTH: %s", radarNames[k]);
-                                SendClientMessage(j, red, string);
+								format(string, sizeof(string), "ALPR - Veículo com placa %s, de modelo %s próximo a(o) %s.", GetPlaca(i), ReturnVehicleModelName(GetVehicleModel(i)), radarNames[k]);
+								SendClientMessage(j, purple, string);
 
                                 PlayerPlaySound(j, 41603, 0.0, 0.0, 0.0);
                             }
@@ -2262,25 +2274,14 @@ public TimerU() {
             SetPlayerTime(i,THrs,Tsec);           //sets All players time
         }
     }
+}
 
-    // if(Tsec<10) {                                 // This Adds a 0 Before The Mins Display For it To look like an actual clock
-    //                                               //formats string
-    //     format(string,sizeof(string),"%d:%d0",THrs,Tsec);
-
-    // }
-    // if(Tsec>10) {                                 // This Removes a 0 Before The Mins Display after it has reached 10
-    //                                               //formats string
-    //     format(string,sizeof(string),"%d:%d",THrs,Tsec);
-
-    // }
-    // if(THrs<10) {
-    //                                               //formats string
-    //     format(string,sizeof(string),"0%d:%d",THrs,Tsec);
-
-    // }
-
-    // TextDrawSetString(Servt,string);              //updates the textdraw
-
+forward MudarClima();
+public MudarClima() {
+    new indiceClima = random(sizeof(climas)); // Escolhe um índice aleatório
+    SetWeather(climas[indiceClima][0]); // Define o clima correto pelo ID
+    SendClientMessageToAll(yellow, climas[indiceClima][1]); // Envia a mensagem a todos
+    return 1;
 }
 
 //Funções CMD:
