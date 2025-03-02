@@ -3062,6 +3062,10 @@ CMD:vd(playerid, params[]) {
 	}
 	else if(IsPlayerInAnyVehicle(playerid) == 1) {
 		new vehicleid = GetPlayerVehicleID(playerid);
+		if (veiculoPrefixo[vehicleid] == 1) {
+			Delete3DTextLabel(veiculoPrefixo3D[vehicleid]);
+			veiculoPrefixo[vehicleid] = 0; // Marca que não tem prefixo mais
+    	}
 		DestroyVehicle(vehicleid);
 		SendClientMessage(playerid, grey, "Veículo excluído.");
 	}
@@ -3084,6 +3088,10 @@ CMD:vd(playerid, params[]) {
 					SendClientMessage(playerid, grey, "Não é possível excluir um veículo com um jogador dentro.");
 				}
 				else {
+					if (veiculoPrefixo[result] == 1) {
+						Delete3DTextLabel(veiculoPrefixo3D[result]);
+						veiculoPrefixo[result] = 0; // Marca que não tem prefixo mais
+    				}
 					DestroyVehicle(result);
 					SendClientMessage(playerid, grey, "Veículo excluído.");
 				}
@@ -3093,6 +3101,10 @@ CMD:vd(playerid, params[]) {
 					SendClientMessage(playerid, grey, "Não é possível excluir um veículo com um jogador dentro.");
 				}
 				else {
+					if (veiculoPrefixo[result] == 1) {
+						Delete3DTextLabel(veiculoPrefixo3D[result]);
+						veiculoPrefixo[result] = 0; // Marca que não tem prefixo mais
+    				}
 					DestroyVehicle(result);
 					SendClientMessage(playerid, grey, "Veículo excluído.");
 				}
