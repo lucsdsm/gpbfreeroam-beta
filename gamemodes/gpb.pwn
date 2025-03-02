@@ -160,8 +160,8 @@ new gpbMensagem[512];
 new veiculoInfo[MAX_VEHICLES][veiculoData];
 new veiculoMotor[MAX_VEHICLES];
 new veiculoAvariado[MAX_VEHICLES];
-new veiculoPrefixo[MAX_PLAYERS][MAX_VEHICLES];
-new Text3D:veiculoPrefixo3D[MAX_PLAYERS][MAX_VEHICLES];
+new veiculoPrefixo[MAX_VEHICLES];
+new Text3D:veiculoPrefixo3D[MAX_VEHICLES];
 new veiculoTrancado[MAX_VEHICLES];
 new player[MAX_PLAYERS][jogadorData];
 new playerSkin[MAX_PLAYERS];
@@ -173,25 +173,27 @@ new Tsec;                                         //stores the mins  of time
 new THrs;                                         //stores hours of time
 
 new const climas[][128] = {
-    {1, "Céu limpo e ensolarado em toda San Andreas."},
-    {2, "Clima alaranjado e calor por agora."},
-    {3, "Tempo ameno, com poucas nuvens no céu."},
-    {4, "Nublado, mas sem previsão de chuva."},
-    {5, "Faz calor com algumas nuvens em toda San Andreas nas próximas horas."},
-    {6, "Céu alaranjado, clima tranquilo."},
-    {7, "Ventos fortes podem ser sentidos em algumas regiões."},
-    {8, "Tempestade se formando, relâmpagos à vista."},
-    {9, "Neblina densa cobrindo as colinas."},
-    {10, "Tempo limpo e agradável, com poucas nuvens no céu."},
-    {11, "Ar frio vindo do norte, temperatura mais baixa."},
-    {12, "Nublado, mas sem previsão de chuva por enquanto em San Andreas."},
-	{13, "Tempo ameno e agradável. Máxima de 22° para essa parte de hoje."},
-    {14, "Tempo ameno em San Andreas. Poucas nuvens no céu."},
-    {15, "Ventos leves e céu nublado em San Andreas."},
-    {16, "Tempestade se formando, relâmpagos à vista."},
-	{17, "Previsão de clima seco, sem muitas nuvens no céu."},
-	{18, "Possível onda de calor em San Andreas. Cuidado com a baixa umidade do ar."}
+    {1, "Céu limpo e ensolarado em San Andreas. Máxima de 30°C, clima ideal para atividades ao ar livre."},  
+	{2, "Clima alaranjado e quente em San Andreas. Máxima de 33°C, com sensação térmica elevada."},  
+	{3, "Tempo ameno, poucas nuvens no céu de San Andreas. Temperatura entre 18°C e 25°C."},  
+	{4, "Céu nublado em San Andreas, sem previsão de chuva. Temperatura entre 20°C e 26°C."},  
+	{5, "Faz calor com algumas nuvens em San Andreas. Máxima de 32°C, cuide da hidratação."},  
+	{6, "Céu alaranjado e clima tranquilo em San Andreas. Temperatura em torno de 27°C por agora."},  
+	{7, "Ventos fortes em algumas regiões de San Andreas. Temperatura entre 22°C e 28°C."},  
+	{8, "Tempestade se formando em San Andreas. Relâmpagos à vista e temperatura caindo para 19°C."},  
+	{9, "Neblina densa cobre colinas de San Andreas. Visibilidade reduzida e temperatura entre 16°C e 21°C."},  
+	{10, "Tempo limpo e agradável em San Andreas. Poucas nuvens e temperatura entre 20°C e 27°C."},  
+	{11, "Ar frio vindo do norte em San Andreas. Temperatura entre 14°C e 22°C, exigindo agasalhos leves."},  
+	{12, "Nublado, sem previsão de chuva em San Andreas. Temperatura estável entre 19°C e 24°C."},  
+	{13, "Tempo ameno e agradável em San Andreas. Máxima de 22°C, clima ideal para passeios."},  
+	{14, "Clima ameno com poucas nuvens em San Andreas. Temperatura entre 18°C e 26°C."},  
+	{15, "Ventos leves e céu nublado em San Andreas. Temperatura entre 20°C e 25°C."},  
+	{16, "Tempestade se aproxima de San Andreas. Relâmpagos e trovões com queda de temperatura para 18°C."},  
+	{17, "Clima seco em San Andreas, poucas nuvens no céu. Máxima de 30°C, cuide da hidratação."},  
+	{18, "Onda de calor em San Andreas. Termômetros acima de 35°C e umidade baixa, fique atento!"}  
 };
+
+new ultimoClima = -1; // Armazena o último clima escolhido
 
 //Returns:
 ReturnVehicleId(vName[]) {
@@ -2278,9 +2280,16 @@ public TimerU() {
 
 forward MudarClima();
 public MudarClima() {
-    new indiceClima = random(sizeof(climas)); // Escolhe um índice aleatório
+    new indiceClima;
+    
+    // Garante que o novo clima seja diferente do anterior
+    do {
+        indiceClima = random(sizeof(climas));
+    } while (indiceClima == ultimoClima);
+
+    ultimoClima = indiceClima; // Atualiza o último clima escolhido
     SetWeather(climas[indiceClima][0]); // Define o clima correto pelo ID
-    SendClientMessageToAll(yellow, climas[indiceClima][1]); // Envia a mensagem a todos
+    SendClientMessageToAll(orange, climas[indiceClima][1]); // Envia a mensagem a todos
     return 1;
 }
 
@@ -2832,15 +2841,20 @@ CMD:vc(playerid, params[]) { // NECESSARIO REFAZER E MERGIR COM O /VCS
 	 	if(modeloid >= 400 && modeloid <= 611) { // Cria veículos pelo nome.
 			new Float:pos[4];
 			new vehicleid = GetPlayerVehicleID(playerid);
+
+			if (veiculoPrefixo[vehicleid] == 1) {
+				Delete3DTextLabel(veiculoPrefixo3D[vehicleid]);
+				veiculoPrefixo[vehicleid] = 0; // Marca que não tem prefixo mais
+    		}
+
 			DestroyVehicle(vehicleid);
+
 			GetPlayerPos(playerid, pos[0], pos[1], pos[2]);
 			GetPlayerFacingAngle(playerid, pos[3]);
+
 			new modeloId = CreateVehicle(modeloid, pos[0], pos[1], pos[2], pos[3], -1, -1, -1, 0);
 			SetVehicleVirtualWorld(modeloId,GetPlayerVirtualWorld(playerid));
 			LinkVehicleToInterior(modeloId,GetPlayerInterior(playerid));
-
-			Delete3DTextLabel(veiculoPrefixo3D[playerid][vehicleid]);
-        	veiculoPrefixo[playerid][vehicleid] = 0;
 
 			new placa[9];
 			placa = GerarPlaca();
@@ -2853,6 +2867,8 @@ CMD:vc(playerid, params[]) { // NECESSARIO REFAZER E MERGIR COM O /VCS
 			PutPlayerInVehicle(playerid, modeloId, 0);
 			player[playerid][pAnim] = 0;
 			veiculoTrancado[modeloId] = 0;
+
+			veiculoPrefixo[modeloId] = 0;
 
 			if (HasNoEngine(modeloId) == 1) {
 				new enginem, lights, alarm, doors, bonnet, boot, objective;
@@ -2874,14 +2890,17 @@ CMD:vc(playerid, params[]) { // NECESSARIO REFAZER E MERGIR COM O /VCS
    			else {
 			 	new Float:pos[4];
 			 	new vehicleid = GetPlayerVehicleID(playerid);
+
+				if (veiculoPrefixo[vehicleid] == 1) {
+					Delete3DTextLabel(veiculoPrefixo3D[vehicleid]);
+					veiculoPrefixo[vehicleid] = 0; // Marca que não tem prefixo mais
+    			}
+
 			 	DestroyVehicle(vehicleid);
 				GetPlayerPos(playerid, pos[0], pos[1], pos[2]);
 				GetPlayerFacingAngle(playerid, pos[3]);
 	   			PlayerInfo[playerid][pVeiculo] = CreateVehicle(id, pos[0], pos[1], pos[2], pos[3], -1, -1, -1, 0);
 				LinkVehicleToInterior(PlayerInfo[playerid][pVeiculo], GetPlayerInterior(playerid));
-
-				Delete3DTextLabel(veiculoPrefixo3D[playerid][vehicleid]);
-        		veiculoPrefixo[playerid][vehicleid] = 0;
 
 				new placa[9];
 				placa = GerarPlaca();
@@ -2894,6 +2913,8 @@ CMD:vc(playerid, params[]) { // NECESSARIO REFAZER E MERGIR COM O /VCS
 				PutPlayerInVehicle(playerid, PlayerInfo[playerid][pVeiculo], 0);
 				player[playerid][pAnim] = 0;
 				veiculoTrancado[pVeiculo] = 0;
+
+				veiculoPrefixo[PlayerInfo[playerid][pVeiculo]] = 0;
 
 				if (HasNoEngine(PlayerInfo[playerid][pVeiculo]) == 1) {
 					new enginem, lights, alarm, doors, bonnet, boot, objective;
@@ -2949,9 +2970,6 @@ CMD:vcs(playerid, params[]) { // NECESSARIO REFAZER E MERGIR COM O /VC
 				SetVehicleVirtualWorld(modeloId,GetPlayerVirtualWorld(playerid));
 				LinkVehicleToInterior(modeloId,GetPlayerInterior(playerid));
 
-				Delete3DTextLabel(veiculoPrefixo3D[playerid][vehicleid]);
-        		veiculoPrefixo[playerid][vehicleid] = 0;
-
 				new placa[9];
 				placa = GerarPlaca();
 				SetVehicleNumberPlate(modeloId, placa);
@@ -2963,6 +2981,9 @@ CMD:vcs(playerid, params[]) { // NECESSARIO REFAZER E MERGIR COM O /VC
 				PutPlayerInVehicle(playerid, modeloId, 0);
 				player[playerid][pAnim] = 0;
 				veiculoTrancado[modeloId] = 0;
+
+				Delete3DTextLabel(veiculoPrefixo3D[modeloId]);
+        		veiculoPrefixo[modeloId] = 0;
 
 				if (HasNoEngine(modeloId) == 1) {
 					new enginem, lights, alarm, doors, bonnet, boot, objective;
@@ -2994,9 +3015,6 @@ CMD:vcs(playerid, params[]) { // NECESSARIO REFAZER E MERGIR COM O /VC
 	   			PlayerInfo[playerid][pVeiculo] = CreateVehicle(id, pos[0], pos[1], pos[2], pos[3], -1, -1, -1, 1);
 				LinkVehicleToInterior(PlayerInfo[playerid][pVeiculo], GetPlayerInterior(playerid));
 
-				Delete3DTextLabel(veiculoPrefixo3D[playerid][vehicleid]);
-        		veiculoPrefixo[playerid][vehicleid] = 0;
-
 				new placa[9];
 				placa = GerarPlaca();
 				SetVehicleNumberPlate(PlayerInfo[playerid][pVeiculo], placa);
@@ -3008,6 +3026,9 @@ CMD:vcs(playerid, params[]) { // NECESSARIO REFAZER E MERGIR COM O /VC
 				PutPlayerInVehicle(playerid, PlayerInfo[playerid][pVeiculo], 0);
 				player[playerid][pAnim] = 0;
 				veiculoTrancado[pVeiculo] = 0;
+
+				Delete3DTextLabel(veiculoPrefixo3D[PlayerInfo[playerid][pVeiculo]]);
+        		veiculoPrefixo[PlayerInfo[playerid][pVeiculo]] = 0;
 
 				if (HasNoEngine(PlayerInfo[playerid][pVeiculo]) == 1) {
 					new enginem, lights, alarm, doors, bonnet, boot, objective;
@@ -3366,25 +3387,31 @@ CMD:fix(playerid) {
 CMD:vp(playerid, params[]) {
     new vehicleid = GetPlayerVehicleID(playerid);
 
-    if(!(IsPlayerInAnyVehicle(playerid))) {
+    if (!IsPlayerInAnyVehicle(playerid)) {
         SendClientMessage(playerid, grey, "Você tem que estar em um veículo para definir um prefixo.");
+        return 1;
     }
-    else if(isnull(params)) {
-        SendClientMessage(playerid, grey, "/vp [prefixo].");
-    }
-    else {
-        // Se já existir um prefixo, apaga o anterior
-        if (veiculoPrefixo[playerid][vehicleid] == 1) {
-            Delete3DTextLabel(veiculoPrefixo3D[playerid][vehicleid]);
-        }
 
-        // Cria um novo prefixo apenas para aquele jogador no veículo
-        veiculoPrefixo3D[playerid][vehicleid] = Create3DTextLabel(params, -1, 0.0, 0.0, 0.0, 50.0, 0, 1);
-        Attach3DTextLabelToVehicle(veiculoPrefixo3D[playerid][vehicleid], vehicleid, -0.8, -2.8, -0.3);
-        veiculoPrefixo[playerid][vehicleid] = 1;
-
-        SendClientMessage(playerid, grey, "Prefixo definido.");
+    if (isnull(params)) {
+        SendClientMessage(playerid, grey, "/vp [prefixo]");
+        return 1;
     }
+
+    // Se o veículo já tem um prefixo, apaga o anterior
+    if (veiculoPrefixo[vehicleid] == 1) {
+        Delete3DTextLabel(veiculoPrefixo3D[vehicleid]);
+    }
+
+    // Cria um novo prefixo apenas para aquele veículo
+    veiculoPrefixo3D[vehicleid] = Create3DTextLabel(params, -1, 0.0, 0.0, 0.0, 50.0, 0, 1);
+    Attach3DTextLabelToVehicle(veiculoPrefixo3D[vehicleid], vehicleid, 0.8, -2.8, -0.3);
+    veiculoPrefixo[vehicleid] = 1;
+
+    // Mensagem de confirmação
+    new mensagem[128];
+    format(mensagem, sizeof(mensagem), "Prefixo '%s' definido para este veículo.", params);
+    SendClientMessage(playerid, grey, mensagem);
+
     return 1;
 }
 
@@ -3394,9 +3421,9 @@ CMD:rp(playerid, params[]) {
     if (!(IsPlayerInAnyVehicle(playerid))) {
         SendClientMessage(playerid, grey, "Você tem que estar em um veículo para remover o prefixo.");
     } 
-    else if (veiculoPrefixo[playerid][vehicleid] == 1) {
-        Delete3DTextLabel(veiculoPrefixo3D[playerid][vehicleid]);
-        veiculoPrefixo[playerid][vehicleid] = 0;
+    else if (veiculoPrefixo[vehicleid] == 1) {
+        Delete3DTextLabel(veiculoPrefixo3D[vehicleid]);
+        veiculoPrefixo[vehicleid] = 0;
         SendClientMessage(playerid, grey, "Prefixo do veículo removido.");
     } 
     else {
