@@ -3517,19 +3517,19 @@ CMD:hora(playerid, params[]) {
 // 	return 1;
 // }
 
-CMD:clima(playerid, params[]) {
-	new clima = strval(params);
-	if(isnull(params)) {
-		SendClientMessage(playerid, grey, "/clima [0-45]");
-	}
-	else if(clima >= 0 && clima <= 45) {
-		SetPlayerWeather(playerid, clima);
-	}
-	else {
-		SendClientMessage(playerid, grey, "/clima [0-45]");
-	}
-	return 1;
-}
+// CMD:clima(playerid, params[]) {
+// 	new clima = strval(params);
+// 	if(isnull(params)) {
+// 		SendClientMessage(playerid, grey, "/clima [0-45]");
+// 	}
+// 	else if(clima >= 0 && clima <= 45) {
+// 		SetPlayerWeather(playerid, clima);
+// 	}
+// 	else {
+// 		SendClientMessage(playerid, grey, "/clima [0-45]");
+// 	}
+// 	return 1;
+// }
 
 CMD:tp(playerid, params[]) {
     if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
