@@ -160,8 +160,8 @@ new gpbMensagem[512];
 new veiculoInfo[MAX_VEHICLES][veiculoData];
 new veiculoMotor[MAX_VEHICLES];
 new veiculoAvariado[MAX_VEHICLES];
-new veiculoPrefixo[MAX_VEHICLES];
-new Text3D:veiculoPrefixo3D[MAX_VEHICLES];
+new veiculoPrefixo[MAX_PLAYERS][MAX_VEHICLES];
+new Text3D:veiculoPrefixo3D[MAX_PLAYERS][MAX_VEHICLES];
 new veiculoTrancado[MAX_VEHICLES];
 new player[MAX_PLAYERS][jogadorData];
 new playerSkin[MAX_PLAYERS];
@@ -2838,6 +2838,9 @@ CMD:vc(playerid, params[]) { // NECESSARIO REFAZER E MERGIR COM O /VCS
 			SetVehicleVirtualWorld(modeloId,GetPlayerVirtualWorld(playerid));
 			LinkVehicleToInterior(modeloId,GetPlayerInterior(playerid));
 
+			Delete3DTextLabel(veiculoPrefixo3D[playerid][vehicleid]);
+        	veiculoPrefixo[playerid][vehicleid] = 0;
+
 			new placa[9];
 			placa = GerarPlaca();
 			SetVehicleNumberPlate(modeloId, placa);
@@ -2849,9 +2852,6 @@ CMD:vc(playerid, params[]) { // NECESSARIO REFAZER E MERGIR COM O /VCS
 			PutPlayerInVehicle(playerid, modeloId, 0);
 			player[playerid][pAnim] = 0;
 			veiculoTrancado[modeloId] = 0;
-
-			veiculoPrefixo[vehicleid] = 0;
-			Delete3DTextLabel(veiculoPrefixo3D[vehicleid]);
 
 			if (HasNoEngine(modeloId) == 1) {
 				new enginem, lights, alarm, doors, bonnet, boot, objective;
@@ -2879,6 +2879,9 @@ CMD:vc(playerid, params[]) { // NECESSARIO REFAZER E MERGIR COM O /VCS
 	   			PlayerInfo[playerid][pVeiculo] = CreateVehicle(id, pos[0], pos[1], pos[2], pos[3], -1, -1, -1, 0);
 				LinkVehicleToInterior(PlayerInfo[playerid][pVeiculo], GetPlayerInterior(playerid));
 
+				Delete3DTextLabel(veiculoPrefixo3D[playerid][vehicleid]);
+        		veiculoPrefixo[playerid][vehicleid] = 0;
+
 				new placa[9];
 				placa = GerarPlaca();
 				SetVehicleNumberPlate(PlayerInfo[playerid][pVeiculo], placa);
@@ -2890,9 +2893,6 @@ CMD:vc(playerid, params[]) { // NECESSARIO REFAZER E MERGIR COM O /VCS
 				PutPlayerInVehicle(playerid, PlayerInfo[playerid][pVeiculo], 0);
 				player[playerid][pAnim] = 0;
 				veiculoTrancado[pVeiculo] = 0;
-
-				veiculoPrefixo[vehicleid] = 0;
-				Delete3DTextLabel(veiculoPrefixo3D[vehicleid]);
 
 				if (HasNoEngine(PlayerInfo[playerid][pVeiculo]) == 1) {
 					new enginem, lights, alarm, doors, bonnet, boot, objective;
@@ -2948,6 +2948,9 @@ CMD:vcs(playerid, params[]) { // NECESSARIO REFAZER E MERGIR COM O /VC
 				SetVehicleVirtualWorld(modeloId,GetPlayerVirtualWorld(playerid));
 				LinkVehicleToInterior(modeloId,GetPlayerInterior(playerid));
 
+				Delete3DTextLabel(veiculoPrefixo3D[playerid][vehicleid]);
+        		veiculoPrefixo[playerid][vehicleid] = 0;
+
 				new placa[9];
 				placa = GerarPlaca();
 				SetVehicleNumberPlate(modeloId, placa);
@@ -2959,9 +2962,6 @@ CMD:vcs(playerid, params[]) { // NECESSARIO REFAZER E MERGIR COM O /VC
 				PutPlayerInVehicle(playerid, modeloId, 0);
 				player[playerid][pAnim] = 0;
 				veiculoTrancado[modeloId] = 0;
-
-				veiculoPrefixo[vehicleid] = 0;
-				Delete3DTextLabel(veiculoPrefixo3D[vehicleid]);
 
 				if (HasNoEngine(modeloId) == 1) {
 					new enginem, lights, alarm, doors, bonnet, boot, objective;
@@ -2993,6 +2993,9 @@ CMD:vcs(playerid, params[]) { // NECESSARIO REFAZER E MERGIR COM O /VC
 	   			PlayerInfo[playerid][pVeiculo] = CreateVehicle(id, pos[0], pos[1], pos[2], pos[3], -1, -1, -1, 1);
 				LinkVehicleToInterior(PlayerInfo[playerid][pVeiculo], GetPlayerInterior(playerid));
 
+				Delete3DTextLabel(veiculoPrefixo3D[playerid][vehicleid]);
+        		veiculoPrefixo[playerid][vehicleid] = 0;
+
 				new placa[9];
 				placa = GerarPlaca();
 				SetVehicleNumberPlate(PlayerInfo[playerid][pVeiculo], placa);
@@ -3004,9 +3007,6 @@ CMD:vcs(playerid, params[]) { // NECESSARIO REFAZER E MERGIR COM O /VC
 				PutPlayerInVehicle(playerid, PlayerInfo[playerid][pVeiculo], 0);
 				player[playerid][pAnim] = 0;
 				veiculoTrancado[pVeiculo] = 0;
-
-				veiculoPrefixo[vehicleid] = 0;
-				Delete3DTextLabel(veiculoPrefixo3D[vehicleid]);
 
 				if (HasNoEngine(PlayerInfo[playerid][pVeiculo]) == 1) {
 					new enginem, lights, alarm, doors, bonnet, boot, objective;
@@ -3364,44 +3364,42 @@ CMD:fix(playerid) {
 
 CMD:vp(playerid, params[]) {
     new vehicleid = GetPlayerVehicleID(playerid);
-	if(!(IsPlayerInAnyVehicle(playerid))) {
-		SendClientMessage(playerid, grey, "Você tem que estar em um veículo para definir um prefixo.");
-	}
-	else if(isnull(params)) {
- 		SendClientMessage(playerid, grey, "/vp [prefixo].");
-	}
-    else if (veiculoPrefixo[vehicleid] == 1) {
-        Delete3DTextLabel(veiculoPrefixo3D[vehicleid]);
-        veiculoPrefixo3D[vehicleid] = Create3DTextLabel(params, -1, 0.0, 0.0, 0.0, 50.0, 0, 1);
-	    Attach3DTextLabelToVehicle(veiculoPrefixo3D[vehicleid], vehicleid, -0.8, -2.8, -0.3);
-	    veiculoPrefixo[vehicleid] = 1;
-		SendClientMessage(playerid, grey, "Prefixo definido.");
+
+    if(!(IsPlayerInAnyVehicle(playerid))) {
+        SendClientMessage(playerid, grey, "Você tem que estar em um veículo para definir um prefixo.");
+    }
+    else if(isnull(params)) {
+        SendClientMessage(playerid, grey, "/vp [prefixo].");
     }
     else {
-        veiculoPrefixo3D[vehicleid] = Create3DTextLabel(params, -1, 0.0, 0.0, 0.0, 50.0, 0, 1);
-	    Attach3DTextLabelToVehicle(veiculoPrefixo3D[vehicleid], vehicleid, -0.8, -2.8, -0.3);
-	    veiculoPrefixo[vehicleid] = 1;
-		SendClientMessage(playerid, grey, "Prefixo definido.");
+        // Se já existir um prefixo, apaga o anterior
+        if (veiculoPrefixo[playerid][vehicleid] == 1) {
+            Delete3DTextLabel(veiculoPrefixo3D[playerid][vehicleid]);
+        }
+
+        // Cria um novo prefixo apenas para aquele jogador no veículo
+        veiculoPrefixo3D[playerid][vehicleid] = Create3DTextLabel(params, -1, 0.0, 0.0, 0.0, 50.0, 0, 1);
+        Attach3DTextLabelToVehicle(veiculoPrefixo3D[playerid][vehicleid], vehicleid, -0.8, -2.8, -0.3);
+        veiculoPrefixo[playerid][vehicleid] = 1;
+
+        SendClientMessage(playerid, grey, "Prefixo definido.");
     }
-	return 1;
+    return 1;
 }
 
 CMD:rp(playerid, params[]) {
     new vehicleid = GetPlayerVehicleID(playerid);
-    if(!(IsPlayerInAnyVehicle(playerid))) {
-		SendClientMessage(playerid, grey, "Você tem que estar em um veículo para remover seu prefixo.");
- 	}
-    else if (player[playerid][pFerido] == 1) {
-        SendClientMessage(playerid, grey, "Você está ferido. Primeiro use o /reviver.");
 
-    }
-	else if (!(veiculoPrefixo[vehicleid])) {
-	    SendClientMessage(playerid, grey, "O veículo não possui um prefixo pré-definido.");
-	}
+    if (!(IsPlayerInAnyVehicle(playerid))) {
+        SendClientMessage(playerid, grey, "Você tem que estar em um veículo para remover o prefixo.");
+    } 
+    else if (veiculoPrefixo[playerid][vehicleid] == 1) {
+        Delete3DTextLabel(veiculoPrefixo3D[playerid][vehicleid]);
+        veiculoPrefixo[playerid][vehicleid] = 0;
+        SendClientMessage(playerid, grey, "Prefixo do veículo removido.");
+    } 
     else {
-        Delete3DTextLabel(veiculoPrefixo3D[vehicleid]);
-        veiculoPrefixo[vehicleid] = 0;
-		SendClientMessage(playerid, grey, "Prefixo removido.");
+        SendClientMessage(playerid, grey, "Este veículo não tem um prefixo definido.");
     }
     return 1;
 }
