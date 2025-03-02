@@ -169,8 +169,10 @@ new PlayerInfo[MAX_PLAYERS][jogadorData];
 new morto[MAX_PLAYERS][mortoData];
 new objeto[MAX_OBJETOS][objetoData];
 
-new Tsec;                                         //stores the mins  of time
-new THrs;                                         //stores hours of time
+new Tsec;                                         
+new THrs;
+new climaAtual;
+new playerTimeOffset[MAX_PLAYERS]; // Offset individual de cada jogador
 
 new const climas[][128] = {
     {1, "Céu limpo e ensolarado em San Andreas. Máxima de 30°C, clima ideal para atividades ao ar livre."},  
@@ -2260,22 +2262,23 @@ public TeleportPlayer(playerid, Float:x, Float:y, Float:z) {
 
 forward TimerU();
 public TimerU() {
-    // new string[7];                             // it makes a variable for a string with size 128
-    Tsec+=1;                                      //this adds 1 to the existing time variable
-    if(Tsec==60) {                                //this resets the mins to 00 one it reaches 60
-        Tsec=00;
-        THrs+=1;                                  //this adds 1 to the hours every 60 seconds
+    Tsec++;  // Incrementa os segundos
+    if (Tsec == 60) {  
+        Tsec = 0;
+        THrs++;  // Adiciona uma hora a cada 60 segundos
     }
-    if(THrs==24) {                                //This Checks if time is 24:00
-        Tsec=00;                                  //This Sets resets Mins
-        THrs=0;                                   //this Resets Hours
+    if (THrs == 24) {  
+        THrs = 0;  // Reseta para 0 quando chega em 24 horas
     }
 
-	for(new i; i<MAX_PLAYERS; i++) {              //loops through all players
-        if(IsPlayerConnected(i)) {                //checks if the player is connected
-            SetPlayerTime(i,THrs,Tsec);           //sets All players time
+    for (new i = 0; i < MAX_PLAYERS; i++) {  
+        if (IsPlayerConnected(i)) {
+            // Aplica a hora do servidor + offset do jogador
+            SetPlayerTime(i, (THrs + playerTimeOffset[i]) % 24, Tsec);
         }
     }
+
+    return 1;
 }
 
 forward MudarClima();
@@ -2288,8 +2291,11 @@ public MudarClima() {
     } while (indiceClima == ultimoClima);
 
     ultimoClima = indiceClima; // Atualiza o último clima escolhido
+	climaAtual = climas[indiceClima][0];
+
     SetWeather(climas[indiceClima][0]); // Define o clima correto pelo ID
     SendClientMessageToAll(orange, climas[indiceClima][1]); // Envia a mensagem a todos
+	
     return 1;
 }
 
@@ -3507,56 +3513,52 @@ CMD:equipar(playerid, params[]) {
     }
     return 1;
 }
-CMD:hora(playerid, params[]) {
-// CMD:hora(playerid, params[]) {
-    // new hora = strval(params);
-    // if(isnull(params)) {
-	// 	return SendClientMessage(playerid, grey, "/hora [0-24]");
- 	// }
-	// if(hora >= 0 && hora <= 24) {
-	// 	SetPlayerTime(playerid, hora, 0);
-	// }
-	// else return SendClientMessage(playerid, grey, "/hora [0-24]");
 
-	format(gpbMensagem, sizeof(gpbMensagem), "Hora atual no servidor: %d:%d.", THrs, Tsec);
+CMD:hora(playerid, params[]) {
+    new hora = strval(params);
+
+    if (isnull(params) || hora < 0 || hora > 23) {
+        return SendClientMessage(playerid, grey, "Uso: /hora [0-23]");
+    }
+
+    // Define o offset do jogador baseado na diferença entre a hora do servidor e a escolhida
+    playerTimeOffset[playerid] = (hora - THrs + 24) % 24;
+
+    // Aplica a nova hora ajustada
+    SetPlayerTime(playerid, hora, Tsec);
+	format(gpbMensagem, sizeof(gpbMensagem), "Horário local definido para às %d hora(s).", hora);
 	SendClientMessage(playerid, grey, gpbMensagem);
+    
+    return 1;
+}
+
+CMD:clima(playerid, params[]) {
+	new clima = strval(params);
+	if(isnull(params)) {
+		SendClientMessage(playerid, grey, "/clima [1-20]");
+	}
+	else if(clima >= 1 && clima <= 20) {
+		SetPlayerWeather(playerid, clima);
+		format(gpbMensagem, sizeof(gpbMensagem), "Clima definido para o ID %d.", clima);
+		SendClientMessage(playerid, grey, gpbMensagem);
+	}
+	else {
+		SendClientMessage(playerid, grey, "/clima [1-20]");
+	}
 	return 1;
 }
 
-// CMD:hour(playerid, params[]) { // Hora global (admin)
-// 	if (IsPlayerAdmin(playerid)) {
-// 		new hora = strval(params);
-// 		if(isnull(params)) {
-// 			return SendClientMessage(playerid, grey, "/hora [0-24]");
-// 		}
-// 		if(hora >= 0 && hora <= 24) {
-// 			SetWorldTime(hora);
-// 			format(gpbMensagem, sizeof(gpbMensagem), "Horário local definido para às %d:00 em Los Santos.", hora);
-// 			SendClientMessageToAll(red, gpbMensagem);
-// 		}
-// 		else { 
-// 			SendClientMessage(playerid, grey, "/hora [0-24]");
-// 		}
-// 	}
-// 	else {
-// 		SendClientMessage(playerid, grey, "Você não tem permissão.");
-// 	}
-// 	return 1;
-// }
+CMD:temposervidor(playerid, params[]) {
+    playerTimeOffset[playerid] = 0; // Reseta o offset
+    SetPlayerTime(playerid, THrs, Tsec); // Define a hora do servidor para o jogador
 
-// CMD:clima(playerid, params[]) {
-// 	new clima = strval(params);
-// 	if(isnull(params)) {
-// 		SendClientMessage(playerid, grey, "/clima [0-45]");
-// 	}
-// 	else if(clima >= 0 && clima <= 45) {
-// 		SetPlayerWeather(playerid, clima);
-// 	}
-// 	else {
-// 		SendClientMessage(playerid, grey, "/clima [0-45]");
-// 	}
-// 	return 1;
-// }
+	SetPlayerWeather(playerid, climaAtual); // Define o clima do servidor para o jogador
+
+	format(gpbMensagem, sizeof(gpbMensagem), "Horário e clima local sincronizado com o servidor às %d horas e clima de ID %d.", THrs, climaAtual);
+	SendClientMessage(playerid, grey, gpbMensagem);
+
+	return 1;
+}
 
 CMD:tp(playerid, params[]) {
     if(player[playerid][pFerido] == 1 || player[playerid][pAlgemado] == 1 || player[playerid][pDerrubado] == 1) {
