@@ -1114,6 +1114,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) { /
                     case 12: TeleportPlayer(playerid, -2209, -2378, 32); // Angel Pine
                     case 13: TeleportPlayer(playerid, -1408, 2645, 55); // El Quebrados
                     case 14: TeleportPlayer(playerid, -220, 995, 19); // Fort Carson
+					case 15: TeleportPlayer(playerid, 1564.9126, -1358.9885, 329.9928); // Topo do Maze Bank
                 }
             }
         }
@@ -3566,7 +3567,7 @@ CMD:tp(playerid, params[]) {
 	}
 	else {
    		ShowPlayerDialog(playerid, textbox_teletransportes, DIALOG_STYLE_LIST, "Lugares",
-        "Los Santos\nLos Santos Police Department\nSanta Maria Beach\nGroove Street\nSan Fierro\nSan Fierro Police Department\nLas Venturas\nLas Venturas Police Department\nPalomino Creek\nMontgomery\nDillimore\nBlueberry\nAngel Pine\nEl Quebrados\nFort Carson",
+        "Los Santos\nLos Santos Police Department\nSanta Maria Beach\nGroove Street\nSan Fierro\nSan Fierro Police Department\nLas Venturas\nLas Venturas Police Department\nPalomino Creek\nMontgomery\nDillimore\nBlueberry\nAngel Pine\nEl Quebrados\nFort Carson\nTopo do Maze Bank",
         "Aceitar", "Cancelar");
 	}
 	return 1;
