@@ -105,6 +105,47 @@ enum veiculoData { // no futuro transferir pra ca: veiculoMotor, veiculoAvariado
 	ultimoAlerta
 };
 
+new gpbMensagem[512];
+new veiculoInfo[MAX_VEHICLES][veiculoData];
+new veiculoMotor[MAX_VEHICLES];
+new veiculoAvariado[MAX_VEHICLES];
+new veiculoPrefixo[MAX_VEHICLES];
+new Text3D:veiculoPrefixo3D[MAX_VEHICLES];
+new veiculoTrancado[MAX_VEHICLES];
+new player[MAX_PLAYERS][jogadorData];
+new playerSkin[MAX_PLAYERS];
+new PlayerInfo[MAX_PLAYERS][jogadorData];
+new morto[MAX_PLAYERS][mortoData];
+new objeto[MAX_OBJETOS][objetoData];
+
+new Tsec;                                         
+new THrs;
+new climaAtual;
+new playerTimeOffset[MAX_PLAYERS]; // Offset individual de cada jogador
+
+new ultimoClima = -1; // Armazena o último clima escolhido
+
+new const climas[][128] = {
+    {1, "Céu limpo e ensolarado em San Andreas. Máxima de 30°C, clima ideal para atividades ao ar livre."},  
+	{2, "Clima alaranjado e quente em San Andreas. Máxima de 33°C, com sensação térmica elevada."},  
+	{3, "Tempo ameno, poucas nuvens no céu de San Andreas. Temperatura entre 18°C e 25°C."},  
+	{4, "Céu nublado em San Andreas, sem previsão de chuva. Temperatura entre 20°C e 26°C."},  
+	{5, "Faz calor com algumas nuvens em San Andreas. Máxima de 32°C, cuide da hidratação."},  
+	{6, "Céu alaranjado e clima tranquilo em San Andreas. Temperatura em torno de 27°C por agora."},  
+	{7, "Ventos fortes em algumas regiões de San Andreas. Temperatura entre 22°C e 28°C."},  
+	{8, "Tempestade se formando em San Andreas. Relâmpagos à vista e temperatura caindo para 19°C."},  
+	{9, "Neblina densa cobre colinas de San Andreas. Visibilidade reduzida e temperatura entre 16°C e 21°C."},  
+	{10, "Tempo limpo e agradável em San Andreas. Poucas nuvens e temperatura entre 20°C e 27°C."},  
+	{11, "Ar frio vindo do norte em San Andreas. Temperatura entre 14°C e 22°C, exigindo agasalhos leves."},  
+	{12, "Nublado, sem previsão de chuva em San Andreas. Temperatura estável entre 19°C e 24°C."},  
+	{13, "Tempo ameno e agradável em San Andreas. Máxima de 22°C, clima ideal para passeios."},  
+	{14, "Clima ameno com poucas nuvens em San Andreas. Temperatura entre 18°C e 26°C."},  
+	{15, "Ventos leves e céu nublado em San Andreas. Temperatura entre 20°C e 25°C."},  
+	{16, "Tempestade se aproxima de San Andreas. Relâmpagos e trovões com queda de temperatura para 18°C."},  
+	{17, "Clima seco em San Andreas, poucas nuvens no céu. Máxima de 30°C, cuide da hidratação."},  
+	{18, "Onda de calor em San Andreas. Termômetros acima de 35°C e umidade baixa, fique atento!"}  
+};
+
 //Variáveis globais:
 new veiculosNomes[212][] =  {"Landstalker", "Bravura", "Buffalo", "Linerunner", "Perennial", "Sentinel", "Dumper", "Fire Truck", "Trashmaster", "Stretch", "Manana", 
 	"Infernus", "Voodoo", "Pony", "Mule", "Cheetah", "Ambulance", "Leviathan", "Moonbeam", "Esperanto", "Taxi", "Washington", "Bobcat", 
@@ -155,47 +196,6 @@ new const AnimLibs[][] = {
   "TRUCK",        "UZI",          "VAN",          "VENDING",      "VORTEX",
   "WAYFARER",     "WEAPONS",      "WOP",          "WUZI"
 };
-
-new gpbMensagem[512];
-new veiculoInfo[MAX_VEHICLES][veiculoData];
-new veiculoMotor[MAX_VEHICLES];
-new veiculoAvariado[MAX_VEHICLES];
-new veiculoPrefixo[MAX_VEHICLES];
-new Text3D:veiculoPrefixo3D[MAX_VEHICLES];
-new veiculoTrancado[MAX_VEHICLES];
-new player[MAX_PLAYERS][jogadorData];
-new playerSkin[MAX_PLAYERS];
-new PlayerInfo[MAX_PLAYERS][jogadorData];
-new morto[MAX_PLAYERS][mortoData];
-new objeto[MAX_OBJETOS][objetoData];
-
-new Tsec;                                         
-new THrs;
-new climaAtual;
-new playerTimeOffset[MAX_PLAYERS]; // Offset individual de cada jogador
-
-new const climas[][128] = {
-    {1, "Céu limpo e ensolarado em San Andreas. Máxima de 30°C, clima ideal para atividades ao ar livre."},  
-	{2, "Clima alaranjado e quente em San Andreas. Máxima de 33°C, com sensação térmica elevada."},  
-	{3, "Tempo ameno, poucas nuvens no céu de San Andreas. Temperatura entre 18°C e 25°C."},  
-	{4, "Céu nublado em San Andreas, sem previsão de chuva. Temperatura entre 20°C e 26°C."},  
-	{5, "Faz calor com algumas nuvens em San Andreas. Máxima de 32°C, cuide da hidratação."},  
-	{6, "Céu alaranjado e clima tranquilo em San Andreas. Temperatura em torno de 27°C por agora."},  
-	{7, "Ventos fortes em algumas regiões de San Andreas. Temperatura entre 22°C e 28°C."},  
-	{8, "Tempestade se formando em San Andreas. Relâmpagos à vista e temperatura caindo para 19°C."},  
-	{9, "Neblina densa cobre colinas de San Andreas. Visibilidade reduzida e temperatura entre 16°C e 21°C."},  
-	{10, "Tempo limpo e agradável em San Andreas. Poucas nuvens e temperatura entre 20°C e 27°C."},  
-	{11, "Ar frio vindo do norte em San Andreas. Temperatura entre 14°C e 22°C, exigindo agasalhos leves."},  
-	{12, "Nublado, sem previsão de chuva em San Andreas. Temperatura estável entre 19°C e 24°C."},  
-	{13, "Tempo ameno e agradável em San Andreas. Máxima de 22°C, clima ideal para passeios."},  
-	{14, "Clima ameno com poucas nuvens em San Andreas. Temperatura entre 18°C e 26°C."},  
-	{15, "Ventos leves e céu nublado em San Andreas. Temperatura entre 20°C e 25°C."},  
-	{16, "Tempestade se aproxima de San Andreas. Relâmpagos e trovões com queda de temperatura para 18°C."},  
-	{17, "Clima seco em San Andreas, poucas nuvens no céu. Máxima de 30°C, cuide da hidratação."},  
-	{18, "Onda de calor em San Andreas. Termômetros acima de 35°C e umidade baixa, fique atento!"}  
-};
-
-new ultimoClima = -1; // Armazena o último clima escolhido
 
 //Returns:
 ReturnVehicleId(vName[]) {
@@ -533,6 +533,7 @@ public OnPlayerRequestClass(playerid, classid) {
 }
 
 public OnPlayerConnect(playerid) {
+	VerificaNome(playerid);
 	player[playerid][pFerido] = 0;
 	player[playerid][pEquipe] = 0;
 	player[playerid][pAnim] = 0;
@@ -1953,15 +1954,17 @@ public DelayRadioAudio(i) {
 
 forward VerificaNome(playerid);
 public VerificaNome(playerid) {
-	new playerName[MAX_PLAYER_NAME];
+	new playerNome[MAX_PLAYER_NAME];
 	new gpb[6] = "[GPB]";
- 	playerName = GetName(playerid);
-  	for (new x = 0; x < 5; x++) { // verifica sem tem o [GPB] no nome
-   		if(playerName[x] != gpb[x]) {
-     		SendClientMessage(playerid, red, "Para conectar-se você deve utilizar a tag [GPB] antes do nickname.");
-       		SetTimerEx("DelayedKick", 1000, false, "i", playerid);
-	        }
+	playerNome = GetName(playerid);
+	for (new i = 0; i < 5; i++) { // verifica sem tem o [GPB] no nome
+		if(playerNome[i] != gpb[i]) {
+			SetTimerEx("DelayedKick", 1000, false, "i", playerid);
+			SendClientMessage(playerid, red, "Você deve usar [GPB] no começo do nome.");
+			break;
+		}
 	}
+	return 1;
 }
 
 forward JogadorConecta(playerid);
