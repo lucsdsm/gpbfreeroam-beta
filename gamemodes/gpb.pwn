@@ -972,23 +972,32 @@ public OnPlayerUpdate(playerid) {
             new Float:vehicleX, Float:vehicleY, Float:vehicleZ;
             GetVehiclePos(i, vehicleX, vehicleY, vehicleZ);
 
-            new Float:radarCoords[3][3] = {
+            new Float:radarCoords[8][3] = {
                 {2057.4727, 1553.2212, 50.0}, // LV barco pirata
                 {1386.8900, 2060.5344, 50.0},  // LV estádio de baseball
-                {2513.5486, 2142.9866, 50.0}  // LV old venturas strip
+                {2513.5486, 2142.9866, 50.0},  // LV old venturas strip
+                {1054.7440, 2517.9561, 50.0},  // Rodovia de Las Venturas, saída noroeste
+                {1788.2183, 705.9098, 50.0},  // Rodovia de Las Venturas, entrada central
+                {713.8076, 667.3644, 50.0},  // Rodovia ao lado da pedreira, perto de Fort Carson
+                {2717.4036, 1224.0356, 50.0},  //Rodovia de Las Venturas, ao lado de Linden Station
+				{1217.1681, 1421.0682, 50.0}  //Rodovia de Las Venturas, ao lado do estádio
             };
 
             new const radarNames[][] = {
                 "Barco Pirata de Las Venturas",
                 "Estádio de Baseball de Las Venturas",
-                "Old Venturas Strip em Las Venturas"
+                "Old Venturas Strip em Las Venturas",
+                "Rodovia de Las Venturas, saída noroeste",
+                "Rodovia de Las Venturas, entrada central",
+                "Rodovia ao lado da pedreira, perto de Fort Carson",
+                "Rodovia de Las Venturas, ao lado de Linden Station",
+                "Rodovia de Las Venturas, ao lado do estádio"
             };
 
-            new estaNoRadar = 0; // 0 = falso, 1 = verdadeiro
-
+            new estaNoRadar = false; 
             for (new k = 0; k < sizeof(radarCoords); k++) {
                 if (IsPointInRangeOfPoint(vehicleX, vehicleY, radarCoords[k][0], radarCoords[k][1], radarCoords[k][2])) {
-                    estaNoRadar = 1; // Veículo está dentro do radar
+                    estaNoRadar = true; // Veículo está dentro do radar
 
                     // Se o veículo ainda não foi alertado, envia alerta e marca como alertado
                     if (!veiculoInfo[i][alertado]) {

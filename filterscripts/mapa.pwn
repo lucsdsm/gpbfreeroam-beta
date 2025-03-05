@@ -1920,6 +1920,13 @@ public OnFilterScriptInit() {
     tmpobjid = CreateDynamicObjectEx(18880, 2057.4727, 1553.2212, 11.0, 0.000000, 0.000000, 0.000000, 300.00, 300.00); // radar lv barco pirata
     tmpobjid = CreateDynamicObjectEx(18880, 1386.8900, 2060.5344, 9, 0.000000, 0.000000, 0.000000, 300.00, 300.00); // radar lv estadio baseball 
     tmpobjid = CreateDynamicObjectEx(18880, 2513.5486, 2142.9866, 10, 0.000000, 0.000000, 90.000000, 300.00, 300.00); // radar lv old venturas strip
+    tmpobjid = CreateDynamicObjectEx(18880, 1054.7440, 2517.9561, 9, 0.000000, 0.000000, 45.000000, 300.00, 300.00); // radar  Rodovia de Las Venturas, saída noroeste
+    tmpobjid = CreateDynamicObjectEx(18880, 1788.2183, 705.9098, 13, 0.000000, 0.000000, 0.000000, 300.00, 300.00);  // Rodovia de Las Venturas, entrada central
+    tmpobjid = CreateDynamicObjectEx(18880, 713.8076, 667.3644, 8, 0.000000, 0.000000, 90.000000, 300.00, 300.00); // Rodovia ao lado da pedreira, perto de Fort Carson
+    tmpobjid = CreateDynamicObjectEx(18880, 2717.4036, 1224.0356, 6, 0.000000, 0.000000, 0.000000, 300.00, 300.00);  //Rodovia de Las Venturas, ao lado de Linden Station
+    tmpobjid = CreateDynamicObjectEx(18880, 1217.1681, 1421.0682, 6, 0.000000, 0.000000, 0.000000, 300.00, 300.00);  //Rodovia de Las Venturas, ao lado do estádio
+
+
 
     return 1;
 
