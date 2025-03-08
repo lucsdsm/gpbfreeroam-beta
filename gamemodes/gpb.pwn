@@ -54,7 +54,7 @@
 #define textbox_inventario 26
 #define textbox_inventario_input 27
 #define textbox_revista_confirma 28
-#define textbox_revista 29
+#define textbox_revista_resultado 29
 
 #define PreloadAnimLib(%1,%2)	ApplyAnimation(%1,%2,"null",0.0,0,0,0,0,0)
 
@@ -79,7 +79,9 @@ enum jogadorData {
    pAnim,
    pElastomero,
    pRadioPD,
-   pInventario[200]
+   pInventario[200],
+   pRevistadoPor,
+   pRevistando
 }
 
 enum mortoData {
@@ -1069,7 +1071,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) { /
 		case textbox_equipamentos: {
 			if (response == 0) return 1; // Se o jogador apertar ESC ou "Cancelar", sai sem fazer nada.
 			switch (listitem) {
-				case 0: { // Remover todas as armas
+				case 0: { // Remover todas as armas e inventario
 					ResetPlayerWeapons(playerid);
 					PlayerInfo[playerid][pInventario] = '\0';
 				}
@@ -1927,7 +1929,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) { /
 		// }
 		case textbox_inventario: {
 			if (response == 0) return 1; // fecha dialog
-			ShowPlayerDialog(playerid, textbox_inventario_input, DIALOG_STYLE_INPUT, "Editarinventário", "Digite os itens (máx 200 caracteres), separe-os com vírgula:", "Confirmar","Cancelar");
+			ShowPlayerDialog(playerid, textbox_inventario_input, DIALOG_STYLE_INPUT, "Editar inventário", "Digite os itens (máx 200 caracteres), separe-os com vírgula:", "Confirmar","Cancelar");
 			if (response == 0) return 1; // fecha dialog
 		}
 		case textbox_inventario_input: {
@@ -1962,6 +1964,61 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) { /
 					}
 				}
 			}
+		}
+		case textbox_revista_confirma: {
+			new string[100] = "";
+			if (response == 0) {
+				strcat(string, GetName(playerid));
+				strcat(string, " resiste à revista pessoal.");
+				SendRangedMessage(playerid, purple, string, 20);
+				SetPlayerChatBubble(playerid, string, purple, 20, 10000);
+			} else {
+				if (player[playerid][pFerido] == 0) {
+					ApplyAnimation(PlayerInfo[playerid][pRevistadoPor], "POLICE", "plc_drgbst_02", 4.1, 0, 0, 0, 0, 0, 1); // anim revista
+					player[PlayerInfo[playerid][pRevistadoPor]][pAnim] = 1;
+
+					ApplyAnimation(playerid, "SHOP", "SHP_Rob_HandsUp", 4.1, 1, 0, 0, 1, 0, 1); // anim mao pro alto
+					player[playerid][pAnim] = 1;
+				}
+
+				strcat(string, GetName(PlayerInfo[playerid][pRevistadoPor]));
+				strcat(string, " inicia uma busca pessoal em ");
+				strcat(string, GetName(playerid));
+				SendRangedMessage(PlayerInfo[playerid][pRevistadoPor], purple, string, 20);
+				SetPlayerChatBubble(PlayerInfo[playerid][pRevistadoPor], string, purple, 20, 10000);
+
+				new inv[300] = "";
+				new armas[200] = "";
+				strcat(inv, PlayerInfo[playerid][pInventario]);
+				armas = GetWeaponsFormatted(playerid);
+				strcat(inv, armas);
+				if (inv[0] == '\0') strcat(inv, "Inventário vazio");
+				ShowPlayerDialog(PlayerInfo[playerid][pRevistadoPor], textbox_revista_resultado, DIALOG_STYLE_MSGBOX, "Resultado da revista:", inv, "Confiscar", "Fechar");
+				return 1;
+			}
+		}
+		case textbox_revista_resultado: {
+			if (response == 0) return 1; // fecha dialog
+			if (response == 1) {
+				new string[100] = "";
+				if (IsPlayerInAnyVehicle(playerid)) { // no carro
+					veiculoInfo[GetPlayerVehicleID(playerid)][inventario] = '\0';
+					strcat(string, GetName(playerid));
+					strcat(string, " confisca todos os itens do veículo");
+					SendRangedMessage(playerid, purple, string, 20);
+					SetPlayerChatBubble(playerid, string, purple, 20, 10000);
+				} else {
+					new target = PlayerInfo[playerid][pRevistando];
+					PlayerInfo[target][pInventario] = '\0';
+					ResetPlayerWeapons(target);
+					strcat(string, GetName(playerid));
+					strcat(string, " confisca todos os itens de ");
+					strcat(string, GetName(target));
+					SendRangedMessage(playerid, purple, string, 20);
+					SetPlayerChatBubble(playerid, string, purple, 20, 10000);
+				}
+			}
+			return 1;
 		}
 	}
 	return 1;
@@ -2767,7 +2824,7 @@ CMD:190(playerid, text[]) {
 
 CMD:inv(playerid, params[]) {
 	new string[30] = "Inventário do ";
-	new inv[200] = "";
+	new inv[400] = "";
 	if (!IsPlayerInAnyVehicle(playerid)) { // se o jogador estiver a pe
 		strcat(string, "personagem:");
 		strcat(inv, PlayerInfo[playerid][pInventario]);
@@ -2785,33 +2842,57 @@ CMD:inv(playerid, params[]) {
 	return 1;
 }
 
-// CMD:revistar(playerid, params[]) {
-// 	new targetid;
-// 	if(!sscanf(params, "u", targetid)) {
-// 		if(player[playerid][pFerido] == 1) {
-// 			SendClientMessage(playerid, grey, "Você está ferido.");
-// 		}
-// 		else if(player[playerid][pDerrubado] == 1) {
-// 			SendClientMessage(playerid, grey, "Você está derrubado.");
-// 		}
-// 		else if(player[playerid][pAlgemado] == 1) {
-// 			SendClientMessage(playerid, grey, "Você está algemado.");
-// 		} 
-// 		else if(playerid == targetid) {
-// 			SendClientMessage(playerid, grey, "Você não pode se revistar.");
-// 		}
-// 		else {
-			
+CMD:revistar(playerid, params[]) {
 
-// 			// ShowPlayerDialog(playerid, textbox_inventario, DIALOG_STYLE_MSGBOX, "Inventário do jogador:",
-// 			// 	inv, "Fechar", "");
-// 		}
-// 	}
-// 	else {
-// 		SendClientMessage(playerid, grey, "/revistar [id]");
-// 	}
-// 	return 1;
-// }
+	if(player[playerid][pFerido] == 1) {
+		SendClientMessage(playerid, grey, "Você está ferido.");
+		return 1;
+	} else if(player[playerid][pDerrubado] == 1) {
+		SendClientMessage(playerid, grey, "Você está derrubado.");
+		return 1;
+	} else if(player[playerid][pAlgemado] == 1) {
+		SendClientMessage(playerid, grey, "Você está algemado.");
+		return 1;
+	}
+	new targetid;
+	if(!sscanf(params, "u", targetid)) { // revista pessoa
+		if(playerid == targetid) {
+			SendClientMessage(playerid, grey, "Você não pode se revistar.");
+			return 1;
+		} 
+		else if (!IsPlayerNearPlayer(playerid, targetid, 2.0) && !IsPlayerNearPlayer(targetid, playerid, 2.0)) {
+			SendClientMessage(playerid, grey, "Você deve estar a 2 metros ou menos do jogador para revistá-lo.");
+			return 1;
+		}
+		if (IsPlayerInAnyVehicle(playerid) || IsPlayerInAnyVehicle(targetid)) { 
+			SendClientMessage(playerid, grey, "Você não pode revistar alguém dentro do veículo.");
+			return 1;
+		} 
+		else {
+			new string[66] = "";
+			strcat(string, GetName(playerid));
+			strcat(string, " quer realizar uma busca pessoal em você.");
+			PlayerInfo[targetid][pRevistadoPor] = playerid;
+			PlayerInfo[playerid][pRevistando] = targetid;
+			ShowPlayerDialog(targetid, textbox_revista_confirma, DIALOG_STYLE_MSGBOX, "Revista pessoal",	string, "Aceitar", "Resistir");
+			SendClientMessage(playerid, grey, "Você solicitou uma revista pessoal, aguarde a resposta parado.");
+			return 1;
+		}
+	}
+	else if (IsPlayerInAnyVehicle(playerid)) { // revista carro
+		new string[60] = "";
+		new inv[200] = "";
+		strcat(inv, veiculoInfo[GetPlayerVehicleID(playerid)][inventario]);
+		if (inv[0] == '\0') strcat(inv, "Inventário vazio");
+
+		strcat(string, GetName(playerid));
+		strcat(string, " inicia uma busca completa no veículo.");
+		SendRangedMessage(playerid, purple, string, 20);
+		SetPlayerChatBubble(playerid, string, purple, 20, 10000);
+		ShowPlayerDialog(playerid, textbox_revista_resultado, DIALOG_STYLE_MSGBOX, "Resultado da revista:", inv, "Confiscar", "Fechar");
+	}
+	return 1;
+}
 
 CMD:equipe(playerid, params[]) {
     if (player[playerid][pFerido] == 1) {
@@ -2994,11 +3075,13 @@ CMD:vc(playerid, params[]) { // NECESSARIO REFAZER E MERGIR COM O /VCS
 			veiculoInfo[modeloId][roubado] = false;
 			veiculoInfo[modeloId][segurado] = true;
 			veiculoInfo[modeloId][licenciado] = true;
+			veiculoInfo[modeloId][inventario] = '\0';
+
 			
 			PutPlayerInVehicle(playerid, modeloId, 0);
 			player[playerid][pAnim] = 0;
 			veiculoTrancado[modeloId] = 0;
-
+			veiculoAvariado[modeloId] = 0;
 			veiculoPrefixo[modeloId] = 0;
 
 			if (HasNoEngine(modeloId) == 1) {
@@ -3108,13 +3191,15 @@ CMD:vcs(playerid, params[]) { // NECESSARIO REFAZER E MERGIR COM O /VC
 				veiculoInfo[modeloId][roubado] = false;
 				veiculoInfo[modeloId][segurado] = true;
 				veiculoInfo[modeloId][licenciado] = true;
+				veiculoInfo[modeloId][inventario] = '\0';
 
 				PutPlayerInVehicle(playerid, modeloId, 0);
 				player[playerid][pAnim] = 0;
 				veiculoTrancado[modeloId] = 0;
-
+				veiculoAvariado[modeloId] = 0;
 				Delete3DTextLabel(veiculoPrefixo3D[modeloId]);
         		veiculoPrefixo[modeloId] = 0;
+
 
 				if (HasNoEngine(modeloId) == 1) {
 					new enginem, lights, alarm, doors, bonnet, boot, objective;
