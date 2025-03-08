@@ -514,7 +514,7 @@ stock ConsultarPlaca(placa[], bool:policial) {
 
 //Funções públicas:
 public OnGameModeInit() {
-	SetGameModeText("GPB:F v0.5.6");
+	SetGameModeText("GPB:F v0.5.7");
     ManualVehicleEngineAndLights();
 	SetNameTagDrawDistance(20.0);
 	EnableStuntBonusForAll(0);
@@ -2437,7 +2437,7 @@ public MudarClima() {
 CMD:comandos(playerid, params[]) {
 	SendClientMessage(playerid, grey, "[Servidor]: /comandos, /equipe, /hora, /clima, /tp, /ir, /tc, /tr, /objeto, /remover;");
 	SendClientMessage(playerid, grey, "[Chat]: /c, /me, /ame, /do, /d, /sus, /gl, /d, /ooc, /gr, /r, /911, /190, /mp;");
-	SendClientMessage(playerid, grey, "[Personagem]: /skin, /reviver, /anim, /equipar, /derrubar, /levantar, /limpar, /morrer;");
+	SendClientMessage(playerid, grey, "[Personagem]: /skin, /reviver, /anim, /equipar, /derrubar, /revistar, /levantar, /limpar, /inv, /morrer;");
 	SendClientMessage(playerid, grey, "[Veículo]: /vc, /vd, /veiculo, /chave, /luzes, /pintar, /fix, /travas, /capo, /mala;");
 	SendClientMessage(playerid, grey, "[Polícia]: /vcs, /vp, /rp, /radiopd, /mf, /ref, /mdt, /algemar, /desalgemar, /tc, /tr;");
 	SendClientMessage(playerid, grey, "[Paramédico]: /reanimar.");
