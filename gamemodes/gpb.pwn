@@ -51,6 +51,10 @@
 #define textbox_MDT 23
 #define textbox_MDT_placa 24
 #define textbox_MDT_placa_resultado 25
+#define textbox_inventario 26
+#define textbox_inventario_input 27
+#define textbox_revista_confirma 28
+#define textbox_revista 29
 
 #define PreloadAnimLib(%1,%2)	ApplyAnimation(%1,%2,"null",0.0,0,0,0,0,0)
 
@@ -75,6 +79,7 @@ enum jogadorData {
    pAnim,
    pElastomero,
    pRadioPD,
+   pInventario[200]
 }
 
 enum mortoData {
@@ -102,7 +107,8 @@ enum veiculoData { // no futuro transferir pra ca: veiculoMotor, veiculoAvariado
 	bool:licenciado,
 	BOLO[200], // be on lookout
 	bool: alertado,
-	ultimoAlerta
+	ultimoAlerta,
+	inventario[200]
 };
 
 new gpbMensagem[512];
@@ -255,6 +261,23 @@ stock GetPlayerID(nickname[]) {
     }
     return INVALID_PLAYER_ID;
 }
+
+stock GetWeaponsFormatted(playerid) {
+	new weapons[200] = "";
+	if (weapons[0] == '\0') {
+		new weaponName[32];
+		for (new j = 0; j < 12; j++) {
+			new weaponid, ammo;
+			GetPlayerWeaponData(playerid, j, weaponid, ammo);
+			if (weaponid != 0) {
+				GetWeaponName(weaponid, weaponName, sizeof(weaponName));
+				strcat(weapons, "\n");
+				strcat(weapons, weaponName);
+			}
+		}
+	}
+	return weapons;
+}	
 
 stock GetLightStatus(vehicleid) {
 	static
@@ -1046,7 +1069,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) { /
 		case textbox_equipamentos: {
 			if (response == 0) return 1; // Se o jogador apertar ESC ou "Cancelar", sai sem fazer nada.
 			switch (listitem) {
-				case 0: ResetPlayerWeapons(playerid); // Remover todas as armas
+				case 0: { // Remover todas as armas
+					ResetPlayerWeapons(playerid);
+					PlayerInfo[playerid][pInventario] = '\0';
+				}
 				case 1: SetPlayerHealth(playerid, 100); // Vida
 				case 2: SetPlayerArmour(playerid, 100); // Colete
 				case 3: GivePlayerWeapon(playerid, 41 , 0x7FFFFFFF); // Spray
@@ -1899,6 +1925,44 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) { /
 		// case textbox_MDT_placa_resultado: {
 		// 	// Handle the result dialog response if needed
 		// }
+		case textbox_inventario: {
+			if (response == 0) return 1; // fecha dialog
+			ShowPlayerDialog(playerid, textbox_inventario_input, DIALOG_STYLE_INPUT, "Editarinventário", "Digite os itens (máx 200 caracteres), separe-os com vírgula:", "Confirmar","Cancelar");
+			if (response == 0) return 1; // fecha dialog
+		}
+		case textbox_inventario_input: {
+			new stringFormatada[200] = "";
+			if (strlen(inputtext) >= 200) {
+				SendClientMessage(playerid, red, "Máximo de 200 caracteres.");
+				return 1;
+			} else {
+				for (new i = 0; i < 200; i++) {
+					if (inputtext[i] == '\0') {
+						break; // fim!!
+					}
+					if (inputtext[i] == ',') {
+						stringFormatada[i] = '\n';
+					} else {
+						stringFormatada[i] = inputtext[i];
+					}
+				}
+				if (!IsPlayerInAnyVehicle(playerid)) { // a pé
+					PlayerInfo[playerid][pInventario] = stringFormatada;
+					if (strlen(stringFormatada) == 0) {
+						SendClientMessage(playerid, grey, "Inventário limpo!");
+					} else {
+						SendClientMessage(playerid, grey, "Inventário editado!");
+					}
+				} else {
+					veiculoInfo[GetPlayerVehicleID(playerid)][inventario] = stringFormatada;
+					if (strlen(stringFormatada) == 0) {
+						SendClientMessage(playerid, grey, "Inventário limpo!");
+					} else {
+						SendClientMessage(playerid, grey, "Inventário editado!");
+					}
+				}
+			}
+		}
 	}
 	return 1;
 }
@@ -2700,6 +2764,54 @@ CMD:190(playerid, text[]) {
 	}
 	return 1;
 }
+
+CMD:inv(playerid, params[]) {
+	new string[30] = "Inventário do ";
+	new inv[200] = "";
+	if (!IsPlayerInAnyVehicle(playerid)) { // se o jogador estiver a pe
+		strcat(string, "personagem:");
+		strcat(inv, PlayerInfo[playerid][pInventario]);
+		new armas[200] = "";
+		armas = GetWeaponsFormatted(playerid);
+		strcat(inv, armas);
+	} else { // jogador no veiculo
+		strcat(string, "veículo:");
+		strcat(inv, veiculoInfo[GetPlayerVehicleID(playerid)][inventario]);
+	}
+	if (inv[0] == '\0') strcat(inv, "Inventário vazio");
+
+	ShowPlayerDialog(playerid, textbox_inventario, DIALOG_STYLE_MSGBOX, string, inv,
+       "Editar", "Fechar");
+	return 1;
+}
+
+// CMD:revistar(playerid, params[]) {
+// 	new targetid;
+// 	if(!sscanf(params, "u", targetid)) {
+// 		if(player[playerid][pFerido] == 1) {
+// 			SendClientMessage(playerid, grey, "Você está ferido.");
+// 		}
+// 		else if(player[playerid][pDerrubado] == 1) {
+// 			SendClientMessage(playerid, grey, "Você está derrubado.");
+// 		}
+// 		else if(player[playerid][pAlgemado] == 1) {
+// 			SendClientMessage(playerid, grey, "Você está algemado.");
+// 		} 
+// 		else if(playerid == targetid) {
+// 			SendClientMessage(playerid, grey, "Você não pode se revistar.");
+// 		}
+// 		else {
+			
+
+// 			// ShowPlayerDialog(playerid, textbox_inventario, DIALOG_STYLE_MSGBOX, "Inventário do jogador:",
+// 			// 	inv, "Fechar", "");
+// 		}
+// 	}
+// 	else {
+// 		SendClientMessage(playerid, grey, "/revistar [id]");
+// 	}
+// 	return 1;
+// }
 
 CMD:equipe(playerid, params[]) {
     if (player[playerid][pFerido] == 1) {
@@ -3533,7 +3645,7 @@ CMD:equipar(playerid, params[]) {
         SendClientMessage(playerid, grey, "Você não pode fazer isso agora.");
     } else {
         ShowPlayerDialog(playerid, textbox_equipamentos, DIALOG_STYLE_LIST, "Equipamentos",
-            "{FF0000}Remover todas as armas\nVida\nColete\nSpray\nCacetete\nFaca\n9mm\nTaser\nDesert Eagle\nEscopeta\nEscopeta com elastômero\nEscopeta de combate\nEscopeta de cano serrado\nMicro-UZI\nTEC9\nMP5\nM4\nAK-47\nRifle de precisão\nRifle de caçador\nGranada de fumaça\nCoquetel molotov\nDetonador\nCâmera\nParaquedas\nTaco de golf\nTaco de baseball\nTaco de sinuca\nKatana\nPá\nSerra elétrica\nExtintor\nExplosivo\nDildo\nVibrador\nBuquê\nBengala",
+            "{FF0000}Limpar armas e inventário\nVida\nColete\nSpray\nCacetete\nFaca\n9mm\nTaser\nDesert Eagle\nEscopeta\nEscopeta com elastômero\nEscopeta de combate\nEscopeta de cano serrado\nMicro-UZI\nTEC9\nMP5\nM4\nAK-47\nRifle de precisão\nRifle de caçador\nGranada de fumaça\nCoquetel molotov\nDetonador\nCâmera\nParaquedas\nTaco de golf\nTaco de baseball\nTaco de sinuca\nKatana\nPá\nSerra elétrica\nExtintor\nExplosivo\nDildo\nVibrador\nBuquê\nBengala",
             "Aceitar", "Cancelar");
     }
     return 1;
