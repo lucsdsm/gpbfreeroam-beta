@@ -533,6 +533,10 @@ public OnGameModeInit() {
         iPickups[i][3] = -1;
         iPickups[i][4] = -1;
     }
+	print("=====================================\n");
+	print("-  GAMEMODE gpb iniciado com exito  -\n");
+	print("-          Por Lucas e Rog          -\n");
+	print("=====================================\n");
 	return 1;
 }
 
