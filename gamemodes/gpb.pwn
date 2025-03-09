@@ -107,10 +107,14 @@ enum veiculoData { // no futuro transferir pra ca: veiculoMotor, veiculoAvariado
 	bool:roubado,
 	bool:segurado,
 	bool:licenciado,
-	BOLO[200], // be on lookout
 	bool: alertado,
 	ultimoAlerta,
-	inventario[200]
+	inventario[200],
+	bool:motor,
+	bool:avariado,
+	bool:trancado,
+	prefixo,
+	Text3D:prefixo3D
 };
 
 new gpbMensagem[512];
@@ -462,12 +466,28 @@ stock GetPlaca(vehicleid) {
 }
 
 stock GetVId(placa[]) {
-	for(new i = 2; i < MAX_VEHICLES; i++) {
+	for(new i = 1; i < MAX_VEHICLES; i++) {
 		if(!strcmp(veiculoInfo[i][emplacamento], placa, true)) {
 			return i;
 		}
 	}
 	return -1;
+}
+
+stock SetarNovoVeiculo(vehicleid) {
+	new placa[9] = "";
+	placa = GerarPlaca();
+	printf("Placa gerada: %s, vId: %i", placa, vehicleid);
+   	SetVehicleNumberPlate(vehicleid, placa);
+	veiculoInfo[vehicleid][emplacamento] = placa;
+	veiculoInfo[vehicleid][roubado] = false;
+	veiculoInfo[vehicleid][segurado] = true;
+	veiculoInfo[vehicleid][licenciado] = true;
+	veiculoInfo[vehicleid][inventario] = '\0';
+	veiculoTrancado[vehicleid] = 0;
+	veiculoAvariado[vehicleid] = 0;
+	veiculoPrefixo[vehicleid] = 0;
+	return 1;
 }
 
 stock ConsultarPlaca(placa[], bool:policial) {
@@ -533,6 +553,14 @@ public OnGameModeInit() {
         iPickups[i][3] = -1;
         iPickups[i][4] = -1;
     }
+
+	// configurar veiculos pre spawnandos
+	for (new i = 0; i < MAX_VEHICLES; i++) {
+		if(IsValidVehicle(i)) {
+			SetarNovoVeiculo(i);
+		}		
+	}
+	
 	print("=====================================\n");
 	print("-  GAMEMODE gpb iniciado com exito  -\n");
 	print("-          Por Lucas e Rog          -\n");
@@ -996,7 +1024,7 @@ public OnPlayerUpdate(playerid) {
     new Float:playerX, Float:playerY, Float:playerZ;
     GetPlayerPos(playerid, playerX, playerY, playerZ);
 
-    for (new i = 1; i < MAX_VEHICLES; i++) { // Sistema ALPR
+    for (new i = 0; i < MAX_VEHICLES; i++) { // Sistema ALPR
         if (IsValidVehicle(i) && veiculoInfo[i][roubado]) {
             new Float:vehicleX, Float:vehicleY, Float:vehicleZ;
             GetVehiclePos(i, vehicleX, vehicleY, vehicleZ);
@@ -1898,7 +1926,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) { /
 					GetVehicleZAngle(vehicleid, angle);
 					new Float:checkX = pos[0] + 5 * floatsin(-angle, degrees);
 					new Float:checkY = pos[1] + 5 * floatcos(-angle, degrees);
-					for (new i = 1; i < MAX_VEHICLES; i++) {
+					for (new i = 0; i < MAX_VEHICLES; i++) {
 						if (IsValidVehicle(i) && i != vehicleid) {
 							new Float:vPos[3];
 							GetVehiclePos(i, vPos[0], vPos[1], vPos[2]);
