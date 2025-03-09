@@ -1948,7 +1948,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) { /
 			if (strlen(inputtext) != 8) {
 				SendClientMessage(playerid, red, "Placa inválida.");
 			} else {
-				for (new i = 2; i < 6; i++) { // uppercase so p confirmar
+				for (new i = 1; i < 6; i++) { // uppercase so p confirmar
 					inputtext[i] = toupper(inputtext[i]);
 				}
 				new consulta[200] = "";
@@ -4340,7 +4340,7 @@ CMD:remover(playerid, params[]) {
 
 CMD:limparveiculos(playerid) {
 	if(IsPlayerAdmin(playerid)) {
-		for(new i = 2; i < MAX_VEHICLES; i++) {
+		for(new i = 1; i < MAX_VEHICLES; i++) {
 			if(IsValidVehicle(i) && !VeiculoComJogador(i)) {
 				DestroyVehicle(i);
 			}
